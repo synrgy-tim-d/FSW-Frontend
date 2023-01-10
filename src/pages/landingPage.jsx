@@ -4,11 +4,11 @@ import Carousel from '../components/carousel/carousel';
 import Cta from '../components/cta/cta';
 import Footer from '../components/footer/footer';
 import Navbar from '../components/navbar/navbar';
-import Whyus from '../components/whyuse/bannerwhyuse';
+import Whyus from '../components/whyus/whyus';
 import Popular from '../components/popular/popular';
 import Testimonial from '../components/testimonial/testimonial';
 
-function landingPage() {
+function LandingPage() {
   return (
     <div>
       <Navbar />
@@ -24,4 +24,4 @@ function landingPage() {
   );
 }
 
-export default landingPage;
+export default LandingPage;
