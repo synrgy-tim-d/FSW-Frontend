@@ -19,7 +19,6 @@ function LandingPage() {
       <Cta />
       <Carousel />
       <Popular />
-      <Footer />
     </div>
   );
 }
