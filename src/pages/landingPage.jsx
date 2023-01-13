@@ -11,12 +11,12 @@ import Testimonial from '../components/testimonial/testimonial';
 function LandingPage() {
   return (
     <>
-    <div className='bg-yellow-400 w-screen'>
+    <div className='w-full mx-auto'>
       <Navbar />
       <Banner />
       <Whyus />
       <Carousel />
-      <div className='bg-[#D9D9D9] py-10'>
+      <div className='bg-[#D9D9D9]  overflow-hidden py-10 '>
       <Testimonial />
       <Cta />
       </div>
