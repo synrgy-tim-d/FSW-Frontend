@@ -10,16 +10,20 @@ import Testimonial from '../components/testimonial/testimonial';
 
 function LandingPage() {
   return (
-    <div>
+    <>
+    <div className='bg-yellow-400 w-screen'>
       <Navbar />
       <Banner />
       <Whyus />
       <Carousel />
+      <div className='bg-[#D9D9D9] py-10'>
       <Testimonial />
       <Cta />
+      </div>
       <Carousel />
       <Popular />
     </div>
+    </>
   );
 }
 
