@@ -15,7 +15,7 @@ const SignIn = () => {
           Email
         </span>
         <input
-          className='px-4 w-[526px] h-[55px] text-black text-[20px] font-[600] bg-white rounded-[526px] border-2 border-[#46464f]/20 text-[#46464f]/38 focus:outline-none focus:border-[#46464f]/40 block'
+          className='px-4 w-[526px] h-[55px] text-black text-[20px] font-[600] bg-white rounded-[526px] placeholder-[#46464f]/40 border-2 border-[#46464f]/20 focus:outline-none focus:border-[#46464f]/40 block'
           type='text'
           placeholder='Ketikkan alamat email'
         />
@@ -25,7 +25,7 @@ const SignIn = () => {
           Password
         </span>
         <input
-          className='px-4 w-[526px] h-[55px] text-black text-[20px] font-[600] bg-white rounded-[526px] border-2 border-[#46464f]/20 text-[#46464f]/38 focus:outline-none focus:border-[#46464f]/40'
+          className='px-4 w-[526px] h-[55px] text-black text-[20px] font-[600] bg-white rounded-[526px] placeholder-[#46464f]/40 border-2 border-[#46464f]/20 focus:outline-none focus:border-[#46464f]/40 block'
           type='password'
           placeholder='Minimal 6 karakter'
         />
@@ -39,7 +39,7 @@ const SignIn = () => {
       </div>
       <div className='flex flex-row justify-center mt-[29px]'>
         <button
-          className='w-[449px] h-[43px] bg-[#4A4A4A] rounded-[150px] outline-none text-[16px] font-[600] text-white hover:bg-[#4A4A4A]/70 hover:border-none focus:outline-none'
+          className='w-[449px] h-[43px] bg-[#0A008A] rounded-[150px] outline-none text-[16px] font-[600] text-white hover:bg-[#0A008A]/75 hover:border-none focus:outline-none'
           type='submit'
         >
           Masuk
