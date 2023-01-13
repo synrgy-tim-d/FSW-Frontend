@@ -36,10 +36,10 @@
 
 @keyframes slideinRight {
   0% {
-    transform: translateX(-150%);
+    transform: translateX(-205%);
   }
   100% {
-    transform: translateX(-45%);
+    transform: translateX(-100%);
   }
 }
 
