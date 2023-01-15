@@ -8,9 +8,9 @@ function Banner() {
       <div className='lg:flex ml-12 mr-12 py-20'>
         <div className=' lg:w-1/2  flex items-center justify-start '>
           <div className='space-y-6'>
-            <div className='space-y-2'>
-              <h1 className='text-start font-bold'>Cari Kos Lengkap Aman Di Kantong</h1>
-              <p className='text-start'>Lorem ipsum dolor sit amet</p>
+            <div className='space-y-4'>
+              <h1 className='text-start font-bold text-6xl'>Cari Kos Lengkap Aman Di Kantong</h1>
+              <p className='text-start text-3xl'>Lorem ipsum dolor sit amet</p>
             </div>
             <div className='flex space-x-4'>
               <div className='relative flex items-center w-11/12'>
