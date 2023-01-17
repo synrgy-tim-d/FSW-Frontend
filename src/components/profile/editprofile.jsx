@@ -1,10 +1,10 @@
-import React from 'react'
-import './profile.css'
+import React from 'react';
+import './profile.css';
 
-const editprofile = () => {
+const EditProfile = () => {
   return (
-    <div className='p-4'>
-      <ul className='breadcrumb pl-10'>
+    <>
+      <ul className='breadcrumb ml-24 m-4'>
         <li>
           <a href='#'>Home</a>
         </li>
@@ -15,92 +15,98 @@ const editprofile = () => {
           <a href='#'>Edit Profil</a>
         </li>
       </ul>
-      <div className='grid grid-cols-12 p-12'>
-        <div className='col-span-4 grid justify-center'>
-          <div className='circle' />
-          <div className='flex justify-center'>
-            <h1>Nama Pengguna</h1>
+
+      <div className='w-screen flex'>
+        <div
+          className='w-2/5'>
+          <div>
+            <div className='circle'></div>
+            <div className='flex justify-center'>
+              <p>Nama Pengguna</p>
+            </div>
           </div>
         </div>
-        <div className='col-span-8 grid gap-6'>
-          <div className='flex flex-col rounded-xl p-3 pb-8' style={{ backgroundColor: '#EFEFEF' }}>
-            <div className='grid grid-cols-12 p-3'>
-              <div className='col-start-1 col-end-4 flex pl-3 pb-8'>
-                <h4 id='head'>
-                  <strong> Informasi Akun </strong>
-                </h4>
+
+        <div className='w-3/5 grid'>
+          <div className='w-3/4 h-auto justify-self-center grid gap-8'>
+            <form action='|' className='grid p-6 bg-slate-300 rounded-2xl gap-2'>
+              <div className='flex justify-start'>
+                <p>
+                  <strong>Informasi Akun</strong>
+                </p>
               </div>
-            </div>
-            <div className='grid grid-cols-8'>
-              <div className='col-span-2 col-start-1 grid gap-4 pl-8'>
-                <p>Nama Lengkap*</p>
-                <p>Nomor HP*</p>
-                <p>Email*</p>
-                <p>Username*</p>
-              </div>
-              <div className='col-span-4 col-start-3 grid gap-4'>
-                <div>
+
+              <div className='flex text-black p-4'>
+                <div className='w-1/5'>
+                  <label htmlFor='inline-full-name' className='flex justify-start'>
+                    Nama Lengkap*
+                  </label>
+                </div>
+                <div className='w-3/5'>
                   <input
-                    className='w-full rounded-2xl border-2 border-blue-900 bg-inherit pl-3'
+                    className='w-full rounded-full border-2 border-blue-700 bg-inherit pl-5 p-1'
                     type='text'
+                    id='inline-full-name'
                     placeholder='Nama Pengguna'
                   />
                 </div>
-                <div>
+              </div>
+
+              <div className='flex text-black p-4'>
+                <div className='w-1/5'>
+                  <label htmlFor='inline-phone-number' className='flex justify-start'>
+                    Nomor HP*
+                  </label>
+                </div>
+                <div className='w-3/5'>
                   <input
-                    className='w-full rounded-2xl border-2 border-blue-900 bg-inherit pl-3'
-                    type='number'
+                    className='w-full rounded-full border-2 border-blue-700 bg-inherit pl-5 p-1'
+                    type='text'
+                    id='inline-phone-number'
                     placeholder='+62 8xxx xxxx xxxx'
                   />
                 </div>
-                <div>
+              </div>
+
+              <div className='flex text-black p-4'>
+                <div className='w-1/5'>
+                  <label htmlFor='inline-email' className='flex justify-start'>
+                    Email*
+                  </label>
+                </div>
+                <div className='w-3/5'>
                   <input
-                    className='w-full rounded-2xl border-2 border-blue-900 bg-inherit pl-3'
-                    type='email'
+                    className='w-full rounded-full border-2 border-blue-700 bg-inherit pl-5 p-1'
+                    type=''
+                    id='inline-email'
                     placeholder='namapengguna@mail.com'
                   />
                 </div>
-                <div>
-                  <input
-                    className='w-full rounded-2xl border-2 border-blue-900 bg-inherit pl-3'
-                    type='text'
-                    placeholder='namapengguna'
-                  />
-                </div>
               </div>
+
+              <div className='flex justify-end'>
+                <button className='rounded-full bg-blue-700'>
+                  <strong className='text-white'>Simpan</strong>
+                </button>
+              </div>
+            </form>
+
+            <div className='bg-slate-300 rounded-2xl'>
+              <button type='button' className='w-full bg-inherit'>
+                <strong className='text-black'>Ganti Password</strong>
+              </button>
             </div>
-            <div className='flex justify-end p-8'>
-              <button type='button' className='rounded-3xl bg-blue-900 p-2 px-8 text-xl text-white'>
-                Simpan
+
+            <div className='bg-slate-300 rounded-2xl'>
+              <button type='button' className='w-full bg-inherit'>
+                <strong className='text-red-700'>Log Out</strong>
               </button>
             </div>
           </div>
-          <div
-            className='flex justify-center rounded-xl p-3'
-            id='change_pass'
-            style={{ backgroundColor: '#EFEFEF' }}
-          >
-            <button>
-              <div>
-                <p className='change_pass text-2xl'>Ganti Password</p>
-              </div>
-            </button>
-          </div>
-          <div
-            className='flex justify-center rounded-xl p-3'
-            id='logout'
-            style={{ backgroundColor: '#EFEFEF' }}
-          >
-            <button>
-              <p className='logout text-2xl'>
-                <i>Log Out</i>
-              </p>
-            </button>
-          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
-export default editprofile;
+export default EditProfile;
