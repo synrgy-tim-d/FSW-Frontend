@@ -1,93 +1,87 @@
-import React from 'react'
+import React from 'react';
 
 const SignUp = () => {
   return (
-    <div className='container bg-white font-[Montserrat]'>
-      <div className='flex justify-center'>
+    <div className='px-[15px] w-screen font-[Montserrat] '>
+      <div className='flex flex-row justify-center'>
         <img
-          className='mt-[70px] w-[360px] h-[163.72px] object-cover'
+          className='md:mt-[70px] md:w-[360px] md:h-[163.72px] min-[393px]:mt-[27px] min-[393px]:w-[171px] min-[393px]:h-[78px]'
           alt=''
           src='src/assets/LogoNaqosFix.png'
         />
       </div>
-      <div className='flex flex-col justify-center mt-[48px] w-max mx-auto'>
-        <span className='mb-[11px] w-[209px] h-[24px] text-black text-left text-[20px] font-[600]'>
+      <div className='flex flex-col justify-center mx-auto md:mt-[48px] md:w-[526px] min-[393px]:mt-[18px]'>
+        <span className='md:mb-[11px] md:w-[209px] md:h-[24px] md:text-[20px] min-[393px]:text-[14px] min-[393px]:w-[175px] min-[393px]:mb-[14px] text-black text-left font-[600]'>
           Nama Lengkap
         </span>
         <input
-          className='px-4 w-[526px] h-[55px] text-black text-[20px] font-[600] bg-white rounded-[526px] placeholder-[#46464f]/40 border-2 border-[#46464f]/20 focus:outline-none focus:border-[#46464f]/40 block'
+          className='md:h-[55px] md:text-[20px] min-[393px]:h-[48px] min-[393px]:text-[12px] px-4 text-black font-[600] bg-white rounded-[526px] placeholder-[#46464f]/40 border-2 border-[#46464f]/20 focus:outline-none focus:border-[#0A008A]'
           type='text'
           placeholder='Ketikkan nama lengkapmu disini'
         />
-      </div>
-      <div className='flex flex-col justify-center mt-[20px] w-max mx-auto'>
-        <span className='mb-[11px] w-[209px] h-[24px] text-black text-left text-[20px] font-[600]'>
+        <span className='md:mt-[20px] md:mb-[11px] md:w-[209px] md:h-[24px] md:text-[20px] min-[393px]:text-[14px] min-[393px]:w-[175px] min-[393px]:mt-[14px] min-[393px]:mb-[14px] text-black text-left font-[600]'>
           Nomor Handphone
         </span>
         <input
-          className='px-4 w-[526px] h-[55px] text-black text-[20px] font-[600] bg-white rounded-[526px] placeholder-[#46464f]/40 border-2 border-[#46464f]/20 focus:outline-none focus:border-[#46464f]/40 block'
+          className='md:h-[55px] md:text-[20px] min-[393px]:h-[48px] min-[393px]:text-[12px] px-4 text-black font-[600] bg-white rounded-[526px] placeholder-[#46464f]/40 border-2 border-[#46464f]/20 focus:outline-none focus:border-[#0A008A]'
           type='text'
           placeholder='Isi nomor handphone Whatsapp aktif'
         />
-      </div>
-      <div className='flex flex-col justify-center mt-[20px] w-max mx-auto'>
-        <span className='mb-[11px] w-[209px] h-[24px] text-black text-left text-[20px] font-[600]'>
+        <span className='md:mt-[20px] md:mb-[11px] md:w-[209px] md:h-[24px] md:text-[20px] min-[393px]:text-[14px] min-[393px]:w-[175px] min-[393px]:mt-[14px] min-[393px]:mb-[14px] text-black text-left font-[600]'>
           Email
         </span>
         <input
-          className='px-4 w-[526px] h-[55px] text-black text-[20px] font-[600] bg-white rounded-[526px] placeholder-[#46464f]/40 border-2 border-[#46464f]/20 focus:outline-none focus:border-[#46464f]/40 block'
+          className='md:h-[55px] md:text-[20px] min-[393px]:h-[48px] min-[393px]:text-[12px] px-4 text-black font-[600] bg-white rounded-[526px] placeholder-[#46464f]/40 border-2 border-[#46464f]/20 focus:outline-none focus:border-[#0A008A]'
           type='text'
           placeholder='Ketikkan alamat email'
         />
-      </div>
-      <div className='flex flex-col justify-center mt-[20px] w-max mx-auto'>
-        <span className='mb-[11px] w-[209px] h-[24px] text-black text-left text-[20px] font-[600]'>
+        <span className='md:mt-[20px] md:mb-[11px] md:w-[209px] md:h-[24px] md:text-[20px] min-[393px]:text-[14px] min-[393px]:w-[175px] min-[393px]:mt-[14px] min-[393px]:mb-[14px] text-black text-left font-[600]'>
           Password
         </span>
         <input
-          className='px-4 w-[526px] h-[55px] text-black text-[20px] font-[600] bg-white rounded-[526px] placeholder-[#46464f]/40 border-2 border-[#46464f]/20 focus:outline-none focus:border-[#46464f]/40'
+          className='md:h-[55px] md:text-[20px] min-[393px]:h-[48px] min-[393px]:text-[12px] px-4 text-black font-[600] bg-white rounded-[526px] placeholder-[#46464f]/40 border-2 border-[#46464f]/20 focus:outline-none focus:border-[#0A008A]'
           type='password'
           placeholder='Minimal 6 karakter'
         />
         <img
-          className='absolute pointer-events-none mt-8 ml-[480px]'
+          className='absolute pointer-events-none md:mt-[365px] md:ml-[480px] min-[393px]:mt-[340px] min-[393px]:ml-[330px]'
           src='src/assets/icon_eye-slash.svg'
         />
       </div>
-      <div className='flex flex-row justify-center mt-[29px]'>
+      <div className='flex flex-row justify-center md:mt-[29px] min-[393px]:mt-[20px]'>
         <button
-          className='w-[449px] h-[43px] bg-[#0A008A] rounded-[150px] outline-none text-[16px] font-[600] text-white hover:bg-[#0A008A]/75 hover:border-none focus:outline-none'
+          className='md:w-[481px] md:h-[43px] md:text-[16px] md:pt-2 min-[393px]:w-[362px] min-[393px]:h-[36px] min-[393px]:text-[14px] min-[393px]:pt-1 bg-[#0A008A] rounded-[150px] outline-none font-[600] text-white hover:bg-[#A0A3FF] hover:text-[#0A008A] focus:bg-[#000000] focus:text-white focus:outline-none'
           type='submit'
         >
           Daftarkan akun
         </button>
       </div>
-      <div className='flex flex-row justify-center mt-[21px]'>
-        <hr className='mt-2 w-[195px] bg-[#999999] border-1 border-[#999999]' />
-        <p className='mt-[-5px] w-[70px] h-[36px] text-center text-[24px] font-[600] text-[#999999]'>
+      <div className='flex flex-row justify-center md:mt-[21px] min-[393px]:mt-[5px]'>
+        <hr className='md:mt-3 md:w-[195px] min-[393px]:w-[160px] min-[393px]:mt-3 bg-[#999999] border-1 border-[#999999]'/>
+        <p className='md:text-[24px] min-[393px]:text-[12px] w-max mx-2 font-[600] text-[#999999]'>
           atau
         </p>
-        <hr className='mt-2 w-[195px] bg-[#999999] border-1 border-[#999999]' />
+        <hr className='md:mt-3 md:w-[195px] min-[393px]:w-[160px] min-[393px]:mt-3 bg-[#999999] border-1 border-[#999999]'/>
       </div>
-      <div className='flex flex-row justify-center mt-[16px]'>
+      <div className='flex flex-row justify-center md:mt-[16px] min-[393px]:mt-[5px]'>
         <button
-          className='w-[481px] h-[44.96px] bg-white border-2 border-[#46464F] opacity-[.38] outline-none hover:border-[#46464F] hover:opacity-[.76] rounded-[150px] text-[16px] font-[600] text-[#46464F] focus:outline-none'
+          className='md:w-[481px] md:h-[44.96px] md:text-[16px] md:pt-2 min-[393px]:w-[362px] min-[393px]:h-[36px] min-[393px]:text-[14px] min-[393px]:pt-1 bg-white border-2 border-[#E9E9EA] outline-none rounded-[150px] font-[600] text-[#B9B9BC] hover:bg-[#E9E9EA] hover:text-white hover:border-[#E9E9EA] focus:border-[#0A008A] focus:bg-white focus:text-[#0A008A] focus:outline-none'
           type='submit'
         >
           Daftar dengan Google
         </button>
-        <img className='absolute mt-3 mr-[230px]' src='src/assets/icon_google.svg' />
+        <img className='absolute md:mt-3 md:mr-[230px] min-[393px]:mt-2 min-[393px]:mr-[200px]' src='src/assets/icon_google.svg' />
       </div>
-      <div className='flex flex-row justify-center mt-[16px]'>
-        <p className='text-center text-black text-[16px] font-[600] w-[250px] h-[36px]'>
+      <div className='flex flex-row justify-center md:mt-[16px] min-[393px]:mt-[20px]'>
+        <p className='md:text-[16px] min-[393px]:text-[14px] text-center text-black font-[600]'>
           Sudah punya akun?{' '}
-          <a className='text-black hover:text-black' href='/login'>
+          <a className='text-[#0A008A] hover:text-[#0A008A]' href='/login'>
             Masuk
           </a>
         </p>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default SignUp
+export default SignUp;
