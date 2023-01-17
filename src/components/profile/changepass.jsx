@@ -1,61 +1,62 @@
 import React from 'react';
 import './profile.css';
+import { Link } from 'react-router-dom';
 
-const Changepass = () => {
+const changepass = () => {
   return (
     <>
-      <ul className='breadcrumb ml-24 m-4'>
+      <ul className='breadcrumb ml-12 m-4'>
         <li>
-          <a href='#'>Home</a>
+          <Link to='/'>Home</Link>
         </li>
         <li>
-          <a href='#'>Profil</a>
+          <Link to='/profil'>Profile</Link>
         </li>
         <li>
-          <a href='#'>Edit Profil</a>
+          <Link to='/gantipass'>Ganti Password</Link>
         </li>
       </ul>
 
-      <div className='w-screen grid p-6'>
-        <div className='w-1/2'>
-          <form action='|' className='grid justify-center gap-3'>
-            <p className='font-bold text-3xl pb-6'>Ganti Password</p>
-            <div className='grid gap-4 font-bold text-black p-4'>
-              <div className=''>
-                <label htmlFor='inline-password'>
-                  Password
-                </label>
+      <div className='w-screen grid grid-cols-2 grid-flow-col'>
+        <div className='col-span-1'>
+          <form action='|' className='w-full grid gap-12 m-12'>
+            <div className='text-[25px] weight-[600]'>Ganti Password</div>
+
+            <div
+              className='grid grid-rows-2 grid-flow-row gap-6
+            text-[20px] font-[500] px-16'
+            >
+              <div>
+                <label htmlFor='inline-password'>Password</label>
               </div>
-              <div className='w-3/5'>
+              <div>
                 <input
-                  className='w-full rounded-full border-2 border-blue-700 bg-inherit pl-5 p-1'
-                  type='text'
+                  className='w-full rounded-[526px] pl-5 p-2 border-2 border-[#46464F]/[0.20] bg-inherit'
                   id='inline-password'
-                  placeholder='Masukkan Password Lama'
+                  type='password'
+                  placeholder='Masukkan password lama'
                 />
               </div>
-            </div>
 
-            <div className='grid gap-4 font-bold text-black p-4'>
-              <div className=''>
-                <label htmlFor='inline-new-password'>
-                  Buat Password Baru
-                </label>
+              <div>
+                <label htmlFor='inline-new-password'>Buat Password Baru</label>
               </div>
-              <div className='w-3/5'>
+              <div>
                 <input
-                  className='w-full rounded-full border-2 border-blue-700 bg-inherit pl-5 p-1'
-                  type='text'
+                  className='w-full rounded-[526px] pl-5 p-2 border-2 border-[#46464F]/[0.20] bg-inherit'
                   id='inline-new-password'
-                  placeholder='Minimal 6 Karakter'
+                  type='password'
+                  placeholder='Minimal 6 karakter'
                 />
               </div>
             </div>
 
             <div className='flex justify-center'>
-              <button className='w-2/5 rounded-full bg-blue-700'>
-                <strong className='text-white'>Reset Password</strong>
-              </button>
+              <Link to='/' className='w-[70%] bg-[#0A008A] text-white rounded-[150px] text-center'>
+                <button id='reset-password' type='button'>
+                  Reset Password
+                </button>
+              </Link>
             </div>
           </form>
         </div>
@@ -64,4 +65,4 @@ const Changepass = () => {
   );
 };
 
-export default Changepass;
+export default changepass;
