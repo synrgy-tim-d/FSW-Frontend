@@ -38,7 +38,7 @@ const EditProfile = () => {
 
               <div className='flex text-black p-4'>
                 <div className='w-1/5'>
-                  <label htmlFor='inline-full-name' className='flex justify-start'>
+                  <label htmlFor='inline-full-name'>
                     Nama Lengkap*
                   </label>
                 </div>
@@ -54,7 +54,7 @@ const EditProfile = () => {
 
               <div className='flex text-black p-4'>
                 <div className='w-1/5'>
-                  <label htmlFor='inline-phone-number' className='flex justify-start'>
+                  <label htmlFor='inline-phone-number'>
                     Nomor HP*
                   </label>
                 </div>
@@ -70,7 +70,7 @@ const EditProfile = () => {
 
               <div className='flex text-black p-4'>
                 <div className='w-1/5'>
-                  <label htmlFor='inline-email' className='flex justify-start'>
+                  <label htmlFor='inline-email'>
                     Email*
                   </label>
                 </div>
