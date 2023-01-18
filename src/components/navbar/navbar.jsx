@@ -1,7 +1,28 @@
-import React from 'react';
+import React from 'react'
 
-const Navbar = () => {
-  return <div>navbar</div>;
-};
+const navbar = () => {
+  return (    
+    <Nav>
+      <NavLink to='/'>
+        <img src={require(../assets/LogoNaqosFix.png)}/>
+      </NavLink>
+      <Bars />
+      <NavMenu>
+        <NavLink>
+          Wishlist
+        </NavLink>
+        <NavLink>
+          Riwayat
+        </NavLink>
+        <NavLink>
+          Notifikasi
+        </NavLink>
+        <NavLink>
+          Profil
+        </NavLink>
+      </NavMenu>
+    </Nav>
+  )
+}
 
-export default Navbar;
+export default navbar
