@@ -6,10 +6,10 @@ module.exports = {
     'node_modules/flowbite-react/**/*.{js,jsx,ts,tsx}'
   ],
   theme: {
+    fontFamily: {
+      montserrat: ['Montserrat', 'sans-serif'],
+    },
     extend: {},
   },
-  plugins: [
-    // require('flowbite/plugin')
-    require("daisyui")
-  ],
+  plugins: [require("daisyui")],
 };
