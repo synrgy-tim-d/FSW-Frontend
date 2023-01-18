@@ -16,7 +16,7 @@ function LandingPage() {
       <Banner />
       <Whyus />
       <Carousel />
-      <div className='bg-[#D9D9D9]  overflow-hidden py-10 '>
+      <div className='bg-[#0A008A]  overflow-hidden py-10 '>
       <Testimonial />
       <Cta />
       </div>
