@@ -41,7 +41,7 @@ const Popular = () => {
       {(() => {
         const frame = popularCities.map((e,i) => {
           return (<div className='w-full h-[221px] overflow-hidden rounded-lg flex items-start relative'>
-            <img src={e.pictureUrl}/>
+            <img src={e.pictureUrl} className="w-full"/>
             <p className='absolute text-white font-montserrat font-bold text-3xl top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50'>{e.name}</p>
             <div className='w-full h-full bg-[#0A008A61] absolute opacity-700' />
           </div>)
