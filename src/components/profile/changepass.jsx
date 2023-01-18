@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 const changepass = () => {
   return (
     <>
-      <ul className='breadcrumb ml-12 m-4'>
+      <ul className='breadcrumb ml-12 m-4 font-[Montserrat]'>
         <li>
           <Link to='/'>Home</Link>
         </li>
@@ -17,7 +17,7 @@ const changepass = () => {
         </li>
       </ul>
 
-      <div className='w-screen grid grid-cols-2 grid-flow-col'>
+      <div className='w-screen grid grid-cols-2 grid-flow-col font-[Montserrat]'>
         <div className='col-span-1'>
           <form action='|' className='w-full grid gap-12 m-12'>
             <div className='text-[25px] weight-[600]'>Ganti Password</div>
@@ -52,8 +52,8 @@ const changepass = () => {
             </div>
 
             <div className='flex justify-center'>
-              <Link to='/' className='w-[70%] bg-[#0A008A] text-white rounded-[150px] text-center'>
-                <button id='reset-password' type='button'>
+              <Link to='/profil' className='w-[70%]'>
+                <button id='reset-password' type='button' className='w-full bg-[#0A008A] text-white rounded-[150px] text-center'>
                   Reset Password
                 </button>
               </Link>
