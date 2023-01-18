@@ -1,10 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-
 
 :root {
   font-family: Inter, Avenir, Helvetica, Arial, 'Montserrat', sans-serif;
@@ -44,36 +41,30 @@ body {
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
+@keyframes slideinRight {
+  0% {
+    transform: translateX(-205%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+.move-right {
+  animation: slideinRight 4s infinite;
+  animation-timing-function: ease-in-out;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
+@keyframes slideinLeft {
+  0% {
+    transform: translateX(-50%);
   }
-  a:hover {
-    color: #747bff;
+  100% {
+    transform: translateX(-155%);
   }
-  button {
-    background-color: #f9f9f9;
-  }
+}
+
+.move-left {
+  animation: slideinLeft 4s infinite;
+  animation-timing-function: ease-in-out;
 }
