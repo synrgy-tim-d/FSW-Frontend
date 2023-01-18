@@ -1,10 +1,17 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+#root {
+  max-width: 1440px;
+  /* margin: 0 auto; */
+  /* padding: 2rem; */
+  /* text-align: center; */
+}
+
 :root {
-  font-family: Inter, Avenir, Helvetica, Arial, 'Montserrat', sans-serif;
+  font-family: 'Montserrat';
   font-size: 16px;
   line-height: 24px;
   font-weight: 400;
@@ -20,12 +27,12 @@
   -webkit-text-size-adjust: 100%;
 }
 
-
 a {
   font-weight: 500;
   /* color: #646cff; */
   text-decoration: inherit;
 }
+
 a:hover {
   color: #535bf2;
 }
@@ -41,14 +48,8 @@ body {
 h1 {
   font-size: 3.05rem;
   line-height: 1.1;
-@keyframes slideinRight {
-  0% {
-    transform: translateX(-205%);
-  }
-  100% {
-    transform: translateX(-100%);
-  }
 }
+
 
 button {
   border-radius: 8px;
@@ -68,22 +69,6 @@ button:hover {
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
-
-.move-right {
-  animation: slideinRight 4s infinite;
-  animation-timing-function: ease-in-out;
-}
-
-@keyframes slideinLeft {
-  0% {
-    transform: translateX(-50%);
-  }
-  a:hover {
-    color: #0A008A;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
 }
 
 button {
@@ -100,8 +85,40 @@ button:active {
   background-color: #000000;
   color: #FFFFFF;
 }
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+  a:hover {
+    color: #0A008A;
+  }
+  button {
+    background-color: #f9f9f9;
+  }
+}
+
+@keyframes slideinRight {
+  0% {
+    transform: translateX(-205%);
+  }
   100% {
-    transform: translateX(-155%);
+    transform: translateX(-100%);
+  }
+}
+
+.move-right {
+  animation: slideinRight 4s infinite;
+  animation-timing-function: ease-in-out;
+}
+
+@keyframes slideinLeft {
+  0% {
+    transform: translateX(-50%);
+  }
+  button {
+    background-color: #f9f9f9;
   }
 }
 

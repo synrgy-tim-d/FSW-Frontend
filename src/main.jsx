@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import App from './App';
 import Profile from './components/profile/profile';
 import EditProfile from './components/profile/editprofile';
 import Changepass from './components/profile/changepass';
@@ -25,11 +24,9 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       <Route path='/gantipassword' element={<Changepass />} ></Route>
       <Route path='/login' element={<SignIn />} />
       <Route path='/register' element={<SignUp />} />
-      <Route path='/default' element={<App />} />
       <Route path='/history' element={<History />} />
       <Route path='/paymenthistory' element={<HistoryPay />} />
       <Route path='/cancellationhistory' element={<HistoryCancel />} />
-      <Route path='/tes' element={<App />} />
     </Routes>
   </BrowserRouter>,
 );
