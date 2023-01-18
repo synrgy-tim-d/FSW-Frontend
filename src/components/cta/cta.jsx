@@ -3,10 +3,10 @@ import React from 'react';
 const CTA = () => {
   return (<div className='flex flex-wrap pt-8 gap-4 font-montserrat'>
     <div className='w-full'>
-      <h1 className='font-bold text-6xl'>+1000 pemilik kos</h1>
+      <h1 className='font-bold text-6xl text-[#FFBA2C]'>+1000 pemilik kos</h1>
     </div>
     <div className='w-full flex justify-center'>
-      <p className='text-2xl w-1/2'>Lebih dari  seribu pemilik kos telah mendaftarkan kosnya! Daftarkan punyamu sekarang!</p>
+      <p className='text-2xl w-1/2 text-white'>Lebih dari  seribu pemilik kos telah mendaftarkan kosnya! Daftarkan punyamu sekarang!</p>
     </div>
     <div className='w-full flex justify-center'>
       <button className='text-sm font-semibold font-montserrat flex gap-2 bg-[#FFBA2C] py-3 px-6 rounded-full items-center'>
