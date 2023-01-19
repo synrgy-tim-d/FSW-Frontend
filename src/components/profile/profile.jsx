@@ -1,11 +1,13 @@
 import React from 'react';
 import './profile.css';
 import { Link } from 'react-router-dom';
+import camera from '../../assets/Profile-camera.svg';
+import profile from '../../assets/Profile.svg';
 
 const Profile = () => {
   return (
     <>
-      <ul className='breadcrumb ml-12 m-4 font-[Montserrat]'>
+      <ul className='breadcrumb pl-[70px] pt-[25px] font-[Montserrat] text-[20px] font-[600]'>
         <li>
           <Link to='/'>Home</Link>
         </li>
@@ -16,7 +18,9 @@ const Profile = () => {
 
       <div className='w-screen grid grid-cols-6 grid-flow-col font-[Montserrat]'>
         <div className='col-span-2 grid grid-row-2 grid-flow-row justify-items-center content-center gap-16'>
-          <div className='profile-img'></div>
+          <div>
+            <img className='w-full h-auto' src={profile} alt='' />
+          </div>
           <div className='text-[31px] font-[600]'>Nama Pengguna</div>
         </div>
 
@@ -61,7 +65,6 @@ const Profile = () => {
             </Link>
           </div>
 
-          {/*  */}
           <div className='bg-[#C0C1FF]/[0.38] rounded-2xl'>
             <div>
               <label

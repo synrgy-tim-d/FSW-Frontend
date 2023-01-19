@@ -13,26 +13,3 @@
   max-width: 100%;
   height: auto;
 }
-
-.breadcrumb li {
-  display: inline;
-  font-size: 18px;
-  color: #46464F;
-  opacity: 0.38;
-}
-
-.breadcrumb li:last-child {
-  color: #46464F;
-  opacity: 1;
-}
-
-.breadcrumb li+li:before {
-  padding: 8px;
-  color: #46464F;
-  content: '\00a0'url(../../assets/breadcrumb-arrow.svg)'\00a0' ;
-  opacity: 0.38;
-}
-
-.text-black {
-  color: black;
-}

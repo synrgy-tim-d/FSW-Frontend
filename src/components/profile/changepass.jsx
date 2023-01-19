@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 const changepass = () => {
   return (
     <>
-      <ul className='breadcrumb ml-12 m-4 font-[Montserrat]'>
+      <ul className='breadcrumb pl-[70px] pt-[25px] font-[Montserrat] font-[600]'>
         <li>
           <Link to='/'>Home</Link>
         </li>

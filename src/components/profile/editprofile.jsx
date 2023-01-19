@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 const EditProfile = () => {
   return (
     <>
-      <ul className='breadcrumb ml-12 m-4 font-[Montserrat]'>
+      <ul className='breadcrumb pl-[70px] pt-[25px] font-[Montserrat] text-[20px] font-[600]'>
         <li>
           <Link to='/'>Home</Link>
         </li>
