@@ -53,7 +53,7 @@ const HistoryPay = () => {
                     clipRule='evenodd'
                   ></path>
                 </svg>
-                <span className='ml-1 md:ml-2 text-[20px] font-[600]-medium text-[#0A008A] underline'>
+                <span className='ml-1 md:ml-2 text-[20px] font-[600] text-[#0A008A] underline'>
                   Pembayaran
                 </span>
               </div>
@@ -68,21 +68,21 @@ const HistoryPay = () => {
         <div className='flex flex-col text-black mt-[61px]'>
           <a
             href='/history'
-            className='text-[#000000] opacity-[.38] hover:text-[#000000] hover:opacity-[.76] text-[25px] font-[500] mb-[20px] text-left'
+            className='text-[#9b9b9b] hover:text-[#0A008A] text-[25px] font-[500] mb-[20px] text-left'
           >
             Pemesanan Kos
           </a>
           <hr className='w-[350px] mb-[20px]'></hr>
           <a
             href='/paymenthistory'
-            className='text-[#0A008A] hover:text-[#0A008A]/75 text-[25px] font-[500] mb-[20px] text-left'
+            className='text-[#0A008A] hover:text-[#9b9b9b] text-[25px] font-[500] mb-[20px] text-left'
           >
             Pembayaran
           </a>
           <hr className='w-[350px] mb-[20px]'></hr>
           <a
             href='/cancellationhistory'
-            className='text-[#000000] opacity-[.38] hover:text-[#000000] hover:opacity-[.76] text-[25px] font-[500] mb-[20px] text-left'
+            className='text-[#9b9b9b] hover:text-[#0A008A] text-[25px] font-[500] mb-[20px] text-left'
           >
             Pembatalan
           </a>
@@ -94,14 +94,14 @@ const HistoryPay = () => {
           <img
             className='w-[127.4px] h-[193.91px] self-center mb-[39px]'
             alt=''
-            src='src/assets/NoPaymentHistory.png'
+            src='src/assets/img_noPaymentHistory.png'
           />
           <h1 className='text-[31px] font-[600] mb-[20px] w-[558px]'>Belum ada pembayaran baru</h1>
           <p className='text-[20px] font-[500] mb-[50px] w-[558px]'>
             Yuk, segera lakukan pemesanan kos dan selesaikan pembayaran dengan mudah!
           </p>
           <button
-            className='w-[419px] h-[43px] bg-[#0A008A] self-center rounded-[150px] outline-none text-[16px] font-[600] text-white hover:bg-[#0A008A]/75 hover:border-none focus:outline-none'
+            className='border-0 bg-[#0A008A] self-center rounded-[150px] outline-none text-white font-[600] text-[16px] w-[419px] h-[43px] hover:bg-[#A0A3FF] hover:text-[#0A008A] focus:bg-black focus:text-white focus:outline-none'
             type='submit'
           >
             Telurusi Kos

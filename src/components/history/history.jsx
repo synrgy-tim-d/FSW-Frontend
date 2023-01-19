@@ -53,7 +53,7 @@ const History = () => {
                     clipRule='evenodd'
                   ></path>
                 </svg>
-                <span className='ml-1 md:ml-2 text-[20px] font-[600]-medium text-[#0A008A] underline'>
+                <span className='ml-1 md:ml-2 text-[20px] font-[600] text-[#0A008A] underline'>
                   Pemesanan Kos
                 </span>
               </div>
@@ -68,21 +68,21 @@ const History = () => {
         <div className='flex flex-col text-black mt-[61px]'>
           <a
             href='/history'
-            className='text-[#0A008A] hover:text-[#0A008A]/75 text-[25px] font-[500] mb-[20px] text-left'
+            className='text-[#0A008A] hover:text-[#9b9b9b] text-[25px] font-[500] mb-[20px] text-left'
           >
             Pemesanan Kos
           </a>
           <hr className='w-[350px] mb-[20px]'></hr>
           <a
             href='/paymenthistory'
-            className='text-[#000000] opacity-[.38] hover:text-[#000000] hover:opacity-[.76] text-[25px] font-[500] mb-[20px] text-left'
+            className='text-[#9b9b9b] hover:text-[#0A008A] text-[25px] font-[500] mb-[20px] text-left'
           >
             Pembayaran
           </a>
           <hr className='w-[350px] mb-[20px]'></hr>
           <a
             href='/cancellationhistory'
-            className='text-[#000000] opacity-[.38] hover:text-[#000000] hover:opacity-[.76] text-[25px] font-[500] mb-[20px] text-left'
+            className='text-[#9b9b9b] hover:text-[#0A008A] text-[25px] font-[500] mb-[20px] text-left'
           >
             Pembatalan
           </a>
@@ -94,7 +94,7 @@ const History = () => {
           <img
             className='w-[350px] h-[226.84px] self-center mb-[50px]'
             alt=''
-            src='src/assets/NoHistory.png'
+            src='src/assets/img_noHistory.png'
           />
           <h1 className='text-[31px] font-[600] mb-[20px] w-[558px]'>
             Riwayat pemesanan masih kosong
@@ -103,7 +103,7 @@ const History = () => {
             Kamu belum pernah melakukan pemesanan kos, yuk mulai cari kos idaman kamu!
           </p>
           <button
-            className='w-[419px] h-[43px] bg-[#0A008A] self-center rounded-[150px] outline-none text-[16px] font-[600] text-white hover:bg-[#0A008A]/75 hover:border-none focus:outline-none'
+            className='border-0 bg-[#0A008A] self-center rounded-[150px] outline-none text-white font-[600] text-[16px] w-[419px] h-[43px] hover:bg-[#A0A3FF] hover:text-[#0A008A] focus:bg-black focus:text-white focus:outline-none'
             type='submit'
           >
             Telurusi Kos
@@ -142,7 +142,7 @@ const History = () => {
             <div className='flex flex-col ml-[175px] pr-[10px]'>
               <button
                 disabled
-                className='cursor-not-allowed w-[178px] h-[43px] mb-[65px] bg-[#e9e9ea] self-center rounded-[4px] outline-none text-[16px] font-[600] text-[#ababaf] hover:border-[#e9e9ea]'
+                className='cursor-not-allowed w-[178px] h-[43px] mb-[65px] p-0 bg-[#e9e9ea] self-center rounded-[4px] outline-none text-[16px] font-[600] text-[#ababaf] hover:border-[#e9e9ea]'
                 type='submit'
               >
                 Bayar Sekarang
@@ -184,7 +184,7 @@ const History = () => {
             </div>
             <div className='flex flex-col ml-[175px] pr-[10px]'>
               <button
-                className='w-[178px] h-[43px] mb-[65px] bg-[#0A008A] self-center rounded-[4px] outline-none text-[16px] font-[600] text-white hover:bg-[#0A008A]/75 focus:outline-none'
+                className='w-[178px] h-[43px] mb-[65px] p-0 bg-[#0A008A] border-0 self-center rounded-[4px] outline-none text-[16px] font-[600] text-white hover:bg-[#A0A3FF] hover:text-[#0A008A] focus:bg-black focus:text-white focus:outline-none'
                 type='submit'
               >
                 Bayar Sekarang
@@ -226,7 +226,7 @@ const History = () => {
             </div>
             <div className='flex flex-col ml-[201px] pr-[10px]'>
               <button
-                className='w-[151px] h-[43px] mb-[65px] bg-white border-2 border-[#0A008A] self-center rounded-[4px] outline-none text-[16px] font-[600] text-[#0A008A] hover:bg-[#0A008A] hover:text-white focus:outline-none'
+                className='w-[151px] h-[43px] mb-[65px] p-0 bg-white border-2 border-[#0A008A] self-center rounded-[4px] outline-none text-[16px] font-[600] text-[#0A008A] hover:bg-[#f3f4ff] hover:border-[#0A008A] hover:text-[#0A008A] focus:bg-[#0A008A] focus:text-white focus:outline-none'
                 type='submit'
               >
                 Tulis Review
