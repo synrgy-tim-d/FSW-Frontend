@@ -1,6 +1,51 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const HistoryCancel = () => {
+  const [cancels, setCancels] = useState([]);
+
+  useEffect(() => {
+    const cancelList = [
+      {
+        id: 1,
+        name: 'Kos Jahe',
+        location: {
+          name: 'Tanggerang',
+        },
+        bookId: '00000001',
+        inDate: 'April 01, 23',
+        outDate: 'April 30,23',
+        date: 'Fri, 24 March 2023',
+        img: 'src/assets/img_kosFour.png',
+      },
+      {
+        id: 2,
+        name: 'Kos Timun',
+        location: {
+          name: 'Bogor',
+        },
+        bookId: '00000002',
+        inDate: 'April 01, 23',
+        outDate: 'May 01, 23',
+        date: 'Sat, 25 March 2023',
+        img: 'src/assets/img_kosFive.png',
+      },
+      {
+        id: 3,
+        name: 'Kos Wortel',
+        location: {
+          name: 'Bogor',
+        },
+        bookId: '00000003',
+        inDate: 'April 11, 23',
+        outDate: 'May 11, 23',
+        date: 'Sun, 26 March 2023',
+        img: 'src/assets/img_kosSix.png',
+      },
+    ];
+    setCancels(cancelList);
+  }, []);
+
   return (
     <div className='pl-[70px] pt-[25px] font-[Montserrat]'>
       {/* --- Breadcrumb --- */}
@@ -66,26 +111,29 @@ const HistoryCancel = () => {
       <div className='flex flex-row'>
         {/* --- Options --- */}
         <div className='flex flex-col text-black mt-[61px]'>
-          <a
-            href='/history'
-            className='text-[#9b9b9b] hover:text-[#0A008A] text-[25px] font-[500] mb-[20px] text-left'
-          >
-            Pemesanan Kos
-          </a>
+          <Link to='/history'>
+            <p className='text-[#9b9b9b] hover:text-[#0A008A] text-[25px] font-[500] mb-[20px] text-left'>
+              Pemesanan Kos
+            </p>
+          </Link>
           <hr className='w-[350px] mb-[20px]'></hr>
-          <a
-            href='/paymenthistory'
-            className='text-[#9b9b9b] hover:text-[#0A008A] text-[25px] font-[500] mb-[20px] text-left'
-          >
-            Pembayaran
-          </a>
+          <Link to=''>
+            <p className='text-[#9b9b9b] hover:text-[#0A008A] text-[25px] font-[500] mb-[20px] text-left'>
+              Menunggu Konfirmasi
+            </p>
+          </Link>
           <hr className='w-[350px] mb-[20px]'></hr>
-          <a
-            href='/cancellationhistory'
-            className='text-[#0A008A] hover:text-[#9b9b9b] text-[25px] font-[500] mb-[20px] text-left'
-          >
-            Pembatalan
-          </a>
+          <Link to='/paymenthistory'>
+            <p className='text-[#9b9b9b] hover:text-[#0A008A] text-[25px] font-[500] mb-[20px] text-left'>
+              Pembayaran
+            </p>
+          </Link>
+          <hr className='w-[350px] mb-[20px]'></hr>
+          <Link to='/cancellationhistory'>
+            <p className='text-[#0A008A] hover:text-[#9b9b9b] text-[25px] font-[500] mb-[20px] text-left'>
+              Pembatalan
+            </p>
+          </Link>
           <hr className='w-[350px] mb-[20px]'></hr>
         </div>
 
@@ -110,120 +158,54 @@ const HistoryCancel = () => {
 
         {/* --- Content if there is Data --- */}
         <div className='flex flex-col ml-[70px] mt-[61px]'>
-          <div className='flex flex-row py-[16px] text-black'>
-            <img
-              className='w-[200px] h-[142.58px] self-center'
-              alt=''
-              src='src/assets/img_unavailable.png'
-            />
-            <div className='flex flex-col ml-[42.5px] w-[265px] text-left'>
-              <h1 className='text-[20px] font-[600]'>Nama Kos</h1>
-              <div className='flex flex-row'>
-                <img className='' alt='' src='src/assets/icon_location.svg' />
-                <p className='text-[16px] font-[500] ml-2 mb-[4px] mt-1'>Kota</p>
-              </div>
-              <p className='text-[16px] font-[500] mb-[12px]'>Booking ID: 00000000</p>
-              <div className='flex flex-row'>
-                <div className='flex flex-col text-center'>
-                  <p className='text-[12px] font-[400] mb-[4px]'>Check in</p>
-                  <p className='text-[16px] font-[400]'>April 01, 23</p>
+          {cancels.map((cancel, index) => {
+            return (
+              <React.Fragment key={index}>
+                <div>
+                  <div className='flex flex-row py-[16px] text-black'>
+                    <img className='w-[200px] h-[142.58px] self-center' alt='' src={cancel.img} />
+                    <div className='flex flex-col ml-[42.5px] w-[265px] text-left'>
+                      <h1 className='text-[20px] font-[600]'>{cancel.name}</h1>
+                      <div className='flex flex-row'>
+                        <img className='' alt='' src='src/assets/icon_location.svg' />
+                        <p className='text-[16px] font-[500] ml-2 mb-[4px] mt-1'>
+                          {cancel.location.name}
+                        </p>
+                      </div>
+                      <p className='text-[16px] font-[500] mb-[12px]'>
+                        Booking ID: {cancel.bookId}
+                      </p>
+                      <div className='flex flex-row'>
+                        <div className='flex flex-col text-center'>
+                          <p className='text-[12px] font-[400] mb-[4px]'>Check in</p>
+                          <p className='text-[16px] font-[400]'>{cancel.inDate}</p>
+                        </div>
+                        <div className='flex flex-col mx-[12px] justify-center'>
+                          <img className='' alt='' src='src/assets/icon_arrow-right-2.svg' />
+                        </div>
+                        <div className='flex flex-col text-center'>
+                          <p className='text-[12px] font-[400] mb-[4px]'>Check out</p>
+                          <p className='text-[16px] font-[400]'>{cancel.outDate}</p>
+                        </div>
+                      </div>
+                    </div>
+                    <div className='flex flex-col ml-[230px] pr-[10px] w-[150px] text-right'>
+                      <p className='mt-[85px] text-[#4A4A4A] text-[12px] font-[400]'>
+                        {cancel.date}
+                      </p>
+                      <div className='flex flex-row justify-end'>
+                        <img className='' alt='' src='src/assets/icon_cancel.svg' />
+                        <p className='text-[12px] font-[600] text-[#BA1A1A] ml-2 mb-[4px] mt-1'>
+                          Cancelled
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <hr className='w-[870px] mb-[15px]'></hr>
                 </div>
-                <div className='flex flex-col mx-[12px] justify-center'>
-                  <img className='' alt='' src='src/assets/icon_arrow-right-2.svg' />
-                </div>
-                <div className='flex flex-col text-center'>
-                  <p className='text-[12px] font-[400] mb-[4px]'>Check out</p>
-                  <p className='text-[16px] font-[400]'>April 30, 23</p>
-                </div>
-              </div>
-            </div>
-            <div className='flex flex-col ml-[230px] pr-[10px] w-[150px] text-right'>
-              <p className='mt-[85px] text-[#4A4A4A] text-[12px] font-[400]'>Fri, 24 March 2023</p>
-              <div className='flex flex-row justify-end'>
-                <img className='' alt='' src='src/assets/icon_cancel.svg' />
-                <p className='text-[12px] font-[600] text-[#BA1A1A] ml-2 mb-[4px] mt-1'>
-                  Cancelled
-                </p>
-              </div>
-            </div>
-          </div>
-          <hr className='w-[870px] mb-[15px]'></hr>
-          <div className='flex flex-row py-[16px] text-black'>
-            <img
-              className='w-[200px] h-[142.58px] self-center'
-              alt=''
-              src='src/assets/img_unavailable.png'
-            />
-            <div className='flex flex-col ml-[42.5px] w-[265px] text-left'>
-              <h1 className='text-[20px] font-[600]'>Nama Kos</h1>
-              <div className='flex flex-row'>
-                <img className='' alt='' src='src/assets/icon_location.svg' />
-                <p className='text-[16px] font-[500] ml-2 mb-[4px] mt-1'>Kota</p>
-              </div>
-              <p className='text-[16px] font-[500] mb-[12px]'>Booking ID: 00000000</p>
-              <div className='flex flex-row'>
-                <div className='flex flex-col text-center'>
-                  <p className='text-[12px] font-[400] mb-[4px]'>Check in</p>
-                  <p className='text-[16px] font-[400]'>April 01, 23</p>
-                </div>
-                <div className='flex flex-col mx-[12px] justify-center'>
-                  <img className='' alt='' src='src/assets/icon_arrow-right-2.svg' />
-                </div>
-                <div className='flex flex-col text-center'>
-                  <p className='text-[12px] font-[400] mb-[4px]'>Check out</p>
-                  <p className='text-[16px] font-[400]'>April 30, 23</p>
-                </div>
-              </div>
-            </div>
-            <div className='flex flex-col ml-[230px] pr-[10px] w-[150px] text-right'>
-              <p className='mt-[85px] text-[#4A4A4A] text-[12px] font-[400]'>Fri, 24 March 2023</p>
-              <div className='flex flex-row justify-end'>
-                <img className='' alt='' src='src/assets/icon_cancel.svg' />
-                <p className='text-[12px] font-[600] text-[#BA1A1A] ml-2 mb-[4px] mt-1'>
-                  Cancelled
-                </p>
-              </div>
-            </div>
-          </div>
-          <hr className='w-[870px] mb-[15px]'></hr>
-          <div className='flex flex-row py-[16px] text-black'>
-            <img
-              className='w-[200px] h-[142.58px] self-center'
-              alt=''
-              src='src/assets/img_unavailable.png'
-            />
-            <div className='flex flex-col ml-[42.5px] w-[265px] text-left'>
-              <h1 className='text-[20px] font-[600]'>Nama Kos</h1>
-              <div className='flex flex-row'>
-                <img className='' alt='' src='src/assets/icon_location.svg' />
-                <p className='text-[16px] font-[500] ml-2 mb-[4px] mt-1'>Kota</p>
-              </div>
-              <p className='text-[16px] font-[500] mb-[12px]'>Booking ID: 00000000</p>
-              <div className='flex flex-row'>
-                <div className='flex flex-col text-center'>
-                  <p className='text-[12px] font-[400] mb-[4px]'>Check in</p>
-                  <p className='text-[16px] font-[400]'>April 01, 23</p>
-                </div>
-                <div className='flex flex-col mx-[12px] justify-center'>
-                  <img className='' alt='' src='src/assets/icon_arrow-right-2.svg' />
-                </div>
-                <div className='flex flex-col text-center'>
-                  <p className='text-[12px] font-[400] mb-[4px]'>Check out</p>
-                  <p className='text-[16px] font-[400]'>April 30, 23</p>
-                </div>
-              </div>
-            </div>
-            <div className='flex flex-col ml-[230px] pr-[10px] w-[150px] text-right'>
-              <p className='mt-[85px] text-[#4A4A4A] text-[12px] font-[400]'>Fri, 24 March 2023</p>
-              <div className='flex flex-row justify-end'>
-                <img className='' alt='' src='src/assets/icon_cancel.svg' />
-                <p className='text-[12px] font-[600] text-[#BA1A1A] ml-2 mb-[4px] mt-1'>
-                  Cancelled
-                </p>
-              </div>
-            </div>
-          </div>
-          <hr className='w-[870px] mb-[15px]'></hr>
+              </React.Fragment>
+            );
+          })}
           <h1 className='text-center text-black text-[20px] font-[600] opacity-[.38]'>
             Lihat lebih banyak lagi
           </h1>

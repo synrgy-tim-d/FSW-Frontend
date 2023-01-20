@@ -1,6 +1,45 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const HistoryPay = () => {
+  const [payments, setPayments] = useState([]);
+
+  useEffect(() => {
+    const paymentList = [
+      {
+        id: 1,
+        bookId: '00000001',
+        date: 'Fri, 24 March 2023 18:07 WIB',
+        price: '1.000.000',
+      },
+      {
+        id: 2,
+        bookId: '00000002',
+        date: 'Sat, 26 March 2023 23:17 WIB',
+        price: '1.500.000',
+      },
+      {
+        id: 3,
+        bookId: '00000003',
+        date: 'Sun, 27 March 2023 13:42 WIB',
+        price: '1.200.000',
+      },
+      {
+        id: 4,
+        bookId: '00000004',
+        date: 'Tue, 29 March 2023 07:13 WIB',
+        price: '1.350.000',
+      },
+      {
+        id: 5,
+        bookId: '00000005',
+        date: 'Tue, 29 March 2023 10:24 WIB',
+        price: '1.700.000',
+      },
+    ];
+    setPayments(paymentList);
+  }, []);
+
   return (
     <div className='pl-[70px] pt-[25px] font-[Montserrat]'>
       {/* --- Breadcrumb --- */}
@@ -66,26 +105,29 @@ const HistoryPay = () => {
       <div className='flex flex-row'>
         {/* --- Options --- */}
         <div className='flex flex-col text-black mt-[61px]'>
-          <a
-            href='/history'
-            className='text-[#9b9b9b] hover:text-[#0A008A] text-[25px] font-[500] mb-[20px] text-left'
-          >
-            Pemesanan Kos
-          </a>
+          <Link to='/history'>
+            <p className='text-[#9b9b9b] hover:text-[#0A008A] text-[25px] font-[500] mb-[20px] text-left'>
+              Pemesanan Kos
+            </p>
+          </Link>
           <hr className='w-[350px] mb-[20px]'></hr>
-          <a
-            href='/paymenthistory'
-            className='text-[#0A008A] hover:text-[#9b9b9b] text-[25px] font-[500] mb-[20px] text-left'
-          >
-            Pembayaran
-          </a>
+          <Link to=''>
+            <p className='text-[#9b9b9b] hover:text-[#0A008A] text-[25px] font-[500] mb-[20px] text-left'>
+              Menunggu Konfirmasi
+            </p>
+          </Link>
           <hr className='w-[350px] mb-[20px]'></hr>
-          <a
-            href='/cancellationhistory'
-            className='text-[#9b9b9b] hover:text-[#0A008A] text-[25px] font-[500] mb-[20px] text-left'
-          >
-            Pembatalan
-          </a>
+          <Link to='/paymenthistory'>
+            <p className='text-[#0A008A] hover:text-[#9b9b9b] text-[25px] font-[500] mb-[20px] text-left'>
+              Pembayaran
+            </p>
+          </Link>
+          <hr className='w-[350px] mb-[20px]'></hr>
+          <Link to='/cancellationhistory'>
+            <p className='text-[#9b9b9b] hover:text-[#0A008A] text-[25px] font-[500] mb-[20px] text-left'>
+              Pembatalan
+            </p>
+          </Link>
           <hr className='w-[350px] mb-[20px]'></hr>
         </div>
 
@@ -110,131 +152,36 @@ const HistoryPay = () => {
 
         {/* --- Content if there is Data --- */}
         <div className='flex flex-col ml-[70px] mt-[61px]'>
-          <div className='flex flex-row py-[16px] text-black'>
-            <div className='flex flex-col text-left w-[280px]'>
-              <h1 className='mb-1 text-[20px] font-[600]'>Booking ID: 00000000</h1>
-              <p className='mb-2 text-[#4A4A4A] text-[12px] font-[400]'>
-                Fri, 24 March 2023 18:07 WIB
-              </p>
-              <div className='flex flex-row'>
-                <img className='' alt='' src='src/assets/icon_download.svg' />
-                <p className='ml-4 text-[#46464F] opacity-[.38] text-[16px] font-[400]'>
-                  Download bukti pembayaran
-                </p>
-              </div>
-            </div>
-            <div className='flex flex-col ml-[450px] pr-[15px]'>
-              <h1 className='mb-2 text-[20px] font-[500]'>Rp1.000.000</h1>
-              <div className='flex flex-row justify-end mr-[8px]'>
-                <img className='' alt='' src='src/assets/icon_completed.svg' />
-                <p className='text-[12px] font-[500] text-[#008A3F] ml-2 mb-[4px] mt-1'>
-                  Completed
-                </p>
-              </div>
-            </div>
-          </div>
-          <hr className='w-[870px] mb-[15px]'></hr>
-
-          <div className='flex flex-row py-[16px] text-black'>
-            <div className='flex flex-col text-left w-[280px]'>
-              <h1 className='mb-1 text-[20px] font-[600]'>Booking ID: 00000000</h1>
-              <p className='mb-2 text-[#4A4A4A] text-[12px] font-[400]'>
-                Fri, 24 March 2023 18:07 WIB
-              </p>
-              <div className='flex flex-row'>
-                <img className='' alt='' src='src/assets/icon_download.svg' />
-                <p className='ml-4 text-[#46464F] opacity-[.38] text-[16px] font-[400]'>
-                  Download bukti pembayaran
-                </p>
-              </div>
-            </div>
-            <div className='flex flex-col ml-[450px] pr-[15px]'>
-              <h1 className='mb-2 text-[20px] font-[500]'>Rp1.000.000</h1>
-              <div className='flex flex-row justify-end mr-[8px]'>
-                <img className='' alt='' src='src/assets/icon_completed.svg' />
-                <p className='text-[12px] font-[500] text-[#008A3F] ml-2 mb-[4px] mt-1'>
-                  Completed
-                </p>
-              </div>
-            </div>
-          </div>
-          <hr className='w-[870px] mb-[15px]'></hr>
-
-          <div className='flex flex-row py-[16px] text-black'>
-            <div className='flex flex-col text-left w-[280px]'>
-              <h1 className='mb-1 text-[20px] font-[600]'>Booking ID: 00000000</h1>
-              <p className='mb-2 text-[#4A4A4A] text-[12px] font-[400]'>
-                Fri, 24 March 2023 18:07 WIB
-              </p>
-              <div className='flex flex-row'>
-                <img className='' alt='' src='src/assets/icon_download.svg' />
-                <p className='ml-4 text-[#46464F] opacity-[.38] text-[16px] font-[400]'>
-                  Download bukti pembayaran
-                </p>
-              </div>
-            </div>
-            <div className='flex flex-col ml-[450px] pr-[15px]'>
-              <h1 className='mb-2 text-[20px] font-[500]'>Rp1.000.000</h1>
-              <div className='flex flex-row justify-end mr-[8px]'>
-                <img className='' alt='' src='src/assets/icon_completed.svg' />
-                <p className='text-[12px] font-[500] text-[#008A3F] ml-2 mb-[4px] mt-1'>
-                  Completed
-                </p>
-              </div>
-            </div>
-          </div>
-          <hr className='w-[870px] mb-[15px]'></hr>
-
-          <div className='flex flex-row py-[16px] text-black'>
-            <div className='flex flex-col text-left w-[280px]'>
-              <h1 className='mb-1 text-[20px] font-[600]'>Booking ID: 00000000</h1>
-              <p className='mb-2 text-[#4A4A4A] text-[12px] font-[400]'>
-                Fri, 24 March 2023 18:07 WIB
-              </p>
-              <div className='flex flex-row'>
-                <img className='' alt='' src='src/assets/icon_download.svg' />
-                <p className='ml-4 text-[#46464F] opacity-[.38] text-[16px] font-[400]'>
-                  Download bukti pembayaran
-                </p>
-              </div>
-            </div>
-            <div className='flex flex-col ml-[450px] pr-[15px]'>
-              <h1 className='mb-2 text-[20px] font-[500]'>Rp1.000.000</h1>
-              <div className='flex flex-row justify-end mr-[8px]'>
-                <img className='' alt='' src='src/assets/icon_completed.svg' />
-                <p className='text-[12px] font-[500] text-[#008A3F] ml-2 mb-[4px] mt-1'>
-                  Completed
-                </p>
-              </div>
-            </div>
-          </div>
-          <hr className='w-[870px] mb-[15px]'></hr>
-
-          <div className='flex flex-row py-[16px] text-black'>
-            <div className='flex flex-col text-left w-[280px]'>
-              <h1 className='mb-1 text-[20px] font-[600]'>Booking ID: 00000000</h1>
-              <p className='mb-2 text-[#4A4A4A] text-[12px] font-[400]'>
-                Fri, 24 March 2023 18:07 WIB
-              </p>
-              <div className='flex flex-row'>
-                <img className='' alt='' src='src/assets/icon_download.svg' />
-                <p className='ml-4 text-[#46464F] opacity-[.38] text-[16px] font-[400]'>
-                  Download bukti pembayaran
-                </p>
-              </div>
-            </div>
-            <div className='flex flex-col ml-[450px] pr-[15px]'>
-              <h1 className='mb-2 text-[20px] font-[500]'>Rp1.000.000</h1>
-              <div className='flex flex-row justify-end mr-[8px]'>
-                <img className='' alt='' src='src/assets/icon_completed.svg' />
-                <p className='text-[12px] font-[500] text-[#008A3F] ml-2 mb-[4px] mt-1'>
-                  Completed
-                </p>
-              </div>
-            </div>
-          </div>
-          <hr className='w-[870px] mb-[15px]'></hr>
-
+          {payments.map((payment, index) => {
+            return (
+              <React.Fragment key={index}>
+                <div>
+                  <div className='flex flex-row py-[16px] text-black'>
+                    <div className='flex flex-col text-left w-[280px]'>
+                      <h1 className='mb-[4px] text-[20px] font-[600]'>Booking ID: {payment.bookId}</h1>
+                      <p className='mb-[6px] text-[#4A4A4A] text-[12px] font-[400]'>{payment.date}</p>
+                      <div className='flex flex-row cursor-pointer'>
+                        <img className='' alt='' src='src/assets/icon_download.svg'/>
+                        <p className='ml-2 text-[#46464F] opacity-[.38] text-[16px] font-[600]'>
+                          Download bukti pembayaran
+                        </p>
+                      </div>
+                    </div>
+                    <div className='flex flex-col ml-[450px] pt-[20px] pr-[15px]'>
+                      <h1 className='mb-2 text-[20px] font-[500]'>Rp {payment.price}</h1>
+                      <div className='flex flex-row justify-end mr-[8px]'>
+                        <img className='' alt='' src='src/assets/icon_completed.svg' />
+                        <p className='text-[12px] font-[600] text-[#008A3F] ml-2 mt-1'>
+                          Completed
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <hr className='w-[870px] mb-[15px]'></hr>
+                </div>
+              </React.Fragment>
+            );
+          })}
           <h1 className='text-center text-black text-[20px] font-[600] opacity-[.38]'>
             Lihat lebih banyak lagi
           </h1>
