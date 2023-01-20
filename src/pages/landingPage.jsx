@@ -10,20 +10,16 @@ import Testimonial from '../components/testimonial/testimonial';
 
 function LandingPage() {
   return (
-    <>
-    <div className='w-full mx-auto'>
+    <div className='overflow-hidden'>
       {/* <Navbar /> */}
       <Banner />
       <Whyus />
       <Carousel />
-      <div className='bg-[#0A008A]  overflow-hidden py-10 '>
       <Testimonial />
       <Cta />
-      </div>
       <Carousel />
       <Popular />
     </div>
-    </>
   );
 }
 

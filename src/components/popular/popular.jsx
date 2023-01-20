@@ -2,47 +2,47 @@ import React from 'react';
 const popularCities = [{
   id:0,
   name:"Jakarta",
-  pictureUrl:"https://res.cloudinary.com/dqzqbgi8e/image/upload/v1673952075/naqos/cities/surabaya_ghbqjn.png"
+  pictureUrl:"https://res.cloudinary.com/dqzqbgi8e/image/upload/v1673952068/naqos/cities/jakarta_nwvcvg.png"
 },{
   id:1,
-  name:"Jakarta",
-  pictureUrl:"https://res.cloudinary.com/dqzqbgi8e/image/upload/v1673952075/naqos/cities/surabaya_ghbqjn.png"
+  name:"Bandung",
+  pictureUrl:"https://res.cloudinary.com/dqzqbgi8e/image/upload/v1673952074/naqos/cities/bandung_c7tocu.png"
 },{
   id:2,
-  name:"Jakarta",
+  name:"Surabaya",
   pictureUrl:"https://res.cloudinary.com/dqzqbgi8e/image/upload/v1673952075/naqos/cities/surabaya_ghbqjn.png"
 },{
   id:3,
-  name:"Jakarta",
-  pictureUrl:"https://res.cloudinary.com/dqzqbgi8e/image/upload/v1673952075/naqos/cities/surabaya_ghbqjn.png"
+  name:"Bekasi",
+  pictureUrl:"https://res.cloudinary.com/dqzqbgi8e/image/upload/v1673952068/naqos/cities/bekasi_mnbtyx.png"
 },{
   id:4,
-  name:"Jakarta",
-  pictureUrl:"https://res.cloudinary.com/dqzqbgi8e/image/upload/v1673952075/naqos/cities/surabaya_ghbqjn.png"
+  name:"Tanggerang",
+  pictureUrl:"https://res.cloudinary.com/dqzqbgi8e/image/upload/v1673952075/naqos/cities/tangerang_dbumxu.png"
 },{
   id:5,
-  name:"Jakarta",
-  pictureUrl:"https://res.cloudinary.com/dqzqbgi8e/image/upload/v1673952075/naqos/cities/surabaya_ghbqjn.png"
+  name:"Depok",
+  pictureUrl:"https://res.cloudinary.com/dqzqbgi8e/image/upload/v1673952064/naqos/cities/depok_yfy8bp.png"
 },{
   id:6,
-  name:"Jakarta",
-  pictureUrl:"https://res.cloudinary.com/dqzqbgi8e/image/upload/v1673952075/naqos/cities/surabaya_ghbqjn.png"
+  name:"Semarang",
+  pictureUrl:"https://res.cloudinary.com/dqzqbgi8e/image/upload/v1673952067/naqos/cities/semarang_vhglhs.png"
 },{
   id:7,
-  name:"Jakarta",
-  pictureUrl:"https://res.cloudinary.com/dqzqbgi8e/image/upload/v1673952075/naqos/cities/surabaya_ghbqjn.png"
+  name:"Yogyakarta",
+  pictureUrl:"https://res.cloudinary.com/dqzqbgi8e/image/upload/v1673952071/naqos/cities/yogyakarta_fvnygs.png"
 },]
 const Popular = () => {
-  return (<div className='flex flex-wrap w-full py-10'>
+  return (<div className='flex flex-wrap w-full py-10 px-10 lg:px-[71px]'>
     <div className='flex w-full'>
-      <p className='text-2xl font-bold font-montserrat'>Kos Populer di Kota Besar</p>
+      <p className='lg:text-2xl font-bold font-montserrat'>Kos Populer di Kota Besar</p>
     </div>
-    <div className='w-full grid lg:grid-cols-4 lg:py-8 lg:gap-y-7 lg:gap-x-5 grid-cols-2 py-8 gap-y-7 gap-x-5'>
+    <div className='w-full grid lg:grid-cols-4 lg:py-8 lg:gap-y-7 lg:gap-x-5 grid-cols-2 py-8 gap-y-3 gap-x-3'>
       {(() => {
         const frame = popularCities.map((e,i) => {
-          return (<div className='w-full h-[221px] overflow-hidden rounded-lg flex items-start relative'>
-            <img src={e.pictureUrl} className="w-full"/>
-            <p className='absolute text-white font-montserrat font-bold text-3xl top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50'>{e.name}</p>
+          return (<div className='w-full lg:h-[221px] h-[100px] overflow-hidden rounded-lg flex items-center relative object-cover hover:scale-95 transition duration-200 ease-in-out cursor-pointer'>
+            <img src={e.pictureUrl} className="w-full min-h-full"/>
+            <p className='absolute text-white font-montserrat font-bold lg:text-3xl top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50'>{e.name}</p>
             <div className='w-full h-full bg-[#0A008A61] absolute opacity-700' />
           </div>)
         })
