@@ -132,13 +132,13 @@ const CarouselCheap = () => {
             <div className='font-montserrat font-bold lg:text-xl' id='location'>
               Bekasi
             </div>
-            <button id='drop' onClick={(event) => showDrop(event)}>
+            <button id='dropCheap' onClick={(event) => showDrop(event)}>
               <img src={Dropdown} />
             </button>
           </div>
           <div
             className='bg-white absolute z-40 left-[17rem] lg:left-[29rem] mt-[30rem] font-montserrat font-bold text-center drop-shadow-md hidden'
-            id='dropItem'
+            id='dropCheapItem'
           >
             <div
               className='px-28 py-3 hover:bg-[#FFDEAA] hover:cursor-pointer'
