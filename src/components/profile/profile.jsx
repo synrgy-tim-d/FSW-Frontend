@@ -9,13 +9,12 @@ const Profile = () => {
     <>
       <ul className='breadcrumb pl-[70px] pt-[25px] font-[Montserrat] text-[20px] font-[600]'>
         <li>
-          <Link to='/'>Home</Link>
+          <Link to='/' className='text-[20px] font-[600] hover:underline'>Home</Link>
         </li>
         <li>
-          <Link to='/profil'>Profile</Link>
+          <Link to='/profil' className='text-[20px] font-[600] hover:underline'>Profile</Link>
         </li>
       </ul>
-
       <div className='w-screen grid grid-cols-6 grid-flow-col font-[Montserrat]'>
         <div className='col-span-2 grid grid-row-2 grid-flow-row justify-items-center content-center gap-16'>
           <div>
@@ -23,7 +22,6 @@ const Profile = () => {
           </div>
           <div className='text-[31px] font-[600]'>Nama Pengguna</div>
         </div>
-
         <div className='w-3/4 col-span-4 justify-self-center grid gap-6'>
           <form className='grid gap-12 bg-[#C0C1FF]/[0.38] rounded-2xl p-8'>
             <div className='text-[25px] font-[600]'>Informasi Akun</div>
@@ -38,13 +36,11 @@ const Profile = () => {
                 <div className='col-span-1'>Nomor HP</div>
                 <div className='col-span-2'>+62xxxxxxxxxxx</div>
               </div>
-
               <div className='grid grid-flow-col grid-cols-3 border-b-2 border-[#0A008A] pb-2'>
                 <div className='col-span-1'>Email</div>
                 <div className='col-span-2'>Namapengguna@gmail.com</div>
               </div>
             </div>
-
             <div className='flex justify-end pt-8'>
               <Link to='/editprofil' className='w-full flex justify-end'>
                 <button type='button' className='w-1/5 rounded-[150px] bg-[#0A008A]'>
@@ -53,7 +49,6 @@ const Profile = () => {
               </Link>
             </div>
           </form>
-
           <div className='bg-[#C0C1FF]/[0.38] rounded-2xl'>
             <Link to='/gantipassword'>
               <button
@@ -64,7 +59,6 @@ const Profile = () => {
               </button>
             </Link>
           </div>
-
           <div className='bg-[#C0C1FF]/[0.38] rounded-2xl'>
             <div>
               <label
@@ -75,7 +69,6 @@ const Profile = () => {
                 Log Out
               </label>
             </div>
-
             <input type='checkbox' id='profile-modal' className='modal-toggle' />
             <div className='modal'>
               <div className='modal-box text-[#000000] grid gap-4'>
@@ -91,7 +84,6 @@ const Profile = () => {
                   >
                     Batalkan
                   </label>
-
                   <Link to='/'>
                     <label
                       htmlFor='logout'
