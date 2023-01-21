@@ -1,19 +1,38 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import image from '../../assets/Homepage-Kos1.svg';
+import { CollapseCheckbox, CollapseRadio } from './Collapse';
+import { tipeKos, waktuSewa, urutanHarga, fasilitasKamar, fasilitasBersama } from './Dropdown';
+
+// function Icon({ id, open }) {
+//   return (
+//     <svg
+//       xmlns='http://www.w3.org/2000/svg'
+//       className={`${id === open ? 'rotate-180' : ''} h-5 w-5 transition-transform`}
+//       fill='none'
+//       viewBox='0 0 24 24'
+//       stroke='currentColor'
+//       strokeWidth={2}
+//     >
+//       <path strokeLinecap='round' strokeLinejoin='round' d='M19 9l-7 7-7-7' />
+//     </svg>
+//   );
+// }
 
 export const Homepage = () => {
-  const [kosts, setKosts] = useState([]);
+  const title = ['Tipe Kos', 'Waktu Sewa', 'Urutkan', 'Fasilitas Kamar', 'Fasilitas Bersama'];
 
+  const [kosts, setKosts] = useState([]);
   useEffect(() => {
     const kostList = [
       {
         id: 1,
         name: 'Kos Alamanda',
-        type: 'Las Vegas',
+        type: 'Campur',
+        room: 5,
         description:
           'Rincian alamat kos secara lengkap dan kode pos Rincian alamat kos secara lengkap dan kode pos',
-        review: 2.5,
+        review: 5,
         location: {
           name: 'Yogyakarta',
         },
@@ -24,68 +43,107 @@ export const Homepage = () => {
           {
             name: 'AC',
           },
+          {
+            name: 'KM Dalam',
+          },
         ],
-        price: '1.500.000',
+        price: '1.000.000',
       },
       {
         id: 2,
-        name: 'Kos SCBD',
-        type: 'Cowok',
+        name: 'Kos Cendana',
+        type: 'Putri',
+        room: 12,
         description:
           'Rincian alamat kos secara lengkap dan kode pos Rincian alamat kos secara lengkap dan kode pos',
-        review: 4,
+        review: 4.5,
         location: {
-          name: 'Jakarta Selatan',
+          name: 'Surakarta',
         },
         facilities: [
           {
-            name: 'Wi-Fi',
+            name: 'Listrik',
           },
           {
             name: 'AC',
           },
           {
-            name: 'Karaoke',
+            name: 'TV',
           },
         ],
         price: '1.000.000',
       },
       {
         id: 3,
-        name: 'Kos Jaktim',
-        type: 'Campur',
+        name: 'Kos Jupiter',
+        type: 'Putra',
+        room: 2,
         description:
           'Rincian alamat kos secara lengkap dan kode pos Rincian alamat kos secara lengkap dan kode pos',
-        review: 4,
+        review: 2.7,
         location: {
           name: 'Jakarta Timur',
         },
         facilities: [
           {
-            name: 'Wi-Fi',
+            name: 'Listrik',
+          },
+          {
+            name: 'Wifi',
           },
           {
             name: 'AC',
           },
+        ],
+        price: '3.000.000',
+      },
+      {
+        id: 4,
+        name: 'Kos Saturnus',
+        type: 'Putri',
+        room: 9,
+        description:
+          'Rincian alamat kos secara lengkap dan kode pos Rincian alamat kos secara lengkap dan kode pos',
+        review: 4.2,
+        location: {
+          name: 'Surabaya',
+        },
+        facilities: [
           {
-            name: 'Air Hangat',
+            name: 'KM Dalam',
+          },
+          {
+            name: 'Wifi',
+          },
+          {
+            name: 'Kipas Angin',
           },
         ],
-        price: '2.000.000',
+        price: '600.000',
       },
     ];
     setKosts(kostList);
   }, []);
+
+  const testHandle = (e) => {
+    e.preventDefault();
+    console.log(tipeKos);
+    console.log(waktuSewa);
+    console.log(urutanHarga);
+    console.log(fasilitasKamar);
+    console.log(fasilitasBersama);
+  };
+
   return (
     <>
       <div className='w-screen font-[Montserrat] font-[400] text-[#000000] text-[16px] p-8'>
-        <div className='breadcrumb pl-[70px] pt-[25px] text-[20px] font-[600]'>
+        <div className='breadcrumb pl-[62px] py-[17px]'>
           <ul>
             <li>
-              <Link to='/'>Home</Link>
+              <Link to='/' className='text-[20px] font-[600] hover:underline'>Home</Link>
             </li>
             <li>
-              <Link to='/homepage'>Cari Kos</Link>
+              <Link to='/homepage' className='text-[20px] font-[600] hover:underline'>Cari Kos</Link>
             </li>
           </ul>
         </div>
@@ -102,11 +160,11 @@ export const Homepage = () => {
                     <div className='col-span-2 grid grid-rows-auto grid-flow-row gap-2 p-4'>
                       <div className='grid grid-flow-col'>
                         <div className='grid grid-cols-auto grid-flow-col auto-cols-max content-center'>
-                          <div className='p-2 border-2 border-[#0A008A] rounded-[150px]'>
+                          <div className='w-[85px] border-2 border-[#0A008A] rounded-[150px] flex justify-center'>
                             {kost.type}
                           </div>
                           <span className='text-[#BA1A1A] italic pl-2 self-center'>
-                            sisa 3 kamar
+                            sisa {kost.room} kamar
                           </span>
                         </div>
                         <div className='flex justify-end self-center pr-4'>
@@ -202,13 +260,17 @@ export const Homepage = () => {
           </div>
 
           <div className='col-span-1'>
-            <div>
-              <div>
-                <button>Tipe Kos</button>
-              </div>
-
-              <div></div>
-            </div>
+            <form action='' className='grid grid-flow-row gap-y-6'>
+              <CollapseCheckbox items={tipeKos} buttonText={title[0]} />
+              <CollapseRadio items={waktuSewa} buttonText={title[1]} />
+              <CollapseRadio items={urutanHarga} buttonText={title[2]} />
+              <CollapseCheckbox items={fasilitasKamar} buttonText={title[3]} />
+              <CollapseCheckbox items={fasilitasBersama} buttonText={title[4]} />
+              <button onClick={testHandle}
+              className='w-full bg-[#0A008A] text-[#FFFFFF]' >
+                Terapkan Filter
+                </button>
+            </form>
           </div>
         </div>
       </div>
