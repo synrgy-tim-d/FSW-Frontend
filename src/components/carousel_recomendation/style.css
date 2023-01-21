@@ -1,0 +1,36 @@
+.swiper-button-next {
+  background-image: url(../../assets/Carousel2_arrowRight.png);
+  background-repeat: no-repeat;
+  background-size: 120% auto;
+  background-position: center;
+}
+
+.swiper-button-next::after {
+  display: none;
+}
+
+.swiper-button-prev {
+  background-image: url(../../assets/Carousel1_arrowLeft.png);
+  background-repeat: no-repeat;
+  background-size: 120% auto;
+  background-position: center;
+}
+
+.swiper-button-prev::after {
+  display: none;
+}
+.swiper-container {
+  width: 480px;
+}
+
+@media screen and (min-width: 640px) {
+  .swiper-container {
+    width: 640px;
+  }
+}
+
+@media screen and (min-width: 768) {
+  .swiper-container {
+    width: 768;
+  }
+}
