@@ -13,6 +13,7 @@ import LandingPage from './pages/landingPage';
 import './index.css';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import Verif from './pages/verif';
+import Forget from './pages/forget';
 
 // const queryClient = new QueryClient();
 
@@ -29,6 +30,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       <Route path='/paymenthistory' element={<HistoryPay />} />
       <Route path='/cancellationhistory' element={<HistoryCancel />} />
       <Route path='/verif' element={<Verif />} />
+      <Route path='/forget' element={<Forget />} />
     </Routes>
   </BrowserRouter>,
 );
