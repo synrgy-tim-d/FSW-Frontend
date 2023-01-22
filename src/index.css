@@ -4,7 +4,11 @@
 @tailwind utilities;
 
 #root {
-  @apply mx-auto max-w-[1440px]
+  max-width: 1440px;
+  /* @apply mx-auto max-w-[1440px] */
+  /* margin: 0 auto; */
+  /* padding: 2rem; */
+  /* text-align: center; */
 }
 
 :root {
