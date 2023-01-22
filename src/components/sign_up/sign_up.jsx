@@ -1,6 +1,28 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useMutation } from '@tanstack/react-query';
+import axios from 'axios';
 
 const SignUp = () => {
+  const postRegister = useMutation((data) => {
+    return axios.post('https://be-naqos.up.railway.app/api/user-register/register', data);
+  });
+
+  const [register, setRegister] = useState({
+    fullname: '',
+    username: '',
+    phoneNumber: '',
+    password: '',
+  });
+
+  const handleChange = (e) => {
+    setRegister({ ...register, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    postRegister.mutate(register);
+  };
+
   return (
     <div className='px-[15px] w-screen font-[Montserrat] '>
       <div className='flex flex-row justify-center'>
@@ -17,6 +39,8 @@ const SignUp = () => {
         <input
           className='md:h-[55px] md:text-[20px] min-[393px]:h-[48px] min-[393px]:text-[12px] px-4 text-black font-[600] bg-white rounded-[526px] placeholder-[#46464f]/40 border-2 border-[#46464f]/20 focus:outline-none focus:border-[#0A008A]'
           type='text'
+          name='fullname'
+          onChange={handleChange}
           placeholder='Ketikkan nama lengkapmu disini'
         />
         <span className='md:mt-[20px] md:mb-[11px] md:w-[209px] md:h-[24px] md:text-[20px] min-[393px]:text-[14px] min-[393px]:w-[175px] min-[393px]:mt-[14px] min-[393px]:mb-[14px] text-black text-left font-[600]'>
@@ -25,6 +49,8 @@ const SignUp = () => {
         <input
           className='md:h-[55px] md:text-[20px] min-[393px]:h-[48px] min-[393px]:text-[12px] px-4 text-black font-[600] bg-white rounded-[526px] placeholder-[#46464f]/40 border-2 border-[#46464f]/20 focus:outline-none focus:border-[#0A008A]'
           type='text'
+          name='phoneNumber'
+          onChange={handleChange}
           placeholder='Isi nomor handphone Whatsapp aktif'
         />
         <span className='md:mt-[20px] md:mb-[11px] md:w-[209px] md:h-[24px] md:text-[20px] min-[393px]:text-[14px] min-[393px]:w-[175px] min-[393px]:mt-[14px] min-[393px]:mb-[14px] text-black text-left font-[600]'>
@@ -33,6 +59,8 @@ const SignUp = () => {
         <input
           className='md:h-[55px] md:text-[20px] min-[393px]:h-[48px] min-[393px]:text-[12px] px-4 text-black font-[600] bg-white rounded-[526px] placeholder-[#46464f]/40 border-2 border-[#46464f]/20 focus:outline-none focus:border-[#0A008A]'
           type='text'
+          name='username'
+          onChange={handleChange}
           placeholder='Ketikkan alamat email'
         />
         <span className='md:mt-[20px] md:mb-[11px] md:w-[209px] md:h-[24px] md:text-[20px] min-[393px]:text-[14px] min-[393px]:w-[175px] min-[393px]:mt-[14px] min-[393px]:mb-[14px] text-black text-left font-[600]'>
@@ -41,6 +69,8 @@ const SignUp = () => {
         <input
           className='md:h-[55px] md:text-[20px] min-[393px]:h-[48px] min-[393px]:text-[12px] px-4 text-black font-[600] bg-white rounded-[526px] placeholder-[#46464f]/40 border-2 border-[#46464f]/20 focus:outline-none focus:border-[#0A008A]'
           type='password'
+          name='password'
+          onChange={handleChange}
           placeholder='Minimal 6 karakter'
         />
         <img
@@ -52,16 +82,18 @@ const SignUp = () => {
         <button
           className='md:w-[481px] md:h-[43px] md:text-[16px] md:pt-2 min-[393px]:w-[362px] min-[393px]:h-[36px] min-[393px]:text-[14px] min-[393px]:pt-1 bg-[#0A008A] rounded-[150px] outline-none font-[600] text-white hover:bg-[#A0A3FF] hover:text-[#0A008A] focus:bg-[#000000] focus:text-white focus:outline-none'
           type='submit'
+          onClick={handleSubmit}
+          disabled={postRegister.isLoading}
         >
           Daftarkan akun
         </button>
       </div>
       <div className='flex flex-row justify-center md:mt-[21px] min-[393px]:mt-[5px]'>
-        <hr className='md:mt-3 md:w-[195px] min-[393px]:w-[160px] min-[393px]:mt-3 bg-[#999999] border-1 border-[#999999]'/>
+        <hr className='md:mt-3 md:w-[195px] min-[393px]:w-[160px] min-[393px]:mt-3 bg-[#999999] border-1 border-[#999999]' />
         <p className='md:text-[24px] min-[393px]:text-[12px] w-max mx-2 font-[600] text-[#999999]'>
           atau
         </p>
-        <hr className='md:mt-3 md:w-[195px] min-[393px]:w-[160px] min-[393px]:mt-3 bg-[#999999] border-1 border-[#999999]'/>
+        <hr className='md:mt-3 md:w-[195px] min-[393px]:w-[160px] min-[393px]:mt-3 bg-[#999999] border-1 border-[#999999]' />
       </div>
       <div className='flex flex-row justify-center md:mt-[16px] min-[393px]:mt-[5px]'>
         <button
@@ -70,7 +102,10 @@ const SignUp = () => {
         >
           Daftar dengan Google
         </button>
-        <img className='absolute md:mt-3 md:mr-[230px] min-[393px]:mt-2 min-[393px]:mr-[200px]' src='src/assets/icon_google.svg' />
+        <img
+          className='absolute md:mt-3 md:mr-[230px] min-[393px]:mt-2 min-[393px]:mr-[200px]'
+          src='src/assets/icon_google.svg'
+        />
       </div>
       <div className='flex flex-row justify-center md:mt-[16px] min-[393px]:mt-[20px]'>
         <p className='md:text-[16px] min-[393px]:text-[14px] text-center text-black font-[600]'>
