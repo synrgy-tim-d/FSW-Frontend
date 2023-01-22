@@ -15,24 +15,28 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import Verif from './pages/verif';
 import Forget from './pages/forget';
 
-// const queryClient = new QueryClient();
+const queryClient = new QueryClient();
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <BrowserRouter>
-    <Routes>
-      <Route path='/' element={<LandingPage />} />
-      <Route path='/profil' element={<Profile />} ></Route>
-      <Route path='/editprofil' element={<EditProfile />} ></Route>
-      <Route path='/gantipassword' element={<Changepass />} ></Route>
-      <Route path='/login' element={<SignIn />} />
-      <Route path='/register' element={<SignUp />} />
-      <Route path='/history' element={<History />} />
-      <Route path='/paymenthistory' element={<HistoryPay />} />
-      <Route path='/cancellationhistory' element={<HistoryCancel />} />
-      <Route path='/verif' element={<Verif />} />
-      <Route path='/forget' element={<Forget />} />
-    </Routes>
-  </BrowserRouter>,
+  <React.StrictMode>
+    <QueryClientProvider client={queryClient}>
+      <BrowserRouter>
+        <Routes>
+          <Route path='/' element={<LandingPage />} />
+          <Route path='/profil' element={<Profile />}></Route>
+          <Route path='/editprofil' element={<EditProfile />}></Route>
+          <Route path='/gantipassword' element={<Changepass />}></Route>
+          <Route path='/login' element={<SignIn />} />
+          <Route path='/register' element={<SignUp />} />
+          <Route path='/history' element={<History />} />
+          <Route path='/paymenthistory' element={<HistoryPay />} />
+          <Route path='/cancellationhistory' element={<HistoryCancel />} />
+          <Route path='/verif' element={<Verif />} />
+          <Route path='/forget' element={<Forget />} />
+        </Routes>
+      </BrowserRouter>
+    </QueryClientProvider>
+  </React.StrictMode>,
 );
 
 // tes webhook
