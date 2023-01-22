@@ -13,32 +13,33 @@ const formatter = new Intl.NumberFormat('en-US', {
 
 const Card = ({ type, pictureUrl, name, rate, details, location, price }) => {
   return (
-    <div className='bg-white rounded-2xl font-montserrat'>
+    <div className='bg-white rounded-2xl  font-montserrat'>
       <div className='relative'>
-        <div className='absolute rounded-2xl text-xs bg-white py-2 px-5 font-montserrat mt-2 ml-2 font-bold'>
+        <div className='absolute rounded-2xl text-xs bg-white py-1 lg:py-2 px-3 lg:px-5 font-montserrat mt-2 ml-4 font-bold'>
           {type}
         </div>
-        <div className='w-[310px] space-y-4 '>
-          <img className='h-[211px] mx-auto rounded-2xl' src={pictureUrl} />
+        <div className='lg:w-[310px] space-y-4 '>
+          <img className='h-[120.8px] lg:h-[211px] mx-auto rounded-2xl' src={pictureUrl} />
           <div className='flex justify-between  items-center'>
-            <h2 className='font-semibold text-2xl font-montserrat'>{name}</h2>
+            <h2 className='font-semibold ml-1 text-lg lg:text-2xl font-montserrat'>{name}</h2>
             <div className='flex space-x-3 '>
               <div className='flex items-center'>
                 <img className='w-full' src={Star} />
               </div>
-              <p className='text-2xl font-montserrat'>{rate}</p>
+              <p className='text-lg lg:text-2xl font-montserrat'>{rate}</p>
             </div>
           </div>
-          <p className='font-montserrat text-start'>{details}</p>
-          <div className='flex space-x-3 '>
+          <p className='font-montserrat text-start ml-1 text-sm lg:text-base'>{details}</p>
+          <div className='flex space-x-3 ml-1'>
             <div className='flex items-center'>
               <img className='w-full' src={Pin} />
             </div>
-            <h3 className='font-montserrat text-xl font-semibold'>{location}</h3>
+            <h3 className='font-montserrat text-lg lg:text-xl font-semibold'>{location}</h3>
           </div>
-          <p className='text-start'>
-            <span className='font-montserrat font-bold text-2xl'>{formatter.format(price)}</span>
-            {''}
+          <p className='text-start text-sm lg:text-base ml-1'>
+            <span className='font-montserrat font-bold text-base lg:text-2xl'>
+              {formatter.format(price)}
+            </span>
             /bulan
           </p>
         </div>
