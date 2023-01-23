@@ -22,6 +22,7 @@ function LandingPage() {
       </div>
       <Carousel />
       <Popular />
+      <Footer />
     </div>
     </>
   );
