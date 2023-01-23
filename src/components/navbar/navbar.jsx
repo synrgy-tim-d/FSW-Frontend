@@ -1,12 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import LogoNaqos from '../../assets/LogoNaqosFix.png'
 
 const Navbar = () => {
   return (
     <div className='navbar bg-base-100'>
       <div className='flex-1'>
         <Link to='/'>
-          <img src='src/assets/LogoNaqosFix.png'></img>
+          <img src={LogoNaqos} ></img>
         </Link>
       </div>
       <div className='flex-none'>
