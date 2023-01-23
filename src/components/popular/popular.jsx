@@ -51,9 +51,9 @@ const popularCities = [
 ];
 const Popular = () => {
   return (
-    <div className='flex flex-wrap w-full py-10 ml-2 pr-8 lg:px-[71px]'>
+    <div className='flex flex-wrap w-full py-10'>
       <div className='flex w-full'>
-        <p className='text-lg lg:text-2xl font-bold font-montserrat'>Kos Populer di Kota Besar</p>
+        <p className='text-lg lg:text-4xl font-bold font-montserrat'>Kos Populer di Kota Besar</p>
       </div>
       <div className='w-full grid lg:grid-cols-4 lg:py-8 lg:gap-y-7 lg:gap-x-5 grid-cols-2 py-8 gap-y-3 gap-x-3'>
         {(() => {
