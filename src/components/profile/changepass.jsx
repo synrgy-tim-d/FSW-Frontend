@@ -5,23 +5,27 @@ import { Link } from 'react-router-dom';
 const changepass = () => {
   return (
     <>
-      <ul className='breadcrumb ml-12 m-4 font-[Montserrat]'>
+      <ul className='breadcrumb pl-[70px] pt-[25px] font-[Montserrat] font-[600]'>
         <li>
-          <Link to='/'>Home</Link>
+          <Link to='/' className='text-[20px] font-[600] hover:underline'>
+            Home
+          </Link>
         </li>
         <li>
-          <Link to='/profil'>Profile</Link>
+          <Link to='/profil' className='text-[20px] font-[600] hover:underline'>
+            Profile
+          </Link>
         </li>
         <li>
-          <Link to='/gantipass'>Ganti Password</Link>
+          <Link to='/gantipass' className='text-[20px] font-[600] hover:underline'>
+            Ganti Password
+          </Link>
         </li>
       </ul>
-
-      <div className='w-screen grid grid-cols-2 grid-flow-col font-[Montserrat]'>
+      <div className='w-screen grid grid-cols-2 grid-flow-col font-[Montserrat] font-[600]'>
         <div className='col-span-1'>
           <form action='|' className='w-full grid gap-12 m-12'>
             <div className='text-[25px] weight-[600]'>Ganti Password</div>
-
             <div
               className='grid grid-rows-2 grid-flow-row gap-6
             text-[20px] font-[500] px-16'
@@ -50,10 +54,13 @@ const changepass = () => {
                 />
               </div>
             </div>
-
             <div className='flex justify-center'>
               <Link to='/profil' className='w-[70%]'>
-                <button id='reset-password' type='button' className='w-full bg-[#0A008A] text-white rounded-[150px] text-center'>
+                <button
+                  id='reset-password'
+                  type='button'
+                  className='w-full bg-[#0A008A] text-white rounded-[150px] text-center'
+                >
                   Reset Password
                 </button>
               </Link>
