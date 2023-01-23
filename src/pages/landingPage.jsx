@@ -11,7 +11,7 @@ import Testimonial from '../components/testimonial/testimonial';
 
 function LandingPage() {
   return (
-    <div className='overflow-hidden'>
+    <div className='overflow-hidden px-5'>
       {/* <Navbar /> */}
       <Banner />
       <Whyus />
