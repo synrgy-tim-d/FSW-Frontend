@@ -123,7 +123,7 @@ export const Homepage = () => {
       },
     ];
     setKosts(kostList);
-  }, []);
+  }, []); 
 
   const testHandle = (e) => {
     e.preventDefault();
@@ -187,7 +187,7 @@ export const Homepage = () => {
                       </div>
 
                       <div className='grid grid-rows-auto'>
-                        <p>{kost.name}</p>
+                        <p className='text-[20px] font-[600]'>{kost.name}</p>
                         <p>
                           Rincian alamat kos secara lengkap dan kode pos Rincian alamat kos secara
                           lengkap dan kode pos
