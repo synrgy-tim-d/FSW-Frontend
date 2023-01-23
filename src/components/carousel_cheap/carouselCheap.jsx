@@ -135,7 +135,7 @@ const CarouselCheap = () => {
             </button>
           </div>
           <div
-            className='bg-white absolute z-40 left-[8rem] lg:left-[29rem] mt-[23rem] lg:mt-[30rem] font-montserrat font-bold text-center drop-shadow-md text-sm hidden'
+            className='bg-white absolute z-40 left-[8rem] lg:left-[15rem] mt-[23rem] lg:mt-[30rem] font-montserrat font-bold text-center drop-shadow-md text-sm hidden'
             id='dropCheapItem'
           >
             <div
