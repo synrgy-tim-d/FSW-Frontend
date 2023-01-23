@@ -24,14 +24,14 @@ const Footer = () => {
       <div>
         <span className='footer-title text-white'>Ikuti Kami</span>
         <div className='grid grid-flow-col gap-4'>
-          <a href=""><img src={LogoFacebook} alt="" /></a>
-          <a href=""><img src={LogoInstagram} alt="" /></a>
-          <a href=""><img src={LogoTwitter} alt="" /></a>
-          <a href=""><img src={LogoLinkedin} alt="" /></a>
+          <a href=""><img className='h-6' src={LogoFacebook} alt="" /></a>
+          <a href=""><img className='h-6' src={LogoInstagram} alt="" /></a>
+          <a href=""><img className='h-6' src={LogoTwitter} alt="" /></a>
+          <a href=""><img className='h-6' src={LogoLinkedin} alt="" /></a>
         </div>
       </div>
       <div className='grid grid-flow-col'>
-        <img className='h-32' src='src/assets/LogoNaqosFixWhite.png'></img>
+        <img className='h-32' src={LogoNaqosPolosWhite}></img>
       </div>
     </footer>
     );
