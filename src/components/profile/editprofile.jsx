@@ -7,13 +7,19 @@ const EditProfile = () => {
     <>
       <ul className='breadcrumb pl-[70px] pt-[25px] font-[Montserrat] text-[20px] font-[600]'>
         <li>
-          <Link to='/' className='text-[20px] font-[600] hover:underline'>Home</Link>
+          <Link to='/' className='text-[20px] font-[600] hover:underline'>
+            Home
+          </Link>
         </li>
         <li>
-          <Link to='/profil' className='text-[20px] font-[600] hover:underline'>Profile</Link>
+          <Link to='/profil' className='text-[20px] font-[600] hover:underline'>
+            Profile
+          </Link>
         </li>
         <li>
-          <Link to='/editprofil' className='text-[20px] font-[600] hover:underline'>Profile Edit</Link>
+          <Link to='/editprofil' className='text-[20px] font-[600] hover:underline'>
+            Profile Edit
+          </Link>
         </li>
       </ul>
       <div className='w-screen grid grid-cols-6 grid-flow-col font-[Montserrat]'>
@@ -103,19 +109,19 @@ const EditProfile = () => {
             </div>
             <input type='checkbox' id='profile-modal' className='modal-toggle' />
             <div className='modal'>
-              <div className='modal-box text-[#000000]'>
+              <div className='modal-box bg-white p-12 rounded-[12px] text-[#000000] grid gap-4'>
+                <div className='logout-img justify-self-center pb-8'></div>
                 <h3 className='font-bold text-lg text-center'>Apakah kamu yakin ingin keluar</h3>
-                <p className='py-4 text-center'>
+                <p className='text-center'>
                   Kamu akan memerlukan akses login untuk dapat masuk kembali
                 </p>
-                <div className='modal-action flex justify-center font-[600] text-[16px]'>
+                <div className='grid grid-flow-col auto-cols-max justify-center gap-4 font-[600] text-[16px]'>
                   <label
                     htmlFor='profile-modal'
                     className='btn no-animation rounded-[4px] bg-white text-[#0A008A] border-2 border-[#0A008A] hover:bg-white'
                   >
                     Batalkan
                   </label>
-
                   <Link to='/'>
                     <label
                       htmlFor='logout'
