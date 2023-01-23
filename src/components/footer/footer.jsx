@@ -1,4 +1,9 @@
 import { React } from 'react';
+import LogoFacebook from '../../assets/icon_fb.png'
+import LogoInstagram from '../../assets/icon_ig.png'
+import LogoTwitter from '../../assets/icon_twitter.png'
+import LogoLinkedin from '../../assets/icon_linkedin.png'
+import LogoNaqosPolosWhite from '../../assets/LogoNaqosFixWhite.png'
 
 const Footer = () => {
     return (
@@ -19,10 +24,10 @@ const Footer = () => {
       <div>
         <span className='footer-title text-white'>Ikuti Kami</span>
         <div className='grid grid-flow-col gap-4'>
-          <a><img className='h-6' src='src/assets/icon_fb.png'></img></a>
-          <a><img className='h-6' src='src/assets/icon_ig.png'></img></a>
-          <a><img className='h-6' src='src/assets/icon_twitter.png'></img></a>
-          <a><img className='h-6' src='src/assets/icon_linkedin.png'></img></a>
+          <a href=""><img src={LogoFacebook} alt="" /></a>
+          <a href=""><img src={LogoInstagram} alt="" /></a>
+          <a href=""><img src={LogoTwitter} alt="" /></a>
+          <a href=""><img src={LogoLinkedin} alt="" /></a>
         </div>
       </div>
       <div className='grid grid-flow-col'>
