@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useMutation } from '@tanstack/react-query';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 const SignUp = () => {
@@ -19,9 +19,21 @@ const SignUp = () => {
     setRegister({ ...register, [e.target.name]: e.target.value });
   };
 
+  const isFormEmpty = () => {
+    return (
+      !register.fullname.length ||
+      !register.username.length ||
+      !register.phoneNumber.length ||
+      !register.password.length
+    );
+  };
+
+  const navigate = useNavigate();
+
   const handleSubmit = (e) => {
     e.preventDefault();
     postRegister.mutate(register);
+    navigate('/verif');
   };
 
   return (
@@ -82,10 +94,10 @@ const SignUp = () => {
       <div className='flex flex-row justify-center md:mt-[29px] min-[393px]:mt-[20px]'>
         <Link to='/login'>
           <button
-            className='md:w-[481px] md:h-[43px] md:text-[16px] md:pt-2 min-[393px]:w-[362px] min-[393px]:h-[36px] min-[393px]:text-[14px] min-[393px]:pt-1 bg-[#0A008A] rounded-[150px] outline-none font-[600] text-white hover:bg-[#A0A3FF] hover:text-[#0A008A] focus:bg-[#000000] focus:text-white focus:outline-none'
+            className='md:w-[481px] md:h-[43px] md:text-[16px] md:pt-2 min-[393px]:w-[362px] min-[393px]:h-[36px] min-[393px]:text-[14px] min-[393px]:pt-1 bg-[#0A008A] rounded-[150px] outline-none font-[600] text-white hover:bg-[#A0A3FF] hover:text-[#0A008A] focus:bg-[#000000] focus:text-white focus:outline-none disabled:bg-[#e8e8e9] disabled:text-[#ababaf]'
             type='submit'
             onClick={handleSubmit}
-            disabled={postRegister.isLoading}
+            disabled={postRegister.isLoading || isFormEmpty()}
           >
             Daftarkan akun
           </button>
