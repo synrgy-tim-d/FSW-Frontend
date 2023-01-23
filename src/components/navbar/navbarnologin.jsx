@@ -11,8 +11,19 @@ const Navbarsign = () => {
         </div>
 
         <div className='flex-none'>
-            <button className='btn btn-outline'>Masuk</button>
-            <button className='btn btn-active'>Daftar</button>
+            {/* <button className='btn btn-outline'>Masuk</button> */}
+            {/* <button className='btn btn-active'>Daftar</button> */}
+            <Link to='/login' >
+                <button type='button' className='btn btn-outline'>
+                    Masuk
+                </button>
+            </Link>
+
+            <Link to='/register' >
+                <button type='button' className='btn btn-active'>
+                    Daftar
+                </button>
+            </Link>
         </div>
     </div>
     )

@@ -3,14 +3,13 @@ import ReactDOM from 'react-dom/client';
 import Profile from './components/profile/profile';
 import EditProfile from './components/profile/editprofile';
 import Changepass from './components/profile/changepass';
-// import SignIn from './components/sign_in/sign_in.jsx';
-// import SignUp from './components/sign_up/sign_up.jsx';
 import SignIn from './components/sign_in/SignIn.jsx';
 import SignUp from './components/sign_up/SignUp.jsx';
 import History from './components/history/history.jsx';
 import HistoryPay from './components/history/historyPayment.jsx';
 import HistoryCancel from './components/history/historyCancel.jsx';
 import LandingPage from './pages/landingPage';
+import { Homepage } from './components/homepage/Homepage';
 import Verif from './pages/verif';
 import Forget from './pages/forget';
 import './index.css';
@@ -35,6 +34,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           <Route path='/cancellationhistory' element={<HistoryCancel />} />
           <Route path='/verif' element={<Verif />} />
           <Route path='/forget' element={<Forget />} />
+          <Route path='/homepage' element={<Homepage />} />
         </Routes>
       </BrowserRouter>
     </QueryClientProvider>
