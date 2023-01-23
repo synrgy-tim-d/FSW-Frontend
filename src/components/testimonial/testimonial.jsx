@@ -77,113 +77,22 @@ const testimoniers = [{
   }
 }]
 function Testimonial() {
-  const testimonialsComponents = testimoniers.map((e,i) => {
-    return (<SwiperSlide><TestimonialCard name={e.name} testimonial={e.testimonial} pictureUrl={e.pictureUrl} kosAddress={e.kos.address} kosName={e.kos.name} /></SwiperSlide>)
-  })
+  let testimoniersOne = [];
+  for (let i = 0;i < 3;i++) {
+    testimoniersOne.push(<TestimonialCard name={testimoniers[i].name} testimonial={testimoniers[i].testimonial} pictureUrl={testimoniers[i].pictureUrl} kosAddress={testimoniers[i].kos.address} kosName={testimoniers[i].kos.name} />)
+  }
+  let testimoniersTwo = [];
+  for (let i = 0;i < 4;i++) {
+    testimoniersTwo.push(<TestimonialCard name={testimoniers[i].name} testimonial={testimoniers[i].testimonial} pictureUrl={testimoniers[i].pictureUrl} kosAddress={testimoniers[i].kos.address} kosName={testimoniers[i].kos.name} />)
+  }
 
   return (
-    
-    // <div className='w-full flex flex-wrap gap-5 py-3'>
-    //     <div className='flex gap-6'>
-    //       {(() => {
-    //         let testimonials = [];
-    //         for (let i = 0; i < testinomialsCount; i++) {
-    //           testimonials.push(
-    //             <TestimonialCard move={"move-right"}/>) 
-    //         }
-    //         return testimonials
-    //       })()}
-    //     </div>
-    //     <div className='flex gap-6'>
-    //       {(() => {
-    //         let testimonials = [];
-    //         for (let i = 0; i < testinomialsCount; i++) {
-    //           testimonials.push(
-    //             <TestimonialCard move={"move-left"}/>) 
-    //         }
-    //         return testimonials
-    //       })()}
-    //     </div>
-    // </div>.
-  //   <div className='flex flex-wrap gap-5'>
-  //   <div className='overflow-hidden w-full relative gap-5 '>
-  //   <Swiper
-  //   // className='flex flex-wrap justify-center'
-  //   className='w-[122%] absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 flex justify-center'
-  //   modules={[Autoplay,Pagination]}
-  //   spaceBetween={1}
-  //   slidesPerView={3}
-  //   centeredSlides={true}
-  //   centerInsufficientSlides={true}
-  //   centeredSlidesBounds={true}
-  //   loop={true}
-  //   autoplay={
-  //     {delay:800,
-  //     disableOnInteraction:false,
-  //     pauseOnMouseEnter:false
-  //   }
-  //   }
-    
-  // >
-  //   {testimonialsComponents}
-  // </Swiper></div>
-  //   <div className='overflow-hidden relative gap-5'>
-  //   <Swiper
-  //   // className='flex flex-wrap justify-center'
-  //   className='w-[172%] absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 flex justify-center'
-  //   modules={[Autoplay,Pagination]}
-  //   spaceBetween={1}
-  //   slidesPerView={4}
-  //   centeredSlides={true}
-  //   centerInsufficientSlides={true}
-  //   centeredSlidesBounds={true}
-  //   loop={true}
-  //   autoplay={
-  //     {delay:800,
-  //     disableOnInteraction:false,
-  //     pauseOnMouseEnter:false
-  //   }
-  //   }
-    
-  // >
-  //   {testimonialsComponents}
-  // </Swiper></div></div>
-  <div className='w-full lg:flex flex-wrap justify-center gap-5 overflow-visible hidden'>
-    <div className='w-[150%]'>
-      <Swiper 
-        allowTouchMove={false}
-        modules={[Autoplay]}
-        slidesPerView={4}
-        spaceBetween={170}
-        speed={2000}
-        autoplay={
-          {
-            delay:100
-          }
-        }
-        loop={true}
-      >
-        {testimonialsComponents}
-      </Swiper>
+  <div className='w-full lg:flex flex-wrap justify-center gap-5 overflow-hidden hidden bg-[#0A008A] py-6' >
+    <div className='w-[120%] flex gap-6'>
+      {testimoniersOne}
     </div>
-    <div className='w-[190%]'>
-      <Swiper 
-        allowTouchMove={false}
-        modules={[Autoplay]}
-        slidesPerView={5}
-        spaceBetween={170}
-        speed={2000}
-        autoplay={
-          {
-            delay:100,
-            reverseDirection:true
-          }
-        }
-        loop={true}
-        
-      >
-        {testimonialsComponents}
-      </Swiper>
+    <div className='w-[180%] flex gap-6'>
+      {testimoniersTwo}
     </div>
   </div>
   )
