@@ -229,11 +229,9 @@ const Carousel = () => {
                 location={entry.location}
                 price={entry.price}
               />
-              ;
             </SwiperSlide>
-          );
+          )
         })}
-        ...
       </Swiper>
     </div>
   );

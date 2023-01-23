@@ -34,3 +34,6 @@
     width: 768;
   }
 }
+.swiper-pagination-bullets {
+    display: none;
+}

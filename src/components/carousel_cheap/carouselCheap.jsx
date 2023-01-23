@@ -227,11 +227,9 @@ const CarouselCheap = () => {
                 location={entry.location}
                 price={entry.price}
               />
-              ;
             </SwiperSlide>
-          );
+          )
         })}
-        ...
       </Swiper>
     </div>
   );
