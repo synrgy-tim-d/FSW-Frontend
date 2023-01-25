@@ -47,12 +47,11 @@ const HistoryPay = () => {
         <nav className='flex' aria-label='Breadcrumb'>
           <ol className='inline-flex items-center space-x-1 md:space-x-3'>
             <li className='inline-flex items-center'>
-              <a
-                href='#'
-                className='text-[20px] font-[600] text-[#000000] opacity-[.38] hover:text-[#0A008A] hover:opacity-100'
-              >
-                Home
-              </a>
+              <Link to='/'>
+                <p className='text-[20px] font-[600] text-[#000000] opacity-[.38] hover:text-[#0A008A] hover:opacity-100'>
+                  Home
+                </p>
+              </Link>
             </li>
             <li>
               <div className='flex items-center'>
@@ -158,10 +157,14 @@ const HistoryPay = () => {
                 <div>
                   <div className='flex flex-row py-[16px] text-black'>
                     <div className='flex flex-col text-left w-[280px]'>
-                      <h1 className='mb-[4px] text-[20px] font-[600]'>Booking ID: {payment.bookId}</h1>
-                      <p className='mb-[6px] text-[#4A4A4A] text-[12px] font-[400]'>{payment.date}</p>
+                      <h1 className='mb-[4px] text-[20px] font-[600]'>
+                        Booking ID: {payment.bookId}
+                      </h1>
+                      <p className='mb-[6px] text-[#4A4A4A] text-[12px] font-[400]'>
+                        {payment.date}
+                      </p>
                       <div className='flex flex-row cursor-pointer'>
-                        <img className='' alt='' src='src/assets/icon_download.svg'/>
+                        <img className='' alt='' src='src/assets/icon_download.svg' />
                         <p className='ml-2 text-[#46464F] opacity-[.38] text-[16px] font-[600]'>
                           Download bukti pembayaran
                         </p>
@@ -171,13 +174,11 @@ const HistoryPay = () => {
                       <h1 className='mb-2 text-[20px] font-[500]'>Rp {payment.price}</h1>
                       <div className='flex flex-row justify-end mr-[8px]'>
                         <img className='' alt='' src='src/assets/icon_completed.svg' />
-                        <p className='text-[12px] font-[600] text-[#008A3F] ml-2 mt-1'>
-                          Completed
-                        </p>
+                        <p className='text-[12px] font-[600] text-[#008A3F] ml-2 mt-1'>Completed</p>
                       </div>
                     </div>
                   </div>
-                  <hr className='w-[870px] mb-[15px]'></hr>
+                  <hr className='w-[870px] mb-[30px]'></hr>
                 </div>
               </React.Fragment>
             );

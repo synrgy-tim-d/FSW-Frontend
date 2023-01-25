@@ -1,53 +1,29 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
-const HistoryCancel = () => {
-  const [cancels, setCancels] = useState([]);
+const PayNow = () => {
+  const [histories, sethistories] = useState([]);
 
   useEffect(() => {
-    const cancelList = [
-      {
-        id: 1,
-        name: 'Kos Jahe',
-        location: {
-          name: 'Tanggerang',
-        },
-        bookId: '00000001',
-        inDate: 'April 01, 23',
-        outDate: 'April 30,23',
-        date: 'Fri, 24 March 2023',
-        img: 'src/assets/img_kosFour.png',
-      },
+    const historyList = [
       {
         id: 2,
-        name: 'Kos Timun',
+        name: 'Kos Beringin',
         location: {
-          name: 'Bogor',
+          name: 'Yogyakarta',
         },
         bookId: '00000002',
-        inDate: 'April 01, 23',
-        outDate: 'May 01, 23',
-        date: 'Sat, 25 March 2023',
-        img: 'src/assets/img_kosFive.png',
-      },
-      {
-        id: 3,
-        name: 'Kos Wortel',
-        location: {
-          name: 'Bogor',
-        },
-        bookId: '00000003',
-        inDate: 'April 11, 23',
-        outDate: 'May 11, 23',
-        date: 'Sun, 26 March 2023',
-        img: 'src/assets/img_kosSix.png',
+        inDate: 'April 03, 23',
+        outDate: 'May 03, 23',
+        img: 'src/assets/img_kosTwo.png',
+        btn: 'payment',
       },
     ];
-    setCancels(cancelList);
+    sethistories(historyList);
   }, []);
 
   return (
-    <div className='pl-[70px] pt-[25px] font-[Montserrat]'>
+    <div className='pl-[70px] pt-[25px] w-screen font-[Montserrat]'>
       {/* --- Breadcrumb --- */}
       <div className='flex flex-row'>
         <nav className='flex' aria-label='Breadcrumb'>
@@ -98,7 +74,7 @@ const HistoryCancel = () => {
                   ></path>
                 </svg>
                 <span className='ml-1 md:ml-2 text-[20px] font-[600] text-[#0A008A] underline'>
-                  Pembatalan
+                  Pemesanan Kos
                 </span>
               </div>
             </li>
@@ -111,7 +87,7 @@ const HistoryCancel = () => {
         {/* --- Options --- */}
         <div className='flex flex-col text-black mt-[61px]'>
           <Link to='/history'>
-            <p className='text-[#9b9b9b] hover:text-[#0A008A] text-[25px] font-[500] mb-[20px] text-left'>
+            <p className='text-[#0A008A] hover:text-[#9b9b9b] text-[25px] font-[500] mb-[20px] text-left'>
               Pemesanan Kos
             </p>
           </Link>
@@ -129,74 +105,43 @@ const HistoryCancel = () => {
           </Link>
           <hr className='w-[350px] mb-[20px]'></hr>
           <Link to='/cancellationhistory'>
-            <p className='text-[#0A008A] hover:text-[#9b9b9b] text-[25px] font-[500] mb-[20px] text-left'>
+            <p className='text-[#9b9b9b] hover:text-[#0A008A] text-[25px] font-[500] mb-[20px] text-left'>
               Pembatalan
             </p>
           </Link>
           <hr className='w-[350px] mb-[20px]'></hr>
         </div>
 
-        {/* --- Content if Empty --- */}
-        {/* <div className='flex flex-col text-center text-black ml-[80px] mt-[181px]'>
-          <img
-            className='w-[273px] h-[254px] self-center mb-[44px]'
-            alt=''
-            src='src/assets/img_noCancelHistory.png'
-          />
-          <h1 className='text-[31px] font-[600] mb-[20px] w-[558px]'>Belum ada pembatalan baru</h1>
-          <p className='text-[20px] font-[500] mb-[50px] w-[558px]'>
-            Belum ada informasi terkait pembatalan pemesanan kos
-          </p>
-          <button
-            className='border-0 bg-[#0A008A] self-center rounded-[150px] outline-none text-white font-[600] text-[16px] w-[419px] h-[43px] hover:bg-[#A0A3FF] hover:text-[#0A008A] focus:bg-black focus:text-white focus:outline-none'
-            type='submit'
-          >
-            Kembali
-          </button>
-        </div> */}
-
-        {/* --- Content if there is Data --- */}
         <div className='flex flex-col ml-[70px] mt-[61px]'>
-          {cancels.map((cancel, index) => {
+          {histories.map((history, index) => {
             return (
               <React.Fragment key={index}>
                 <div>
                   <div className='flex flex-row py-[16px] text-black'>
-                    <img className='w-[200px] h-[142.58px] self-center' alt='' src={cancel.img} />
-                    <div className='flex flex-col ml-[42.5px] w-[265px] text-left'>
-                      <h1 className='text-[20px] font-[600]'>{cancel.name}</h1>
-                      <div className='flex flex-row'>
+                    <img className='w-[200px] h-[142.58px] self-center' alt='' src={history.img} />
+                    <div className='flex flex-col ml-[42.5px] text-left w-[265px]'>
+                      <h1 className='text-[20px] font-[600]'>{history.name}</h1>
+                      <div className='flex flex-'>
                         <img className='' alt='' src='src/assets/icon_location.svg' />
                         <p className='text-[16px] font-[500] ml-2 mb-[4px] mt-1'>
-                          {cancel.location.name}
+                          {history.location.name}
                         </p>
                       </div>
                       <p className='text-[16px] font-[500] mb-[12px]'>
-                        Booking ID: {cancel.bookId}
+                        Booking ID: {history.bookId}
                       </p>
                       <div className='flex flex-row'>
                         <div className='flex flex-col text-center'>
                           <p className='text-[12px] font-[400] mb-[4px]'>Check in</p>
-                          <p className='text-[16px] font-[400]'>{cancel.inDate}</p>
+                          <p className='text-[16px] font-[400]'>{history.inDate}</p>
                         </div>
                         <div className='flex flex-col mx-[12px] justify-center'>
                           <img className='' alt='' src='src/assets/icon_arrow-right-2.svg' />
                         </div>
                         <div className='flex flex-col text-center'>
                           <p className='text-[12px] font-[400] mb-[4px]'>Check out</p>
-                          <p className='text-[16px] font-[400]'>{cancel.outDate}</p>
+                          <p className='text-[16px] font-[400]'>{history.outDate}</p>
                         </div>
-                      </div>
-                    </div>
-                    <div className='flex flex-col ml-[230px] pr-[10px] w-[150px] text-right'>
-                      <p className='mt-[85px] text-[#4A4A4A] text-[12px] font-[400]'>
-                        {cancel.date}
-                      </p>
-                      <div className='flex flex-row justify-end'>
-                        <img className='' alt='' src='src/assets/icon_cancel.svg' />
-                        <p className='text-[12px] font-[600] text-[#BA1A1A] ml-2 mb-[4px] mt-1'>
-                          Cancelled
-                        </p>
                       </div>
                     </div>
                   </div>
@@ -205,13 +150,72 @@ const HistoryCancel = () => {
               </React.Fragment>
             );
           })}
-          <h1 className='text-center text-black text-[20px] font-[600] opacity-[.38]'>
-            Lihat lebih banyak lagi
-          </h1>
+          <h1 className='mb-[20px] text-black text-[25px] font-[600]'>Rincian Pembayaran</h1>
+          <div className='mb-[50px] w-[870px] h-[210px] py-[28px] px-[40px] rounded-[16px] bg-[#e4e4fc] text-black'>
+            <div className='flex flex-row justify-between'>
+              <div className='flex flex-col'>
+                <p className='mb-[20px] text-[20px] font-[500]'>Harga kos</p>
+                <p className='mb-[20px] text-[20px] font-[500]'>Waktu sewa</p>
+              </div>
+              <div className='flex flex-col text-right'>
+                <p className='mb-[20px] text-[14px] font-[500]'>
+                  <strong className='text-[20px] font-[600]'>Rp300.000</strong>/minggu
+                </p>
+                <p className='mb-[20px] text-[20px] font-[500]'>1 minggu</p>
+              </div>
+            </div>
+            <hr className='mb-[20px] border-[1px] border-[#0A008A]'></hr>
+            <div className='flex flex-row justify-between'>
+              <div className='flex flex-col'>
+                <p className='text-[20px] font-[600]'>Total Pembayaran</p>
+              </div>
+              <div className='flex flex-col text-right'>
+                <p className='text-[20px] font-[600]'>Rp300.000</p>
+              </div>
+            </div>
+          </div>
+          <h1 className='mb-[20px] text-black text-[25px] font-[600]'>Bayar Melalui</h1>
+          <div className='dropdown'>
+            <label
+              tabIndex={0}
+              className='justify-between cursor-pointer inline-flex items-center w-[294px] h-[48px] mb-[20px] px-4 p-0 bg-white border-2 border-[#0A008A] rounded-[8px] outline-none text-[20px] font-[500] text-black hover:bg-[#f3f4ff] hover:border-[#0A008A] hover:text-[#0A008A] active:bg-[#0A008A] active:text-white'
+            >
+              Transfer Bank
+              <img className='' alt='' src='src/assets/icon_arrow-down.svg' />
+            </label>
+            <ul
+              tabIndex={0}
+              className='dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52'
+            >
+              <p>
+                Opsi Bayar <hr></hr>
+              </p>
+              <li>
+                Transfer Bank
+              </li>
+              <li>
+                Tunai
+              </li>
+            </ul>
+          </div>
+          <p className='w-[867px] mb-[80px] text-[16px] font-[400]'>
+            *Pastikan memilih opsi dengan benar sebab opsi yang telah dipilih tidak dapat dirubah,
+            setelah memilih opsi, segera lakukan pembayaran
+          </p>
+          <div className='text-center'>
+            <Link to=''>
+              <button
+                className='md:w-[400px] md:h-[43px] md:text-[16px] md:pt-2 min-[393px]:w-[362px] min-[393px]:h-[36px] min-[393px]:text-[14px] min-[393px]:pt-1 bg-[#0A008A] rounded-[150px] outline-none font-[600] text-white hover:bg-[#A0A3FF] hover:text-[#0A008A] focus:bg-[#000000] focus:text-white focus:outline-none'
+                type='submit'
+              >
+                Bayar kos
+              </button>
+            </Link>
+          </div>
         </div>
       </div>
     </div>
   );
 };
 
-export default HistoryCancel;
+export default PayNow;

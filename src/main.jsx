@@ -10,6 +10,7 @@ import SignUp from './components/sign_up/SignUp.jsx';
 import History from './components/history/history.jsx';
 import HistoryPay from './components/history/historyPayment.jsx';
 import HistoryCancel from './components/history/historyCancel.jsx';
+import PayNow from './components/history/payNow';
 import LandingPage from './pages/landingPage';
 import Verif from './pages/verif';
 import Forget from './pages/forget';
@@ -33,6 +34,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           <Route path='/history' element={<History />} />
           <Route path='/paymenthistory' element={<HistoryPay />} />
           <Route path='/cancellationhistory' element={<HistoryCancel />} />
+          <Route path='/paynow' element={<PayNow />} />
           <Route path='/verif' element={<Verif />} />
           <Route path='/forget' element={<Forget />} />
         </Routes>

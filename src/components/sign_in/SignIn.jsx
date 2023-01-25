@@ -60,7 +60,7 @@ const SignIn = () => {
           <Link to='#'>
             <p
               className='md:mt-[12px] md:text-[16px] md:font-[600] min-[393px]:text-[14px] min-[393px]:font-[500] min-[393px]:mt-1 text-left text-black hover:text-black'
-            >
+              >
               Lupa Password
             </p>
           </Link>

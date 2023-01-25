@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import ButtonDisabled from './buttonDisabled';
-import ButtonPayment from './buttonPayment';
-import ButtonReview from './buttonReview';
+import { ButtonDisabled, ButtonPayment, ButtonReview } from './buttonsHistory';
 
 const History = () => {
   const [histories, sethistories] = useState([]);
@@ -17,19 +15,19 @@ const History = () => {
         },
         bookId: '00000001',
         inDate: 'April 01, 23',
-        outDate: 'April 30,23',
+        outDate: 'April 30, 23',
         img: 'src/assets/img_kosOne.png',
         btn: 'disabled',
       },
       {
-        id: 1,
+        id: 2,
         name: 'Kos Beringin',
         location: {
           name: 'Yogyakarta',
         },
         bookId: '00000002',
         inDate: 'April 03, 23',
-        outDate: 'May 03,23',
+        outDate: 'May 03, 23',
         img: 'src/assets/img_kosTwo.png',
         btn: 'payment',
       },
@@ -41,9 +39,21 @@ const History = () => {
         },
         bookId: '00000003',
         inDate: 'April 11, 23',
-        outDate: 'May 11,23',
+        outDate: 'May 11, 23',
         img: 'src/assets/img_kosThree.png',
         btn: 'review',
+      },
+      {
+        id: 4,
+        name: 'Kos Guntung',
+        location: {
+          name: 'Yogyakarta',
+        },
+        bookId: '00000004',
+        inDate: 'April 12, 23',
+        outDate: 'May 13, 23',
+        img: 'src/assets/img_kosThree.png',
+        btn: 'payment',
       },
     ];
     sethistories(historyList);
@@ -56,12 +66,11 @@ const History = () => {
         <nav className='flex' aria-label='Breadcrumb'>
           <ol className='inline-flex items-center space-x-1 md:space-x-3'>
             <li className='inline-flex items-center'>
-              <a
-                href='#'
-                className='text-[20px] font-[600] text-[#000000] opacity-[.38] hover:text-[#0A008A] hover:opacity-100'
-              >
-                Home
-              </a>
+              <Link to='/'>
+                <p className='text-[20px] font-[600] text-[#000000] opacity-[.38] hover:text-[#0A008A] hover:opacity-100'>
+                  Home
+                </p>
+              </Link>
             </li>
             <li>
               <div className='flex items-center'>
@@ -186,7 +195,7 @@ const History = () => {
                     <img className='w-[200px] h-[142.58px] self-center' alt='' src={history.img} />
                     <div className='flex flex-col ml-[42.5px] text-left w-[265px]'>
                       <h1 className='text-[20px] font-[600]'>{history.name}</h1>
-                      <div className='flex flex-row'>
+                      <div className='flex flex-'>
                         <img className='' alt='' src='src/assets/icon_location.svg' />
                         <p className='text-[16px] font-[500] ml-2 mb-[4px] mt-1'>
                           {history.location.name}
@@ -211,7 +220,7 @@ const History = () => {
                     </div>
                     {component}
                   </div>
-                  <hr className='w-[870px] mb-[15px]'></hr>
+                  <hr className='w-[870px] mb-[30px]'></hr>
                 </div>
               </React.Fragment>
             );
