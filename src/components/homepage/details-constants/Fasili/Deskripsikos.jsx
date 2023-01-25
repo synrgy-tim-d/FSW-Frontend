@@ -2,7 +2,7 @@ import React from 'react';
 
 const Deskripsikos = () => {
   return (
-    <>
+    <React.Fragment>
       <div className='grid grid-rows-auto gap-4'>
         <p className='text-[20px] font-[700]'>Deskripsi Kos</p>
         <p>
@@ -21,7 +21,7 @@ const Deskripsikos = () => {
           Selengkapnya
         </button>
       </div>
-    </>
+    </React.Fragment>
   );
 };
 

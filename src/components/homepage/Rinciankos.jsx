@@ -8,6 +8,10 @@ import Fasilitasbersama from './details-constants/Fasili/Fasilitasbersama';
 import Peraturankos from './details-constants/Fasili/Peraturankos';
 import Deskripsikos from './details-constants/Fasili/Deskripsikos';
 import Review from './details-constants/Fasili/Review';
+import Bigimg from '../../assets/Dummy-img-details/Big-img.svg'
+import Medimg from '../../assets/Dummy-img-details/Med-img.svg'
+import Smallimg1 from '../../assets/Dummy-img-details/Small-img1.svg'
+import Smallimg2 from '../../assets/Dummy-img-details/Small-img1.svg'
 
 const Rinciankos = () => {
   return (
@@ -34,20 +38,20 @@ const Rinciankos = () => {
         </div>
 
         <div className='grid grid-rows-auto grid-flow-row'>
-          <div className='grid grid-cols-5 gap-8'>
-            <div className='col-span-3 gap-8 bg-green-500'>
-              <img className='w-full h-auto' src={image} alt='' />
+          <div className='grid grid-cols-12 gap-6'>
+            <div className='col-span-7 bg-green-500'>
+              <img className='w-full h-auto' src={ Bigimg } alt='' />
             </div>
-            <div className='col-span-2 grid grid-rows-2 gap-8'>
+            <div className='col-span-4 grid grid-rows-2 gap-6'>
               <div className='bg-blue-500'>
-                <img className='w-full h-auto' src={image} alt='' />
+                <img className='w-full h-auto' src={ Medimg } alt='' />
               </div>
-              <div className='grid grid-cols-2 grid-flow-col gap-4'>
+              <div className='grid grid-cols-2 grid-flow-col gap-6'>
                 <div>
-                  <img className='w-full h-auto bg-yellow-500' src={image} alt='' />
+                  <img className='w-full h-auto bg-yellow-500' src={ Smallimg1 } alt='' />
                 </div>
                 <div>
-                  <img className='w-full h-auto bg-yellow-500' src={image} alt='' />
+                  <img className='w-full h-auto bg-yellow-500' src={ Smallimg2 } alt='' />
                 </div>
               </div>
             </div>
@@ -68,32 +72,49 @@ const Rinciankos = () => {
               <hr className='border-2' />
               <Review />
               <hr className='border-2' />
-              <div>
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Incidunt odit porro dolor
-                ullam ipsa doloremque illum omnis eaque, sed voluptate enim voluptatibus autem nulla
-                perspiciatis praesentium dolore, minus, magni consequatur! Lorem ipsum dolor sit
-                amet consectetur adipisicing elit. Temporibus nihil eligendi fugiat repellendus?
-                Praesentium assumenda deleniti ducimus id aliquid exercitationem quis incidunt
-                labore repellat quas, dolorum sint impedit. Perspiciatis, vel.
-              </div>
+              <div>THIS PLACE WILL BE A CARROUSEL OF OTHER ROOM TYPES</div>
             </div>
 
-            <div className='col-span-1'>
-              <form action=''>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempora beatae, ipsam quam
-                ut culpa cumque facilis? Accusantium labore natus eligendi nulla non sit voluptate
-                cupiditate autem voluptatum totam! Ea, ducimus. Lorem ipsum dolor sit amet
-                consectetur adipisicing elit. Impedit rem error aut sint vel voluptates, quaerat
-                placeat molestias amet deserunt officiis soluta! Quibusdam optio non ducimus aperiam
-                voluptatem ratione magnam! Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Blanditiis corporis molestiae saepe quis velit? Odit autem excepturi quaerat
-                repudiandae eius ex? Eveniet dolore doloribus voluptatibus error nulla placeat ipsum
-                expedita! Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores in
-                corporis cupiditate rerum minima optio esse tempore vel debitis, ipsam quam,
-                perferendis aliquid at. Rerum voluptatum earum aspernatur voluptatem suscipit! Lorem
-                ipsum dolor sit amet consectetur adipisicing elit. Distinctio atque, sint, similique
-                autem suscipit pariatur voluptatem in numquam, porro ut dolores vel. Reprehenderit
-                adipisci iusto consequatur ipsum quibusdam soluta ipsam?
+            <div className='col-span-1 w-full px-20'>
+              <form
+                action='|'
+                className='shadow-[#000000] shadow-md w-full grid grid-rows-auto gap-y-6 justify-items-center rounded-[8px]'
+              >
+                <div className='mt-8'>
+                  <p className='text-[20px] font-[700]'>
+                    Rp1.000.000
+                    <span className='font-[400] text-[14px]'>/bulan</span>
+                  </p>
+                </div>
+                <div className='w-4/5'>
+                  <input
+                    type='text'
+                    className='w-full border-2 border-[#0A008A] text-[#B9B9BC] text-[14px] font-[500] p-1 rounded-[8px]'
+                    placeholder='Check-in'
+                  />
+                </div>
+                <div className='w-4/5'>
+                  <input
+                    type='text'
+                    className='w-full border-2 border-[#0A008A] text-[#000000] text-[14px] font-[500] p-1 rounded-[8px]'
+                    placeholder='Per Bulan'
+                  />
+                </div>
+                <div className='w-full px-6'>
+                  <hr className='w-full border-2 border-dashed boreder-[#46464F]/[0.38]' />
+                </div>
+                <div className='w-full grid grid-cols-2 grid-flow-col px-6'>
+                  <div className='flex justify-start'>Total</div>
+                  <div className='flex justify-end'>Rp1.000.000</div>
+                </div>
+                <div className='w-full px-6'>
+                  <button
+                    type='submit'
+                    className='w-full bg-[#46464F1F]/[0.12] text-[#46464F1F]/[0.38] text-[16px] font-[600] mb-8'
+                  >
+                    Sewa
+                  </button>
+                </div>
               </form>
             </div>
           </div>
