@@ -2,11 +2,14 @@ import React, { useState } from 'react';
 
 export const CollapseCheckbox = ({ items, buttonText }) => {
   const [isOpen, setIsOpen] = useState(true);
-  // const toggle = () => setIsOpen(!isOpen);
 
   return (
     <div className='w-full'>
-      <button onClick={() => setIsOpen(!isOpen)} className='text-[#000000] w-full text-start bg-white'>
+      <button
+      type='button'
+        onClick={() => setIsOpen(!isOpen)}
+        className='text-[#000000] w-full text-start bg-white'
+      >
         {buttonText}
       </button>
       {isOpen && (
@@ -19,7 +22,7 @@ export const CollapseCheckbox = ({ items, buttonText }) => {
                 value={item.id}
                 onChange={(el) => {
                   let temp = items.find((e) => e.id == el.target.value);
-                  temp.checked = true
+                  temp.checked = true;
                 }}
               />
               <label> {item.value}</label>
@@ -31,14 +34,14 @@ export const CollapseCheckbox = ({ items, buttonText }) => {
   );
 };
 
-export const CollapseRadio = ({ items, buttonText, className }) => {
+export const CollapseRadio = ({ items, buttonText }) => {
   const [isOpen, setIsOpen] = useState(true);
-  const toggle = () => setIsOpen(!isOpen);
 
   return (
     <div className='w-full'>
       <button
-        onClick={toggle}
+        type='button'
+        onClick={() => setIsOpen(!isOpen)}
         className='text-[#000000] w-full text-start bg-white 
       hover:border-none active:border-none'
       >
@@ -54,10 +57,10 @@ export const CollapseRadio = ({ items, buttonText, className }) => {
                 value={item.id}
                 onChange={(el) => {
                   let temp = items.find((e) => e.id == el.target.value);
-                  temp.checked = true
+                  temp.checked = true;
                 }}
               />
-              <label>{" "}{item.value}</label>
+              <label> {item.value}</label>
             </li>
           ))}
         </ul>

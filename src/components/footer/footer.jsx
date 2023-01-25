@@ -1,4 +1,5 @@
 import { React } from 'react';
+import LogoNaqosPolosWhite from '../../assets/LogoNaqosFixWhite.png'
 
 const Footer = () => {
     return (
@@ -26,7 +27,7 @@ const Footer = () => {
         </div>
       </div>
       <div className='grid grid-flow-col'>
-        <img className='h-32' src='src/assets/LogoNaqosFixWhite.png'></img>
+        <img className='h-32' src={LogoNaqosPolosWhite}></img>
       </div>
     </footer>
     );

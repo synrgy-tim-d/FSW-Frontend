@@ -1,5 +1,4 @@
 import React from 'react';
-import './profile.css';
 import { Link } from 'react-router-dom';
 
 const changepass = () => {
@@ -17,7 +16,7 @@ const changepass = () => {
           </Link>
         </li>
         <li>
-          <Link to='/gantipass' className='text-[20px] font-[600] hover:underline'>
+          <Link to='/gantipassword' className='text-[20px] font-[600] hover:underline'>
             Ganti Password
           </Link>
         </li>
