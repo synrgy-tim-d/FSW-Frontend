@@ -25,7 +25,7 @@ const SignIn = () => {
   };
 
   return (
-    <div className='px-[15px] w-screen font-[Montserrat] '>
+    <div className='px-[15px] font-[Montserrat] max-w-[1440px] w-screen'>
       <form onSubmit={handleSubmit(onFormSubmitHandler)}>
         <div className='flex flex-row justify-center'>
           <img

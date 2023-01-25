@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import imagetwo from '../../assets/img_kosTwo.png';
-import imageconfirm from '../../assets/img_confirmPayment.png';
 
-const PayNow = () => {
+const PayUpload = () => {
   const [histories, sethistories] = useState([]);
 
   useEffect(() => {
@@ -152,21 +151,11 @@ const PayNow = () => {
               </React.Fragment>
             );
           })}
-          <h1 className='mb-[20px] text-black text-[25px] font-[600]'>Rincian Pembayaran</h1>
-          <div className='mb-[50px] w-[870px] h-[210px] py-[28px] px-[40px] rounded-[16px] bg-[#e4e4fc] text-black'>
-            <div className='flex flex-row justify-between'>
-              <div className='flex flex-col'>
-                <p className='mb-[20px] text-[20px] font-[500]'>Harga kos</p>
-                <p className='mb-[20px] text-[20px] font-[500]'>Waktu sewa</p>
-              </div>
-              <div className='flex flex-col text-right'>
-                <p className='mb-[20px] text-[14px] font-[500]'>
-                  <strong className='text-[20px] font-[600]'>Rp300.000</strong>/minggu
-                </p>
-                <p className='mb-[20px] text-[20px] font-[500]'>1 minggu</p>
-              </div>
-            </div>
-            <hr className='mb-[20px] border-[1px] border-[#0A008A]'></hr>
+          <h1 className='mb-[10px] text-black text-[25px] font-[600]'>Detail Pembayaran</h1>
+          <p className='mb-[40px] text-[#BA1A1A] text-[16px] font-[500]'>
+            *Pembayaran akan hangus dalam 3 hari
+          </p>
+          <div className='mb-[40px] w-[870px] py-[28px] px-[40px] rounded-[16px] bg-[#e4e4fc] text-black'>
             <div className='flex flex-row justify-between'>
               <div className='flex flex-col'>
                 <p className='text-[20px] font-[600]'>Total Pembayaran</p>
@@ -176,93 +165,22 @@ const PayNow = () => {
               </div>
             </div>
           </div>
-          <h1 className='mb-[20px] text-black text-[25px] font-[600]'>Bayar Melalui</h1>
-          <div className='dropdown'>
+          <div className='flex flex-row gap-5'>
             <label
-              tabIndex={0}
-              className='justify-between cursor-pointer inline-flex items-center w-[294px] h-[48px] mb-[20px] px-4 p-0 bg-white border-2 border-[#0A008A] rounded-[8px] outline-none text-[20px] font-[500] text-black hover:bg-[#f3f4ff] hover:border-[#0A008A] hover:text-[#0A008A] active:bg-[#0A008A] active:text-white'
+              className='cursor-pointer inline-flex items-center justify-center w-[178px] h-[43px] mb-[65px] p-0 bg-white border-2 border-[#0A008A] rounded-[4px] outline-none text-[16px] font-[600] text-[#0A008A] hover:bg-[#f3f4ff] hover:border-[#0A008A] hover:text-[#0A008A] active:bg-[#0A008A] active:text-white'
+              htmlFor="getFile"
             >
-              Transfer Bank
-              <img className='' alt='' src='src/assets/icon_arrow-down.svg' />
+              Upload Bukti
             </label>
-            <ul
-              tabIndex={0}
-              className='dropdown-content menu p-2 shadow bg-base-100 rounded-box w-[400px] drop-shadow-md'
+            <input id="getFile" className='hidden' type="file"/>
+            
+            <button
+              disabled
+              className='cursor-not-allowed w-[178px] h-[43px] mb-[65px] p-0 bg-[#e9e9ea] rounded-[4px] outline-none text-[16px] font-[600] text-[#ababaf] hover:border-[#e9e9ea] hover:bg-[#e9e9ea] hover:text-[#ababaf]'
+              type='button'
             >
-              <p className='m-[10px] text-[24px] font-[600]'>
-                Opsi Bayar
-              </p>
-              <hr></hr>
-              <div className='form-control mb-[5px] pt-[10px] pl-[10px]'>
-                <label className='label cursor-pointer'>
-                  <span className='text-[20x] font-[500]'>Transfer Bank</span>
-                  <input
-                    type='radio'
-                    name='payOption'
-                    className='radio'
-                    checked
-                  />
-                </label>
-              </div>
-              <div className='form-control pb-[10px] pl-[10px]'>
-                <label className='label cursor-pointer'>
-                  <span className='text-[20x] font-[500]'>Tunai</span>
-                  <input
-                    type='radio'
-                    name='payOption'
-                    className='radio'
-                    checked
-                  />
-                </label>
-              </div>
-            </ul>
-          </div>
-          <p className='w-[867px] mb-[80px] text-[16px] font-[400]'>
-            *Pastikan memilih opsi dengan benar sebab opsi yang telah dipilih tidak dapat dirubah,
-            setelah memilih opsi, segera lakukan pembayaran
-          </p>
-          <div className='text-center'>
-            <label
-              htmlFor='my-modal'
-              className='md:w-[400px] md:h-[43px] md:text-[16px] min-[393px]:w-[362px] min-[393px]:h-[36px] min-[393px]:text-[14px] cursor-pointer inline-flex items-center justify-center p-0 rounded-[150px] outline-none font-[600] bg-[#0A008A] text-white hover:bg-[#A0A3FF] hover:text-[#0A008A] active:bg-[#000000] active:text-white'
-            >
-              Bayar kos
-            </label>
-          </div>
-        </div>
-
-        <input type='checkbox' id='my-modal' className='modal-toggle' />
-        <div className='modal'>
-          <div className='modal-box max-w-5xl w-[790px] rounded-[32px] bg-white drop-shadow-md'>
-            <div className='flex flex-row justify-between mt-[60px] mb-[30px] mx-[20px]'>
-              <div className='w-[20px]'></div> {/* dummy */}
-              <img className='' alt='' src={imageconfirm} />
-              <label htmlFor='my-modal'>
-                <img className='mt-[-35px] cursor-pointer' alt='' src='src/assets/icon_close.svg' />
-              </label>
-            </div>
-            <div className='flex flex-col justify-center items-center'>
-              <h3 className='mb-[20px] text-[25px] font-[600]'>Apakah metode pembayaran benar?</h3>
-              <p className='mb-[30px] text-[16px] font-[500] w-[450px] text-center'>
-                Periksa lagi pesananmu! opsi pembayaran yang sudah dipilih sudah tidak dapat dirubah
-              </p>
-            </div>
-            <div className='flex flex-row justify-center gap-5 mt-[20px] mb-[60px]'>
-              <label
-                htmlFor='my-modal'
-                className='cursor-pointer inline-flex items-center justify-center w-[151px] h-[43px] p-0 bg-white border-2 border-[#0A008A] self-end rounded-[4px] outline-none text-[16px] font-[600] text-[#0A008A] hover:bg-[#f3f4ff] hover:border-[#0A008A] hover:text-[#0A008A] active:bg-[#0A008A] active:text-white'
-              >
-                Periksa lagi
-              </label>
-              <Link to='/payupload'>
-                <label
-                  htmlFor='my-modal'
-                  className='cursor-pointer inline-flex items-center justify-center w-[151px] h-[43px] p-0 bg-[#0A008A] border-2 border-[#0A008A] self-end rounded-[4px] outline-none text-[16px] font-[600] text-white hover:bg-[#A0A3FF] hover:border-[#A0A3FF] hover:text-[#0A008A] active:bg-black active:text-white'
-                >
-                  Lanjutkan
-                </label>
-              </Link>
-            </div>
+              Sudah Bayar
+            </button>
           </div>
         </div>
       </div>
@@ -270,4 +188,4 @@ const PayNow = () => {
   );
 };
 
-export default PayNow;
+export default PayUpload;

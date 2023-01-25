@@ -25,7 +25,7 @@ const SignUp = () => {
   };
 
   return (
-    <div className='px-[15px] w-screen font-[Montserrat] '>
+    <div className='px-[15px] font-[Montserrat] max-w-[1440px] w-screen'>
       <div className='flex flex-row justify-center'>
         <img
           className='md:mt-[70px] md:w-[360px] md:h-[163.72px] min-[393px]:mt-[27px] min-[393px]:w-[171px] min-[393px]:h-[78px]'

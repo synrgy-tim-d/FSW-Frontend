@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import imagefour from '../../assets/img_kosFour.png';
+import imagefive from '../../assets/img_kosFive.png';
+import imagesix from '../../assets/img_kosSix.png';
 
 const HistoryCancel = () => {
   const [cancels, setCancels] = useState([]);
@@ -16,7 +19,7 @@ const HistoryCancel = () => {
         inDate: 'April 01, 23',
         outDate: 'April 30,23',
         date: 'Fri, 24 March 2023',
-        img: 'src/assets/img_kosFour.png',
+        img: imagefour,
       },
       {
         id: 2,
@@ -28,7 +31,7 @@ const HistoryCancel = () => {
         inDate: 'April 01, 23',
         outDate: 'May 01, 23',
         date: 'Sat, 25 March 2023',
-        img: 'src/assets/img_kosFive.png',
+        img: imagefive,
       },
       {
         id: 3,
@@ -40,7 +43,7 @@ const HistoryCancel = () => {
         inDate: 'April 11, 23',
         outDate: 'May 11, 23',
         date: 'Sun, 26 March 2023',
-        img: 'src/assets/img_kosSix.png',
+        img: imagesix,
       },
     ];
     setCancels(cancelList);

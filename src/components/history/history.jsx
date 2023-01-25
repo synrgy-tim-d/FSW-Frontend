@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ButtonDisabled, ButtonPayment, ButtonReview } from './buttonsHistory';
+import imageone from '../../assets/img_kosOne.png';
+import imagetwo from '../../assets/img_kosTwo.png';
+import imagethree from '../../assets/img_kosThree.png';
 
 const History = () => {
   const [histories, sethistories] = useState([]);
@@ -16,7 +19,7 @@ const History = () => {
         bookId: '00000001',
         inDate: 'April 01, 23',
         outDate: 'April 30, 23',
-        img: 'src/assets/img_kosOne.png',
+        img: imageone,
         btn: 'disabled',
       },
       {
@@ -28,7 +31,7 @@ const History = () => {
         bookId: '00000002',
         inDate: 'April 03, 23',
         outDate: 'May 03, 23',
-        img: 'src/assets/img_kosTwo.png',
+        img: imagetwo,
         btn: 'payment',
       },
       {
@@ -40,7 +43,7 @@ const History = () => {
         bookId: '00000003',
         inDate: 'April 11, 23',
         outDate: 'May 11, 23',
-        img: 'src/assets/img_kosThree.png',
+        img: imagethree,
         btn: 'review',
       },
       {
@@ -60,7 +63,7 @@ const History = () => {
   }, []);
 
   return (
-    <div className='pl-[70px] pt-[25px] w-screen font-[Montserrat]'>
+    <div className='pl-[70px] pt-[25px] font-[Montserrat]'>
       {/* --- Breadcrumb --- */}
       <div className='flex flex-row'>
         <nav className='flex' aria-label='Breadcrumb'>
@@ -232,7 +235,7 @@ const History = () => {
 
         <input type='checkbox' id='my-modal' className='modal-toggle' />
         <div className='modal'>
-          <div className='modal-box max-w-5xl w-[895px]'>
+          <div className='modal-box max-w-5xl w-[895px] rounded-[32px] bg-white drop-shadow-md'>
             <div className='flex flex-row justify-between mt-[20px] mx-[20px]'>
               <div className='w-[20px]'></div> {/* dummy */}
               <img className='w-[200px] h-[142.58px]' alt='' src='src/assets/img_kosThree.png' />
