@@ -3,8 +3,6 @@ import ReactDOM from 'react-dom/client';
 import Profile from './components/profile/profile';
 import EditProfile from './components/profile/editprofile';
 import Changepass from './components/profile/changepass';
-// import SignIn from './components/sign_in/sign_in.jsx';
-// import SignUp from './components/sign_up/sign_up.jsx';
 import SignIn from './components/sign_in/SignIn.jsx';
 import SignUp from './components/sign_up/SignUp.jsx';
 import History from './components/history/history.jsx';
@@ -12,11 +10,13 @@ import HistoryPay from './components/history/historyPayment.jsx';
 import HistoryCancel from './components/history/historyCancel.jsx';
 import PayNow from './components/history/payNow';
 import LandingPage from './pages/landingPage';
+import { Homepage } from './pages/Homepage';
 import Verif from './pages/verif';
 import Forget from './pages/forget';
 import './index.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import Rinciankos from './components/homepage/Rinciankos.jsx'
 
 const queryClient = new QueryClient();
 
@@ -37,6 +37,8 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           <Route path='/paynow' element={<PayNow />} />
           <Route path='/verif' element={<Verif />} />
           <Route path='/forget' element={<Forget />} />
+          <Route path='/homepage' element={<Homepage />} />
+          <Route path='/kos' element={<Rinciankos />} />
         </Routes>
       </BrowserRouter>
     </QueryClientProvider>

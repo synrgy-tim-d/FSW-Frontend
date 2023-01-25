@@ -5,7 +5,6 @@
 
 #root {
   max-width: 1440px;
-  /* @apply mx-auto max-w-[1440px] */
   /* margin: 0 auto; */
   /* padding: 2rem; */
   /* text-align: center; */
@@ -59,22 +58,14 @@ button {
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
+  color: #FFFFFF;
   cursor: pointer;
   transition: border-color 0.25s;
 }
-button:hover {
-  border-color: #646cff;
-}
 
-button:focus,
+/* button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
-}
-
-button {
-  background-color: #0A008A;
-  color: #FFFFFF;
 }
 
 button:hover {
@@ -85,7 +76,7 @@ button:hover {
 button:active {
   background-color: #000000;
   color: #FFFFFF;
-}
+} */
 
 @media (prefers-color-scheme: light) {
   :root {
@@ -100,30 +91,25 @@ button:active {
   }
 }
 
-@keyframes slideinRight {
-  0% {
-    transform: translateX(-205%);
-  }
-  100% {
-    transform: translateX(-100%);
-  }
+.breadcrumb li {
+  display: inline;
+  color: #46464F;
+  opacity: 0.38;
 }
 
-.move-right {
-  animation: slideinRight 4s infinite;
-  animation-timing-function: ease-in-out;
+.breadcrumb li:hover {
+  color: #0A008A;
+  opacity: 1;
 }
 
-@keyframes slideinLeft {
-  0% {
-    transform: translateX(-50%);
-  }
-  button {
-    background-color: #f9f9f9;
-  }
-}
+/* .breadcrumb li:last-child {
+  color: #46464F;
+  text-decoration: underline;
+  opacity: 1;
+} */
 
-.move-left {
-  animation: slideinLeft 4s infinite;
-  animation-timing-function: ease-in-out;
+.breadcrumb li+li:before {
+  padding: 8px;
+  content: '\00a0'url(/src/assets/breadcrumb-arrow.svg)'\00a0' ;
+  opacity: 0.38;
 }
