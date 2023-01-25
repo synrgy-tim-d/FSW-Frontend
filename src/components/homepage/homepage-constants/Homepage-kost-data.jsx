@@ -117,7 +117,7 @@ const Kostdata = () => {
               <div className='col-span-2 grid grid-rows-auto grid-flow-row gap-2 p-4'>
                 <div className='grid grid-flow-col'>
                   <div className='grid grid-cols-auto grid-flow-col auto-cols-max content-center'>
-                    <div className='w-[85px] border-2 border-[#0A008A] rounded-[150px] flex justify-center'>
+                    <div className='w-[85px] border-2 border-[#0A008A] rounded-[150px] flex justify-center text-[16px] font-[600]'>
                       {kost.type}
                     </div>
                     <span className='text-[#BA1A1A] italic pl-2 self-center'>

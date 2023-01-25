@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { CollapseCheckbox, CollapseRadio } from '../components/homepage/homepage-constants/Collapse';
 import {
@@ -10,7 +10,7 @@ import {
 } from '../components/homepage/homepage-constants/Dropdown';
 import Kostdata from '../components/homepage/homepage-constants/Homepage-kost-data';
 
-export const Homepage = () => {
+const Homepage = () => {
   const title = ['Tipe Kos', 'Waktu Sewa', 'Urutkan', 'Fasilitas Kamar', 'Fasilitas Bersama'];
 
   const testHandle = (e) => {
@@ -28,12 +28,12 @@ export const Homepage = () => {
         <div className='breadcrumb pl-[62px] py-[17px]'>
           <ul>
             <li>
-              <Link to='/' className='text-[20px] font-[600] hover:underline'>
+              <Link to='/' className='text-[20px] font-[600] hover:underline hover:text-[#0A008A]'>
                 Home
               </Link>
             </li>
             <li>
-              <Link to='/homepage' className='text-[20px] font-[600] hover:underline'>
+              <Link to='/homepage' className='text-[20px] font-[600] hover:underline hover:text-[#0A008A]'>
                 Cari Kos
               </Link>
             </li>
@@ -62,3 +62,5 @@ export const Homepage = () => {
     </>
   );
 };
+
+export default Homepage
