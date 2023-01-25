@@ -6,9 +6,10 @@ export const CollapseCheckbox = ({ items, buttonText }) => {
   return (
     <div className='w-full'>
       <button
-      type='button'
+        type='button'
         onClick={() => setIsOpen(!isOpen)}
-        className='text-[#000000] w-full text-start bg-white'
+        className='text-[#46464F]/[0.38] text-[20px] font-[600] w-full text-start bg-white 
+        hover:border-none active:border-none'
       >
         {buttonText}
       </button>
@@ -21,7 +22,7 @@ export const CollapseCheckbox = ({ items, buttonText }) => {
                 name={item.name}
                 value={item.id}
                 onChange={(el) => {
-                  let temp = items.find((e) => e.id == el.target.value);
+                  const temp = items.find((e) => e.id === el.target.value);
                   temp.checked = true;
                 }}
               />
@@ -42,8 +43,8 @@ export const CollapseRadio = ({ items, buttonText }) => {
       <button
         type='button'
         onClick={() => setIsOpen(!isOpen)}
-        className='text-[#000000] w-full text-start bg-white 
-      hover:border-none active:border-none'
+        className='text-[#46464F]/[0.38] text-[20px] font-[600] w-full text-start bg-white 
+        hover:border-none active:border-none'
       >
         {buttonText}
       </button>
@@ -56,7 +57,7 @@ export const CollapseRadio = ({ items, buttonText }) => {
                 name={item.name}
                 value={item.id}
                 onChange={(el) => {
-                  let temp = items.find((e) => e.id == el.target.value);
+                  const temp = items.find((e) => e.id === el.target.value);
                   temp.checked = true;
                 }}
               />
