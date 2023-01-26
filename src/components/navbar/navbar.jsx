@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const Navbar = () => {
   return (
-    <div className='navbar bg-base-100'>
+    <div className='w-screen navbar bg-base-100'>
       <div className='flex-1'>
         <Link to='/'>
           <img className='h-14' src='src/assets/LogoNaqosPolos.png'></img>
