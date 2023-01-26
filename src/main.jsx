@@ -9,7 +9,7 @@ import History from './components/history/history.jsx';
 import HistoryPay from './components/history/historyPayment.jsx';
 import HistoryCancel from './components/history/historyCancel.jsx';
 import LandingPage from './pages/landingPage';
-import { Homepage } from './pages/Homepage';
+import Homepage from './pages/Homepage.jsx';
 import Verif from './pages/verif';
 import Forget from './pages/forget';
 import './index.css';
