@@ -2,6 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import imagetwo from '../../assets/img_kosTwo.png';
 import imageconfirm from '../../assets/img_confirmPayment.png';
+import iconlocation from '../../assets/icon_location.svg';
+import iconarrowright from '../../assets/icon_arrow-right-2.svg';
+import iconclose from '../../assets/icon_close.svg';
+import iconarrowdown from '../../assets/icon_arrow-down.svg';
+
 
 const PayNow = () => {
   const [histories, sethistories] = useState([]);
@@ -99,13 +104,13 @@ const PayNow = () => {
             </p>
           </Link>
           <hr className='w-[350px] mb-[20px]'></hr>
-          <Link to='/paymenthistory'>
+          <Link to='/history/payment'>
             <p className='text-[#9b9b9b] hover:text-[#0A008A] text-[25px] font-[500] mb-[20px] text-left'>
               Pembayaran
             </p>
           </Link>
           <hr className='w-[350px] mb-[20px]'></hr>
-          <Link to='/cancellationhistory'>
+          <Link to='/history/cancellation'>
             <p className='text-[#9b9b9b] hover:text-[#0A008A] text-[25px] font-[500] mb-[20px] text-left'>
               Pembatalan
             </p>
@@ -123,7 +128,7 @@ const PayNow = () => {
                     <div className='flex flex-col ml-[42.5px] text-left w-[265px]'>
                       <h1 className='text-[20px] font-[600]'>{history.name}</h1>
                       <div className='flex flex-'>
-                        <img className='' alt='' src='src/assets/icon_location.svg' />
+                        <img className='' alt='' src={ iconlocation } />
                         <p className='text-[16px] font-[500] ml-2 mb-[4px] mt-1'>
                           {history.location.name}
                         </p>
@@ -137,7 +142,7 @@ const PayNow = () => {
                           <p className='text-[16px] font-[400]'>{history.inDate}</p>
                         </div>
                         <div className='flex flex-col mx-[12px] justify-center'>
-                          <img className='' alt='' src='src/assets/icon_arrow-right-2.svg' />
+                          <img className='' alt='' src={ iconarrowright } />
                         </div>
                         <div className='flex flex-col text-center'>
                           <p className='text-[12px] font-[400] mb-[4px]'>Check out</p>
@@ -182,7 +187,7 @@ const PayNow = () => {
               className='justify-between cursor-pointer inline-flex items-center w-[294px] h-[48px] mb-[20px] px-4 p-0 bg-white border-2 border-[#0A008A] rounded-[8px] outline-none text-[20px] font-[500] text-black hover:bg-[#f3f4ff] hover:border-[#0A008A] hover:text-[#0A008A] active:bg-[#0A008A] active:text-white'
             >
               Transfer Bank
-              <img className='' alt='' src='src/assets/icon_arrow-down.svg' />
+              <img className='' alt='' src={ iconarrowdown } />
             </label>
             <ul
               tabIndex={0}
@@ -225,7 +230,7 @@ const PayNow = () => {
               <div className='w-[20px]'></div> {/* dummy */}
               <img className='' alt='' src={imageconfirm} />
               <label htmlFor='my-modal'>
-                <img className='mt-[-35px] cursor-pointer' alt='' src='src/assets/icon_close.svg' />
+                <img className='mt-[-35px] cursor-pointer' alt='' src={ iconclose } />
               </label>
             </div>
             <div className='flex flex-col justify-center items-center'>
@@ -241,7 +246,7 @@ const PayNow = () => {
               >
                 Periksa lagi
               </label>
-              <Link to='/payupload'>
+              <Link to='/history/booknow/receipt'>
                 <label
                   htmlFor='my-modal'
                   className='cursor-pointer inline-flex items-center justify-center w-[151px] h-[43px] p-0 bg-[#0A008A] border-2 border-[#0A008A] self-end rounded-[4px] outline-none text-[16px] font-[600] text-white hover:bg-[#A0A3FF] hover:border-[#A0A3FF] hover:text-[#0A008A] active:bg-black active:text-white'

@@ -17,7 +17,7 @@ import Forget from './pages/forget';
 import './index.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import Rinciankos from './components/homepage/Rinciankos.jsx'
+import Rinciankos from './components/homepage/Rinciankos.jsx';
 
 const queryClient = new QueryClient();
 
@@ -33,10 +33,10 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           <Route path='/login' element={<SignIn />} />
           <Route path='/register' element={<SignUp />} />
           <Route path='/history' element={<History />} />
-          <Route path='/paymenthistory' element={<HistoryPay />} />
-          <Route path='/cancellationhistory' element={<HistoryCancel />} />
-          <Route path='/paynow' element={<PayNow />} />
-          <Route path='/payupload' element={<PayUpload />} />
+          <Route path='/history/payment' element={<HistoryPay />} />
+          <Route path='/history/cancellation' element={<HistoryCancel />} />
+          <Route path='/history/booknow' element={<PayNow />} />
+          <Route path='/history/booknow/receipt' element={<PayUpload />} />
           <Route path='/verif' element={<Verif />} />
           <Route path='/forget' element={<Forget />} />
           <Route path='/homepage' element={<Homepage />} />

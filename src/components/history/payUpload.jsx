@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import imagetwo from '../../assets/img_kosTwo.png';
+import iconlocation from '../../assets/icon_location.svg';
+import iconarrowright from '../../assets/icon_arrow-right-2.svg';
+import iconupload from '../../assets/icon_upload.svg';
 
 const PayUpload = () => {
   const [histories, sethistories] = useState([]);
@@ -98,13 +101,13 @@ const PayUpload = () => {
             </p>
           </Link>
           <hr className='w-[350px] mb-[20px]'></hr>
-          <Link to='/paymenthistory'>
+          <Link to='/history/payment'>
             <p className='text-[#9b9b9b] hover:text-[#0A008A] text-[25px] font-[500] mb-[20px] text-left'>
               Pembayaran
             </p>
           </Link>
           <hr className='w-[350px] mb-[20px]'></hr>
-          <Link to='/cancellationhistory'>
+          <Link to='/history/cancellation'>
             <p className='text-[#9b9b9b] hover:text-[#0A008A] text-[25px] font-[500] mb-[20px] text-left'>
               Pembatalan
             </p>
@@ -122,7 +125,7 @@ const PayUpload = () => {
                     <div className='flex flex-col ml-[42.5px] text-left w-[265px]'>
                       <h1 className='text-[20px] font-[600]'>{history.name}</h1>
                       <div className='flex flex-'>
-                        <img className='' alt='' src='src/assets/icon_location.svg' />
+                        <img className='' alt='' src={ iconlocation } />
                         <p className='text-[16px] font-[500] ml-2 mb-[4px] mt-1'>
                           {history.location.name}
                         </p>
@@ -136,7 +139,7 @@ const PayUpload = () => {
                           <p className='text-[16px] font-[400]'>{history.inDate}</p>
                         </div>
                         <div className='flex flex-col mx-[12px] justify-center'>
-                          <img className='' alt='' src='src/assets/icon_arrow-right-2.svg' />
+                          <img className='' alt='' src={ iconarrowright } />
                         </div>
                         <div className='flex flex-col text-center'>
                           <p className='text-[12px] font-[400] mb-[4px]'>Check out</p>
@@ -166,9 +169,10 @@ const PayUpload = () => {
           </div>
           <div className='flex flex-row gap-5'>
             <label
-              className='cursor-pointer inline-flex items-center justify-center w-[178px] h-[43px] mb-[65px] p-0 bg-white border-2 border-[#0A008A] rounded-[4px] outline-none text-[16px] font-[600] text-[#0A008A] hover:bg-[#f3f4ff] hover:border-[#0A008A] hover:text-[#0A008A] active:bg-[#0A008A] active:text-white'
+              className='cursor-pointer inline-flex items-center justify-center gap-2 w-[178px] h-[43px] mb-[65px] p-0 bg-white border-2 border-[#0A008A] rounded-[4px] outline-none text-[16px] font-[600] text-[#0A008A] hover:bg-[#f3f4ff] hover:border-[#0A008A] hover:text-[#0A008A] active:bg-[#0A008A] active:text-white'
               htmlFor='getFile'
             >
+              <img className='' alt='' src={ iconupload } />
               Upload Bukti
             </label>
             <input id='getFile' className='hidden' type='file' />
@@ -180,6 +184,12 @@ const PayUpload = () => {
             >
               Sudah Bayar
             </button>
+            {/* <button
+              className='w-[178px] h-[43px] mb-[65px] p-0 bg-[#0A008A] rounded-[4px] outline-none text-[16px] font-[600] text-white hover:bg-[#A0A3FF] hover:text-[#0A008A] focus:bg-black focus:text-white'
+              type='button'
+            >
+              Sudah Bayar
+            </button> */}
           </div>
         </div>
       </div>

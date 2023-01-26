@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import icondownload from '../../assets/icon_download.svg';
+import iconcompleted from '../../assets/icon_completed.svg';
 
 const HistoryPay = () => {
   const [payments, setPayments] = useState([]);
@@ -115,13 +117,13 @@ const HistoryPay = () => {
             </p>
           </Link>
           <hr className='w-[350px] mb-[20px]'></hr>
-          <Link to='/paymenthistory'>
+          <Link to='/history/payment'>
             <p className='text-[#0A008A] hover:text-[#9b9b9b] text-[25px] font-[500] mb-[20px] text-left'>
               Pembayaran
             </p>
           </Link>
           <hr className='w-[350px] mb-[20px]'></hr>
-          <Link to='/cancellationhistory'>
+          <Link to='/history/cancellation'>
             <p className='text-[#9b9b9b] hover:text-[#0A008A] text-[25px] font-[500] mb-[20px] text-left'>
               Pembatalan
             </p>
@@ -163,7 +165,7 @@ const HistoryPay = () => {
                         {payment.date}
                       </p>
                       <div className='flex flex-row cursor-pointer'>
-                        <img className='' alt='' src='src/assets/icon_download.svg' />
+                        <img className='' alt='' src={ icondownload } />
                         <p className='ml-2 text-[#46464F] opacity-[.38] text-[16px] font-[600]'>
                           Download bukti pembayaran
                         </p>
@@ -172,7 +174,7 @@ const HistoryPay = () => {
                     <div className='flex flex-col ml-[450px] pt-[20px] pr-[15px]'>
                       <h1 className='mb-2 text-[20px] font-[500]'>Rp {payment.price}</h1>
                       <div className='flex flex-row justify-end mr-[8px]'>
-                        <img className='' alt='' src='src/assets/icon_completed.svg' />
+                        <img className='' alt='' src={ iconcompleted } />
                         <p className='text-[12px] font-[600] text-[#008A3F] ml-2 mt-1'>Completed</p>
                       </div>
                     </div>

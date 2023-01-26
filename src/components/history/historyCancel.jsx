@@ -3,6 +3,9 @@ import { Link } from 'react-router-dom';
 import imagefour from '../../assets/img_kosFour.png';
 import imagefive from '../../assets/img_kosFive.png';
 import imagesix from '../../assets/img_kosSix.png';
+import iconlocation from '../../assets/icon_location.svg';
+import iconarrowright from '../../assets/icon_arrow-right-2.svg';
+import iconcancel from '../../assets/icon_cancel.svg';
 
 const HistoryCancel = () => {
   const [cancels, setCancels] = useState([]);
@@ -124,13 +127,13 @@ const HistoryCancel = () => {
             </p>
           </Link>
           <hr className='w-[350px] mb-[20px]'></hr>
-          <Link to='/paymenthistory'>
+          <Link to='/history/payment'>
             <p className='text-[#9b9b9b] hover:text-[#0A008A] text-[25px] font-[500] mb-[20px] text-left'>
               Pembayaran
             </p>
           </Link>
           <hr className='w-[350px] mb-[20px]'></hr>
-          <Link to='/cancellationhistory'>
+          <Link to='/history/cancellation'>
             <p className='text-[#0A008A] hover:text-[#9b9b9b] text-[25px] font-[500] mb-[20px] text-left'>
               Pembatalan
             </p>
@@ -168,7 +171,7 @@ const HistoryCancel = () => {
                     <div className='flex flex-col ml-[42.5px] w-[265px] text-left'>
                       <h1 className='text-[20px] font-[600]'>{cancel.name}</h1>
                       <div className='flex flex-row'>
-                        <img className='' alt='' src='src/assets/icon_location.svg' />
+                        <img className='' alt='' src={ iconlocation } />
                         <p className='text-[16px] font-[500] ml-2 mb-[4px] mt-1'>
                           {cancel.location.name}
                         </p>
@@ -182,7 +185,7 @@ const HistoryCancel = () => {
                           <p className='text-[16px] font-[400]'>{cancel.inDate}</p>
                         </div>
                         <div className='flex flex-col mx-[12px] justify-center'>
-                          <img className='' alt='' src='src/assets/icon_arrow-right-2.svg' />
+                          <img className='' alt='' src={ iconarrowright } />
                         </div>
                         <div className='flex flex-col text-center'>
                           <p className='text-[12px] font-[400] mb-[4px]'>Check out</p>
@@ -190,12 +193,12 @@ const HistoryCancel = () => {
                         </div>
                       </div>
                     </div>
-                    <div className='flex flex-col ml-[230px] pr-[10px] w-[150px] text-right'>
+                    <div className='flex flex-col ml-[215px] pr-[10px] w-[150px] text-right'>
                       <p className='mt-[85px] text-[#4A4A4A] text-[12px] font-[400]'>
                         {cancel.date}
                       </p>
                       <div className='flex flex-row justify-end'>
-                        <img className='' alt='' src='src/assets/icon_cancel.svg' />
+                        <img className='' alt='' src={ iconcancel } />
                         <p className='text-[12px] font-[600] text-[#BA1A1A] ml-2 mb-[4px] mt-1'>
                           Cancelled
                         </p>

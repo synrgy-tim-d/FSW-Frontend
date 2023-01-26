@@ -4,6 +4,9 @@ import { ButtonDisabled, ButtonPayment, ButtonReview } from './buttonsHistory';
 import imageone from '../../assets/img_kosOne.png';
 import imagetwo from '../../assets/img_kosTwo.png';
 import imagethree from '../../assets/img_kosThree.png';
+import iconlocation from '../../assets/icon_location.svg';
+import iconarrowright from '../../assets/icon_arrow-right-2.svg';
+import iconclose from '../../assets/icon_close.svg';
 
 const History = () => {
   const [histories, sethistories] = useState([]);
@@ -55,7 +58,7 @@ const History = () => {
         bookId: '00000004',
         inDate: 'April 12, 23',
         outDate: 'May 13, 23',
-        img: 'src/assets/img_kosThree.png',
+        img: imagethree,
         btn: 'payment',
       },
     ];
@@ -137,13 +140,13 @@ const History = () => {
             </p>
           </Link>
           <hr className='w-[350px] mb-[20px]'></hr>
-          <Link to='/paymenthistory'>
+          <Link to='/history/payment'>
             <p className='text-[#9b9b9b] hover:text-[#0A008A] text-[25px] font-[500] mb-[20px] text-left'>
               Pembayaran
             </p>
           </Link>
           <hr className='w-[350px] mb-[20px]'></hr>
-          <Link to='/cancellationhistory'>
+          <Link to='/history/cancellation'>
             <p className='text-[#9b9b9b] hover:text-[#0A008A] text-[25px] font-[500] mb-[20px] text-left'>
               Pembatalan
             </p>
@@ -189,7 +192,6 @@ const History = () => {
               default:
                 component = <ButtonDisabled />;
             }
-
             return (
               <React.Fragment key={index}>
                 <div>
@@ -198,7 +200,7 @@ const History = () => {
                     <div className='flex flex-col ml-[42.5px] text-left w-[265px]'>
                       <h1 className='text-[20px] font-[600]'>{history.name}</h1>
                       <div className='flex flex-'>
-                        <img className='' alt='' src='src/assets/icon_location.svg' />
+                        <img className='' alt='' src={ iconlocation } />
                         <p className='text-[16px] font-[500] ml-2 mb-[4px] mt-1'>
                           {history.location.name}
                         </p>
@@ -212,7 +214,7 @@ const History = () => {
                           <p className='text-[16px] font-[400]'>{history.inDate}</p>
                         </div>
                         <div className='flex flex-col mx-[12px] justify-center'>
-                          <img className='' alt='' src='src/assets/icon_arrow-right-2.svg' />
+                          <img className='' alt='' src={ iconarrowright } />
                         </div>
                         <div className='flex flex-col text-center'>
                           <p className='text-[12px] font-[400] mb-[4px]'>Check out</p>
@@ -237,9 +239,9 @@ const History = () => {
           <div className='modal-box max-w-5xl w-[895px] rounded-[32px] bg-white drop-shadow-md'>
             <div className='flex flex-row justify-between mt-[20px] mx-[20px]'>
               <div className='w-[20px]'></div> {/* dummy */}
-              <img className='w-[200px] h-[142.58px]' alt='' src='src/assets/img_kosThree.png' />
+              <img className='w-[200px] h-[142.58px]' alt='' src={imagethree} />
               <label htmlFor='my-modal'>
-                <img className='mb-[115px] cursor-pointer' alt='' src='src/assets/icon_close.svg' />
+                <img className='mb-[115px] cursor-pointer' alt='' src={ iconclose } />
               </label>
             </div>
             <div className='flex flex-col justify-center items-center'>
