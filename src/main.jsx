@@ -11,7 +11,7 @@ import HistoryCancel from './components/history/historyCancel.jsx';
 import PayNow from './components/history/payNow';
 import PayUpload from './components/history/payUpload';
 import LandingPage from './pages/landingPage';
-import { Homepage } from './pages/Homepage';
+import Homepage from './pages/Homepage.jsx';
 import Verif from './pages/verif';
 import Forget from './pages/forget';
 import './index.css';
