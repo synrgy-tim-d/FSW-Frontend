@@ -12,13 +12,13 @@ import PayNow from './components/history/payNow';
 import PayUpload from './components/history/payUpload';
 import LandingPage from './pages/landingPage';
 import Wishlistpage from './pages/Wishlistpage';
-import { Homepage } from './pages/Homepage';
+import Homepage from './pages/Homepage'
 import Verif from './pages/verif';
 import Forget from './pages/forget';
+import Rinciankos from './components/homepage/Rinciankos.jsx';
 import './index.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import Rinciankos from './components/homepage/Rinciankos.jsx';
 
 const queryClient = new QueryClient();
 
