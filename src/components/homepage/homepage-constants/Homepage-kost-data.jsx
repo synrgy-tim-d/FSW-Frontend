@@ -106,11 +106,11 @@ const Kostdata = () => {
   }, []);
 
   return (
-    <div className='text-[20px] font-[Montserrat] text-[#000000] col-span-3 grid grid-cols-auto auto-rows-max gap-8 p-4'>
+    <div className='text-[20px] font-[Montserrat] text-[#000000] col-span-3 grid grid-cols-auto auto-rows-max gap-8 px-4'>
       {kosts.map((kost, index) => {
         return (
           <React.Fragment key={index}>
-            <div className='grid grid-cols-3 grid-flow-col'>
+            <div className='grid grid-cols-3 grid-flow-col bg-white rounded-[16px]'>
               <div className='col-span-1 rounded-[16px]'>
                 <img className='w-full h-auto' src={image} alt='' />
               </div>

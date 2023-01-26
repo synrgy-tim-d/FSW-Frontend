@@ -1,6 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { CollapseCheckbox, CollapseRadio } from '../components/homepage/homepage-constants/Collapse';
+import Navbar from '../components/navbar/navbar';
+import Footer from '../components/footer/footer';
+import {
+  CollapseCheckbox,
+  CollapseRadio,
+  CollapseCheckboxType,
+} from '../components/homepage/homepage-constants/Collapse';
 import {
   tipeKos,
   waktuSewa,
@@ -23,8 +29,9 @@ const Homepage = () => {
   };
 
   return (
-    <>
-      <div className='w-screen font-[Montserrat] font-[400] text-[#000000] text-[16px] p-8'>
+    <React.Fragment>
+      <Navbar />
+      <div className='w-screen font-[Montserrat] font-[400] text-[#000000] text-[16px] bg-[#FAFAFA] p-8'>
         <div className='breadcrumb pl-[62px] py-[17px]'>
           <ul>
             <li>
@@ -33,7 +40,10 @@ const Homepage = () => {
               </Link>
             </li>
             <li>
-              <Link to='/homepage' className='text-[20px] font-[600] hover:underline hover:text-[#0A008A]'>
+              <Link
+                to='/homepage'
+                className='text-[20px] font-[600] hover:underline hover:text-[#0A008A]'
+              >
                 Cari Kos
               </Link>
             </li>
@@ -41,13 +51,13 @@ const Homepage = () => {
         </div>
 
         <div className='grid grid-cols-4 grid-flow-col gap-4'>
-          <div className='col-span-3 grid grid-cols-auto auto-rows-max gap-8 p-4'>
+          <div className='col-span-3 grid grid-cols-auto auto-rows-max gap-8 px-4'>
             <Kostdata />
           </div>
 
           <div className='col-span-1'>
-            <form action='' className='grid grid-flow-row gap-y-6'>
-              <CollapseCheckbox items={tipeKos} buttonText={title[0]} />
+            <form action='' className='grid grid-flow-row gap-y-2'>
+              <CollapseCheckboxType items={tipeKos} buttonText={title[0]} />
               <CollapseRadio items={waktuSewa} buttonText={title[1]} />
               <CollapseRadio items={urutanHarga} buttonText={title[2]} />
               <CollapseCheckbox items={fasilitasKamar} buttonText={title[3]} />
@@ -59,8 +69,9 @@ const Homepage = () => {
           </div>
         </div>
       </div>
-    </>
+      <Footer />
+    </React.Fragment>
   );
 };
 
-export default Homepage
+export default Homepage;
