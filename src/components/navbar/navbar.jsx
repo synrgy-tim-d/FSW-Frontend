@@ -4,8 +4,8 @@ import LogoNaqos from '../../assets/LogoNaqosPolos.png'
 
 const Navbar = () => {
   return (
-    <div className='navbar bg-base-100 grid grid-cols-6'>
-      <div className='col-span-1'>
+    <div className='w-screen navbar bg-base-100'>
+      <div className='flex-1'>
         <Link to='/'>
           <img className='w-full h-auto' src={LogoNaqos} />
         </Link>
