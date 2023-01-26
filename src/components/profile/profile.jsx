@@ -10,7 +10,7 @@ const Password = ({ password }) => {
 
 const Profile = () => {
   return (
-    <>
+    <React.Fragment>
       <ul className='breadcrumb pl-[70px] pt-[25px] font-[Montserrat] text-[20px] font-[600]'>
         <li>
           <Link to='/' className='text-[20px] font-[600] hover:underline'>
@@ -75,7 +75,7 @@ const Profile = () => {
             <div className='text-[16px] font-[500] px-8'>
               <div className='grid grid-flow-col grid-cols-3 border-b-2 border-[#0A008A] pb-2'>
                 <div className='col-span-1'>Password</div>
-                <Password password={'password'} />
+                <Password password={'Password'} />
               </div>
             </div>
           </form>
@@ -121,7 +121,7 @@ const Profile = () => {
           </div>
         </div>
       </div>
-    </>
+    </React.Fragment>
   );
 };
 
