@@ -51,12 +51,11 @@ const PayUpload = () => {
                     clipRule='evenodd'
                   ></path>
                 </svg>
-                <a
-                  href='#'
-                  className='ml-1 md:ml-2 text-[20px] font-[600] text-[#000000] opacity-[.38] hover:text-[#0A008A] hover:opacity-100'
-                >
-                  Riwayat
-                </a>
+                <Link to='/history'>
+                  <p className='ml-1 md:ml-2 text-[20px] font-[600] text-[#000000] opacity-[.38] hover:text-[#0A008A] hover:opacity-100'>
+                    Riwayat
+                  </p>
+                </Link>
               </div>
             </li>
             <li aria-current='page'>
@@ -113,7 +112,7 @@ const PayUpload = () => {
           <hr className='w-[350px] mb-[20px]'></hr>
         </div>
 
-        <div className='flex flex-col ml-[70px] mt-[61px]'>
+        <div className='flex flex-col ml-[70px] mt-[61px] mb-[100px]'>
           {histories.map((history, index) => {
             return (
               <React.Fragment key={index}>
@@ -168,12 +167,12 @@ const PayUpload = () => {
           <div className='flex flex-row gap-5'>
             <label
               className='cursor-pointer inline-flex items-center justify-center w-[178px] h-[43px] mb-[65px] p-0 bg-white border-2 border-[#0A008A] rounded-[4px] outline-none text-[16px] font-[600] text-[#0A008A] hover:bg-[#f3f4ff] hover:border-[#0A008A] hover:text-[#0A008A] active:bg-[#0A008A] active:text-white'
-              htmlFor="getFile"
+              htmlFor='getFile'
             >
               Upload Bukti
             </label>
-            <input id="getFile" className='hidden' type="file"/>
-            
+            <input id='getFile' className='hidden' type='file' />
+
             <button
               disabled
               className='cursor-not-allowed w-[178px] h-[43px] mb-[65px] p-0 bg-[#e9e9ea] rounded-[4px] outline-none text-[16px] font-[600] text-[#ababaf] hover:border-[#e9e9ea] hover:bg-[#e9e9ea] hover:text-[#ababaf]'

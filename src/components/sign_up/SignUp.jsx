@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import { useMutation } from '@tanstack/react-query';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import imglogo from '../../assets/LogoNaqosFix.png';
+import iconeye from '../../assets/icon_eye-slash.svg';
+import icongoogle from '../../assets/icon_google.svg';
 
 const SignUp = () => {
   const postRegister = useMutation((data) => {
@@ -30,7 +33,7 @@ const SignUp = () => {
         <img
           className='md:mt-[70px] md:w-[360px] md:h-[163.72px] min-[393px]:mt-[27px] min-[393px]:w-[171px] min-[393px]:h-[78px]'
           alt=''
-          src='src/assets/LogoNaqosFix.png'
+          src={ imglogo }
         />
       </div>
       <div className='flex flex-col justify-center mx-auto md:mt-[48px] md:w-[526px] min-[393px]:mt-[18px]'>
@@ -76,7 +79,7 @@ const SignUp = () => {
         />
         <img
           className='absolute pointer-events-none md:mt-[365px] md:ml-[480px] min-[393px]:mt-[340px] min-[393px]:ml-[330px]'
-          src='src/assets/icon_eye-slash.svg'
+          src={ iconeye }
         />
       </div>
       <div className='flex flex-row justify-center md:mt-[29px] min-[393px]:mt-[20px]'>
@@ -109,10 +112,10 @@ const SignUp = () => {
         </Link>
         <img
           className='absolute md:mt-3 md:mr-[230px] min-[393px]:mt-2 min-[393px]:mr-[200px]'
-          src='src/assets/icon_google.svg'
+          src={ icongoogle }
         />
       </div>
-      <div className='flex flex-row justify-center md:mt-[16px] min-[393px]:mt-[20px] gap-2'>
+      <div className='flex flex-row justify-center md:mt-[16px] min-[393px]:mt-[20px] mb-[70px] gap-2'>
         <p className='md:text-[16px] min-[393px]:text-[14px] text-center text-black font-[600]'>
           Sudah punya akun?
         </p>

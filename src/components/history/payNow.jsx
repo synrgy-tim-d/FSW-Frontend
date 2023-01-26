@@ -52,12 +52,11 @@ const PayNow = () => {
                     clipRule='evenodd'
                   ></path>
                 </svg>
-                <a
-                  href='#'
-                  className='ml-1 md:ml-2 text-[20px] font-[600] text-[#000000] opacity-[.38] hover:text-[#0A008A] hover:opacity-100'
-                >
-                  Riwayat
-                </a>
+                <Link to='/history'>
+                  <p className='ml-1 md:ml-2 text-[20px] font-[600] text-[#000000] opacity-[.38] hover:text-[#0A008A] hover:opacity-100'>
+                    Riwayat
+                  </p>
+                </Link>
               </div>
             </li>
             <li aria-current='page'>
@@ -114,7 +113,7 @@ const PayNow = () => {
           <hr className='w-[350px] mb-[20px]'></hr>
         </div>
 
-        <div className='flex flex-col ml-[70px] mt-[61px]'>
+        <div className='flex flex-col ml-[70px] mt-[61px] mb-[100px]'>
           {histories.map((history, index) => {
             return (
               <React.Fragment key={index}>
@@ -189,30 +188,18 @@ const PayNow = () => {
               tabIndex={0}
               className='dropdown-content menu p-2 shadow bg-base-100 rounded-box w-[400px] drop-shadow-md'
             >
-              <p className='m-[10px] text-[24px] font-[600]'>
-                Opsi Bayar
-              </p>
+              <p className='m-[10px] text-[24px] font-[600]'>Opsi Bayar</p>
               <hr></hr>
               <div className='form-control mb-[5px] pt-[10px] pl-[10px]'>
                 <label className='label cursor-pointer'>
                   <span className='text-[20x] font-[500]'>Transfer Bank</span>
-                  <input
-                    type='radio'
-                    name='payOption'
-                    className='radio'
-                    checked
-                  />
+                  <input type='radio' name='payOption' className='radio' checked />
                 </label>
               </div>
               <div className='form-control pb-[10px] pl-[10px]'>
                 <label className='label cursor-pointer'>
                   <span className='text-[20x] font-[500]'>Tunai</span>
-                  <input
-                    type='radio'
-                    name='payOption'
-                    className='radio'
-                    checked
-                  />
+                  <input type='radio' name='payOption' className='radio' checked />
                 </label>
               </div>
             </ul>

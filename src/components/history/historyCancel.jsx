@@ -77,12 +77,11 @@ const HistoryCancel = () => {
                     clipRule='evenodd'
                   ></path>
                 </svg>
-                <a
-                  href='#'
-                  className='ml-1 md:ml-2 text-[20px] font-[600] text-[#000000] opacity-[.38] hover:text-[#0A008A] hover:opacity-100'
-                >
-                  Riwayat
-                </a>
+                <Link to='/history'>
+                  <p className='ml-1 md:ml-2 text-[20px] font-[600] text-[#000000] opacity-[.38] hover:text-[#0A008A] hover:opacity-100'>
+                    Riwayat
+                  </p>
+                </Link>
               </div>
             </li>
             <li aria-current='page'>
@@ -140,7 +139,7 @@ const HistoryCancel = () => {
         </div>
 
         {/* --- Content if Empty --- */}
-        {/* <div className='flex flex-col text-center text-black ml-[80px] mt-[181px]'>
+        {/* <div className='flex flex-col text-center text-black ml-[80px] mt-[181px] mb-[100px]'>
           <img
             className='w-[273px] h-[254px] self-center mb-[44px]'
             alt=''
@@ -159,7 +158,7 @@ const HistoryCancel = () => {
         </div> */}
 
         {/* --- Content if there is Data --- */}
-        <div className='flex flex-col ml-[70px] mt-[61px]'>
+        <div className='flex flex-col ml-[70px] mt-[61px] mb-[100px]'>
           {cancels.map((cancel, index) => {
             return (
               <React.Fragment key={index}>
