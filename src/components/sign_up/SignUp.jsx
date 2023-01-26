@@ -13,6 +13,7 @@ const SignUp = () => {
     username: '',
     phoneNumber: '',
     password: '',
+    role: 'PENYEWA',
   });
 
   const handleChange = (e) => {
