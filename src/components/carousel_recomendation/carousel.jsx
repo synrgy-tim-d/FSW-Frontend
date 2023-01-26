@@ -1,106 +1,108 @@
-import React from 'react';
+// import React from 'react';
 import Card from './card';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination } from 'swiper';
 import Dropdown from '../../assets/Carousel6_dropdown.svg';
+import {useQuery} from "@tanstack/react-query"
+import axios from 'axios' 
 import './style.css';
 
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 
-const entries = [
-  {
-    id: 0,
-    type: 'Putra',
-    name: 'Kos Merkurius',
-    rate: 4.5,
-    pictureUrl:
-      'https://res.cloudinary.com/duvswri22/image/upload/v1674287150/dillon-kydd-XGvwt544g8k-unsplash_1_muclim.jpg',
-    details: 'Rincian alamat kos secara lengkap dan kode pos',
-    location: 'Bekasi',
-    price: 600000,
-  },
-  ,
-  {
-    id: 1,
-    type: 'Putra',
-    name: 'Kos Mawar',
-    rate: 4.8,
-    pictureUrl:
-      'https://res.cloudinary.com/duvswri22/image/upload/v1674287148/trinity-nguyen-xQhqS7OWEqE-unsplash_teh0af.jpg',
-    details: 'Rincian alamat kos secara lengkap dan kode pos',
-    location: 'Bekasi',
-    price: 600000,
-  },
-  {
-    id: 2,
-    type: 'Putra',
-    name: 'Kos Melati',
-    rate: 4.5,
-    pictureUrl:
-      'https://res.cloudinary.com/duvswri22/image/upload/v1674287148/julian-gentilezza-ctUWE7BUEzE-unsplash_mpwxrv.jpg',
-    details: 'Rincian alamat kos secara lengkap dan kode pos',
-    location: 'Bekasi',
-    price: 600000,
-  },
-  {
-    id: 3,
-    type: 'Putra',
-    name: 'Kos Melati',
-    rate: 4.0,
-    pictureUrl:
-      'https://res.cloudinary.com/duvswri22/image/upload/v1674287145/vlad-yuhimchuk-1S1mk3uDDDA-unsplash_dwtils.jpg',
-    details: 'Rincian alamat kos secara lengkap dan kode pos',
-    location: 'Bekasi',
-    price: 600000,
-  },
-  {
-    id: 4,
-    type: 'Putra',
-    name: 'Kos Merkurius',
-    rate: 4.5,
-    pictureUrl:
-      'https://res.cloudinary.com/duvswri22/image/upload/v1674287150/dillon-kydd-XGvwt544g8k-unsplash_1_muclim.jpg',
-    details: 'Rincian alamat kos secara lengkap dan kode pos',
-    location: 'Bekasi',
-    price: 600000,
-  },
-  ,
-  {
-    id: 5,
-    type: 'Putra',
-    name: 'Kos Mawar',
-    rate: 4.5,
-    pictureUrl:
-      'https://res.cloudinary.com/duvswri22/image/upload/v1674287148/trinity-nguyen-xQhqS7OWEqE-unsplash_teh0af.jpg',
-    details: 'Rincian alamat kos secara lengkap dan kode pos',
-    location: 'Bekasi',
-    price: 600000,
-  },
-  {
-    id: 6,
-    type: 'Putra',
-    name: 'Kos Melati',
-    rate: 4.5,
-    pictureUrl:
-      'https://res.cloudinary.com/duvswri22/image/upload/v1674287148/julian-gentilezza-ctUWE7BUEzE-unsplash_mpwxrv.jpg',
-    details: 'Rincian alamat kos secara lengkap dan kode pos',
-    location: 'Bekasi',
-    price: 600000,
-  },
-  {
-    id: 7,
-    type: 'Putra',
-    name: 'Kos Melati',
-    rate: 4.5,
-    pictureUrl:
-      'https://res.cloudinary.com/duvswri22/image/upload/v1674287145/vlad-yuhimchuk-1S1mk3uDDDA-unsplash_dwtils.jpg',
-    details: 'Rincian alamat kos secara lengkap dan kode pos',
-    location: 'Bekasi',
-    price: 600000,
-  },
-];
+// const entries = [
+//   {
+//     id: 0,
+//     type: 'Putra',
+//     name: 'Kos Merkurius',
+//     rate: 4.5,
+//     pictureUrl:
+//       'https://res.cloudinary.com/duvswri22/image/upload/v1674287150/dillon-kydd-XGvwt544g8k-unsplash_1_muclim.jpg',
+//     details: 'Rincian alamat kos secara lengkap dan kode pos',
+//     location: 'Bekasi',
+//     price: 600000,
+//   },
+  
+//   {
+//     id: 1,
+//     type: 'Putra',
+//     name: 'Kos Mawar',
+//     rate: 4.8,
+//     pictureUrl:
+//       'https://res.cloudinary.com/duvswri22/image/upload/v1674287148/trinity-nguyen-xQhqS7OWEqE-unsplash_teh0af.jpg',
+//     details: 'Rincian alamat kos secara lengkap dan kode pos',
+//     location: 'Bekasi',
+//     price: 600000,
+//   },
+//   {
+//     id: 2,
+//     type: 'Putra',
+//     name: 'Kos Melati',
+//     rate: 4.5,
+//     pictureUrl:
+//       'https://res.cloudinary.com/duvswri22/image/upload/v1674287148/julian-gentilezza-ctUWE7BUEzE-unsplash_mpwxrv.jpg',
+//     details: 'Rincian alamat kos secara lengkap dan kode pos',
+//     location: 'Bekasi',
+//     price: 600000,
+//   },
+//   {
+//     id: 3,
+//     type: 'Putra',
+//     name: 'Kos Melati',
+//     rate: 4.0,
+//     pictureUrl:
+//       'https://res.cloudinary.com/duvswri22/image/upload/v1674287145/vlad-yuhimchuk-1S1mk3uDDDA-unsplash_dwtils.jpg',
+//     details: 'Rincian alamat kos secara lengkap dan kode pos',
+//     location: 'Bekasi',
+//     price: 600000,
+//   },
+//   {
+//     id: 4,
+//     type: 'Putra',
+//     name: 'Kos Merkurius',
+//     rate: 4.5,
+//     pictureUrl:
+//       'https://res.cloudinary.com/duvswri22/image/upload/v1674287150/dillon-kydd-XGvwt544g8k-unsplash_1_muclim.jpg',
+//     details: 'Rincian alamat kos secara lengkap dan kode pos',
+//     location: 'Bekasi',
+//     price: 600000,
+//   },
+  
+//   {
+//     id: 5,
+//     type: 'Putra',
+//     name: 'Kos Mawar',
+//     rate: 4.5,
+//     pictureUrl:
+//       'https://res.cloudinary.com/duvswri22/image/upload/v1674287148/trinity-nguyen-xQhqS7OWEqE-unsplash_teh0af.jpg',
+//     details: 'Rincian alamat kos secara lengkap dan kode pos',
+//     location: 'Bekasi',
+//     price: 600000,
+//   },
+//   {
+//     id: 6,
+//     type: 'Putra',
+//     name: 'Kos Melati',
+//     rate: 4.5,
+//     pictureUrl:
+//       'https://res.cloudinary.com/duvswri22/image/upload/v1674287148/julian-gentilezza-ctUWE7BUEzE-unsplash_mpwxrv.jpg',
+//     details: 'Rincian alamat kos secara lengkap dan kode pos',
+//     location: 'Bekasi',
+//     price: 600000,
+//   },
+//   {
+//     id: 7,
+//     type: 'Putra',
+//     name: 'Kos Melati',
+//     rate: 4.5,
+//     pictureUrl:
+//       'https://res.cloudinary.com/duvswri22/image/upload/v1674287145/vlad-yuhimchuk-1S1mk3uDDDA-unsplash_dwtils.jpg',
+//     details: 'Rincian alamat kos secara lengkap dan kode pos',
+//     location: 'Bekasi',
+//     price: 600000,
+//   },
+// ];
 
 const Carousel = () => {
   const showDrop = (event) => {
@@ -121,6 +123,16 @@ const Carousel = () => {
     targeted.innerText = taggedText;
     document.getElementById('dropItem').classList.add('hidden');
   };
+
+  const kosResponse = useQuery({
+    queryKey: ['kos'],
+    queryFn: () => axios.get("https://be-naqos.up.railway.app/api/kost")
+  });
+
+  const dataKos = kosResponse?.data?.data?.data;
+
+  console.log(dataKos);
+
   return (
     <div className='space-y-12 mb-20 font-montserrat'>
       <div className='relative'>
@@ -216,18 +228,19 @@ const Carousel = () => {
         onSlideChange={() => console.log('slide change')}
         onSwiper={(swiper) => console.log(swiper)}
       >
-        {entries.map((entry) => {
+        {dataKos?.map((entry) => {
           return (
-            <SwiperSlide>
+            <SwiperSlide  key={entry.id}>
               <Card
-                key={entry.id}
                 name={entry.name}
-                pictureUrl={entry.pictureUrl}
-                type={entry.type}
-                rate={entry.rate}
-                details={entry.details}
-                location={entry.location}
-                price={entry.price}
+                pictureUrl={
+                  'https://res.cloudinary.com/duvswri22/image/upload/v1674287150/dillon-kydd-XGvwt544g8k-unsplash_1_muclim.jpg'
+                }
+                type={entry.kostType}
+                rate={0}
+                details={entry.address}
+                location={entry.city.city}
+                price={10}
               />
             </SwiperSlide>
           )
