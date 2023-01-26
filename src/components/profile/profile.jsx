@@ -1,12 +1,16 @@
 import React from 'react';
-import './profile.css';
 import { Link } from 'react-router-dom';
-import camera from '../../assets/Profile-camera.svg';
 import profile from '../../assets/Profile.svg';
+import logout from '../../assets/Logout-img.svg'
+
+const Password = ({ password }) => {
+  const mask = '*'.repeat(password.length);
+  return <span>{mask}</span>;
+};
 
 const Profile = () => {
   return (
-    <>
+    <React.Fragment>
       <ul className='breadcrumb pl-[70px] pt-[25px] font-[Montserrat] text-[20px] font-[600]'>
         <li>
           <Link to='/' className='text-[20px] font-[600] hover:underline'>
@@ -26,16 +30,25 @@ const Profile = () => {
           </div>
           <div className='text-[31px] font-[600]'>Nama Pengguna</div>
         </div>
-        <div className='w-3/4 col-span-4 justify-self-center grid gap-6'>
+        <div className='w-3/4 col-span-4 justify-self-center grid gap-4'>
           <form className='grid gap-12 bg-[#C0C1FF]/[0.38] rounded-2xl p-8'>
-            <div className='text-[25px] font-[600]'>Informasi Akun</div>
+            <div className='grid grid-cols-2'>
+              <div className='text-[25px] font-[600]'>Informasi Akun</div>
+              <Link to='/editprofil' className='w-full flex justify-end'>
+                <button
+                  type='button'
+                  className='rounded-[150px] bg-inherit text-[#000000]/[0.38] text-[20px] font-[600]'
+                >
+                  Edit profil
+                </button>
+              </Link>
+            </div>
 
-            <div className='grid gap-4 text-[16px] font-[500] px-8'>
+            <div className='grid gap-4 text-[16px] font-[500] px-8 pb-12'>
               <div className='grid grid-flow-col grid-cols-3 border-b-2 border-[#0A008A] pb-2'>
                 <div className='col-span-1'>Nama Pengguna</div>
                 <div className='col-span-2'>Nama Pengguna</div>
               </div>
-
               <div className='grid grid-flow-col grid-cols-3 border-b-2 border-[#0A008A] pb-2'>
                 <div className='col-span-1'>Nomor HP</div>
                 <div className='col-span-2'>+62xxxxxxxxxxx</div>
@@ -45,38 +58,44 @@ const Profile = () => {
                 <div className='col-span-2'>Namapengguna@gmail.com</div>
               </div>
             </div>
-            <div className='flex justify-end pt-8'>
-              <Link to='/editprofil' className='w-full flex justify-end'>
-                <button type='button' className='w-1/5 rounded-[150px] bg-[#0A008A]'>
-                  Edit profil
+          </form>
+
+          <form action='|' className='grid gap-12 bg-[#C0C1FF]/[0.38] rounded-2xl p-8'>
+            <div className='grid grid-cols-2'>
+              <div className='text-[25px] font-[600]'>Login & Security</div>
+              <Link to='/gantipassword' className='w-full flex justify-end'>
+                <button
+                  type='button'
+                  className='rounded-[150px] bg-inherit text-[#000000]/[0.38] text-[20px] font-[600]'
+                >
+                  Ganti Password
                 </button>
               </Link>
             </div>
+            <div className='text-[16px] font-[500] px-8'>
+              <div className='grid grid-flow-col grid-cols-3 border-b-2 border-[#0A008A] pb-2'>
+                <div className='col-span-1'>Password</div>
+                <Password password={'Password'} />
+              </div>
+            </div>
           </form>
-          <div className='bg-[#C0C1FF]/[0.38] rounded-2xl'>
-            <Link to='/gantipassword'>
-              <button
-                type='button'
-                className='w-full text-[#000000] text-[25px] font-[600] flex justify-center'
-              >
-                Ganti Password
-              </button>
-            </Link>
-          </div>
-          <div className='bg-[#C0C1FF]/[0.38] rounded-2xl'>
-            <div>
+
+          <div className='rounded-2xl'>
+            <div className='flex justify-end'>
               <label
                 htmlFor='profile-modal'
-                className='btn no-animation w-full text-[#BA1A1A] text-[25px] font-[600] flex justify-center 
-                bg-inherit border-none capitalize hover:bg-[#A0A3FF] hover:text-[#0A008A]'
+                className='btn no-animatio text-[#BA1A1A] text-[20px] font-[600] 
+                bg-inherit border-none capitalize'
               >
                 Log Out
               </label>
             </div>
             <input type='checkbox' id='profile-modal' className='modal-toggle' />
             <div className='modal'>
-              <div className='modal-box bg-white p-12 rounded-[12px] text-[#000000] grid gap-4'>
-                <div className='logout-img justify-self-center pb-8'></div>
+              <div className='modal-box bg-white p-16 rounded-[12px] text-[#000000] grid gap-4'>
+                <div className='logout-img justify-self-center pb-8'>
+                  <img src={ logout } alt="" />
+                </div>
                 <h3 className='font-bold text-lg text-center'>Apakah kamu yakin ingin keluar</h3>
                 <p className='text-center'>
                   Kamu akan memerlukan akses login untuk dapat masuk kembali
@@ -102,7 +121,7 @@ const Profile = () => {
           </div>
         </div>
       </div>
-    </>
+    </React.Fragment>
   );
 };
 

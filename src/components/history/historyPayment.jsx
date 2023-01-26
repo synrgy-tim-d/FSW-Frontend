@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import icondownload from '../../assets/icon_download.svg';
+import iconcompleted from '../../assets/icon_completed.svg';
 
 const HistoryPay = () => {
   const [payments, setPayments] = useState([]);
@@ -47,12 +49,11 @@ const HistoryPay = () => {
         <nav className='flex' aria-label='Breadcrumb'>
           <ol className='inline-flex items-center space-x-1 md:space-x-3'>
             <li className='inline-flex items-center'>
-              <a
-                href='#'
-                className='text-[20px] font-[600] text-[#000000] opacity-[.38] hover:text-[#0A008A] hover:opacity-100'
-              >
-                Home
-              </a>
+              <Link to='/'>
+                <p className='text-[20px] font-[600] text-[#000000] opacity-[.38] hover:text-[#0A008A] hover:opacity-100'>
+                  Home
+                </p>
+              </Link>
             </li>
             <li>
               <div className='flex items-center'>
@@ -69,12 +70,11 @@ const HistoryPay = () => {
                     clipRule='evenodd'
                   ></path>
                 </svg>
-                <a
-                  href='#'
-                  className='ml-1 md:ml-2 text-[20px] font-[600] text-[#000000] opacity-[.38] hover:text-[#0A008A] hover:opacity-100'
-                >
-                  Riwayat
-                </a>
+                <Link to='/history'>
+                  <p className='ml-1 md:ml-2 text-[20px] font-[600] text-[#000000] opacity-[.38] hover:text-[#0A008A] hover:opacity-100'>
+                    Riwayat
+                  </p>
+                </Link>
               </div>
             </li>
             <li aria-current='page'>
@@ -117,13 +117,13 @@ const HistoryPay = () => {
             </p>
           </Link>
           <hr className='w-[350px] mb-[20px]'></hr>
-          <Link to='/paymenthistory'>
+          <Link to='/history/payment'>
             <p className='text-[#0A008A] hover:text-[#9b9b9b] text-[25px] font-[500] mb-[20px] text-left'>
               Pembayaran
             </p>
           </Link>
           <hr className='w-[350px] mb-[20px]'></hr>
-          <Link to='/cancellationhistory'>
+          <Link to='/history/cancellation'>
             <p className='text-[#9b9b9b] hover:text-[#0A008A] text-[25px] font-[500] mb-[20px] text-left'>
               Pembatalan
             </p>
@@ -132,7 +132,7 @@ const HistoryPay = () => {
         </div>
 
         {/* --- Content if Empty --- */}
-        {/* <div className='flex flex-col text-center text-black ml-[80px] mt-[225px]'>
+        {/* <div className='flex flex-col text-center text-black ml-[80px] mt-[225px] mb-[100px]'>
           <img
             className='w-[127.4px] h-[193.91px] self-center mb-[39px]'
             alt=''
@@ -151,17 +151,21 @@ const HistoryPay = () => {
         </div> */}
 
         {/* --- Content if there is Data --- */}
-        <div className='flex flex-col ml-[70px] mt-[61px]'>
+        <div className='flex flex-col ml-[70px] mt-[61px] mb-[100px]'>
           {payments.map((payment, index) => {
             return (
               <React.Fragment key={index}>
                 <div>
                   <div className='flex flex-row py-[16px] text-black'>
                     <div className='flex flex-col text-left w-[280px]'>
-                      <h1 className='mb-[4px] text-[20px] font-[600]'>Booking ID: {payment.bookId}</h1>
-                      <p className='mb-[6px] text-[#4A4A4A] text-[12px] font-[400]'>{payment.date}</p>
+                      <h1 className='mb-[4px] text-[20px] font-[600]'>
+                        Booking ID: {payment.bookId}
+                      </h1>
+                      <p className='mb-[6px] text-[#4A4A4A] text-[12px] font-[400]'>
+                        {payment.date}
+                      </p>
                       <div className='flex flex-row cursor-pointer'>
-                        <img className='' alt='' src='src/assets/icon_download.svg'/>
+                        <img className='' alt='' src={ icondownload } />
                         <p className='ml-2 text-[#46464F] opacity-[.38] text-[16px] font-[600]'>
                           Download bukti pembayaran
                         </p>
@@ -170,14 +174,12 @@ const HistoryPay = () => {
                     <div className='flex flex-col ml-[450px] pt-[20px] pr-[15px]'>
                       <h1 className='mb-2 text-[20px] font-[500]'>Rp {payment.price}</h1>
                       <div className='flex flex-row justify-end mr-[8px]'>
-                        <img className='' alt='' src='src/assets/icon_completed.svg' />
-                        <p className='text-[12px] font-[600] text-[#008A3F] ml-2 mt-1'>
-                          Completed
-                        </p>
+                        <img className='' alt='' src={ iconcompleted } />
+                        <p className='text-[12px] font-[600] text-[#008A3F] ml-2 mt-1'>Completed</p>
                       </div>
                     </div>
                   </div>
-                  <hr className='w-[870px] mb-[15px]'></hr>
+                  <hr className='w-[870px] mb-[30px]'></hr>
                 </div>
               </React.Fragment>
             );
