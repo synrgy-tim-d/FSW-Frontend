@@ -1,27 +1,30 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import LogoNaqos from '../../assets/LogoNaqosPolos.png'
 
 const Navbar = () => {
   return (
-    <div className='navbar bg-base-100'>
-      <div className='flex-1'>
-        <a href='landingPage'>
-          <img src='src/assets/LogoNaqosFix.png'></img>
-        </a>
+    <div className='navbar bg-base-100 grid grid-cols-6'>
+      <div className='col-span-1'>
+        <Link to='/'>
+          <img className='w-full h-auto' src={LogoNaqos} />
+        </Link>
       </div>
-      <div className='flex-none'>
-        <ul className='menu menu-horizontal px-1'>
+      <div className='col-span-5 flex justify-end'>
+        <ul className='menu menu-horizontal px-1 grid grid-flow-col gap-6 text-[#000000]/[0.38] text-[20px]'>
           <li>
-            <a>Wishlist</a>
+            <a className='font-[600]'>Wishlist</a>
           </li>
           <li>
-            <Link to='/history'>Riwayat</Link>
+            <Link to='/history' className='font-[600]'>
+              Riwayat
+            </Link>
           </li>
           <li>
-            <a>Notifikasi</a>
+            <a className='font-[600]'>Notifikasi</a>
           </li>
           <li tabIndex={0}>
-            <a>
+            <a className='font-[600]'>
               Profil
               <svg
                 className='fill-current'
@@ -35,10 +38,12 @@ const Navbar = () => {
             </a>
             <ul className='p-2 bg-base-100'>
               <li>
-                <Link to='/editprofil'>Edit Profil</Link>
+                <Link to='/editprofil' className='font-[600] hover:bg-[#F2EFFF]'>
+                  Edit Profil
+                </Link>
               </li>
               <li>
-                <a>Logout</a>
+                <a className='font-[600] hover:bg-[#F2EFFF]'>Logout</a>
               </li>
             </ul>
           </li>

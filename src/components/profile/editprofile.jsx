@@ -1,32 +1,37 @@
 import React from 'react';
-import './profile.css';
+import profile from '../../assets/Profile.svg';
 import { Link } from 'react-router-dom';
 
 const EditProfile = () => {
   return (
     <>
-      <ul className='breadcrumb ml-12 m-4 font-[Montserrat]'>
+      <ul className='breadcrumb pl-[70px] pt-[25px] font-[Montserrat] text-[20px] font-[600]'>
         <li>
-          <Link to='/'>Home</Link>
+          <Link to='/' className='text-[20px] font-[600] hover:underline'>
+            Home
+          </Link>
         </li>
         <li>
-          <Link to='/profil'>Profile</Link>
+          <Link to='/profil' className='text-[20px] font-[600] hover:underline'>
+            Profile
+          </Link>
         </li>
         <li>
-          <Link to='/editprofil'>Profile Edit</Link>
+          <Link to='/editprofil' className='text-[20px] font-[600] hover:underline'>
+            Profile Edit
+          </Link>
         </li>
       </ul>
-
-      <div className='w-screen grid grid-cols-6 grid-flow-col font-[Montserrat]'>
+      <div className='w-screen grid grid-cols-6 grid-flow-col font-[Montserrat] items-center'>
         <div className='col-span-2 grid grid-row-2 grid-flow-row justify-items-center content-center gap-16'>
-          <div className='profile-img'></div>
+          <div>
+            <img className='w-full h-auto' src={profile} alt='' />
+          </div>
           <div className='text-[31px] font-[600]'>Nama Pengguna</div>
         </div>
-
-        <div className='w-3/4 col-span-4 justify-self-center grid gap-6'>
-          <form action='|' className='grid gap-12 bg-[#C0C1FF]/[0.38] rounded-2xl p-8'>
+        <div className='w-3/4 col-span-4 justify-self-start grid gap-4'>
+          <form action='|' className='grid gap-12 bg-inherit rounded-2xl p-8'>
             <div className='text-[25px] font-[600]'>Informasi Akun</div>
-
             <div className='grid gap-7 text-[16px] font-[500] px-8'>
               <div className='grid grid-flow-col grid-cols-3'>
                 <div className='col-span-1'>
@@ -44,7 +49,6 @@ const EditProfile = () => {
                   />
                 </div>
               </div>
-
               <div className='grid grid-flow-col grid-cols-3'>
                 <div className='col-span-1'>
                   <label htmlFor='inline-phone-number'>
@@ -61,7 +65,6 @@ const EditProfile = () => {
                   />
                 </div>
               </div>
-
               <div className='grid grid-flow-col grid-cols-3'>
                 <div className='col-span-1'>
                   <label htmlFor='inline-email'>
@@ -79,64 +82,17 @@ const EditProfile = () => {
                 </div>
               </div>
             </div>
-
-            <div className='flex justify-end'>
-              <Link to='/profil' className='w-full flex justify-end'>
-                <button type='button' className='w-1/5 rounded-[150px] bg-[#0A008A]'>
+            <div className='flex'>
+              <Link to='/profil' className='w-full grid grid-cols-3 grid-flow-col px-8'>
+                <button
+                  type='button'
+                  className='col-start-2 col-span-2 rounded-[150px] bg-[#0A008A] hover:bg-[#A0A3FF] hover:text-[#FFFFFF] active:bg-black'
+                >
                   Simpan
                 </button>
               </Link>
             </div>
           </form>
-
-          <div className='bg-[#C0C1FF]/[0.38] rounded-2xl'>
-            <Link to='/gantipassword'>
-              <button
-                type='button'
-                className='w-full text-[#000000] text-[25px] font-[600] flex justify-center'
-              >
-                Ganti Password
-              </button>
-            </Link>
-          </div>
-
-          <div className='bg-[#C0C1FF]/[0.38] rounded-2xl'>
-            <div>
-              <label
-                htmlFor='profile-modal'
-                className='btn no-animation w-full text-[#BA1A1A] text-[25px] font-[600] flex justify-center bg-inherit border-none capitalize hover:bg-[#A0A3FF] hover:text-[#0A008A]'
-              >
-                Log Out
-              </label>
-            </div>
-
-            <input type='checkbox' id='profile-modal' className='modal-toggle' />
-            <div className='modal'>
-              <div className='modal-box text-[#000000]'>
-                <h3 className='font-bold text-lg text-center'>Apakah kamu yakin ingin keluar</h3>
-                <p className='py-4 text-center'>
-                  Kamu akan memerlukan akses login untuk dapat masuk kembali
-                </p>
-                <div className='modal-action flex justify-center font-[600] text-[16px]'>
-                  <label
-                    htmlFor='profile-modal'
-                    className='btn no-animation rounded-[4px] bg-white text-[#0A008A] border-2 border-[#0A008A] hover:bg-white'
-                  >
-                    Batalkan
-                  </label>
-
-                  <Link to='/'>
-                    <label
-                      htmlFor='logout'
-                      className='btn no-animation rounded-[4px] bg-[#0A008A] text-white border-2 border-white hover:bg-[#0A008A] hover:border-white'
-                    >
-                      Keluar
-                    </label>
-                  </Link>
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </>

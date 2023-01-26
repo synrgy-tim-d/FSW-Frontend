@@ -2,6 +2,7 @@ import React from 'react';
 import bannerImg from '../../assets/Banner1.png';
 import magnifier from '../../assets/Banner2_Magnifier.png';
 import BgImage from '../../assets/Banner3_bgImage.jpg';
+import { Link } from 'react-router-dom';
 
 function Banner() {
   return (
@@ -27,7 +28,7 @@ function Banner() {
                   />
                 </div>
                 <button className='bg-[#0A008A] text-l lg:text-2xl text-white rounded w-1/4 py-1 lg:py-2 px-2 hover:bg-blue-600 active:bg-blue-700'>
-                  Cari
+                  <Link to='/homepage'>Cari</Link>
                 </button>
               </div>
             </div>

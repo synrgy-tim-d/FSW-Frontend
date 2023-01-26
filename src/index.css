@@ -16,3 +16,33 @@
   line-height: 24px;
   font-weight: 400;
 }
+
+body {
+  /* display: flex; */
+  /* place-items: center; */
+  /* min-width: 320px;
+  min-height: 100vh; */
+}
+
+.breadcrumb li {
+  display: inline;
+  color: #46464F;
+  opacity: 0.38;
+}
+
+.breadcrumb li:hover {
+  color: #0A008A;
+  opacity: 1;
+}
+
+/* .breadcrumb li:last-child {
+  color: #46464F;
+  text-decoration: underline;
+  opacity: 1;
+} */
+
+.breadcrumb li+li:before {
+  padding: 8px;
+  content: '\00a0'url(/src/assets/breadcrumb-arrow.svg)'\00a0' ;
+  opacity: 0.38;
+}
