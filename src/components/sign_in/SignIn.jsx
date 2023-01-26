@@ -4,7 +4,6 @@ import appConfig from '../../config';
 import { useNavigate, Link } from 'react-router-dom';
 import { useState } from 'react';
 
-
 const SignIn = () => {
   const navigate = useNavigate();
   const { register, handleSubmit } = useForm();
@@ -19,9 +18,10 @@ const SignIn = () => {
     };
 
     const responseAuth = await axios.post(appConfig.BE_AUTH_URL, loginAuthPayload);
-    localStorage.setItem('AUTH_TOKEN', responseAuth.data.access_token);
+    console.log(responseAuth);
+    localStorage.setItem('AUTH_TOKEN', responseAuth.data.data.access_token);
 
-    navigate('/dashboard');
+    navigate('/');
   };
 
   return (
@@ -58,9 +58,7 @@ const SignIn = () => {
             src='src/assets/icon_eye-slash.svg'
           />
           <Link to='#'>
-            <p
-              className='md:mt-[12px] md:text-[16px] md:font-[600] min-[393px]:text-[14px] min-[393px]:font-[500] min-[393px]:mt-1 text-left text-black hover:text-black'
-            >
+            <p className='md:mt-[12px] md:text-[16px] md:font-[600] min-[393px]:text-[14px] min-[393px]:font-[500] min-[393px]:mt-1 text-left text-black hover:text-black'>
               Lupa Password
             </p>
           </Link>
@@ -75,14 +73,14 @@ const SignIn = () => {
               Masuk
             </button>
           ) : (
-            <Link to='/'>
+            // <Link to='/'>
             <button
               className='md:w-[481px] md:h-[43px] md:text-[16px] md:pt-2 min-[393px]:w-[362px] min-[393px]:h-[36px] min-[393px]:text-[14px] min-[393px]:pt-1 bg-[#0A008A] rounded-[150px] outline-none font-[600] text-white hover:bg-[#A0A3FF] hover:text-[#0A008A] focus:bg-[#000000] focus:text-white focus:outline-none'
               type='submit'
             >
               Masuk
             </button>
-            </Link>
+            // </Link>
           )}
         </div>
         <div className='flex flex-row justify-center md:mt-[21px] min-[393px]:mt-[20px]'>
@@ -94,12 +92,12 @@ const SignIn = () => {
         </div>
         <div className='flex flex-row justify-center md:mt-[16px] min-[393px]:mt-[20px]'>
           <Link to='/'>
-          <button
-            className='md:w-[481px] md:h-[44.96px] md:text-[16px] md:pt-2 min-[393px]:w-[362px] min-[393px]:h-[36px] min-[393px]:text-[14px] min-[393px]:pt-1 bg-white border-2 border-[#b9b9bc] outline-none rounded-[150px] font-[600] text-[#B9B9BC] hover:bg-[#E9E9EA] hover:text-white hover:border-[#E9E9EA] focus:border-[#0A008A] focus:bg-white focus:text-[#0A008A] focus:outline-none'
-            type='submit'
-          >
-            Masuk dengan Google
-          </button>
+            <button
+              className='md:w-[481px] md:h-[44.96px] md:text-[16px] md:pt-2 min-[393px]:w-[362px] min-[393px]:h-[36px] min-[393px]:text-[14px] min-[393px]:pt-1 bg-white border-2 border-[#b9b9bc] outline-none rounded-[150px] font-[600] text-[#B9B9BC] hover:bg-[#E9E9EA] hover:text-white hover:border-[#E9E9EA] focus:border-[#0A008A] focus:bg-white focus:text-[#0A008A] focus:outline-none'
+              type='submit'
+            >
+              Masuk dengan Google
+            </button>
           </Link>
           <img
             className='absolute md:mt-3 md:mr-[230px] min-[393px]:mt-2 min-[393px]:mr-[200px]'
@@ -112,7 +110,7 @@ const SignIn = () => {
           </p>
           <Link to='/register'>
             <p className='md:text-[16px] min-[393px]:text-[14px] text-center text-[#0A008A] font-[600]'>
-                Daftar
+              Daftar
             </p>
           </Link>
         </div>
