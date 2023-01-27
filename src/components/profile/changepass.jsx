@@ -58,7 +58,7 @@ const changepass = () => {
                 <button
                   id='reset-password'
                   type='button'
-                  className='w-full bg-[#0A008A] text-white rounded-[150px] text-center'
+                  className='w-full rounded-[150px] text-center py-2 text-white bg-[#0A008A] hover:bg-[#A0A3FF] hover:text-[#FFFFFF] active:bg-black'
                 >
                   Reset Password
                 </button>

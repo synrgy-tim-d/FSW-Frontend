@@ -73,7 +73,7 @@ const History = () => {
           <ol className='inline-flex items-center space-x-1 md:space-x-3'>
             <li className='inline-flex items-center'>
               <Link to='/'>
-                <p className='text-[20px] font-[600] text-[#000000] opacity-[.38] hover:text-[#0A008A] hover:opacity-100'>
+                <p className='text-[20px] font-[600] text-[#000000] opacity-[.38] hover:text-[#0A008A] hover:underline hover:opacity-100'>
                   Home
                 </p>
               </Link>
@@ -94,7 +94,7 @@ const History = () => {
                   ></path>
                 </svg>
                 <Link to='/history'>
-                  <p className='ml-1 md:ml-2 text-[20px] font-[600] text-[#000000] opacity-[.38] hover:text-[#0A008A] hover:opacity-100'>
+                  <p className='ml-1 md:ml-2 text-[20px] font-[600] text-[#000000] opacity-[.38] hover:text-[#0A008A] hover:underline hover:opacity-100'>
                     Riwayat
                   </p>
                 </Link>
@@ -115,7 +115,7 @@ const History = () => {
                     clipRule='evenodd'
                   ></path>
                 </svg>
-                <span className='ml-1 md:ml-2 text-[20px] font-[600] text-[#0A008A] underline'>
+                <span className='ml-1 md:ml-2 text-[20px] font-[600] text-[#000000] opacity-[.38] hover:text-[#0A008A] hover:underline hover:opacity-100'>
                   Pemesanan Kos
                 </span>
               </div>

@@ -51,7 +51,7 @@ const popularCities = [
 ];
 const Popular = () => {
   return (
-    <div className='flex flex-wrap w-full py-10'>
+    <div className='flex flex-wrap w-full p-8 py-10 bg-[#FAFAFA]'>
       <div className='flex w-full'>
         <p className='text-lg lg:text-4xl font-bold font-montserrat'>Kos Populer di Kota Besar</p>
       </div>

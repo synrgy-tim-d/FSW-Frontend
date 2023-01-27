@@ -122,7 +122,7 @@ const Carousel = () => {
     document.getElementById('dropItem').classList.add('hidden');
   };
   return (
-    <div className='space-y-12 mb-20 font-montserrat'>
+    <div className='space-y-12 p-4 py-12 font-montserrat bg-[#FAFAFA]'>
       <div className='relative'>
         <div className='flex space-x-3 items-center mb'>
           <h1 className='ml-2 lg:ml-0 text-lg lg:text-4xl font-bold  text-start '>

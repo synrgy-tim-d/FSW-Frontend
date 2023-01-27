@@ -4,7 +4,7 @@ export const CollapseCheckboxType = ({ items, buttonText }) => {
   const [isOpen, setIsOpen] = useState(true);
 
   return (
-    <div className='w-full bg-white px-6 rounded-[8px]'>
+    <div className='w-full bg-white px-6 rounded-[8px] py-2'>
       <button
         type='button'
         onClick={() => setIsOpen(!isOpen)}
@@ -26,7 +26,7 @@ export const CollapseCheckboxType = ({ items, buttonText }) => {
                   temp.checked = true;
                 }}
               />
-              <label>{item.value}</label>
+              <label className='pl-2'>{item.value}</label>
             </li>
           ))}
         </ul>
@@ -39,7 +39,7 @@ export const CollapseCheckbox = ({ items, buttonText }) => {
   const [isOpen, setIsOpen] = useState(true);
 
   return (
-    <div className='w-full bg-white px-6 rounded-[8px]'>
+    <div className='w-full bg-white px-6 rounded-[8px] py-2'>
       <button
         type='button'
         onClick={() => setIsOpen(!isOpen)}
@@ -61,7 +61,7 @@ export const CollapseCheckbox = ({ items, buttonText }) => {
                   temp.checked = true;
                 }}
               />
-              <label>{item.value}</label>
+              <label className='pl-2'>{item.value}</label>
             </li>
           ))}
         </ul>
@@ -74,7 +74,7 @@ export const CollapseRadio = ({ items, buttonText }) => {
   const [isOpen, setIsOpen] = useState(true);
 
   return (
-    <div className='w-full bg-white px-6 rounded-[8px]'>
+    <div className='w-full bg-white px-6 rounded-[8px] py-2'>
       <button
         type='button'
         onClick={() => setIsOpen(!isOpen)}
@@ -96,7 +96,7 @@ export const CollapseRadio = ({ items, buttonText }) => {
                   temp.checked = true;
                 }}
               />
-              <label>{item.value}</label>
+              <label className='pl-2'>{item.value}</label>
             </li>
           ))}
         </ul>

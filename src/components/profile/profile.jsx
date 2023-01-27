@@ -11,7 +11,7 @@ const Password = ({ password }) => {
 const Profile = () => {
   return (
     <React.Fragment>
-      <ul className='breadcrumb pl-[70px] pt-[25px] font-[Montserrat] text-[20px] font-[600]'>
+      <ul className='breadcrumb pl-[70px] pt-[25px] font-[Montserrat] text-[20px] font-[600] bg-[#FAFAFA]'>
         <li>
           <Link to='/' className='text-[20px] font-[600] hover:underline'>
             Home
@@ -23,7 +23,7 @@ const Profile = () => {
           </Link>
         </li>
       </ul>
-      <div className='w-screen grid grid-cols-6 grid-flow-col font-[Montserrat]'>
+      <div className='w-screen grid grid-cols-6 grid-flow-col font-[Montserrat] bg-[#FAFAFA]'>
         <div className='col-span-2 grid grid-row-2 grid-flow-row justify-items-center content-center gap-16'>
           <div>
             <img className='w-full h-auto' src={profile} alt='' />
@@ -85,14 +85,14 @@ const Profile = () => {
               <label
                 htmlFor='profile-modal'
                 className='btn no-animatio text-[#BA1A1A] text-[20px] font-[600] 
-                bg-inherit border-none capitalize'
+                bg-inherit border-none capitalize py-6 pb-20'
               >
                 Log Out
               </label>
             </div>
             <input type='checkbox' id='profile-modal' className='modal-toggle' />
             <div className='modal'>
-              <div className='modal-box bg-white p-16 rounded-[12px] text-[#000000] grid gap-4'>
+              <div className='modal-box bg-white p-16 rounded-[12px] text-[#000000] grid gap-4 shadow-2xl '>
                 <div className='logout-img justify-self-center pb-8'>
                   <img src={ logout } alt="" />
                 </div>

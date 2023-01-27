@@ -122,9 +122,9 @@ const CarouselCheap = () => {
     document.getElementById('dropCheapItem').classList.add('hidden');
   };
   return (
-    <div className='space-y-12 mb-10 mt-20 font-montserrat'>
+    <div className='space-y-12 p-4 py-12 font-montserrat bg-[#FAFAFA]'>
       <div className='relative'>
-        <div className='flex space-x-3 items-center mb'>
+        <div className='flex space-x-3 items-center'>
           <h1 className='ml-2 lg:ml-0 text-lg lg:text-4xl font-bold  text-start '>Kos Murah di</h1>
           <div className='bg-[#FFBA2C] flex items-center px-1 lg:px-5 py-2 lg:py-4 rounded-full space-x-2'>
             <div className='font-montserrat font-bold text-xs lg:text-xl' id='locationCheap'>

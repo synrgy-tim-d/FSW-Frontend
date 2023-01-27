@@ -4,10 +4,7 @@
 @tailwind utilities;
 
 #root {
-  max-width: 1440px;
   margin: 0 auto;
-  /* padding: 2rem; */
-  /* text-align: center; */
 }
 
 :root {
@@ -15,13 +12,6 @@
   font-size: 16px;
   line-height: 24px;
   font-weight: 400;
-}
-
-body {
-  /* display: flex; */
-  /* place-items: center; */
-  /* min-width: 320px;
-  min-height: 100vh; */
 }
 
 .breadcrumb li {
@@ -35,14 +25,10 @@ body {
   opacity: 1;
 }
 
-/* .breadcrumb li:last-child {
-  color: #46464F;
-  text-decoration: underline;
-  opacity: 1;
-} */
-
 .breadcrumb li+li:before {
   padding: 8px;
   content: '\00a0'url(/src/assets/breadcrumb-arrow.svg)'\00a0' ;
   opacity: 0.38;
 }
+
+/* Add Styles Here -TECHLEAD */

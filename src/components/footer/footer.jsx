@@ -7,7 +7,7 @@ import LogoNaqosPolosWhite from '../../assets/LogoNaqosFixWhite.png'
 
 const Footer = () => {
     return (
-    <footer className='w-screen footer p-10 bg-[#0A008A] text-base-content'>
+    <footer className='w-full footer p-10 bg-[#0A008A] text-base-content'>
       <div>
         <span className='footer-title text-white'>Naqos</span>
         <a className='link link-hover text-white'>Tentang Kami</a>

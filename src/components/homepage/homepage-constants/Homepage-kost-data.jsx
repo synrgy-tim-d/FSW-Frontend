@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import image from '../../../assets/Homepage-Kos1.svg';
 
 const Kostdata = () => {
@@ -148,7 +149,11 @@ const Kostdata = () => {
                   <p>
                     Rincian alamat kos secara lengkap dan kode pos Rincian alamat kos secara lengkap
                     dan kode pos
-                    <span className='text-[#000000]/[0.38] pl-2'>...selengkapnya</span>
+                    <span className='text-[#000000]/[0.38] pl-2'>
+                      <Link to='/kos' >
+                        ...selengkapnya
+                      </Link>
+                    </span>
                   </p>
                 </div>
 
@@ -167,7 +172,7 @@ const Kostdata = () => {
                       />
                     </svg>
                   </span>
-                  <p>
+                  <p className='font-[500]'>
                     {kost.review}
                     <span className='italic pl-1 text-[12px]'>(7 reviews)</span>
                   </p>

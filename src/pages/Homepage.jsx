@@ -19,7 +19,7 @@ import Kostdata from '../components/homepage/homepage-constants/Homepage-kost-da
 const Homepage = () => {
   const title = ['Tipe Kos', 'Waktu Sewa', 'Urutkan', 'Fasilitas Kamar', 'Fasilitas Bersama'];
 
-  const testHandle = (e) => {
+  const submitHandle = (e) => {
     e.preventDefault();
     console.log(tipeKos);
     console.log(waktuSewa);
@@ -32,7 +32,7 @@ const Homepage = () => {
     <React.Fragment>
       <Navbar />
       <div className='w-screen font-[Montserrat] font-[400] text-[#000000] text-[16px] bg-[#FAFAFA] p-8'>
-        <div className='breadcrumb pl-[62px] py-[17px]'>
+        <div className='breadcrumb pl-8 pb-12'>
           <ul>
             <li>
               <Link to='/' className='text-[20px] font-[600] hover:underline hover:text-[#0A008A]'>
@@ -51,18 +51,18 @@ const Homepage = () => {
         </div>
 
         <div className='grid grid-cols-4 grid-flow-col gap-4'>
-          <div className='col-span-3 grid grid-cols-auto auto-rows-max gap-8 px-4'>
+          <div className='col-span-3 grid grid-cols-auto auto-rows-max gap-8'>
             <Kostdata />
           </div>
 
           <div className='col-span-1'>
-            <form action='' className='grid grid-flow-row gap-y-2'>
+            <form action='' className='grid grid-flow-row gap-y-4'>
               <CollapseCheckboxType items={tipeKos} buttonText={title[0]} />
               <CollapseRadio items={waktuSewa} buttonText={title[1]} />
               <CollapseRadio items={urutanHarga} buttonText={title[2]} />
               <CollapseCheckbox items={fasilitasKamar} buttonText={title[3]} />
               <CollapseCheckbox items={fasilitasBersama} buttonText={title[4]} />
-              <button onClick={testHandle} className='w-full bg-[#0A008A] text-[#FFFFFF]'>
+              <button onClick={submitHandle} className='w-full py-2 rounded-[4px] text-white bg-[#0A008A] hover:bg-[#A0A3FF] hover:text-[#FFFFFF] active:bg-black'>
                 Terapkan Filter
               </button>
             </form>
