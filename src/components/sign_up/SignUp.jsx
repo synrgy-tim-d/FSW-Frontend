@@ -8,7 +8,7 @@ import icongoogle from '../../assets/icon_google.svg';
 
 const SignUp = () => {
   const postRegister = useMutation((data) => {
-    return axios.post('https://be-naqos.up.railway.app/api/user-register/register', data);
+    return axios.post('https://be-naqos.up.railway.app/api/auth/register', data);
   });
 
   const [register, setRegister] = useState({
@@ -46,7 +46,7 @@ const SignUp = () => {
         <img
           className='md:mt-[70px] md:w-[360px] md:h-[163.72px] min-[393px]:mt-[27px] min-[393px]:w-[171px] min-[393px]:h-[78px]'
           alt=''
-          src={ imglogo }
+          src={imglogo}
         />
       </div>
       <div className='flex flex-col justify-center mx-auto md:mt-[48px] md:w-[526px] min-[393px]:mt-[18px]'>
@@ -92,7 +92,7 @@ const SignUp = () => {
         />
         <img
           className='absolute pointer-events-none md:mt-[365px] md:ml-[480px] min-[393px]:mt-[340px] min-[393px]:ml-[330px]'
-          src={ iconeye }
+          src={iconeye}
         />
       </div>
       <div className='flex flex-row justify-center md:mt-[29px] min-[393px]:mt-[20px]'>
@@ -125,7 +125,7 @@ const SignUp = () => {
         </Link>
         <img
           className='absolute md:mt-3 md:mr-[230px] min-[393px]:mt-2 min-[393px]:mr-[200px]'
-          src={ icongoogle }
+          src={icongoogle}
         />
       </div>
       <div className='flex flex-row justify-center md:mt-[16px] min-[393px]:mt-[20px] mb-[70px] gap-2'>

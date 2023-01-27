@@ -14,8 +14,9 @@ import PayNow from './components/history/payNow';
 import PayUpload from './components/history/payUpload';
 import LandingPage from './pages/landingPage';
 import Wishlistpage from './pages/Wishlistpage';
-import Homepage from './pages/Homepage'
+import Homepage from './pages/Homepage';
 import Verif from './pages/verif';
+import Success from './components/verif/success';
 import Forget from './pages/forget';
 import Rinciankos from './pages/Rinciankos.jsx';
 import './index.css';
@@ -41,7 +42,8 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           <Route path='/history/booknow' element={<PayNow />} />
           <Route path='/history/booknow/receipt' element={<PayUpload />} />
           <Route path='/verif' element={<Verif />} />
-          <Route path='/forget' element={<Forget />} />
+          <Route path='/verif/success/:otp' element={<Success />} />
+          <Route path='/forget/:otp' element={<Forget />} />
           <Route path='/homepage' element={<Homepage />} />
           <Route path='/wishlist' element={<Wishlistpage />} />
           <Route path='/kos' element={<Rinciankos />} />

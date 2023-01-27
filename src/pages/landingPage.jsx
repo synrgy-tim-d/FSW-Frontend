@@ -8,11 +8,14 @@ import Navbar from '../components/navbar/navbar';
 import Whyus from '../components/whyus/whyus';
 import Popular from '../components/popular/popular';
 import Testimonial from '../components/testimonial/testimonial';
+import Navbarsign from '../components/navbar/navbarnologin';
 
 function LandingPage() {
+  console.log(`Token -> ${localStorage.getItem('AUTH_TOKEN')}`);
   return (
     <div className='overflow-hidden'>
-      <Navbar />
+      {localStorage.getItem('AUTH_TOKEN') === null ? <Navbarsign /> : <Navbar />}
+
       <Banner />
       <Whyus />
       <Carousel />

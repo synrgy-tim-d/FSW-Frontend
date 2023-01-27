@@ -1,8 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import LogoNaqos from '../../assets/LogoNaqosPolos.png'
+import LogoNaqos from '../../assets/LogoNaqosPolos.png';
 
 const Navbar = () => {
+  const handleLogout = () => {
+    localStorage.removeItem('AUTH_TOKEN');
+    window.location.reload(false);
+  };
+
   return (
     <div className='navbar grid grid-cols-6 bg-[#FAFAFA]'>
       <div className='col-span-1 pl-4'>
@@ -45,7 +50,9 @@ const Navbar = () => {
                 </Link>
               </li>
               <li>
-                <a className='font-[600] hover:bg-[#F2EFFF]'>Logout</a>
+                <a onClick={handleLogout} className='font-[600] hover:bg-[#F2EFFF]'>
+                  Logout
+                </a>
               </li>
             </ul>
           </li>
