@@ -236,7 +236,7 @@ const History = () => {
 
         <input type='checkbox' id='my-modal' className='modal-toggle' />
         <div className='modal'>
-          <div className='modal-box max-w-5xl w-[895px] rounded-[32px] bg-white drop-shadow-md'>
+          <div className='modal-box max-w-5xl w-[895px] rounded-[32px] bg-white drop-shadow-[4px_4px_8px_rgba(0,0,0,0.15)]'>
             <div className='flex flex-row justify-between mt-[20px] mx-[20px]'>
               <div className='w-[20px]'></div> {/* dummy */}
               <img className='w-[200px] h-[142.58px]' alt='' src={imagethree} />

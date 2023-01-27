@@ -225,7 +225,7 @@ const PayNow = () => {
 
         <input type='checkbox' id='my-modal' className='modal-toggle' />
         <div className='modal'>
-          <div className='modal-box max-w-5xl w-[790px] rounded-[32px] bg-white drop-shadow-md'>
+          <div className='modal-box max-w-5xl w-[790px] rounded-[32px] bg-white drop-shadow-[4px_4px_8px_rgba(0,0,0,0.15)]'>
             <div className='flex flex-row justify-between mt-[60px] mb-[30px] mx-[20px]'>
               <div className='w-[20px]'></div> {/* dummy */}
               <img className='' alt='' src={imageconfirm} />
