@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom';
 
 const EditProfile = () => {
   return (
-    <>
-      <ul className='breadcrumb pl-[70px] pt-[25px] font-[Montserrat] text-[20px] font-[600]'>
+    <React.Fragment>
+      <ul className='breadcrumb pl-[70px] pt-[25px] font-[Montserrat] text-[20px] font-[600] bg-[#FAFAFA]'>
         <li>
           <Link to='/' className='text-[20px] font-[600] hover:underline'>
             Home
@@ -22,7 +22,7 @@ const EditProfile = () => {
           </Link>
         </li>
       </ul>
-      <div className='w-screen grid grid-cols-6 grid-flow-col font-[Montserrat] items-center'>
+      <div className='w-screen grid grid-cols-6 grid-flow-col font-[Montserrat] items-center bg-[#FAFAFA] py-[7.4rem] '>
         <div className='col-span-2 grid grid-row-2 grid-flow-row justify-items-center content-center gap-16'>
           <div>
             <img className='w-full h-auto' src={profile} alt='' />
@@ -86,7 +86,7 @@ const EditProfile = () => {
               <Link to='/profil' className='w-full grid grid-cols-3 grid-flow-col px-8'>
                 <button
                   type='button'
-                  className='col-start-2 col-span-2 rounded-[150px] bg-[#0A008A] hover:bg-[#A0A3FF] hover:text-[#FFFFFF] active:bg-black'
+                  className='col-start-2 col-span-2 rounded-[150px] py-2 text-white bg-[#0A008A] hover:bg-[#A0A3FF] hover:text-[#FFFFFF] active:bg-black'
                 >
                   Simpan
                 </button>
@@ -95,7 +95,7 @@ const EditProfile = () => {
           </form>
         </div>
       </div>
-    </>
+    </React.Fragment>
   );
 };
 

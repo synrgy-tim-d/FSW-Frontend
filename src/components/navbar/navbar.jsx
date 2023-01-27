@@ -4,16 +4,18 @@ import LogoNaqos from '../../assets/LogoNaqosPolos.png'
 
 const Navbar = () => {
   return (
-    <div className='navbar bg-base-100 grid grid-cols-6'>
-      <div className='col-span-1'>
+    <div className='navbar grid grid-cols-6 bg-[#FAFAFA]'>
+      <div className='col-span-1 pl-4'>
         <Link to='/'>
           <img className='w-full h-auto' src={LogoNaqos} />
         </Link>
       </div>
-      <div className='col-span-5 flex justify-end'>
+      <div className='col-span-5 flex justify-end pr-4'>
         <ul className='menu menu-horizontal px-1 grid grid-flow-col gap-6 text-[#000000]/[0.38] text-[20px]'>
           <li>
-            <a className='font-[600]'>Wishlist</a>
+            <Link to='/wishlist' className='font-[600]'>
+              Wishlist
+            </Link>
           </li>
           <li>
             <Link to='/history' className='font-[600]'>
@@ -38,8 +40,8 @@ const Navbar = () => {
             </a>
             <ul className='p-2 bg-base-100'>
               <li>
-                <Link to='/editprofil' className='font-[600] hover:bg-[#F2EFFF]'>
-                  Edit Profil
+                <Link to='/profil' className='font-[600] hover:bg-[#F2EFFF]'>
+                  Profil
                 </Link>
               </li>
               <li>

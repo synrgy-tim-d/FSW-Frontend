@@ -7,7 +7,7 @@ const Contactperson = () => {
       <div className='grid grid-cols-5 auto-cols-max'>
         <div className='grid col-span-1 place-content-center'>
           <img
-            className='w-[150px] h-[150px] object-fill bg-black rounded-full'
+            className='w-[150px] h-[150px] object-fill bg-inherit rounded-full'
             src={image}
             alt=''
           />

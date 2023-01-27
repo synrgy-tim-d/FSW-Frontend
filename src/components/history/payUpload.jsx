@@ -1,30 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ButtonDisabled, ButtonPayment, ButtonReview } from './buttonsHistory';
-import imageone from '../../assets/img_kosOne.png';
 import imagetwo from '../../assets/img_kosTwo.png';
-import imagethree from '../../assets/img_kosThree.png';
 import iconlocation from '../../assets/icon_location.svg';
 import iconarrowright from '../../assets/icon_arrow-right-2.svg';
-import iconclose from '../../assets/icon_close.svg';
+import iconupload from '../../assets/icon_upload.svg';
 
-const History = () => {
+const PayUpload = () => {
   const [histories, sethistories] = useState([]);
 
   useEffect(() => {
     const historyList = [
-      {
-        id: 1,
-        name: 'Kos Alamanda',
-        location: {
-          name: 'Yogyakarta',
-        },
-        bookId: '00000001',
-        inDate: 'April 01, 23',
-        outDate: 'April 30, 23',
-        img: imageone,
-        btn: 'disabled',
-      },
       {
         id: 2,
         name: 'Kos Beringin',
@@ -35,30 +20,6 @@ const History = () => {
         inDate: 'April 03, 23',
         outDate: 'May 03, 23',
         img: imagetwo,
-        btn: 'payment',
-      },
-      {
-        id: 3,
-        name: 'Kos Semak-Semak',
-        location: {
-          name: 'Yogyakarta',
-        },
-        bookId: '00000003',
-        inDate: 'April 11, 23',
-        outDate: 'May 11, 23',
-        img: imagethree,
-        btn: 'review',
-      },
-      {
-        id: 4,
-        name: 'Kos Guntung',
-        location: {
-          name: 'Yogyakarta',
-        },
-        bookId: '00000004',
-        inDate: 'April 12, 23',
-        outDate: 'May 13, 23',
-        img: imagethree,
         btn: 'payment',
       },
     ];
@@ -73,7 +34,7 @@ const History = () => {
           <ol className='inline-flex items-center space-x-1 md:space-x-3'>
             <li className='inline-flex items-center'>
               <Link to='/'>
-                <p className='text-[20px] font-[600] text-[#000000] opacity-[.38] hover:text-[#0A008A] hover:underline hover:opacity-100'>
+                <p className='text-[20px] font-[600] text-[#000000] opacity-[.38] hover:underline hover:text-[#0A008A] hover:opacity-100'>
                   Home
                 </p>
               </Link>
@@ -94,7 +55,7 @@ const History = () => {
                   ></path>
                 </svg>
                 <Link to='/history'>
-                  <p className='ml-1 md:ml-2 text-[20px] font-[600] text-[#000000] opacity-[.38] hover:text-[#0A008A] hover:underline hover:opacity-100'>
+                  <p className='ml-1 md:ml-2 text-[20px] font-[600] text-[#000000] opacity-[.38] hover:underline hover:text-[#0A008A] hover:opacity-100'>
                     Riwayat
                   </p>
                 </Link>
@@ -154,44 +115,8 @@ const History = () => {
           <hr className='w-[350px] mb-[20px]'></hr>
         </div>
 
-        {/* --- Content if Empty --- */}
-        {/* <div className='flex flex-col text-center text-black ml-[80px] mt-[181px] mb-[100px]'>
-          <img
-            className='w-[350px] h-[226.84px] self-center mb-[50px]'
-            alt=''
-            src='src/assets/img_noHistory.png'
-          />
-          <h1 className='text-[31px] font-[600] mb-[20px] w-[558px]'>
-            Riwayat pemesanan masih kosong
-          </h1>
-          <p className='text-[20px] font-[500] mb-[50px] w-[558px]'>
-            Kamu belum pernah melakukan pemesanan kos, yuk mulai cari kos idaman kamu!
-          </p>
-          <button
-            className='border-0 bg-[#0A008A] self-center rounded-[150px] outline-none text-white font-[600] text-[16px] w-[419px] h-[43px] hover:bg-[#A0A3FF] hover:text-[#0A008A] focus:bg-black focus:text-white focus:outline-none'
-            type='submit'
-          >
-            Telurusi Kos
-          </button>
-        </div> */}
-
-        {/* --- Content if there is Data --- */}
         <div className='flex flex-col ml-[70px] mt-[61px] mb-[100px]'>
           {histories.map((history, index) => {
-            let component = null;
-            switch (history.btn) {
-              case 'disabled':
-                component = <ButtonDisabled />;
-                break;
-              case 'payment':
-                component = <ButtonPayment />;
-                break;
-              case 'review':
-                component = <ButtonReview />;
-                break;
-              default:
-                component = <ButtonDisabled />;
-            }
             return (
               <React.Fragment key={index}>
                 <div>
@@ -222,65 +147,49 @@ const History = () => {
                         </div>
                       </div>
                     </div>
-                    {component}
                   </div>
                   <hr className='w-[870px] mb-[30px]'></hr>
                 </div>
               </React.Fragment>
             );
           })}
-          <h1 className='text-center text-black text-[20px] font-[600] opacity-[.38]'>
-            Lihat lebih banyak lagi
-          </h1>
-        </div>
+          <h1 className='mb-[10px] text-black text-[25px] font-[600]'>Detail Pembayaran</h1>
+          <p className='mb-[40px] text-[#BA1A1A] text-[16px] font-[500]'>
+            *Pembayaran akan hangus dalam 3 hari
+          </p>
+          <div className='mb-[40px] w-[870px] py-[28px] px-[40px] rounded-[16px] bg-[#e4e4fc] text-black'>
+            <div className='flex flex-row justify-between'>
+              <div className='flex flex-col'>
+                <p className='text-[20px] font-[600]'>Total Pembayaran</p>
+              </div>
+              <div className='flex flex-col text-right'>
+                <p className='text-[20px] font-[600]'>Rp300.000</p>
+              </div>
+            </div>
+          </div>
+          <div className='flex flex-row gap-5'>
+            <label
+              className='cursor-pointer inline-flex items-center justify-center gap-2 w-[178px] h-[43px] mb-[65px] p-0 bg-white border-2 border-[#0A008A] rounded-[4px] outline-none text-[16px] font-[600] text-[#0A008A] hover:bg-[#f3f4ff] hover:border-[#0A008A] hover:text-[#0A008A] active:bg-[#0A008A] active:text-white'
+              htmlFor='getFile'
+            >
+              <img className='' alt='' src={ iconupload } />
+              Upload Bukti
+            </label>
+            <input id='getFile' className='hidden' type='file' />
 
-        <input type='checkbox' id='my-modal' className='modal-toggle' />
-        <div className='modal'>
-          <div className='modal-box max-w-5xl w-[895px] rounded-[32px] bg-white drop-shadow-md'>
-            <div className='flex flex-row justify-between mt-[20px] mx-[20px]'>
-              <div className='w-[20px]'></div> {/* dummy */}
-              <img className='w-[200px] h-[142.58px]' alt='' src={imagethree} />
-              <label htmlFor='my-modal'>
-                <img className='mb-[115px] cursor-pointer' alt='' src={ iconclose } />
-              </label>
-            </div>
-            <div className='flex flex-col justify-center items-center'>
-              <h3 className='font-bold text-lg mt-[5px]'>Kos Semak-Semak</h3>
-              <div className='rating gap-2 mt-[5px]'>
-                <input type='radio' name='rating-2' className='mask mask-star-2 bg-[#EA9A3D]' />
-                <input type='radio' name='rating-2' className='mask mask-star-2 bg-[#EA9A3D]' />
-                <input
-                  type='radio'
-                  name='rating-2'
-                  className='mask mask-star-2 bg-[#EA9A3D]'
-                  checked
-                />
-                <input type='radio' name='rating-2' className='mask mask-star-2 bg-[#EA9A3D]' />
-                <input type='radio' name='rating-2' className='mask mask-star-2 bg-[#EA9A3D]' />
-              </div>
-            </div>
-            <div className='flex flex-row justify-center text-center'>
-              <div className='w-[695px] h-[180px] rounded-[8px] bg-[#F2EFFF] py-[18px] mt-[30px]'>
-                <textarea
-                  placeholder='Tambahkan komentar...'
-                  className='w-[650px] h-[145px] rounded-[8px] px-3 py-2 focus:outline-none'
-                />
-              </div>
-            </div>
-            <div className='flex flex-row justify-end gap-5 mr-[75px] mt-[20px] mb-[20px]'>
-              <label
-                htmlFor='my-modal'
-                className='cursor-pointer inline-flex items-center justify-center w-[151px] h-[43px] p-0 bg-white border-2 border-[#0A008A] self-end rounded-[4px] outline-none text-[16px] font-[600] text-[#0A008A] hover:bg-[#f3f4ff] hover:border-[#0A008A] hover:text-[#0A008A] active:bg-[#0A008A] active:text-white'
-              >
-                Batalkan
-              </label>
-              <label
-                htmlFor='my-modal'
-                className='cursor-pointer inline-flex items-center justify-center w-[151px] h-[43px] p-0 bg-[#0A008A] border-2 border-[#0A008A] self-end rounded-[4px] outline-none text-[16px] font-[600] text-white hover:bg-[#A0A3FF] hover:border-[#A0A3FF] hover:text-[#0A008A] active:bg-black active:text-white'
-              >
-                Kirim
-              </label>
-            </div>
+            <button
+              disabled
+              className='cursor-not-allowed w-[178px] h-[43px] mb-[65px] p-0 bg-[#e9e9ea] rounded-[4px] outline-none text-[16px] font-[600] text-[#ababaf] hover:border-[#e9e9ea] hover:bg-[#e9e9ea] hover:text-[#ababaf]'
+              type='button'
+            >
+              Sudah Bayar
+            </button>
+            {/* <button
+              className='w-[178px] h-[43px] mb-[65px] p-0 bg-[#0A008A] rounded-[4px] outline-none text-[16px] font-[600] text-white hover:bg-[#A0A3FF] hover:text-[#0A008A] focus:bg-black focus:text-white'
+              type='button'
+            >
+              Sudah Bayar
+            </button> */}
           </div>
         </div>
       </div>
@@ -288,4 +197,4 @@ const History = () => {
   );
 };
 
-export default History;
+export default PayUpload;

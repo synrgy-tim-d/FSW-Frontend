@@ -6,11 +6,11 @@ const Navbarsign = () => {
     <div className='navbar bg-base-100'>
         <div className='flex-1'>
             <a href='/landingPage'>
-                <img src='src/assets/LogoNaqosFix.png'></img>
+                <img className='h-14' src='src/assets/LogoNaqosFix.png'></img>
             </a>
         </div>
 
-        <div className='flex-none'>
+        <div className='flex flex-wrap justify-end'>
             {/* <button className='btn btn-outline'>Masuk</button> */}
             {/* <button className='btn btn-active'>Daftar</button> */}
             <Link to='/login' >

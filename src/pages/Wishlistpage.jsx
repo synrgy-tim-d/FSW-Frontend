@@ -16,8 +16,8 @@ import {
 } from '../components/homepage/homepage-constants/Dropdown';
 import Kostdata from '../components/homepage/homepage-constants/Homepage-kost-data';
 
-const Homepage = () => {
-  const title = ['Tipe Kos', 'Waktu Sewa', 'Urutkan', 'Fasilitas Kamar', 'Fasilitas Bersama'];
+const Wishlistpage = () => {
+  const title = ['Urutkan', 'Fasilitas Kamar', 'Fasilitas Bersama'];
 
   const submitHandle = (e) => {
     e.preventDefault();
@@ -41,10 +41,10 @@ const Homepage = () => {
             </li>
             <li>
               <Link
-                to='/homepage'
+                to='/wishlist'
                 className='text-[20px] font-[600] hover:underline hover:text-[#0A008A]'
               >
-                Cari Kos
+                Wishlist
               </Link>
             </li>
           </ul>
@@ -57,11 +57,9 @@ const Homepage = () => {
 
           <div className='col-span-1'>
             <form action='' className='grid grid-flow-row gap-y-4'>
-              <CollapseCheckboxType items={tipeKos} buttonText={title[0]} />
-              <CollapseRadio items={waktuSewa} buttonText={title[1]} />
-              <CollapseRadio items={urutanHarga} buttonText={title[2]} />
-              <CollapseCheckbox items={fasilitasKamar} buttonText={title[3]} />
-              <CollapseCheckbox items={fasilitasBersama} buttonText={title[4]} />
+              <CollapseRadio items={urutanHarga} buttonText={title[0]} />
+              <CollapseCheckbox items={fasilitasKamar} buttonText={title[1]} />
+              <CollapseCheckbox items={fasilitasBersama} buttonText={title[2]} />
               <button onClick={submitHandle} className='w-full py-2 rounded-[4px] text-white bg-[#0A008A] hover:bg-[#A0A3FF] hover:text-[#FFFFFF] active:bg-black'>
                 Terapkan Filter
               </button>
@@ -74,4 +72,4 @@ const Homepage = () => {
   );
 };
 
-export default Homepage;
+export default Wishlistpage;

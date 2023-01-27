@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import image from '../../../assets/Homepage-Kos1.svg';
+// import image from '../../../assets/Wishlistpage-Kos1.svg';
+import image from '../../assets/Wishlistpage-Kos1.svg'
 
 const Kostdata = () => {
   const [kosts, setKosts] = useState([]);
@@ -107,18 +107,18 @@ const Kostdata = () => {
   }, []);
 
   return (
-    <div className='text-[20px] font-[Montserrat] text-[#000000] col-span-3 grid grid-cols-auto auto-rows-max gap-8 px-4'>
+    <div className='text-[20px] font-[Montserrat] text-[#000000] col-span-3 grid grid-cols-auto auto-rows-max gap-8 p-4'>
       {kosts.map((kost, index) => {
         return (
           <React.Fragment key={index}>
-            <div className='grid grid-cols-3 grid-flow-col bg-white rounded-[16px]'>
+            <div className='grid grid-cols-3 grid-flow-col'>
               <div className='col-span-1 rounded-[16px]'>
                 <img className='w-full h-auto' src={image} alt='' />
               </div>
               <div className='col-span-2 grid grid-rows-auto grid-flow-row gap-2 p-4'>
                 <div className='grid grid-flow-col'>
                   <div className='grid grid-cols-auto grid-flow-col auto-cols-max content-center'>
-                    <div className='w-[85px] border-2 border-[#0A008A] rounded-[150px] flex justify-center text-[16px] font-[600]'>
+                    <div className='w-[85px] border-2 border-[#0A008A] rounded-[150px] flex justify-center'>
                       {kost.type}
                     </div>
                     <span className='text-[#BA1A1A] italic pl-2 self-center'>
@@ -149,11 +149,7 @@ const Kostdata = () => {
                   <p>
                     Rincian alamat kos secara lengkap dan kode pos Rincian alamat kos secara lengkap
                     dan kode pos
-                    <span className='text-[#000000]/[0.38] pl-2'>
-                      <Link to='/kos' >
-                        ...selengkapnya
-                      </Link>
-                    </span>
+                    <span className='text-[#000000]/[0.38] pl-2'>...selengkapnya</span>
                   </p>
                 </div>
 
@@ -172,7 +168,7 @@ const Kostdata = () => {
                       />
                     </svg>
                   </span>
-                  <p className='font-[500]'>
+                  <p>
                     {kost.review}
                     <span className='italic pl-1 text-[12px]'>(7 reviews)</span>
                   </p>

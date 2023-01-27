@@ -13,14 +13,14 @@ const formatter = new Intl.NumberFormat('en-US', {
 
 const Card = ({ type, pictureUrl, name, rate, details, location, price }) => {
   return (
-    <div className='bg-white rounded-2xl  font-montserrat'>
+    <div className='bg-white rounded-2xl font-montserrat m-3'>
       <div className='relative'>
         <div className='absolute rounded-2xl text-xs bg-white py-1 lg:py-2 px-3 lg:px-5 font-montserrat mt-2 ml-4 font-bold'>
           {type}
         </div>
-        <div className='lg:w-[310px] space-y-4 '>
-          <img className='h-[120.8px] lg:h-[211px] mx-auto rounded-2xl' src={pictureUrl} />
-          <div className='flex justify-between  items-center'>
+        <div className='lg:w-[310px] space-y-4 rounded-2xl'>
+          <img className='h-[120.8px] lg:h-[211px] mx-auto rounded-2xl w-full' src={pictureUrl} />
+          <div className='flex justify-between  items-center px-2'>
             <h2 className='font-semibold ml-1 text-base lg:text-2xl font-montserrat'>{name}</h2>
             <div className='flex space-x-3 '>
               <div className='flex items-center'>
@@ -29,14 +29,14 @@ const Card = ({ type, pictureUrl, name, rate, details, location, price }) => {
               <p className='text-base lg:text-2xl font-montserrat'>{rate}</p>
             </div>
           </div>
-          <p className='font-montserrat text-start ml-1 text-sm lg:text-base'>{details}</p>
-          <div className='flex space-x-3 ml-1'>
+          <p className='font-montserrat text-start ml-1 text-sm lg:text-base px-2'>{details}</p>
+          <div className='flex space-x-3 ml-1 px-2'>
             <div className='flex items-center'>
               <img className='w-full' src={Pin} />
             </div>
             <h3 className='font-montserrat text-base lg:text-xl font-semibold'>{location}</h3>
           </div>
-          <p className='text-start text-sm lg:text-base ml-1'>
+          <p className='text-start text-sm lg:text-base ml-1 px-2 pb-4'>
             <span className='font-montserrat font-bold text-base lg:text-2xl'>
               {formatter.format(price)}
             </span>

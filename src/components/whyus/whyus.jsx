@@ -5,7 +5,7 @@ import faq from '../../assets/Whyus3_faq.png';
 
 const Whyus = () => {
   return (
-    <div className='py-20 font-montserrat'>
+    <div className='p-10 font-montserrat bg-[#FAFAFA]'>
       <div className='text-start space-y-10 '>
         <h2 className='ml-2 text-lg lg:text-4xl lg:ml-0 lg:pb-7 font-bold '>Kenapa Harus Naqos?</h2>
         <div className='flex justify-center px-2'>

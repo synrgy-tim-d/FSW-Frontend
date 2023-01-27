@@ -24,7 +24,7 @@ const Review = () => {
           <span className='italic'>(7 reviews)</span>
         </div>
         <div className='flex justify-end'>
-          <button className='bg-[#FFFFFF] border-2 text-[#0A008A] border-[#0A008A] font-[700]'>
+          <button className='bg-[#FFFFFF] border-2 text-[#0A008A] border-[#0A008A] font-[700] p-2'>
             Tulis Review
           </button>
         </div>
