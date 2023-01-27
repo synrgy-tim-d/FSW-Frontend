@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 
 function Banner() {
   return (
-    <div className=''>
+    <div className='bg-[#FAFAFA]'>
       <div className='relative overflow-hidden '>
         <img className='absolute -z-50 mt-24 lg:mt-28' src={BgImage} />
         <div className='lg:flex ml-12 mr-12 py-14 lg:py-44 '>
@@ -27,9 +27,11 @@ function Banner() {
                     placeholder='Mau Kos di Mana?'
                   />
                 </div>
-                <button className='bg-[#0A008A] text-l lg:text-2xl text-white rounded w-1/4 py-1 lg:py-2 px-2 hover:bg-blue-600 active:bg-blue-700'>
-                  <Link to='/homepage'>Cari</Link>
-                </button>
+                <Link to='/homepage'>
+                  <button className='bg-[#0A008A] text-l lg:text-2xl text-white rounded w-full h-full py-1 lg:py-2 px-12 hover:bg-blue-600 active:bg-blue-700'>
+                    Cari
+                  </button>
+                </Link>
               </div>
             </div>
           </div>

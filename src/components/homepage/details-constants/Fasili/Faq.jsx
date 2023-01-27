@@ -7,7 +7,7 @@ const Faq = () => {
         <div className='faq-one border-[3px] border-[#B9B9BC] rounded-[8px]'>
           <div tabIndex={0} className='collapse collapse-plus collapse-arrow'>
             <input type='checkbox' />
-            <div className='collapse-title pl-2 p-2 text-[20px] text-[#B9B9BC] font-[600]'>
+            <div className='collapse-title pl-2 p-2 text-[20px] text-[#B9B9BC] font-[600] bg-white'>
               FAQ BOX 1?
             </div>
             <div className='collapse-content'>
@@ -28,7 +28,7 @@ const Faq = () => {
         <div className='faq-one border-[3px] border-[#B9B9BC] rounded-[8px]'>
           <div tabIndex={0} className='collapse collapse-plus'>
             <input type='checkbox' />
-            <div className='collapse-title pl-2 p-2 text-[20px] text-[#B9B9BC] font-[600]'>
+            <div className='collapse-title pl-2 p-2 text-[20px] text-[#B9B9BC] font-[600] bg-white'>
               FAQ BOX 2?
             </div>
             <div className='collapse-content'>
@@ -49,7 +49,7 @@ const Faq = () => {
         <div className='faq-one border-[3px] border-[#B9B9BC] rounded-[8px]'>
           <div tabIndex={0} className='collapse collapse-plus'>
             <input type='checkbox' />
-            <div className='collapse-title pl-2 p-2 text-[20px] text-[#B9B9BC] font-[600]'>
+            <div className='collapse-title pl-2 p-2 text-[20px] text-[#B9B9BC] font-[600] bg-white'>
               FAQ BOX 3?
             </div>
             <div className='collapse-content'>
