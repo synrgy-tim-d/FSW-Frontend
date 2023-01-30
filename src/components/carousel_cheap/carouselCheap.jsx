@@ -1,6 +1,7 @@
 // import React from 'react';
 import Card from './card';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination } from 'swiper';
 import { useQuery } from '@tanstack/react-query';
@@ -12,106 +13,14 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 
-// const entries = [
-//   {
-//     id: 0,
-//     type: 'Putra',
-//     name: 'Kos Merkurius',
-//     rate: 4.5,
-//     pictureUrl:
-//       'https://res.cloudinary.com/duvswri22/image/upload/v1674287150/dillon-kydd-XGvwt544g8k-unsplash_1_muclim.jpg',
-//     details: 'Rincian alamat kos secara lengkap dan kode pos',
-//     location: 'Bekasi',
-//     price: 600000,
-//   },
-//   {
-//     id: 1,
-//     type: 'Putra',
-//     name: 'Kos Mawar',
-//     rate: 4.8,
-//     pictureUrl:
-//       'https://res.cloudinary.com/duvswri22/image/upload/v1674287148/trinity-nguyen-xQhqS7OWEqE-unsplash_teh0af.jpg',
-//     details: 'Rincian alamat kos secara lengkap dan kode pos',
-//     location: 'Bekasi',
-//     price: 600000,
-//   },
-//   {
-//     id: 2,
-//     type: 'Putra',
-//     name: 'Kos Melati',
-//     rate: 4.5,
-//     pictureUrl:
-//       'https://res.cloudinary.com/duvswri22/image/upload/v1674287148/julian-gentilezza-ctUWE7BUEzE-unsplash_mpwxrv.jpg',
-//     details: 'Rincian alamat kos secara lengkap dan kode pos',
-//     location: 'Bekasi',
-//     price: 600000,
-//   },
-//   {
-//     id: 3,
-//     type: 'Putra',
-//     name: 'Kos Melati',
-//     rate: 4.0,
-//     pictureUrl:
-//       'https://res.cloudinary.com/duvswri22/image/upload/v1674287145/vlad-yuhimchuk-1S1mk3uDDDA-unsplash_dwtils.jpg',
-//     details: 'Rincian alamat kos secara lengkap dan kode pos',
-//     location: 'Bekasi',
-//     price: 600000,
-//   },
-//   {
-//     id: 4,
-//     type: 'Putra',
-//     name: 'Kos Merkurius',
-//     rate: 4.5,
-//     pictureUrl:
-//       'https://res.cloudinary.com/duvswri22/image/upload/v1674287150/dillon-kydd-XGvwt544g8k-unsplash_1_muclim.jpg',
-//     details: 'Rincian alamat kos secara lengkap dan kode pos',
-//     location: 'Bekasi',
-//     price: 600000,
-//   },
-//   {
-//     id: 5,
-//     type: 'Putra',
-//     name: 'Kos Mawar',
-//     rate: 4.5,
-//     pictureUrl:
-//       'https://res.cloudinary.com/duvswri22/image/upload/v1674287148/trinity-nguyen-xQhqS7OWEqE-unsplash_teh0af.jpg',
-//     details: 'Rincian alamat kos secara lengkap dan kode pos',
-//     location: 'Bekasi',
-//     price: 600000,
-//   },
-//   {
-//     id: 6,
-//     type: 'Putra',
-//     name: 'Kos Melati',
-//     rate: 4.5,
-//     pictureUrl:
-//       'https://res.cloudinary.com/duvswri22/image/upload/v1674287148/julian-gentilezza-ctUWE7BUEzE-unsplash_mpwxrv.jpg',
-//     details: 'Rincian alamat kos secara lengkap dan kode pos',
-//     location: 'Bekasi',
-//     price: 600000,
-//   },
-//   {
-//     id: 7,
-//     type: 'Putra',
-//     name: 'Kos Melati',
-//     rate: 4.5,
-//     pictureUrl:
-//       'https://res.cloudinary.com/duvswri22/image/upload/v1674287145/vlad-yuhimchuk-1S1mk3uDDDA-unsplash_dwtils.jpg',
-//     details: 'Rincian alamat kos secara lengkap dan kode pos',
-//     location: 'Bekasi',
-//     price: 600000,
-//   },
-// ];
-
 const CarouselCheap = () => {
   const kosResponse = useQuery({
     queryKey: ['kosMurah'],
-    queryFn: () => axios.get("https://be-naqos.up.railway.app/api/kost")
+    queryFn: () =>
+      axios.get(
+        'https://be-naqos.up.railway.app/api/public/page?page=1&size=8&orderBy=id&orderType=desc',
+      ),
   });
-
-  const dataKos = kosResponse?.data?.data?.data;
-
-  console.log(dataKos);
 
   const showDrop = (event) => {
     event.preventDefault();
@@ -225,22 +134,26 @@ const CarouselCheap = () => {
         onSlideChange={() => console.log('slide change')}
         onSwiper={(swiper) => console.log(swiper)}
       >
-        {dataKos?.map((entry) => {
+        {kosResponse.data.data.data.map((entry) => {
+          console.log(entry.rooms[0]?.pricePerMonthly);
           return (
             <SwiperSlide key={entry.id}>
-              <Card
-                name={entry.name}
-                pictureUrl={
-                  'https://res.cloudinary.com/duvswri22/image/upload/v1674287150/dillon-kydd-XGvwt544g8k-unsplash_1_muclim.jpg'
-                }
-                type={entry.kostType}
-                rate={0}
-                details={entry.address}
-                location={entry.city.city}
-                price={10}
-              />
+              <Link to={`/kos/${entry.id}/${entry.rooms[0]?.id}`}>
+                <Card
+                  name={entry.name}
+                  pictureUrl={
+                    entry.imageKosts[0].url
+                    // 'https://res.cloudinary.com/duvswri22/image/upload/v1674287150/dillon-kydd-XGvwt544g8k-unsplash_1_muclim.jpg'
+                  }
+                  type={entry.kostType}
+                  rate={0}
+                  details={entry.address}
+                  location={entry.city.city}
+                  price={entry.rooms[0]?.pricePerMonthly ?? 10}
+                />
+              </Link>
             </SwiperSlide>
-          )
+          );
         })}
       </Swiper>
     </div>

@@ -46,7 +46,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           <Route path='/forget/:otp' element={<Forget />} />
           <Route path='/homepage' element={<Homepage />} />
           <Route path='/wishlist' element={<Wishlistpage />} />
-          <Route path='/kos' element={<Rinciankos />} />
+          <Route path='/kos/:kosid/:roomid' element={<Rinciankos />} />
         </Routes>
       </BrowserRouter>
     </QueryClientProvider>

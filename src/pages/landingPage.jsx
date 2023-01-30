@@ -11,7 +11,6 @@ import Testimonial from '../components/testimonial/testimonial';
 import Navbarsign from '../components/navbar/navbarnologin';
 
 function LandingPage() {
-  console.log(`Token -> ${localStorage.getItem('AUTH_TOKEN')}`);
   return (
     <div className='overflow-hidden'>
       {localStorage.getItem('AUTH_TOKEN') === null ? <Navbarsign /> : <Navbar />}
