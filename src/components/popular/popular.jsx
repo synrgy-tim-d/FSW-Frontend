@@ -1,4 +1,4 @@
-import React from 'react';
+// import React from 'react';
 const popularCities = [
   {
     id: 0,
@@ -59,7 +59,7 @@ const Popular = () => {
         {(() => {
           const frame = popularCities.map((e, i) => {
             return (
-              <div className='w-full lg:h-[221px] h-[100px] overflow-hidden rounded-lg flex items-center relative object-cover hover:scale-95 transition duration-200 ease-in-out cursor-pointer'>
+              <div key={i} className='w-full lg:h-[221px] h-[100px] overflow-hidden rounded-lg flex items-center relative object-cover hover:scale-95 transition duration-200 ease-in-out cursor-pointer'>
                 <img src={e.pictureUrl} className='w-full min-h-full' />
                 <p className='absolute text-white font-montserrat font-bold lg:text-3xl top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50'>
                   {e.name}
