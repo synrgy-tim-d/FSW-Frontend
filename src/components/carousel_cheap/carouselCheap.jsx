@@ -16,8 +16,8 @@ import 'swiper/css/pagination';
 const CarouselCheap = () => {
   const kosResponse = useQuery({
     queryKey: ['kosMurah'],
-    queryFn: () =>
-      axios.get(
+    queryFn: async () =>
+      await axios.get(
         'https://be-naqos.up.railway.app/api/public/page?page=1&size=8&orderBy=id&orderType=desc',
       ),
   });
@@ -134,8 +134,8 @@ const CarouselCheap = () => {
         onSlideChange={() => console.log('slide change')}
         onSwiper={(swiper) => console.log(swiper)}
       >
-        {kosResponse.data.data.data.map((entry) => {
-          console.log(entry.rooms[0]?.pricePerMonthly);
+        {kosResponse?.data?.data.data.map((entry) => {
+          // console.log(entry.rooms[0]?.pricePerMonthly);
           return (
             <SwiperSlide key={entry.id}>
               <Link to={`/kos/${entry.id}/${entry.rooms[0]?.id}`}>
