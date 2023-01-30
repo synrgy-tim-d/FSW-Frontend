@@ -150,7 +150,7 @@ const Kostdata = () => {
                     Rincian alamat kos secara lengkap dan kode pos Rincian alamat kos secara lengkap
                     dan kode pos
                     <span className='text-[#000000]/[0.38] pl-2'>
-                      <Link to='/kos' >
+                      <Link to='/kos/:kosid/:roomid' >
                         ...selengkapnya
                       </Link>
                     </span>

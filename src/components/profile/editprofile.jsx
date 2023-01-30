@@ -22,7 +22,7 @@ const EditProfile = () => {
           </Link>
         </li>
       </ul>
-      <div className='w-screen grid grid-cols-6 grid-flow-col font-[Montserrat] items-center bg-[#FAFAFA] py-[7.4rem] '>
+      <div className='w-full grid grid-cols-6 grid-flow-col font-[Montserrat] items-center bg-[#FAFAFA] py-[7.4rem] '>
         <div className='col-span-2 grid grid-row-2 grid-flow-row justify-items-center content-center gap-16'>
           <div>
             <img className='w-full h-auto' src={profile} alt='' />

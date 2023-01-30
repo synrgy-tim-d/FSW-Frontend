@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Navbar from '../components/navbar/navbar';
+import Navbarsign from '../components/navbar/navbarnologin';
 import Footer from '../components/footer/footer';
 import {
   CollapseCheckbox,
@@ -15,6 +16,7 @@ import {
   fasilitasBersama,
 } from '../components/homepage/homepage-constants/Dropdown';
 import Kostdata from '../components/homepage/homepage-constants/Homepage-kost-data';
+import magnifier from '../assets/Banner2_Magnifier.png';
 
 const Homepage = () => {
   const title = ['Tipe Kos', 'Waktu Sewa', 'Urutkan', 'Fasilitas Kamar', 'Fasilitas Bersama'];
@@ -30,19 +32,37 @@ const Homepage = () => {
 
   return (
     <React.Fragment>
-      <Navbar />
-      <div className='w-screen font-[Montserrat] font-[400] text-[#000000] text-[16px] bg-[#FAFAFA] p-8'>
-        <div className='breadcrumb pl-8 pb-12'>
+      {localStorage.getItem('AUTH_TOKEN') === null ? <Navbarsign /> : <Navbar />}
+      <div className='w-full font-[Montserrat] font-[400] text-[#000000] text-[16px] bg-[#FAFAFA] p-8'>
+        <div className='flex space-x-4 px-4'>
+          <div className='flex space-x-4 w-full border-2 bg-white rounded-[4px] py-3'>
+            <img className='ml-4 pointer-events-none' src={magnifier} />
+            <input
+              className='w-full text-black text-[20px]'
+              type='search'
+              name=''
+              placeholder='Masukkan nama kota yang diinginkan'
+            />
+          </div>
+          <button
+            className='w- full bg-[#0A008A] px-10 text-white hover:bg-[#A0A3FF] hover:text-[#FFFFFF] active:bg-black font-[600] rounded-[4px]'
+            type='submit'
+            onClick=''
+          >
+            Cari
+          </button>
+        </div>
+        <div className='breadcrumb p-4 py-8'>
           <ul>
             <li>
-              <Link to='/' className='text-[20px] font-[600] hover:underline hover:text-[#0A008A]'>
+              <Link to='/' className='text-[24px] font-[600] hover:underline hover:text-[#0A008A]'>
                 Home
               </Link>
             </li>
             <li>
               <Link
                 to='/homepage'
-                className='text-[20px] font-[600] hover:underline hover:text-[#0A008A]'
+                className='text-[24px] font-[600] hover:underline hover:text-[#0A008A]'
               >
                 Cari Kos
               </Link>
@@ -62,7 +82,10 @@ const Homepage = () => {
               <CollapseRadio items={urutanHarga} buttonText={title[2]} />
               <CollapseCheckbox items={fasilitasKamar} buttonText={title[3]} />
               <CollapseCheckbox items={fasilitasBersama} buttonText={title[4]} />
-              <button onClick={submitHandle} className='w-full py-2 rounded-[4px] text-white bg-[#0A008A] hover:bg-[#A0A3FF] hover:text-[#FFFFFF] active:bg-black'>
+              <button
+                onClick={submitHandle}
+                className='w-full py-2 rounded-[4px] text-white bg-[#0A008A] hover:bg-[#A0A3FF] hover:text-[#FFFFFF] active:bg-black'
+              >
                 Terapkan Filter
               </button>
             </form>

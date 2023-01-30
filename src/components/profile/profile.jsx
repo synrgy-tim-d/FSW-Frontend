@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import profile from '../../assets/Profile.svg';
-import logout from '../../assets/Logout-img.svg'
+import logout from '../../assets/Logout-img.svg';
 
 const Password = ({ password }) => {
   const mask = '*'.repeat(password.length);
@@ -23,7 +23,7 @@ const Profile = () => {
           </Link>
         </li>
       </ul>
-      <div className='w-screen grid grid-cols-6 grid-flow-col font-[Montserrat] bg-[#FAFAFA]'>
+      <div className='w-full grid grid-cols-6 grid-flow-col font-[Montserrat] bg-[#FAFAFA]'>
         <div className='col-span-2 grid grid-row-2 grid-flow-row justify-items-center content-center gap-16'>
           <div>
             <img className='w-full h-auto' src={profile} alt='' />
@@ -91,10 +91,10 @@ const Profile = () => {
               </label>
             </div>
             <input type='checkbox' id='profile-modal' className='modal-toggle' />
-            <div className='modal'>
+            <div className='modal inset-0 z-0 bg-black/50'>
               <div className='modal-box bg-white p-16 rounded-[12px] text-[#000000] grid gap-4 shadow-2xl '>
                 <div className='logout-img justify-self-center pb-8'>
-                  <img src={ logout } alt="" />
+                  <img src={logout} alt='' />
                 </div>
                 <h3 className='font-bold text-lg text-center'>Apakah kamu yakin ingin keluar</h3>
                 <p className='text-center'>

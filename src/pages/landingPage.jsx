@@ -14,7 +14,6 @@ function LandingPage() {
   return (
     <div className='overflow-hidden'>
       {localStorage.getItem('AUTH_TOKEN') === null ? <Navbarsign /> : <Navbar />}
-
       <Banner />
       <Whyus />
       <Carousel />
