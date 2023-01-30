@@ -1,26 +1,23 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import LogoNaqos from '../../assets/LogoNaqosPolos.png';
 
 const Navbarsign = () => {
     return (
-    <div className='navbar bg-base-100'>
-        <div className='flex-1'>
+    <div className='navbar grid grid-cols-6 bg-[#FAFAFA] font-[Montserrat] font-[600]'>
+        <div className='cols-span-1 pl-4'>
             <a href='/landingPage'>
-                <img className='h-14' src='src/assets/LogoNaqosFix.png'></img>
+                <img className='w-full h-auto' src={ LogoNaqos }></img>
             </a>
         </div>
-
-        <div className='flex flex-wrap justify-end'>
-            {/* <button className='btn btn-outline'>Masuk</button> */}
-            {/* <button className='btn btn-active'>Daftar</button> */}
-            <Link to='/login' >
-                <button type='button' className='btn btn-outline'>
+        <div className='col-span-5 flex justify-end pr-4 space-x-6'>
+            <Link to='/login'>
+                <button type='button' className='btn btn-outline border-2 border-[#0A008A] rounded-[4px] text-[#0A008A] text-[16px] px-6 '>
                     Masuk
                 </button>
             </Link>
-
-            <Link to='/register' >
-                <button type='button' className='btn btn-active'>
+            <Link to='/register'>
+                <button type='button' className='btn btn-active text-[16px] bg-[#0A008A] text-white rounded-[4px] px-6'>
                     Daftar
                 </button>
             </Link>

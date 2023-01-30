@@ -9,7 +9,7 @@ const Navbar = () => {
   };
 
   return (
-    <div className='navbar grid grid-cols-6 bg-[#FAFAFA]'>
+    <div className='navbar grid grid-cols-6 bg-[#FAFAFA] font-[Montserrat] font-[400]'>
       <div className='col-span-1 pl-4'>
         <Link to='/'>
           <img className='w-full h-auto' src={LogoNaqos} />
