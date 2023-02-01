@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useMutation } from '@tanstack/react-query';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
@@ -8,7 +8,7 @@ import icongoogle from '../../assets/icon_google.svg';
 
 const SignUp = () => {
   const postRegister = useMutation((data) => {
-    return axios.post('https://be-naqos.up.railway.app/api/user-register/register', data);
+    return axios.post('https://be-naqos.up.railway.app/api/auth/register', data);
   });
 
   const [register, setRegister] = useState({
@@ -16,6 +16,7 @@ const SignUp = () => {
     username: '',
     phoneNumber: '',
     password: '',
+    role: 'PENYEWA',
   });
 
   const handleChange = (e) => {
@@ -45,7 +46,7 @@ const SignUp = () => {
         <img
           className='lg:mt-[70px] lg:w-[360px] lg:h-[163.72px] mt-[27px] w-[171px] h-[78px]'
           alt=''
-          src={ imglogo }
+          src={imglogo}
         />
       </div>
       <div className='flex flex-col justify-center mx-auto lg:mt-[48px] lg:w-[526px] mt-[18px]'>

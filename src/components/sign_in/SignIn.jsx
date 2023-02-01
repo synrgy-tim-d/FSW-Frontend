@@ -7,7 +7,6 @@ import imglogo from '../../assets/LogoNaqosFix.png';
 import iconeye from '../../assets/icon_eye-slash.svg';
 import icongoogle from '../../assets/icon_google.svg';
 
-
 const SignIn = () => {
   const navigate = useNavigate();
   const { register, handleSubmit } = useForm();
@@ -22,9 +21,10 @@ const SignIn = () => {
     };
 
     const responseAuth = await axios.post(appConfig.BE_AUTH_URL, loginAuthPayload);
-    localStorage.setItem('AUTH_TOKEN', responseAuth.data.access_token);
-
-    navigate('/dashboard');
+    localStorage.setItem('AUTH_TOKEN', responseAuth.data.data.access_token);
+    localStorage.setItem('REFRESH_TOKEN', responseAuth.data.data.refresh_token);
+    setIsDisabled(false);
+    navigate('/');
   };
 
   return (
@@ -34,7 +34,7 @@ const SignIn = () => {
           <img
             className='lg:mt-[70px] lg:w-[360px] lg:h-[163.72px] mt-[27px] w-[171px] h-[78px]'
             alt=''
-            src={ imglogo }
+            src={imglogo}
           />
         </div>
         <div className='flex flex-col justify-center mx-auto lg:mt-[48px] lg:w-[526px] mt-[18px]'>
@@ -73,19 +73,19 @@ const SignIn = () => {
             <button
               className='lg:w-[481px] lg:h-[43px] lg:text-[16px] w-[302px] h-[36px] text-[14px] bg-[#0A008A] rounded-[150px] outline-none font-[600] text-white hover:bg-[#A0A3FF] hover:text-[#0A008A] focus:bg-[#000000] focus:text-white focus:outline-none'
               type='submit'
-              disabled
+              disabled={isDisabled}
             >
-              Masuk
+              Loading ...
             </button>
           ) : (
-            <Link to='/'>
+            // <Link to='/'>
             <button
               className='lg:w-[481px] lg:h-[43px] lg:text-[16px] w-[302px] h-[36px] text-[14px] bg-[#0A008A] rounded-[150px] outline-none font-[600] text-white hover:bg-[#A0A3FF] hover:text-[#0A008A] focus:bg-[#000000] focus:text-white focus:outline-none'
               type='submit'
             >
               Masuk
             </button>
-            </Link>
+            // </Link>
           )}
         </div>
         <div className='flex flex-row justify-center lg:mt-[21px] mt-[5px]'>

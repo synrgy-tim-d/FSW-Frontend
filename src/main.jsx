@@ -11,8 +11,9 @@ import { Login, Register } from './pages/authPage';
 import { HistoryBooking, HistoryPayment, HistoryCancel, HistoryBookingPayNow, HistoryBookingPayUpload } from './pages/historyPage';
 import LandingPage from './pages/landingPage';
 import Wishlistpage from './pages/Wishlistpage';
-import Homepage from './pages/Homepage'
+import Homepage from './pages/Homepage';
 import Verif from './pages/verif';
+import Success from './components/verif/success';
 import Forget from './pages/forget';
 import Rinciankos from './pages/Rinciankos.jsx';
 import './index.css';
@@ -38,10 +39,11 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           <Route path='/history/booknow' element={<HistoryBookingPayNow />} />
           <Route path='/history/booknow/receipt' element={<HistoryBookingPayUpload />} />
           <Route path='/verif' element={<Verif />} />
-          <Route path='/forget' element={<Forget />} />
+          <Route path='/verif/success/:otp' element={<Success />} />
+          <Route path='/forget/:otp' element={<Forget />} />
           <Route path='/homepage' element={<Homepage />} />
           <Route path='/wishlist' element={<Wishlistpage />} />
-          <Route path='/kos' element={<Rinciankos />} />
+          <Route path='/kos/:kosid/:roomid' element={<Rinciankos />} />
         </Routes>
       </BrowserRouter>
     </QueryClientProvider>

@@ -12,29 +12,48 @@ import Formpemesanan from '../components/homepage/details-constants/Fasili/Formp
 import Bigimg from '../assets/Dummy-img-details/Big-img.svg';
 import Medimg from '../assets/Dummy-img-details/Med-img.svg';
 import Smallimg1 from '../assets/Dummy-img-details/Small-img1.svg';
-import Smallimg2 from '../assets/Dummy-img-details/Small-img1.svg';
+import Navbarsign from '../components/navbar/navbarnologin';
 import Navbar from '../components/navbar/navbar';
 import Footer from '../components/footer/footer';
+import magnifier from '../assets/Banner2_Magnifier.png';
 
 const Rinciankos = () => {
   return (
     <React.Fragment>
-      <div className='w-screen font-[Montserrat] font-[400] text-[#000000] text-[16px] p-8 bg-[#FAFAFA]'>
-        <Navbar />
-        <div className='breadcrumb pl-8 pb-12'>
+      {localStorage.getItem('AUTH_TOKEN') === null ? <Navbarsign /> : <Navbar />}
+      <div className='w-full font-[Montserrat] font-[400] text-[#000000] text-[16px] p-8 bg-[#FAFAFA]'>
+        <div className='flex space-x-4 px-4'>
+          <div className='flex space-x-4 w-full border-2 bg-white rounded-[4px] py-3'>
+            <img className='ml-4 pointer-events-none' src={magnifier} />
+            <input
+              className='w-full text-black text-[20px]'
+              type='search'
+              name=''
+              placeholder='Masukkan nama kota yang diinginkan'
+            />
+          </div>
+          <button
+            className='w- full bg-[#0A008A] px-10 text-white hover:bg-[#A0A3FF] hover:text-[#FFFFFF] active:bg-black font-[600] rounded-[4px]'
+            type='submit'
+            onClick=''
+          >
+            Cari
+          </button>
+        </div>
+        <div className='breadcrumb p-4 py-8'>
           <ul>
             <li>
-              <Link to='/' className='text-[20px] font-[600] hover:underline'>
+              <Link to='/' className='text-[24px] font-[600] hover:underline'>
                 Home
               </Link>
             </li>
             <li>
-              <Link to='/homepage' className='text-[20px] font-[600] hover:underline'>
+              <Link to='/homepage' className='text-[24px] font-[600] hover:underline'>
                 Cari Kos
               </Link>
             </li>
             <li>
-              <Link to='/kos' className='text-[20px] font-[600] hover:underline'>
+              <Link to='/kos/:kosid/:roomid' className='text-[24px] font-[600] hover:underline'>
                 Kos Alamanda
               </Link>
             </li>
@@ -54,7 +73,7 @@ const Rinciankos = () => {
                   <img className='w-full h-auto bg-yellow-500' src={Smallimg1} alt='' />
                 </div>
                 <div>
-                  <img className='w-full h-auto bg-yellow-500' src={Smallimg2} alt='' />
+                  <img className='w-full h-auto bg-yellow-500' src={Smallimg1} alt='' />
                 </div>
               </div>
             </div>
@@ -82,8 +101,8 @@ const Rinciankos = () => {
             </div>
           </div>
         </div>
-        <Footer />
       </div>
+      <Footer />
     </React.Fragment>
   );
 };

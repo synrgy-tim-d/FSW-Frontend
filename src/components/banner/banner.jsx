@@ -28,7 +28,7 @@ function Banner() {
                   />
                 </div>
                 <Link to='/homepage'>
-                  <button className='bg-[#0A008A] text-l lg:text-2xl text-white rounded w-full h-full py-1 lg:py-2 px-12 hover:bg-blue-600 active:bg-blue-700'>
+                  <button className='bg-[#0A008A] text-l lg:text-2xl text-white rounded w-full h-full py-1 lg:py-2 px-12 hover:bg-[#A0A3FF] hover:text-[#FFFFFF] active:bg-black'>
                     Cari
                   </button>
                 </Link>
