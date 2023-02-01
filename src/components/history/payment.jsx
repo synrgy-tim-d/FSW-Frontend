@@ -2,8 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import icondownload from '../../assets/icon_download.svg';
 import iconcompleted from '../../assets/icon_completed.svg';
+import iconarrowdown from '../../assets/icon_arrow-down.svg';
 
-const HistoryPay = () => {
+const PaymentHistory = () => {
   const [payments, setPayments] = useState([]);
 
   useEffect(() => {
@@ -43,11 +44,11 @@ const HistoryPay = () => {
   }, []);
 
   return (
-    <div className='pl-[70px] pt-[25px] font-[Montserrat]'>
+    <div className='lg:px-[70px] px-[20px] pt-[25px] font-[Montserrat] bg-[#FAFAFA]'>
       {/* --- Breadcrumb --- */}
       <div className='flex flex-row'>
         <nav className='flex' aria-label='Breadcrumb'>
-          <ol className='inline-flex items-center space-x-1 md:space-x-3'>
+          <ol className='inline-flex items-center space-x-1 lg:space-x-3'>
             <li className='inline-flex items-center'>
               <Link to='/'>
                 <p className='text-[20px] font-[600] text-[#000000] opacity-[.38] hover:text-[#0A008A] hover:underline hover:opacity-100'>
@@ -71,7 +72,7 @@ const HistoryPay = () => {
                   ></path>
                 </svg>
                 <Link to='/history'>
-                  <p className='ml-1 md:ml-2 text-[20px] font-[600] text-[#000000] opacity-[.38] hover:text-[#0A008A] hover:underline hover:opacity-100'>
+                  <p className='ml-1 lg:ml-2 text-[20px] font-[600] text-[#000000] opacity-[.38] hover:text-[#0A008A] hover:underline hover:opacity-100'>
                     Riwayat
                   </p>
                 </Link>
@@ -92,7 +93,7 @@ const HistoryPay = () => {
                     clipRule='evenodd'
                   ></path>
                 </svg>
-                <span className='ml-1 md:ml-2 text-[20px] font-[600] text-[#000000] opacity-[.38] hover:text-[#0A008A] hover:underline hover:opacity-100'>
+                <span className='ml-1 lg:ml-2 text-[20px] font-[600] text-[#000000] opacity-[.38] hover:text-[#0A008A] hover:underline hover:opacity-100'>
                   Pembayaran
                 </span>
               </div>
@@ -102,33 +103,35 @@ const HistoryPay = () => {
       </div>
 
       {/* --- Options & Content --- */}
-      <div className='flex flex-row'>
+
+      {/* --- DISPLAY PC ---- */}
+      <div className='lg:flex flex-row hidden'>
         {/* --- Options --- */}
-        <div className='flex flex-col text-black mt-[61px]'>
+        <div className='flex flex-col text-black mt-[61px] w-1/4'>
           <Link to='/history'>
             <p className='text-[#9b9b9b] hover:text-[#0A008A] text-[25px] font-[500] mb-[20px] text-left'>
               Pemesanan Kos
             </p>
           </Link>
-          <hr className='w-[350px] mb-[20px]'></hr>
+          <hr className='mb-[20px]'></hr>
           <Link to=''>
             <p className='text-[#9b9b9b] hover:text-[#0A008A] text-[25px] font-[500] mb-[20px] text-left'>
               Menunggu Konfirmasi
             </p>
           </Link>
-          <hr className='w-[350px] mb-[20px]'></hr>
+          <hr className='mb-[20px]'></hr>
           <Link to='/history/payment'>
             <p className='text-[#0A008A] hover:text-[#9b9b9b] text-[25px] font-[500] mb-[20px] text-left'>
               Pembayaran
             </p>
           </Link>
-          <hr className='w-[350px] mb-[20px]'></hr>
+          <hr className='mb-[20px]'></hr>
           <Link to='/history/cancellation'>
             <p className='text-[#9b9b9b] hover:text-[#0A008A] text-[25px] font-[500] mb-[20px] text-left'>
               Pembatalan
             </p>
           </Link>
-          <hr className='w-[350px] mb-[20px]'></hr>
+          <hr className='mb-[20px]'></hr>
         </div>
 
         {/* --- Content if Empty --- */}
@@ -151,7 +154,7 @@ const HistoryPay = () => {
         </div> */}
 
         {/* --- Content if there is Data --- */}
-        <div className='flex flex-col ml-[70px] mt-[61px] mb-[100px]'>
+        <div className='flex flex-col mx-[70px] mt-[61px] mb-[100px] w-3/4'>
           {payments.map((payment, index) => {
             return (
               <React.Fragment key={index}>
@@ -165,21 +168,21 @@ const HistoryPay = () => {
                         {payment.date}
                       </p>
                       <div className='flex flex-row cursor-pointer'>
-                        <img className='' alt='' src={ icondownload } />
+                        <img className='' alt='' src={icondownload} />
                         <p className='ml-2 text-[#46464F] opacity-[.38] text-[16px] font-[600]'>
                           Download bukti pembayaran
                         </p>
                       </div>
                     </div>
-                    <div className='flex flex-col ml-[450px] pt-[20px] pr-[15px]'>
+                    <div className='flex flex-col flex-1 pt-[20px] text-right'>
                       <h1 className='mb-2 text-[20px] font-[500]'>Rp {payment.price}</h1>
                       <div className='flex flex-row justify-end mr-[8px]'>
-                        <img className='' alt='' src={ iconcompleted } />
+                        <img className='' alt='' src={iconcompleted} />
                         <p className='text-[12px] font-[600] text-[#008A3F] ml-2 mt-1'>Completed</p>
                       </div>
                     </div>
                   </div>
-                  <hr className='w-[870px] mb-[30px]'></hr>
+                  <hr className='mb-[30px]'></hr>
                 </div>
               </React.Fragment>
             );
@@ -189,8 +192,106 @@ const HistoryPay = () => {
           </h1>
         </div>
       </div>
+
+      {/* --- DISPLAY MOBILE --- */}
+      <div className='flex flex-col lg:hidden'>
+        {/* --- Options --- */}
+        <div className='flex flex-col text-black mt-[20px]'>
+          <div className='dropdown'>
+            <label
+              tabIndex={0}
+              className='justify-between cursor-pointer inline-flex items-center w-full h-[48px] mb-[20px] px-4 p-0 bg-white border-2 border-[#0A008A] rounded-[8px] outline-none text-[25px] font-[500] text-[#0A008A] hover:bg-[#f3f4ff] hover:border-[#0A008A] hover:text-[#0A008A] active:bg-[#0A008A] active:text-white'
+            >
+              Navigasi Riwayat
+              <img className='' alt='' src={iconarrowdown} />
+            </label>
+            <ul
+              tabIndex={0}
+              className='dropdown-content mt-[-10px] menu py-0 px-0 shadow bg-base-100 rounded-box w-full drop-shadow-md'
+            >
+              <Link to='/history'>
+                <p className='text-[#9b9b9b] hover:text-[#0A008A] text-[20px] font-[500] m-[15px]'>
+                  Pemesanan Kos
+                </p>
+              </Link>
+              <hr className=''></hr>
+              <Link to=''>
+                <p className='text-[#9b9b9b] hover:text-[#0A008A] text-[20px] font-[500] m-[15px]'>
+                  Menunggu Konfirmasi
+                </p>
+              </Link>
+              <hr className=''></hr>
+              <Link to='/history/payment'>
+                <p className='text-[#0A008A] hover:text-[#0A008A] text-[20px] font-[500] m-[15px]'>
+                  Pembayaran
+                </p>
+              </Link>
+              <hr className=''></hr>
+              <Link to='/history/cancellation'>
+                <p className='text-[#9b9b9b] hover:text-[#0A008A] text-[20px] font-[500] m-[15px]'>
+                  Pembatalan
+                </p>
+              </Link>
+            </ul>
+          </div>
+        </div>
+
+        {/* --- Content if Empty --- */}
+        {/* <div className='flex flex-col text-center text-black ml-[80px] mt-[225px] mb-[100px]'>
+          <img
+            className='w-[127.4px] h-[193.91px] self-center mb-[39px]'
+            alt=''
+            src='src/assets/img_noPaymentHistory.png'
+          />
+          <h1 className='text-[31px] font-[600] mb-[20px] w-[558px]'>Belum ada pembayaran baru</h1>
+          <p className='text-[20px] font-[500] mb-[50px] w-[558px]'>
+            Yuk, segera lakukan pemesanan kos dan selesaikan pembayaran dengan mudah!
+          </p>
+          <button
+            className='border-0 bg-[#0A008A] self-center rounded-[150px] outline-none text-white font-[600] text-[16px] w-[419px] h-[43px] hover:bg-[#A0A3FF] hover:text-[#0A008A] focus:bg-black focus:text-white focus:outline-none'
+            type='submit'
+          >
+            Telurusi Kos
+          </button>
+        </div> */}
+
+        {/* --- Content if there is Data --- */}
+        <div className='flex flex-col mt-[10px] mb-[100px]'>
+          {payments.map((payment, index) => {
+            return (
+              <React.Fragment key={index}>
+                <div>
+                  <div className='flex flex-row pb-2 pt-2 justify-between text-black'>
+                    <div className='flex flex-col'>
+                      <h1 className='text-[16px] font-[600]'>Booking ID: {payment.bookId}</h1>
+                      <p className='text-[#4A4A4A] text-[12px] font-[400]'>{payment.date}</p>
+                      <div className='flex flex-row cursor-pointer mt-2'>
+                        <img className='w-[12px]' alt='' src={icondownload} />
+                        <p className='ml-2 text-[#46464F] opacity-[.38] text-[12px] font-[600]'>
+                          Download bukti pembayaran
+                        </p>
+                      </div>
+                    </div>
+                    <div className='flex flex-col'>
+                      <h1 className='text-[16px] font-[600]'>Rp {payment.price}</h1>
+                      <div className='flex flex-row justify-end'>
+                        <img className='w-[14px]' alt='' src={iconcompleted} />
+                        <p className='text-[12px] font-[600] text-[#008A3F] ml-2'>Completed</p>
+                      </div>
+                    </div>
+                  </div>
+                  <hr className='mb-[15px]'></hr>
+                </div>
+              </React.Fragment>
+            );
+          })}
+          <h1 className='text-center text-black text-[16px] font-[600] opacity-[.38]'>
+            Lihat lebih banyak lagi
+          </h1>
+        </div>
+      </div>
     </div>
   );
 };
 
-export default HistoryPay;
+export default PaymentHistory;

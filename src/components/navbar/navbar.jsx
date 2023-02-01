@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import LogoNaqos from '../../assets/LogoNaqosPolos.png'
+import LogoNaqos from '../../assets/LogoNaqosPolos.png';
 
 const Navbar = () => {
   return (
