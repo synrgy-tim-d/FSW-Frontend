@@ -1,15 +1,16 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import LogoNaqos from '../../assets/LogoNaqosPolos.png';
 
 const Navbar = () => {
   return (
-    <div className='w-screen navbar bg-base-100'>
-      <div className='flex-1'>
+    <div className='navbar grid grid-cols-6 bg-[#FAFAFA] font-montserrat font-[400]'>
+      <div className='col-span-1 pl-4'>
         <Link to='/'>
-          <img className='h-14' src='src/assets/LogoNaqosPolos.png'></img>
+          <img className='w-full h-auto' src={LogoNaqos} />
         </Link>
       </div>
-      <div className='flex-none'>
+      <div className='col-span-5 flex justify-end pr-4'>
         <ul className='menu menu-horizontal px-1 grid grid-flow-col gap-6 text-[#000000]/[0.38] text-[20px] '>
           <li>
             <a className='font-[600]'>Wishlist</a>
