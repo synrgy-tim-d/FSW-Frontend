@@ -20,7 +20,15 @@ const Navbar = () => {
             </Link>
           </li>
           <li>
-            <a className='font-[600]'>Notifikasi</a>
+            <label htmlFor='notification-modal' className='font-[600]'>Notifikasi</label>
+            <input type='checkbox' id='notification-modal' className='modal-toggle' />
+              <div className="modal">
+                <div className="modal-box bg-white relative">
+                  <label htmlFor="notification-modal" className="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
+                  <h3 className="text-lg font-bold">Notifikasi</h3>
+                  <p className="py-4">Belum ada notifikasi untuk kamu</p>
+                </div>
+              </div>
           </li>
           <li tabIndex={0}>
             <a className='font-[600]'>
