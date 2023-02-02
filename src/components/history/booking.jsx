@@ -24,7 +24,7 @@ const BookingHistory = () => {
         inDate: 'April 01, 23',
         outDate: 'April 30, 23',
         img: imageone,
-        btn: 'disabled',
+        btn: 'payment',
       },
       {
         id: 2,
@@ -67,7 +67,7 @@ const BookingHistory = () => {
   }, []);
 
   return (
-    <div className='lg:px-[70px] px-[20px] pt-[25px] font-[Montserrat] bg-[#FAFAFA]'>
+    <div className='lg:px-[70px] px-[20px] pt-[25px] font-[Montserrat] bg-[#FAFAFA] min-h-[700px]'>
       {/* --- Breadcrumb --- */}
       <div className='flex flex-row'>
         <nav className='flex' aria-label='Breadcrumb'>
@@ -126,127 +126,40 @@ const BookingHistory = () => {
       </div>
 
       {/* --- Options & Content --- */}
-
-      {/* ----- DISPLAY PC ----- */}
-      <div className='lg:flex flex-row hidden'>
+      <div className='flex flex-col lg:flex-row'>
         {/* --- Options --- */}
-        <div className='flex flex-col text-black mt-[61px] w-1/4'>
-          <Link to='/history'>
-            <p className='text-[#0A008A] hover:text-[#9b9b9b] text-[25px] font-[500] mb-[20px] text-left'>
-              Pemesanan Kos
-            </p>
-          </Link>
-          <hr className='mb-[20px]'></hr>
-          <Link to=''>
-            <p className='text-[#9b9b9b] hover:text-[#0A008A] text-[25px] font-[500] mb-[20px] text-left'>
-              Menunggu Konfirmasi
-            </p>
-          </Link>
-          <hr className='mb-[20px]'></hr>
-          <Link to='/history/payment'>
-            <p className='text-[#9b9b9b] hover:text-[#0A008A] text-[25px] font-[500] mb-[20px] text-left'>
-              Pembayaran
-            </p>
-          </Link>
-          <hr className='mb-[20px]'></hr>
-          <Link to='/history/cancellation'>
-            <p className='text-[#9b9b9b] hover:text-[#0A008A] text-[25px] font-[500] mb-[20px] text-left'>
-              Pembatalan
-            </p>
-          </Link>
-          <hr className='mb-[20px]'></hr>
-        </div>
-
-        {/* --- Content if Empty --- */}
-        {/* <div className='flex flex-col text-center text-black ml-[80px] mt-[181px] mb-[100px]'>
-          <img
-            className='w-[350px] h-[226.84px] self-center mb-[50px]'
-            alt=''
-            src='src/assets/img_noHistory.png'
-          />
-          <h1 className='text-[31px] font-[600] mb-[20px] w-[558px]'>
-            Riwayat pemesanan masih kosong
-          </h1>
-          <p className='text-[20px] font-[500] mb-[50px] w-[558px]'>
-            Kamu belum pernah melakukan pemesanan kos, yuk mulai cari kos idaman kamu!
-          </p>
-          <button
-            className='border-0 bg-[#0A008A] self-center rounded-[150px] outline-none text-white font-[600] text-[16px] w-[419px] h-[43px] hover:bg-[#A0A3FF] hover:text-[#0A008A] focus:bg-black focus:text-white focus:outline-none'
-            type='submit'
-          >
-            Telurusi Kos
-          </button>
-        </div> */}
-
-        {/* --- Content if there is Data --- */}
-        <div className='flex flex-col mx-[70px] mt-[61px] mb-[100px] w-3/4'>
-          {booking.map((booking, index) => {
-            let component = null;
-            switch (booking.btn) {
-              case 'disabled':
-                component = <ButtonDisabled />;
-                break;
-              case 'payment':
-                component = <ButtonPayment />;
-                break;
-              case 'review':
-                component = <ButtonReview />;
-                break;
-              default:
-                component = <ButtonDisabled />;
-            }
-            return (
-              <React.Fragment key={index}>
-                <div>
-                  <div className='flex flex-row py-[16px] text-black'>
-                    <img className='w-[200px] h-[142.58px] self-center' alt='' src={booking.img} />
-                    <div className='flex flex-col ml-[42.5px] text-left w-[265px]'>
-                      <h1 className='text-[20px] font-[600]'>{booking.name}</h1>
-                      <div className='flex flex-row'>
-                        <img className='' alt='' src={iconlocation} />
-                        <p className='text-[16px] font-[500] ml-2 mb-[4px] mt-1'>
-                          {booking.location.name}
-                        </p>
-                      </div>
-                      <p className='text-[16px] font-[500] mb-[12px]'>
-                        Booking ID: {booking.bookId}
-                      </p>
-                      <div className='flex flex-row'>
-                        <div className='flex flex-col text-center'>
-                          <p className='text-[12px] font-[400] mb-[4px]'>Check in</p>
-                          <p className='text-[16px] font-[400]'>{booking.inDate}</p>
-                        </div>
-                        <div className='flex flex-col mx-[12px] justify-center'>
-                          <img className='' alt='' src={iconarrowright} />
-                        </div>
-                        <div className='flex flex-col text-center'>
-                          <p className='text-[12px] font-[400] mb-[4px]'>Check out</p>
-                          <p className='text-[16px] font-[400]'>{booking.outDate}</p>
-                        </div>
-                      </div>
-                    </div>
-                    {component}
-                  </div>
-                  <hr className='w-full mb-[30px]'></hr>
-                </div>
-              </React.Fragment>
-            );
-          })}
-          <h1 className='text-center text-black text-[20px] font-[600] opacity-[.38]'>
-            Lihat lebih banyak lagi
-          </h1>
-        </div>
-      </div>
-
-
-      {/* ----- DISPLAY MOBILE ----- */}
-      <div className='flex flex-col lg:hidden'>
-        {/* --- Options --- */}
-        <div className='flex flex-col text-black mt-[20px]'>
-          <div className='dropdown'>
+        <div className='flex flex-col text-black mt-[20px] lg:mt-[60px] lg:w-1/4'>
+          <div className='hidden lg:block'>
+            <Link to='/history'>
+              <p className='text-[#0A008A] hover:text-[#9b9b9b] text-[25px] font-[500] mb-[20px] text-left'>
+                Pemesanan Kos
+              </p>
+            </Link>
+            <hr className='mb-[20px]'></hr>
+            <Link to='/history/confirmation'>
+              <p className='text-[#9b9b9b] hover:text-[#0A008A] text-[25px] font-[500] mb-[20px] text-left'>
+                Menunggu Konfirmasi
+              </p>
+            </Link>
+            <hr className='mb-[20px]'></hr>
+            <Link to='/history/payment'>
+              <p className='text-[#9b9b9b] hover:text-[#0A008A] text-[25px] font-[500] mb-[20px] text-left'>
+                Pembayaran
+              </p>
+            </Link>
+            <hr className='mb-[20px]'></hr>
+            <Link to='/history/cancellation'>
+              <p className='text-[#9b9b9b] hover:text-[#0A008A] text-[25px] font-[500] mb-[20px] text-left'>
+                Pembatalan
+              </p>
+            </Link>
+            <hr className='mb-[20px]'></hr>
+          </div>
+          {/* --- Dropdown Navigasi Mobile --- */}
+          <div className='dropdown lg:hidden'>
             <label
               tabIndex={0}
-              className='justify-between cursor-pointer inline-flex items-center w-full h-[48px] mb-[20px] px-4 p-0 bg-white border-2 border-[#0A008A] rounded-[8px] outline-none text-[25px] font-[500] text-[#0A008A] hover:bg-[#f3f4ff] hover:border-[#0A008A] hover:text-[#0A008A] active:bg-[#0A008A] active:text-white'
+              className='justify-between cursor-pointer inline-flex items-center w-full h-[48px] mb-[20px] px-4 p-0 bg-white border-2 border-[#0A008A] rounded-[8px] outline-none text-[20px] font-[500] text-[#0A008A] hover:bg-[#f3f4ff] hover:border-[#0A008A] hover:text-[#0A008A] active:bg-[#0A008A] active:text-white'
             >
               Navigasi Riwayat
               <img className='' alt='' src={iconarrowdown} />
@@ -261,7 +174,7 @@ const BookingHistory = () => {
                 </p>
               </Link>
               <hr className=''></hr>
-              <Link to=''>
+              <Link to='/history/confirmation'>
                 <p className='text-[#9b9b9b] hover:text-[#0A008A] text-[20px] font-[500] m-[15px]'>
                   Menunggu Konfirmasi
                 </p>
@@ -304,7 +217,7 @@ const BookingHistory = () => {
         </div> */}
 
         {/* --- Content if there is Data --- */}
-        <div className='flex flex-col mt-[10px] mb-[100px]'>
+        <div className='flex flex-col lg:mx-[70px] lg:mt-[60px] mt-[10px] mb-[100px] lg:w-3/4'>
           {booking.map((booking, index) => {
             let component = null;
             switch (booking.btn) {
@@ -323,41 +236,46 @@ const BookingHistory = () => {
             return (
               <React.Fragment key={index}>
                 <div>
-                  <div className='flex flex-row pb-2 pt-2 text-black'>
-                    <img className='w-[153px] self-center' alt='' src={booking.img} />
-                    <div className='flex flex-col ml-[20px] text-left w-[265px]'>
-                      <p className='text-[16px] font-[600]'>{booking.name}</p>
+                  <div className='flex flex-row py-2 lg:py-4 text-black'>
+                    <img className='w-[130px] lg:w-[200px] self-center' alt='' src={booking.img} />
+                    <div className='flex flex-col ml-[20px] lg:ml-[40px] text-left lg:w-[265px] space-y-[-5px] lg:space-y-0'>
+                      <h1 className='text-[14px] lg:text-[20px] font-[600]'>{booking.name}</h1>
                       <div className='flex flex-row'>
-                        <img className='w-[10px]' alt='' src={iconlocation} />
-                        <p className='text-[12px] font-[500] ml-1'>
+                        <img className='w-[10px] lg:w-auto' alt='' src={iconlocation} />
+                        <p className='text-[12px] lg:text-[16px] font-[500] ml-1 lg:ml-2 lg:my-1'>
                           {booking.location.name}
                         </p>
                       </div>
-                      <p className='text-[12px] font-[500]'>
+                      <p className='text-[12px] lg:text-[16px] font-[500] lg:mb-3'>
                         Booking ID: {booking.bookId}
                       </p>
                       <div className='flex flex-row'>
                         <div className='flex flex-col text-center'>
-                          <p className='text-[12px] font-[400]'>Check in</p>
-                          <p className='text-[12px] font-[600]'>{booking.inDate}</p>
+                          <p className='text-[10px] lg:text-[12px] font-[400] lg:mb-1'>Check in</p>
+                          <p className='text-[10px] lg:text-[16px] font-[600] lg:font-[400]'>
+                            {booking.inDate}
+                          </p>
                         </div>
-                        <div className='flex flex-col mx-[10px] justify-center'>
-                          <img className='' alt='' src={iconarrowright} />
+                        <div className='flex flex-col mx-[10px] lg:mx-[12px] justify-center'>
+                          <img className='w-[16px] lg:w-auto' alt='' src={iconarrowright} />
                         </div>
                         <div className='flex flex-col text-center'>
-                          <p className='text-[12px] font-[400]'>Check out</p>
-                          <p className='text-[12px] font-[600]'>{booking.outDate}</p>
+                          <p className='text-[10px] lg:text-[12px] font-[400] lg:mb-1'>Check out</p>
+                          <p className='text-[10px] lg:text-[16px] font-[600] lg:font-[400]'>
+                            {booking.outDate}
+                          </p>
                         </div>
                       </div>
                     </div>
+                    <div className='lg:flex flex-1 hidden'>{component}</div>
                   </div>
-                  {component}
-                  <hr className='w-full mb-[15px]'></hr>
+                  <div className='flex flex-1 lg:hidden'>{component}</div>
+                  <hr className='w-full mb-4 lg:mb-8'></hr>
                 </div>
               </React.Fragment>
             );
           })}
-          <h1 className='text-center text-black text-[16px] font-[600] opacity-[.38]'>
+          <h1 className='text-center text-black text-[16px] lg:text-[20px] font-[600] opacity-[.38]'>
             Lihat lebih banyak lagi
           </h1>
         </div>
@@ -366,7 +284,7 @@ const BookingHistory = () => {
       {/* --- Modal --- */}
       <input type='checkbox' id='my-modal' className='modal-toggle' />
       <div className='modal'>
-        <div className='modal-box lg:max-w-5xl lg:w-[895px] w-[600px] p-3 m-5 lg:p-0 rounded-[32px] bg-white drop-shadow-[4px_4px_8px_rgba(0,0,0,0.15)]'>
+        <div className='modal-box lg:max-w-5xl lg:w-[895px] w-full m-5 p-3 lg:p-0 rounded-[32px] bg-white drop-shadow-[4px_4px_8px_rgba(0,0,0,0.15)]'>
           <div className='flex flex-row justify-between mt-[20px] mx-[20px]'>
             <div className='w-[20px]'></div> {/* dummy */}
             <img className='w-[150px] h-[100px]' alt='' src={imagethree} />
@@ -390,14 +308,14 @@ const BookingHistory = () => {
             </div>
           </div>
           <div className='flex flex-row justify-center text-center mt-4 lg:mt-[30px]'>
-            <div className='lg:w-[695px] lg:h-[180px] w-[350px] rounded-[8px] bg-[#F2EFFF] py-[10px] lg:py-[18px]'>
+            <div className='lg:w-[695px] lg:h-[180px] w-full mx-5 lg:mx-0 rounded-[8px] bg-[#F2EFFF] px-3 py-3 lg:py-5'>
               <textarea
                 placeholder='Tambahkan komentar...'
-                className='lg:w-[650px] lg:h-[145px] w-[330px] h-[250px] rounded-[8px] px-3 py-2 focus:outline-none'
+                className='lg:max-w-[650px] lg:h-[145px] w-full h-[250px] rounded-[8px] px-3 py-2 focus:outline-none'
               />
             </div>
           </div>
-          <div className='flex flex-row justify-center my-4 lg:justify-end gap-3 lg:gap-5 lg:mr-[75px] lg:mt-[20px] lg:mb-[20px]'>
+          <div className='flex flex-row justify-center my-4 lg:justify-end gap-3 lg:gap-5 lg:mr-[100px] lg:mt-[20px] lg:mb-[20px]'>
             <label
               htmlFor='my-modal'
               className='cursor-pointer inline-flex items-center justify-center w-[133px] h-[33px] lg:w-[151px] lg:h-[43px] p-0 bg-white border-2 border-[#0A008A] self-end rounded-[4px] outline-none text-[16px] font-[600] text-[#0A008A] hover:bg-[#f3f4ff] hover:border-[#0A008A] hover:text-[#0A008A] active:bg-[#0A008A] active:text-white'

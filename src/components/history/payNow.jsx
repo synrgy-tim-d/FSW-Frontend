@@ -29,14 +29,14 @@ const PayNowHistory = () => {
   }, []);
 
   return (
-    <div className='lg:px-[70px] px-[20px] pt-[25px] font-[Montserrat] bg-[#FAFAFA]'>
+    <div className='lg:px-[70px] px-[20px] pt-[25px] font-[Montserrat] bg-[#FAFAFA] min-h-[700px]'>
       {/* --- Breadcrumb --- */}
       <div className='flex flex-row'>
         <nav className='flex' aria-label='Breadcrumb'>
           <ol className='inline-flex items-center space-x-1 md:space-x-3'>
             <li className='inline-flex items-center'>
               <Link to='/'>
-                <p className='text-[20px] font-[600] text-[#000000] opacity-[.38] hover:text-[#0A008A] hover:underline hover:opacity-100'>
+                <p className='text-[16px] lg:text-[20px] font-[600] text-[#000000] opacity-[.38] hover:text-[#0A008A] hover:underline hover:opacity-100'>
                   Home
                 </p>
               </Link>
@@ -57,7 +57,7 @@ const PayNowHistory = () => {
                   ></path>
                 </svg>
                 <Link to='/history'>
-                  <p className='ml-1 md:ml-2 text-[20px] font-[600] text-[#000000] opacity-[.38] hover:underline hover:text-[#0A008A] hover:opacity-100'>
+                  <p className='ml-1 md:ml-2 text-[16px] lg:text-[20px] font-[600] text-[#000000] opacity-[.38] hover:underline hover:text-[#0A008A] hover:opacity-100'>
                     Riwayat
                   </p>
                 </Link>
@@ -78,7 +78,7 @@ const PayNowHistory = () => {
                     clipRule='evenodd'
                   ></path>
                 </svg>
-                <span className='ml-1 md:ml-2 text-[20px] font-[600] text-[#000000] opacity-[.38] hover:text-[#0A008A] hover:underline hover:opacity-100'>
+                <span className='ml-1 md:ml-2 text-[16px] lg:text-[20px] font-[600] text-[#000000] opacity-[.38] hover:text-[#0A008A] hover:underline hover:opacity-100'>
                   Pemesanan Kos
                 </span>
               </div>
@@ -88,151 +88,40 @@ const PayNowHistory = () => {
       </div>
 
       {/* --- Options & Content --- */}
-
-      {/* --- DISPLAY PC --- */}
-      <div className='lg:flex flex-row hidden'>
+      <div className='flex flex-col lg:flex-row'>
         {/* --- Options --- */}
-        <div className='flex flex-col text-black mt-[61px] w-1/4'>
-          <Link to='/history'>
-            <p className='text-[#0A008A] hover:text-[#9b9b9b] text-[25px] font-[500] mb-[20px] text-left'>
-              Pemesanan Kos
-            </p>
-          </Link>
-          <hr className='mb-[20px]'></hr>
-          <Link to=''>
-            <p className='text-[#9b9b9b] hover:text-[#0A008A] text-[25px] font-[500] mb-[20px] text-left'>
-              Menunggu Konfirmasi
-            </p>
-          </Link>
-          <hr className='mb-[20px]'></hr>
-          <Link to='/history/payment'>
-            <p className='text-[#9b9b9b] hover:text-[#0A008A] text-[25px] font-[500] mb-[20px] text-left'>
-              Pembayaran
-            </p>
-          </Link>
-          <hr className='mb-[20px]'></hr>
-          <Link to='/history/cancellation'>
-            <p className='text-[#9b9b9b] hover:text-[#0A008A] text-[25px] font-[500] mb-[20px] text-left'>
-              Pembatalan
-            </p>
-          </Link>
-          <hr className='mb-[20px]'></hr>
-        </div>
-
-        <div className='flex flex-col mx-[70px] mt-[61px] mb-[100px] w-3/4'>
-          {histories.map((history, index) => {
-            return (
-              <React.Fragment key={index}>
-                <div>
-                  <div className='flex flex-row py-[16px] text-black'>
-                    <img className='w-[200px] h-[142.58px] self-center' alt='' src={history.img} />
-                    <div className='flex flex-col ml-[42.5px] text-left w-[265px]'>
-                      <h1 className='text-[20px] font-[600]'>{history.name}</h1>
-                      <div className='flex flex-row'>
-                        <img className='' alt='' src={iconlocation} />
-                        <p className='text-[16px] font-[500] ml-2 mb-[4px] mt-1'>
-                          {history.location.name}
-                        </p>
-                      </div>
-                      <p className='text-[16px] font-[500] mb-[12px]'>
-                        Booking ID: {history.bookId}
-                      </p>
-                      <div className='flex flex-row'>
-                        <div className='flex flex-col text-center'>
-                          <p className='text-[12px] font-[400] mb-[4px]'>Check in</p>
-                          <p className='text-[16px] font-[400]'>{history.inDate}</p>
-                        </div>
-                        <div className='flex flex-col mx-[12px] justify-center'>
-                          <img className='' alt='' src={iconarrowright} />
-                        </div>
-                        <div className='flex flex-col text-center'>
-                          <p className='text-[12px] font-[400] mb-[4px]'>Check out</p>
-                          <p className='text-[16px] font-[400]'>{history.outDate}</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <hr className='mb-[30px]'></hr>
-                </div>
-              </React.Fragment>
-            );
-          })}
-          <h1 className='mb-[20px] text-black text-[25px] font-[600]'>Rincian Pembayaran</h1>
-          <div className='mb-[50px] h-[210px] py-[28px] px-[40px] rounded-[16px] bg-[#e4e4fc] text-black'>
-            <div className='flex flex-row justify-between'>
-              <div className='flex flex-col'>
-                <p className='mb-[20px] text-[20px] font-[500]'>Harga kos</p>
-                <p className='mb-[20px] text-[20px] font-[500]'>Waktu sewa</p>
-              </div>
-              <div className='flex flex-col text-right'>
-                <p className='mb-[20px] text-[14px] font-[500]'>
-                  <strong className='text-[20px] font-[600]'>Rp300.000</strong>/minggu
-                </p>
-                <p className='mb-[20px] text-[20px] font-[500]'>1 minggu</p>
-              </div>
-            </div>
-            <hr className='mb-[20px] border-[1px] border-[#0A008A]'></hr>
-            <div className='flex flex-row justify-between'>
-              <div className='flex flex-col'>
-                <p className='text-[20px] font-[600]'>Total Pembayaran</p>
-              </div>
-              <div className='flex flex-col text-right'>
-                <p className='text-[20px] font-[600]'>Rp300.000</p>
-              </div>
-            </div>
+        <div className='flex flex-col text-black mt-[20px] lg:mt-[60px] lg:w-1/4'>
+          <div className='hidden lg:block'>
+            <Link to='/history'>
+              <p className='text-[#0A008A] hover:text-[#9b9b9b] text-[25px] font-[500] mb-[20px] text-left'>
+                Pemesanan Kos
+              </p>
+            </Link>
+            <hr className='mb-[20px]'></hr>
+            <Link to='/history/confirmation'>
+              <p className='text-[#9b9b9b] hover:text-[#0A008A] text-[25px] font-[500] mb-[20px] text-left'>
+                Menunggu Konfirmasi
+              </p>
+            </Link>
+            <hr className='mb-[20px]'></hr>
+            <Link to='/history/payment'>
+              <p className='text-[#9b9b9b] hover:text-[#0A008A] text-[25px] font-[500] mb-[20px] text-left'>
+                Pembayaran
+              </p>
+            </Link>
+            <hr className='mb-[20px]'></hr>
+            <Link to='/history/cancellation'>
+              <p className='text-[#9b9b9b] hover:text-[#0A008A] text-[25px] font-[500] mb-[20px] text-left'>
+                Pembatalan
+              </p>
+            </Link>
+            <hr className='mb-[20px]'></hr>
           </div>
-          <h1 className='mb-[20px] text-black text-[25px] font-[600]'>Bayar Melalui</h1>
-          <div className='dropdown'>
+          {/* --- Dropdown Navigasi Mobile --- */}
+          <div className='dropdown lg:hidden'>
             <label
               tabIndex={0}
-              className='justify-between cursor-pointer inline-flex items-center w-[294px] h-[48px] mb-[20px] px-4 p-0 bg-white border-2 border-[#0A008A] rounded-[8px] outline-none text-[20px] font-[500] text-black hover:bg-[#f3f4ff] hover:border-[#0A008A] hover:text-[#0A008A] active:bg-[#0A008A] active:text-white'
-            >
-              Transfer Bank
-              <img className='' alt='' src={iconarrowdown} />
-            </label>
-            <ul
-              tabIndex={0}
-              className='dropdown-content menu p-2 shadow bg-base-100 rounded-box w-[400px] drop-shadow-md'
-            >
-              <p className='m-[10px] text-[24px] font-[600]'>Opsi Bayar</p>
-              <hr></hr>
-              <div className='form-control mb-[5px] pt-[10px] pl-[10px]'>
-                <label className='label cursor-pointer'>
-                  <span className='text-[20x] font-[500]'>Transfer Bank</span>
-                  <input type='radio' name='payOption' className='radio' checked />
-                </label>
-              </div>
-              <div className='form-control pb-[10px] pl-[10px]'>
-                <label className='label cursor-pointer'>
-                  <span className='text-[20x] font-[500]'>Tunai</span>
-                  <input type='radio' name='payOption' className='radio' checked />
-                </label>
-              </div>
-            </ul>
-          </div>
-          <p className='mb-[80px] text-[16px] font-[400]'>
-            *Pastikan memilih opsi dengan benar sebab opsi yang telah dipilih tidak dapat dirubah,
-            setelah memilih opsi, segera lakukan pembayaran
-          </p>
-          <div className='text-center'>
-            <label
-              htmlFor='my-modal'
-              className='md:w-[400px] md:h-[43px] md:text-[16px] w-[362px] h-[36px] min-[393px]:text-[14px] cursor-pointer inline-flex items-center justify-center p-0 rounded-[150px] outline-none font-[600] bg-[#0A008A] text-white hover:bg-[#A0A3FF] hover:text-[#0A008A] active:bg-[#000000] active:text-white'
-            >
-              Bayar kos
-            </label>
-          </div>
-        </div>
-      </div>
-
-      {/* --- DISPLAY MOBILE --- */}
-      <div className='flex flex-col lg:hidden'>
-        {/* --- Options --- */}
-        <div className='flex flex-col text-black mt-[20px]'>
-          <div className='dropdown'>
-            <label
-              tabIndex={0}
-              className='justify-between cursor-pointer inline-flex items-center w-full h-[48px] mb-[20px] px-4 p-0 bg-white border-2 border-[#0A008A] rounded-[8px] outline-none text-[25px] font-[500] text-[#0A008A] hover:bg-[#f3f4ff] hover:border-[#0A008A] hover:text-[#0A008A] active:bg-[#0A008A] active:text-white'
+              className='justify-between cursor-pointer inline-flex items-center w-full h-[48px] mb-[20px] px-4 p-0 bg-white border-2 border-[#0A008A] rounded-[8px] outline-none text-[20px] font-[500] text-[#0A008A] hover:bg-[#f3f4ff] hover:border-[#0A008A] hover:text-[#0A008A] active:bg-[#0A008A] active:text-white'
             >
               Navigasi Riwayat
               <img className='' alt='' src={iconarrowdown} />
@@ -247,7 +136,7 @@ const PayNowHistory = () => {
                 </p>
               </Link>
               <hr className=''></hr>
-              <Link to=''>
+              <Link to='/history/confirmation'>
                 <p className='text-[#9b9b9b] hover:text-[#0A008A] text-[20px] font-[500] m-[15px]'>
                   Menunggu Konfirmasi
                 </p>
@@ -268,94 +157,107 @@ const PayNowHistory = () => {
           </div>
         </div>
 
-        <div className='flex flex-col mt-[10px] mb-[100px]'>
+        <div className='flex flex-col lg:mx-[70px] lg:mt-[60px] mt-[10px] mb-[100px] lg:w-3/4'>
           {histories.map((history, index) => {
             return (
               <React.Fragment key={index}>
                 <div>
-                  <div className='flex flex-row pb-2 pt-2 text-black'>
-                    <img className='w-[153px] self-center' alt='' src={history.img} />
-                    <div className='flex flex-col ml-[20px] text-left w-[265px]'>
-                      <h1 className='text-[16px] font-[600]'>{history.name}</h1>
+                  <div className='flex flex-row py-2 lg:py-4 text-black'>
+                    <img className='w-[130px] lg:w-[200px] self-center' alt='' src={history.img} />
+                    <div className='flex flex-col ml-[20px] lg:ml-[40px] text-left lg:w-[265px] space-y-[-5px] lg:space-y-0'>
+                      <h1 className='text-[14px] lg:text-[20px] font-[600]'>{history.name}</h1>
                       <div className='flex flex-row'>
-                        <img className='' alt='' src={iconlocation} />
-                        <p className='text-[12px] font-[500] ml-1'>{history.location.name}</p>
+                        <img className='w-[10px] lg:w-auto' alt='' src={iconlocation} />
+                        <p className='text-[12px] lg:text-[16px] font-[500] ml-1 lg:ml-2 lg:my-1'>
+                          {history.location.name}
+                        </p>
                       </div>
-                      <p className='text-[12px] font-[500]'>Booking ID: {history.bookId}</p>
+                      <p className='text-[12px] lg:text-[16px] font-[500] lg:mb-3'>
+                        Booking ID: {history.bookId}
+                      </p>
                       <div className='flex flex-row'>
                         <div className='flex flex-col text-center'>
-                          <p className='text-[12px] font-[400]'>Check in</p>
-                          <p className='text-[12px] font-[600]'>{history.inDate}</p>
+                          <p className='text-[10px] lg:text-[12px] font-[400] lg:mb-1'>Check in</p>
+                          <p className='text-[10px] lg:text-[16px] font-[600] lg:font-[400]'>
+                            {history.inDate}
+                          </p>
                         </div>
-                        <div className='flex flex-col mx-[10px] justify-center'>
-                          <img className='' alt='' src={iconarrowright} />
+                        <div className='flex flex-col mx-[10px] lg:mx-[12px] justify-center'>
+                          <img className='w-[16px] lg:w-auto' alt='' src={iconarrowright} />
                         </div>
                         <div className='flex flex-col text-center'>
-                          <p className='text-[12px] font-[400]'>Check out</p>
-                          <p className='text-[12px] font-[600]'>{history.outDate}</p>
+                          <p className='text-[10px] lg:text-[12px] font-[400] lg:mb-1'>Check out</p>
+                          <p className='text-[10px] lg:text-[16px] font-[600] lg:font-[400]'>
+                            {history.outDate}
+                          </p>
                         </div>
                       </div>
                     </div>
                   </div>
-                  <hr className='mb-[15px]'></hr>
+                  <hr className='mb-4 lg:mb-8'></hr>
                 </div>
               </React.Fragment>
             );
           })}
-          <h1 className='mb-3 text-black text-[20px] font-[600]'>Rincian Pembayaran</h1>
-          <div className='mb-3 py-[15px] px-[15px] rounded-[16px] bg-[#e4e4fc] text-black'>
-            <div className='flex flex-row justify-between'>
-              <div className='flex flex-col'>
-                <p className='mb-3 text-[16px] font-[500]'>Harga kos</p>
-                <p className='mb-3 text-[16px] font-[500]'>Waktu sewa</p>
+          <h1 className='mb-2 lg:mb-5 text-black text-[16px] lg:text-[25px] font-[600]'>
+            Rincian Pembayaran
+          </h1>
+          <div className='mb-4 lg:mb-10 p-4 lg:p-6 rounded-[16px] bg-[#e4e4fc] text-black'>
+            <div className='flex flex-row justify-between lg:mb-4'>
+              <div className='flex flex-col lg:space-y-1'>
+                <p className='mb-3 text-[14px] lg:text-[20px] font-[500]'>Harga kos</p>
+                <p className='mb-3 text-[14px] lg:text-[20px] font-[500]'>Waktu sewa</p>
               </div>
-              <div className='flex flex-col text-right'>
-                <p className='mb-3 text-[12px] font-[500]'>
-                  <strong className='text-[16px] font-[600]'>Rp300.000</strong>/minggu
+              <div className='flex flex-col text-right lg:space-y-1'>
+                <p className='mb-3 text-[10px] lg:text-[14px] font-[500]'>
+                  <strong className='text-[14px] lg:text-[20px] font-[600]'>Rp300.000</strong>
+                  /minggu
                 </p>
-                <p className='mb-3 text-[16px] font-[500]'>1 minggu</p>
+                <p className='mb-3 text-[14px] lg:text-[20px] font-[500]'>1 minggu</p>
               </div>
             </div>
-            <hr className='mb-3 border-[1px] border-[#0A008A]'></hr>
+            <hr className='mb-3 lg:mb-4 border-[1px] border-[#0A008A]'></hr>
             <div className='flex flex-row justify-between'>
               <div className='flex flex-col'>
-                <p className='text-[16px] font-[600]'>Total Pembayaran</p>
+                <p className='text-[14px] lg:text-[20px] font-[700]'>Total Pembayaran</p>
               </div>
               <div className='flex flex-col text-right'>
-                <p className='text-[16px] font-[600]'>Rp300.000</p>
+                <p className='text-[14px] lg:text-[20px] font-[700]'>Rp300.000</p>
               </div>
             </div>
           </div>
-          <h1 className='mb-3 text-black text-[20px] font-[600]'>Bayar Melalui</h1>
-          <div className='dropdown'>
+          <h1 className='mb-3 lg:mb-5 text-black text-[16px] lg:text-[25px] font-[600]'>
+            Bayar Melalui
+          </h1>
+          <div className='dropdown lg:mx-0 mb-3 lg:mb-5'>
             <label
               tabIndex={0}
-              className='justify-between cursor-pointer inline-flex items-center w-[300px] h-[48px] mb-3 px-4 p-0 bg-white border-2 border-[#0A008A] rounded-[8px] outline-none text-[20px] font-[500] text-black hover:bg-[#f3f4ff] hover:border-[#0A008A] hover:text-[#0A008A] active:bg-[#0A008A] active:text-white'
+              className='justify-between cursor-pointer inline-flex items-center w-full max-w-[300px] h-[38px] lg:h-[48px] px-4 p-0 bg-white border-2 border-[#0A008A] rounded-[8px] outline-none text-[16px] lg:text-[20px] font-[500] text-black hover:bg-[#f3f4ff] hover:border-[#0A008A] hover:text-[#0A008A] active:bg-[#0A008A] active:text-white'
             >
               Transfer Bank
               <img className='' alt='' src={iconarrowdown} />
             </label>
             <ul
               tabIndex={0}
-              className='dropdown-content menu p-2 shadow bg-base-100 rounded-box w-[300px] drop-shadow-md'
+              className='dropdown-content menu mt-2 p-2 shadow bg-base-100 rounded-box w-full max-w-[300px] drop-shadow-md'
             >
-              <p className='m-[10px] text-[20px] font-[600]'>Opsi Bayar</p>
+              <p className='m-[10px] text-[16px] lg:text-[20px] font-[600]'>Opsi Bayar</p>
               <hr></hr>
               <div className='form-control mb-[5px] pt-[10px] pl-[10px]'>
                 <label className='label cursor-pointer'>
-                  <span className='text-[20x] font-[500]'>Transfer Bank</span>
+                  <span className='text-[16px] lg:text-[20px] font-[500]'>Transfer Bank</span>
                   <input type='radio' name='payOption' className='radio' checked />
                 </label>
               </div>
               <div className='form-control pb-[10px] pl-[10px]'>
                 <label className='label cursor-pointer'>
-                  <span className='text-[20x] font-[500]'>Tunai</span>
+                  <span className='text-[16px] lg:text-[20px] font-[500]'>Tunai</span>
                   <input type='radio' name='payOption' className='radio' checked />
                 </label>
               </div>
             </ul>
           </div>
-          <p className='mb-[40px] text-[12px] font-[400]'>
+          <p className='mb-10 text-[12px] lg:text-[16px] font-[400]'>
             *Pastikan memilih opsi dengan benar sebab opsi yang telah dipilih tidak dapat dirubah,
             setelah memilih opsi, segera lakukan pembayaran
           </p>
@@ -381,11 +283,11 @@ const PayNowHistory = () => {
               <img className='lg:mt-[-35px] cursor-pointer' alt='' src={iconclose} />
             </label>
           </div>
-          <div className='flex flex-col justify-center items-center'>
-            <h3 className='mb-1 lg:mb-[20px] text-[18px] lg:text-[25px] font-[700] lg:font-[600]'>
+          <div className='flex flex-col justify-center items-center mt-4'>
+            <h3 className='mb-1 lg:mb-[20px] text-[16px] lg:text-[25px] font-[700] lg:font-[600]'>
               Apakah metode pembayaran benar?
             </h3>
-            <p className='mb-3 lg:mb-[30px] text-[14px] lg:text-[16px] font-[500] lg:w-[450px] text-center'>
+            <p className='mb-3 lg:mb-[30px] text-[12px] lg:text-[16px] font-[500] lg:w-[450px] text-center'>
               Periksa lagi pesananmu! opsi pembayaran yang sudah dipilih sudah tidak dapat dirubah
             </p>
           </div>
