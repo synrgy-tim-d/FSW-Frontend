@@ -2,8 +2,39 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import image from '../../../assets/Homepage-Kos1.svg';
 
+// Like Button
+const LikeButton = (props) => {
+  const [isFilled, setIsFilled] = useState(false);
+  const handleClick = () => {
+    setIsFilled(!isFilled);
+  };
+
+  return (
+    <button onClick={handleClick} className='flex items-center justify-center'>
+      <svg
+        className={`w-4 h-4 lg:w-6 lg:h-6 ${isFilled ? 'fill-black' : 'fill-none'}`}
+        viewBox='0 0 24 24'
+        xmlns='http://www.w3.org/2000/svg'
+      >
+        <path
+          d='M21 8.25C21 5.76472 18.9013 3.75 16.3125 3.75C14.3769 3.75 12.7153 4.87628 12 6.48342C11.2847 4.87628 9.62312 3.75 7.6875 3.75C5.09867 3.75 3 5.76472 3 8.25C3 15.4706 12 20.25 12 20.25C12 20.25 21 15.4706 21 8.25Z'
+          stroke='#3C3C3C'
+          strokeWidth='1.5'
+          strokeLinecap='round'
+          strokeLinejoin='round'
+        />
+      </svg>
+    </button>
+  );
+};
+
 const Kostdata = () => {
   const [kosts, setKosts] = useState([]);
+  const [selectedIndex, setSelectedIndex] = useState(-1);
+  const handleClick = (index) => {
+    setSelectedIndex(index);
+  };
+
   useEffect(() => {
     const kostList = [
       {
@@ -19,7 +50,7 @@ const Kostdata = () => {
         },
         facilities: [
           {
-            name: 'Wi-Fi',
+            name: 'Wifi',
           },
           {
             name: 'AC',
@@ -107,7 +138,7 @@ const Kostdata = () => {
   }, []);
 
   return (
-    <div className='text-[20px] font-[Montserrat] text-[#000000] col-span-3 grid grid-cols-auto auto-rows-max gap-8 px-4'>
+    <div className='text-[10px] md:text-[16px] lg:text-[20px] font-[Montserrat] text-[#000000] col-span-3 grid grid-cols-auto auto-rows-max gap-8 md:px-2 lg:px-4'>
       {kosts.map((kost, index) => {
         return (
           <React.Fragment key={index}>
@@ -115,44 +146,36 @@ const Kostdata = () => {
               <div className='col-span-1 rounded-[16px]'>
                 <img className='w-full h-auto' src={image} alt='' />
               </div>
-              <div className='col-span-2 grid grid-rows-auto grid-flow-row gap-2 p-4'>
+              <div className='col-span-2 grid grid-rows-auto grid-flow-row md:gap-2 pl-2 md:p-4'>
                 <div className='grid grid-flow-col'>
-                  <div className='grid grid-cols-auto grid-flow-col auto-cols-max content-center'>
-                    <div className='w-[85px] border-2 border-[#0A008A] rounded-[150px] flex justify-center text-[16px] font-[600]'>
+                  <div className='grid grid-cols-auto md:grid-flow-col auto-cols-max content-center'>
+                    <div
+                      className='py-[0.1rem] md:p-[0.375rem] 
+                    lg:p-2 border-2 border-[#0A008A] rounded-[150px] md:flex justify-center 
+                    text-[12px] lg:text-[16px] font-[600] leading-none
+                    hidden '
+                    >
                       {kost.type}
                     </div>
-                    <span className='text-[#BA1A1A] italic pl-2 self-center'>
+                    <span className='text-[#BA1A1A] italic md:pl-2 self-center'>
                       sisa {kost.room} kamar
                     </span>
                   </div>
                   <div className='flex justify-end self-center pr-4'>
-                    <svg
-                      width='24'
-                      height='24'
-                      viewBox='0 0 24 24'
-                      fill='none'
-                      xmlns='http://www.w3.org/2000/svg'
-                    >
-                      <path
-                        d='M21 8.25C21 5.76472 18.9013 3.75 16.3125 3.75C14.3769 3.75 12.7153 4.87628 12 6.48342C11.2847 4.87628 9.62312 3.75 7.6875 3.75C5.09867 3.75 3 5.76472 3 8.25C3 15.4706 12 20.25 12 20.25C12 20.25 21 15.4706 21 8.25Z'
-                        stroke='#3C3C3C'
-                        strokeWidth='1.5'
-                        strokeLinecap='round'
-                        strokeLinejoin='round'
-                      />
-                    </svg>
+                    <LikeButton
+                      key={index}
+                      onClick={() => handleClick(index)}
+                      isFilled={selectedIndex === index}
+                    />
                   </div>
                 </div>
 
                 <div className='grid grid-rows-auto'>
-                  <p>{kost.name}</p>
-                  <p>
-                    Rincian alamat kos secara lengkap dan kode pos Rincian alamat kos secara lengkap
-                    dan kode pos
-                    <span className='text-[#000000]/[0.38] pl-2'>
-                      <Link to='/kos/:kosid/:roomid' >
-                        ...selengkapnya
-                      </Link>
+                  <p className='font-[600]'>{kost.name}</p>
+                  <p className='text-[9px] md:text-[16px] lg:text-[20px] leading-none'>
+                    Rincian alamat kos secara lengkap dan kode pos
+                    <span className='text-[#000000]/[0.38] pl-2 hidden md:inline'>
+                      <Link to='/kos/:kosid/:roomid'>...selengkapnya</Link>
                     </span>
                   </p>
                 </div>
@@ -174,7 +197,7 @@ const Kostdata = () => {
                   </span>
                   <p className='font-[500]'>
                     {kost.review}
-                    <span className='italic pl-1 text-[12px]'>(7 reviews)</span>
+                    <span className='italic pl-1 text-[10px] lg:text-[12px]'>(7 reviews)</span>
                   </p>
                   <span className='self-center'>
                     <svg
@@ -195,8 +218,8 @@ const Kostdata = () => {
                   <p className='font-[500]'>{kost.location.name}</p>
                 </div>
 
-                <div className='grid grid-flow-col'>
-                  <div className='grid grid-flow-col auto-cols-max gap-4 text-[#0A008A] font-[600]'>
+                <div className='grid lg:grid-cols-2 grid-flow-col'>
+                  <div className='hidden lg:grid col-span-1 grid-flow-col auto-cols-max gap-4 text-[#0A008A] font-[600]'>
                     {kost.facilities.map((facility, index) => {
                       return (
                         <React.Fragment key={index}>
@@ -207,10 +230,12 @@ const Kostdata = () => {
                       );
                     })}
                   </div>
-                  <div className='flex justify-end'>
-                    <p className='text-[20px] font-[700]'>
+                  <div className='lg:col-span-1 flex justify-start lg:justify-end'>
+                    <p className='font-[700] lg:pl-8'>
                       Rp {kost.price}
-                      <span className='text-[16px] font-[400]'>/bulan</span>
+                      <span className='text-[10px] md:text-[14px] lg:text-[16px] font-[400]'>
+                        /bulan
+                      </span>
                     </p>
                   </div>
                 </div>

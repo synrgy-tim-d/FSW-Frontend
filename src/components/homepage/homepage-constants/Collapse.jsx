@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 
 export const CollapseCheckboxType = ({ items, buttonText }) => {
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className='w-full bg-white px-6 rounded-[8px] py-2'>
+    <div className='absolute lg:relative w-full bg-white px-6 rounded-[8px] py-2'>
       <button
         type='button'
         onClick={() => setIsOpen(!isOpen)}
-        className='text-[#46464F]/[0.38] text-[20px] font-[600] w-full text-start 
+        className='text-[#46464F]/[0.38] text-[20px] font-[600] w-full text-center lg:text-start 
         hover:border-none active:border-none'
       >
         {buttonText}
@@ -36,14 +36,14 @@ export const CollapseCheckboxType = ({ items, buttonText }) => {
 };
 
 export const CollapseCheckbox = ({ items, buttonText }) => {
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
     <div className='w-full bg-white px-6 rounded-[8px] py-2'>
       <button
         type='button'
         onClick={() => setIsOpen(!isOpen)}
-        className='text-[#46464F]/[0.38] text-[20px] font-[600] w-full text-start 
+        className='text-[#46464F]/[0.38] text-[20px] font-[600] w-full text-center lg:text-start 
         hover:border-none active:border-none'
       >
         {buttonText}
@@ -71,14 +71,14 @@ export const CollapseCheckbox = ({ items, buttonText }) => {
 };
 
 export const CollapseRadio = ({ items, buttonText }) => {
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className='w-full bg-white px-6 rounded-[8px] py-2'>
+    <div className='w-full h-auto bg-white px-6 rounded-[8px] py-2'>
       <button
         type='button'
         onClick={() => setIsOpen(!isOpen)}
-        className='text-[#46464F]/[0.38] text-[20px] font-[600] w-full text-start bg-white 
+        className='text-[#46464F]/[0.38] text-[20px] font-[600] w-full text-center lg:text-start
         hover:border-none active:border-none'
       >
         {buttonText}
