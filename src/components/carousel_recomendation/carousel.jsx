@@ -1,4 +1,3 @@
-// import React from 'react';
 import Card from './card';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Link } from 'react-router-dom';
@@ -140,19 +139,15 @@ const Carousel = () => {
         // onSwiper={(swiper) => console.log(swiper)}
       >
         {kosResponse?.data?.data.data.map((entry) => {
-          // console.log(entry.rooms[0]?.pricePerMonthly);
           return (
             <SwiperSlide key={entry.id}>
               <Link to={`/kos/${entry.id}/${entry.rooms[0]?.id}`}>
                 <Card
                   name={entry.name}
-                  pictureUrl={
-                    entry.imageKosts[0].url
-                    // 'https://res.cloudinary.com/duvswri22/image/upload/v1674287150/dillon-kydd-XGvwt544g8k-unsplash_1_muclim.jpg'
-                  }
-                  type={entry.kostType}
+                  pictureUrl={entry.imageKosts[0].url}
+                  type={entry.kostType.slice(4)}
                   rate={0}
-                  details={entry.address}
+                  details={`${entry.address}, ${entry.district}, ${entry.subdistrict}, ${entry.city.city}, ${entry.city.province.province} (${entry.postalCode})`}
                   location={entry.city.city}
                   price={entry.rooms[0]?.pricePerMonthly ?? 10}
                 />
