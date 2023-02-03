@@ -1,3 +1,5 @@
+// import React from 'react';
+import { useState, useEffect } from 'react';
 import Card from './card';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Link } from 'react-router-dom';
@@ -12,32 +14,48 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 
 const Carousel = () => {
-  const showDrop = (event) => {
-    event.preventDefault();
-    const tag = event.currentTarget.id + 'Item';
-    console.log(event.currentTarget.id);
-    const tagged = document.getElementById(tag);
-    tagged.classList.contains('hidden')
-      ? tagged.classList.remove('hidden')
-      : tagged.classList.add('hidden');
+  // const showDrop = (event) => {
+  //   event.preventDefault();
+  //   const tag = event.currentTarget.id + 'Item';
+  //   console.log(event.currentTarget.id);
+  //   const tagged = document.getElementById(tag);
+  //   tagged.classList.contains('hidden')
+  //     ? tagged.classList.remove('hidden')
+  //     : tagged.classList.add('hidden');
+  // };
+
+  // const changePlace = (event, target) => {
+  //   event.preventDefault();
+  //   // const tag = event.currentTarget.id;
+  //   setPlace(event.target.id);
+  //   const tagged = document.getElementById(place);
+  //   const taggedText = tagged.innerText;
+  //   const targeted = document.getElementById(target);
+  //   targeted.innerText = taggedText;
+  //   document.getElementById('dropItem').classList.add('hidden');
+  // };
+
+  const [place, setPlace] = useState('Bekasi');
+  const [isClosed, setIsClosed] = useState(true);
+
+  const changePlace = (event) => {
+    setPlace(event.target.id);
+    toggle();
   };
-  const changePlace = (event, target) => {
-    event.preventDefault();
-    const tag = event.currentTarget.id;
-    const tagged = document.getElementById(tag);
-    const taggedText = tagged.innerText;
-    const targeted = document.getElementById(target);
-    targeted.innerText = taggedText;
-    document.getElementById('dropItem').classList.add('hidden');
-  };
+
+  const toggle = () => setIsClosed(!isClosed);
 
   const kosResponse = useQuery({
     queryKey: ['kos'],
     queryFn: async () =>
       await axios.get(
-        'https://be-naqos.up.railway.app/api/public/page?page=1&size=8&orderBy=id&orderType=desc',
+        `https://be-naqos.up.railway.app/api/public/by-city-2/${place}?page=1&size=10&orderBy=id&orderType=desc`,
       ),
   });
+
+  useEffect(() => {
+    kosResponse.refetch();
+  }, [place]);
 
   if (kosResponse?.isLoading) {
     return <div>Loading...</div>;
@@ -52,69 +70,73 @@ const Carousel = () => {
           </h1>
           <div className='bg-[#FFBA2C] flex items-center px-1 lg:px-5 py-2 lg:py-4 rounded-full space-x-2'>
             <div className='font-montserrat font-bold text-xs lg:text-xl' id='location'>
-              Bekasi
+              {place}
             </div>
-            <button id='drop' onClick={(event) => showDrop(event)}>
+            <button id='drop' onClick={toggle}>
               <img src={Dropdown} />
             </button>
           </div>
           <div
-            className='bg-white absolute z-40 left-[8rem] lg:left-[29rem] mt-[23rem] lg:mt-[30rem] font-montserrat font-bold text-center drop-shadow-md text-sm hidden'
+            className={
+              isClosed
+                ? 'bg-white absolute z-40 left-[8rem] lg:left-[29rem] mt-[23rem] lg:mt-[30rem] font-montserrat font-bold text-center drop-shadow-md text-sm hidden'
+                : 'bg-white absolute z-40 left-[8rem] lg:left-[29rem] mt-[23rem] lg:mt-[30rem] font-montserrat font-bold text-center drop-shadow-md text-sm'
+            }
             id='dropItem'
           >
             <div
               className='px-20 lg:px-28 py-2 lg:py-3 hover:bg-[#FFDEAA] hover:cursor-pointer'
               onClick={(event) => changePlace(event, 'location')}
-              id='jakarta'
+              id='Jakarta'
             >
               Jakarta
             </div>
             <div
               className='px-20 lg:px-28 py-2 lg:py-3 hover:bg-[#FFDEAA] hover:cursor-pointer'
               onClick={(event) => changePlace(event, 'location')}
-              id='bandung'
+              id='Bandung'
             >
               Bandung
             </div>
             <div
               className='px-20 lg:px-28 py-2 lg:py-3 hover:bg-[#FFDEAA] hover:cursor-pointer'
               onClick={(event) => changePlace(event, 'location')}
-              id='surabaya'
+              id='Surabaya'
             >
               Surabaya
             </div>
             <div
               className='px-20 lg:px-28 py-2 lg:py-3 hover:bg-[#FFDEAA] hover:cursor-pointer'
               onClick={(event) => changePlace(event, 'location')}
-              id='bekasi'
+              id='Bekasi'
             >
               Bekasi
             </div>
             <div
               className='px-20 lg:px-28 py-2 lg:py-3 hover:bg-[#FFDEAA] hover:cursor-pointer'
               onClick={(event) => changePlace(event, 'location')}
-              id='tanggerang'
+              id='Tanggerang'
             >
               Tanggerang
             </div>
             <div
               className='px-20 lg:px-28 py-2 lg:py-3 hover:bg-[#FFDEAA] hover:cursor-pointer'
               onClick={(event) => changePlace(event, 'location')}
-              id='depok'
+              id='Depok'
             >
               Depok
             </div>
             <div
               className='px-20 lg:px-28 py-2 lg:py-3 hover:bg-[#FFDEAA] hover:cursor-pointer'
               onClick={(event) => changePlace(event, 'location')}
-              id='semarang'
+              id='Semarang'
             >
               Semarang
             </div>
             <div
               className='px-20 lg:px-28 py-2 lg:py-3 hover:bg-[#FFDEAA] hover:cursor-pointer'
               onClick={(event) => changePlace(event, 'location')}
-              id='bogor'
+              id='Bogor'
             >
               Bogor
             </div>
