@@ -12,7 +12,7 @@ const LikeButton = (props) => {
   return (
     <button onClick={handleClick} className='flex items-center justify-center'>
       <svg
-        className={`w-4 h-4 lg:w-6 lg:h-6 ${isFilled ? 'fill-black' : 'fill-none'}`}
+        className={`w-3 md:w-6 h-3 md:h-6 ${isFilled ? 'fill-black' : 'fill-none'}`}
         viewBox='0 0 24 24'
         xmlns='http://www.w3.org/2000/svg'
       >
@@ -138,22 +138,24 @@ const Kostdata = () => {
   }, []);
 
   return (
-    <div className='text-[10px] md:text-[16px] lg:text-[20px] font-[Montserrat] text-[#000000] col-span-3 grid grid-cols-auto auto-rows-max gap-8 md:px-2 lg:px-4'>
+    <div className='text-[10px] sm:text-[14px] md:text-[18px] lg:text-[20px] font-[Montserrat] text-[#000000] col-span-3 grid grid-cols-auto auto-rows-max gap-8 md:px-2 lg:px-4'>
       {kosts.map((kost, index) => {
         return (
           <React.Fragment key={index}>
             <div className='grid grid-cols-3 grid-flow-col bg-white rounded-[16px]'>
-              <div className='col-span-1 rounded-[16px]'>
-                <img className='w-full h-auto' src={image} alt='' />
-              </div>
-              <div className='col-span-2 grid grid-rows-auto grid-flow-row md:gap-2 pl-2 md:p-4'>
+              <Link to='/kos/:kosid/:roomid'>
+                <div className='col-span-1 rounded-[16px]'>
+                  <img className='w-full h-auto' src={image} alt='' />
+                </div>
+              </Link>
+              <div className='col-span-2 grid grid-rows-auto grid-flow-row md:gap-1 sm:auto-rows-auto pl-2 md:p-4'>
                 <div className='grid grid-flow-col'>
                   <div className='grid grid-cols-auto md:grid-flow-col auto-cols-max content-center'>
                     <div
                       className='py-[0.1rem] md:p-[0.375rem] 
                     lg:p-2 border-2 border-[#0A008A] rounded-[150px] md:flex justify-center 
                     text-[12px] lg:text-[16px] font-[600] leading-none
-                    hidden '
+                    hidden'
                     >
                       {kost.type}
                     </div>
@@ -172,7 +174,7 @@ const Kostdata = () => {
 
                 <div className='grid grid-rows-auto'>
                   <p className='font-[600]'>{kost.name}</p>
-                  <p className='text-[9px] md:text-[16px] lg:text-[20px] leading-none'>
+                  <p className='text-[10px] sm:text-[14px] md:text-[18px] lg:text-[20px] leading-none'>
                     Rincian alamat kos secara lengkap dan kode pos
                     <span className='text-[#000000]/[0.38] pl-2 hidden md:inline'>
                       <Link to='/kos/:kosid/:roomid'>...selengkapnya</Link>
@@ -195,9 +197,9 @@ const Kostdata = () => {
                       />
                     </svg>
                   </span>
-                  <p className='font-[500]'>
+                  <p className='text-[10px] md:text-[12px] lg:text-[14px] font-[500]'>
                     {kost.review}
-                    <span className='italic pl-1 text-[10px] lg:text-[12px]'>(7 reviews)</span>
+                    <span className='italic pl-1'>(7 reviews)</span>
                   </p>
                   <span className='self-center'>
                     <svg
@@ -215,7 +217,9 @@ const Kostdata = () => {
                       />
                     </svg>
                   </span>
-                  <p className='font-[500]'>{kost.location.name}</p>
+                  <p className='text-[10px] md:text-[12px] lg:text-[14px] font-[500]'>
+                    {kost.location.name}
+                  </p>
                 </div>
 
                 <div className='grid lg:grid-cols-2 grid-flow-col'>
