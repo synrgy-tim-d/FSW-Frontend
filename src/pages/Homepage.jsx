@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { Link, useSearchParams } from 'react-router-dom';
 import Navbar from '../components/navbar/navbar';
 import Navbarsign from '../components/navbar/navbarnologin';
 import Footer from '../components/footer/footer';
@@ -32,20 +32,38 @@ const Homepage = () => {
     console.log(fasilitasBersama);
   };
 
-  const [search, setSearch] = useState('');
+  const [searchParams] = useSearchParams();
+  // setSearchParams('city');
 
   const searchKost = useQuery({
     queryKey: ['searchKost'],
     queryFn: async () =>
       await axios.get(
-        `https://be-naqos.up.railway.app/api/public/by-city-2/${search}?page=1&size=10&orderBy=id&orderType=desc`,
+        `https://be-naqos.up.railway.app/api/public/by-city-2/${searchParams.get(
+          'city',
+        )}?page=1&size=10&orderBy=id&orderType=desc`,
       ),
     enabled: false,
   });
 
+  useEffect(() => {
+    searchKost.refetch();
+  }, [searchParams.get('city')]);
+
   const handleClick = () => {
     searchKost.refetch();
   };
+
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter') {
+      searchKost.refetch();
+    }
+  };
+
+  // usesearchparams to get query params from url
+  // useEffect(() => {
+  //   console.log(searchParams.get('city'));
+  // }, [searchParams]);
 
   return (
     <React.Fragment>
@@ -60,8 +78,9 @@ const Homepage = () => {
               name='search'
               placeholder='Masukkan nama kota yang diinginkan'
               onChange={(e) => {
-                setSearch(e.target.value.replace(/\s/g, '%20'));
+                searchParams.set('city', e.target.value.replace(/\s/g, '%20'));
               }}
+              onKeyDown={handleKeyDown}
             />
           </div>
           <button

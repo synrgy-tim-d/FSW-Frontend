@@ -1,10 +1,27 @@
-import React from 'react';
+import React, { useState } from 'react';
 import bannerImg from '../../assets/Banner1.png';
 import magnifier from '../../assets/Banner2_Magnifier.png';
 import BgImage from '../../assets/Banner3_bgImage.jpg';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 function Banner() {
+  const [search, setSearch] = useState('');
+
+  const changeSearch = (e) => {
+    setSearch(e.target.value);
+  };
+
+  const navigate = useNavigate();
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter') {
+      if (search === '' || search === ' ') {
+        navigate(`/homepage`);
+      } else {
+        navigate(`/homepage?city=${search}`);
+      }
+    }
+  };
+
   return (
     <div className='bg-[#FAFAFA]'>
       <div className='relative overflow-hidden '>
@@ -25,9 +42,13 @@ function Banner() {
                     type='search'
                     className='w-full pl-12 py-1 lg:py-5 text-l lg:text-2xl font-normal text-gray-700 bg-white border-none ring-2 ring-gray-300 focus:ring-none rounded transition ease-in-out '
                     placeholder='Mau Kos di Mana?'
+                    onChange={changeSearch}
+                    onKeyDown={handleKeyDown}
                   />
                 </div>
-                <Link to='/homepage'>
+                <Link
+                  to={search === '' || search === ' ' ? `/homepage` : `/homepage?city=${search}`}
+                >
                   <button className='bg-[#0A008A] text-l lg:text-2xl text-white rounded w-full h-full py-1 lg:py-2 px-12 hover:bg-[#A0A3FF] hover:text-[#FFFFFF] active:bg-black'>
                     Cari
                   </button>
