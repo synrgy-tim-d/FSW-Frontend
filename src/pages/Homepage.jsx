@@ -38,7 +38,7 @@ const Homepage = () => {
     queryKey: ['searchKost'],
     queryFn: async () =>
       await axios.get(
-        `https://be-naqos.up.railway.app/api/public/by-city/${search}?page=1&size=10&orderBy=id&orderType=desc`,
+        `https://be-naqos.up.railway.app/api/public/by-city-2/${search}?page=1&size=10&orderBy=id&orderType=desc`,
       ),
     enabled: false,
   });
@@ -46,7 +46,6 @@ const Homepage = () => {
   const handleClick = () => {
     searchKost.refetch();
   };
-  // console.log(searchKost?.data?.data.data);
 
   return (
     <React.Fragment>

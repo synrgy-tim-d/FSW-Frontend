@@ -1,112 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import image from '../../../assets/Homepage-Kos1.svg';
+// import image from '../../../assets/Homepage-Kos1.svg';
 
 const Kostdata = ({ fetchData }) => {
-  // const [kosts, setKosts] = useState([]);
-  // useEffect(() => {
-  //   const kostList = [
-  //     {
-  //       id: 1,
-  //       name: 'Kos Alamanda',
-  //       type: 'Campur',
-  //       room: 5,
-  //       description:
-  //         'Rincian alamat kos secara lengkap dan kode pos Rincian alamat kos secara lengkap dan kode pos',
-  //       review: 5,
-  //       location: {
-  //         name: 'Yogyakarta',
-  //       },
-  //       facilities: [
-  //         {
-  //           name: 'Wi-Fi',
-  //         },
-  //         {
-  //           name: 'AC',
-  //         },
-  //         {
-  //           name: 'KM Dalam',
-  //         },
-  //       ],
-  //       price: '1.000.000',
-  //     },
-  //     {
-  //       id: 2,
-  //       name: 'Kos Cendana',
-  //       type: 'Putri',
-  //       room: 12,
-  //       description:
-  //         'Rincian alamat kos secara lengkap dan kode pos Rincian alamat kos secara lengkap dan kode pos',
-  //       review: 4.5,
-  //       location: {
-  //         name: 'Surakarta',
-  //       },
-  //       facilities: [
-  //         {
-  //           name: 'Listrik',
-  //         },
-  //         {
-  //           name: 'AC',
-  //         },
-  //         {
-  //           name: 'TV',
-  //         },
-  //       ],
-  //       price: '1.000.000',
-  //     },
-  //     {
-  //       id: 3,
-  //       name: 'Kos Jupiter',
-  //       type: 'Putra',
-  //       room: 2,
-  //       description:
-  //         'Rincian alamat kos secara lengkap dan kode pos Rincian alamat kos secara lengkap dan kode pos',
-  //       review: 2.7,
-  //       location: {
-  //         name: 'Jakarta Timur',
-  //       },
-  //       facilities: [
-  //         {
-  //           name: 'Listrik',
-  //         },
-  //         {
-  //           name: 'Wifi',
-  //         },
-  //         {
-  //           name: 'AC',
-  //         },
-  //       ],
-  //       price: '3.000.000',
-  //     },
-  //     {
-  //       id: 4,
-  //       name: 'Kos Saturnus',
-  //       type: 'Putri',
-  //       room: 9,
-  //       description:
-  //         'Rincian alamat kos secara lengkap dan kode pos Rincian alamat kos secara lengkap dan kode pos',
-  //       review: 4.2,
-  //       location: {
-  //         name: 'Surabaya',
-  //       },
-  //       facilities: [
-  //         {
-  //           name: 'KM Dalam',
-  //         },
-  //         {
-  //           name: 'Wifi',
-  //         },
-  //         {
-  //           name: 'Kipas Angin',
-  //         },
-  //       ],
-  //       price: '600.000',
-  //     },
-  //   ];
-  //   setKosts(kostList);
-  // }, []);
 
-  // console.log(fetchData);
+  console.log(fetchData);
 
   return (
     <div className='text-[20px] font-[Montserrat] text-[#000000] col-span-3 grid grid-cols-auto auto-rows-max gap-8 px-4'>
@@ -123,9 +21,9 @@ const Kostdata = ({ fetchData }) => {
                     <div className='w-[125px] border-2 border-[#0A008A] rounded-[150px] flex justify-center text-[16px] font-[600]'>
                       {kost.kostType.slice(4)}
                     </div>
-                    {/* <span className='text-[#BA1A1A] italic pl-2 self-center'>
-                      sisa {kost.room} kamar
-                    </span> */}
+                    <span className='text-[#BA1A1A] italic pl-2 self-center'>
+                      {/* sisa {kost.rooms.isAvailable} kamar */}
+                    </span>
                   </div>
                   <div className='flex justify-end self-center pr-4'>
                     <svg
@@ -149,8 +47,7 @@ const Kostdata = ({ fetchData }) => {
                 <div className='grid grid-rows-auto'>
                   <p>{kost.name}</p>
                   <p>
-                    Rincian alamat kos secara lengkap dan kode pos Rincian alamat kos secara lengkap
-                    dan kode pos
+                    {kost.address}, {kost.district}, {kost.subdistrict}, {kost.city.city}, {kost.city.province.province} ({kost.postalCode})
                     <span className='text-[#000000]/[0.38] pl-2'>
                       <Link to='/kos/:kosid/:roomid'>...selengkapnya</Link>
                     </span>
