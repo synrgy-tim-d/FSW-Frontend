@@ -64,6 +64,7 @@ const SignIn = () => {
             <p
               className='lg:mt-[10px] lg:text-[16px] lg:font-[600] text-[14px] font-[500] mt-1 text-left text-black hover:text-black'
               >
+
               Lupa Password
             </p>
           </Link>
@@ -116,6 +117,7 @@ const SignIn = () => {
           <Link to='/auth/register'>
             <p className='lg:text-[16px] text-[14px] text-center text-[#0A008A] font-[600]'>
                 Daftar
+
             </p>
           </Link>
         </div>
