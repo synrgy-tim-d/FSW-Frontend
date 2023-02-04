@@ -1,128 +1,28 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import image from '../../../assets/Homepage-Kos1.svg';
+// import image from '../../../assets/Homepage-Kos1.svg';
 
-const Kostdata = () => {
-  const [kosts, setKosts] = useState([]);
-  useEffect(() => {
-    const kostList = [
-      {
-        id: 1,
-        name: 'Kos Alamanda',
-        type: 'Campur',
-        room: 5,
-        description:
-          'Rincian alamat kos secara lengkap dan kode pos Rincian alamat kos secara lengkap dan kode pos',
-        review: 5,
-        location: {
-          name: 'Yogyakarta',
-        },
-        facilities: [
-          {
-            name: 'Wi-Fi',
-          },
-          {
-            name: 'AC',
-          },
-          {
-            name: 'KM Dalam',
-          },
-        ],
-        price: '1.000.000',
-      },
-      {
-        id: 2,
-        name: 'Kos Cendana',
-        type: 'Putri',
-        room: 12,
-        description:
-          'Rincian alamat kos secara lengkap dan kode pos Rincian alamat kos secara lengkap dan kode pos',
-        review: 4.5,
-        location: {
-          name: 'Surakarta',
-        },
-        facilities: [
-          {
-            name: 'Listrik',
-          },
-          {
-            name: 'AC',
-          },
-          {
-            name: 'TV',
-          },
-        ],
-        price: '1.000.000',
-      },
-      {
-        id: 3,
-        name: 'Kos Jupiter',
-        type: 'Putra',
-        room: 2,
-        description:
-          'Rincian alamat kos secara lengkap dan kode pos Rincian alamat kos secara lengkap dan kode pos',
-        review: 2.7,
-        location: {
-          name: 'Jakarta Timur',
-        },
-        facilities: [
-          {
-            name: 'Listrik',
-          },
-          {
-            name: 'Wifi',
-          },
-          {
-            name: 'AC',
-          },
-        ],
-        price: '3.000.000',
-      },
-      {
-        id: 4,
-        name: 'Kos Saturnus',
-        type: 'Putri',
-        room: 9,
-        description:
-          'Rincian alamat kos secara lengkap dan kode pos Rincian alamat kos secara lengkap dan kode pos',
-        review: 4.2,
-        location: {
-          name: 'Surabaya',
-        },
-        facilities: [
-          {
-            name: 'KM Dalam',
-          },
-          {
-            name: 'Wifi',
-          },
-          {
-            name: 'Kipas Angin',
-          },
-        ],
-        price: '600.000',
-      },
-    ];
-    setKosts(kostList);
-  }, []);
+const Kostdata = ({ fetchData }) => {
+
+  console.log(fetchData);
 
   return (
     <div className='text-[20px] font-[Montserrat] text-[#000000] col-span-3 grid grid-cols-auto auto-rows-max gap-8 px-4'>
-      {kosts.map((kost, index) => {
+      {fetchData?.map((kost) => {
         return (
-          <React.Fragment key={index}>
+          <React.Fragment key={kost.id}>
             <div className='grid grid-cols-3 grid-flow-col bg-white rounded-[16px]'>
               <div className='col-span-1 rounded-[16px]'>
-                <img className='w-full h-auto' src={image} alt='' />
+                <img className='w-full h-auto' src={kost.imageKosts[0].url} alt='' />
               </div>
               <div className='col-span-2 grid grid-rows-auto grid-flow-row gap-2 p-4'>
                 <div className='grid grid-flow-col'>
                   <div className='grid grid-cols-auto grid-flow-col auto-cols-max content-center'>
-                    <div className='w-[85px] border-2 border-[#0A008A] rounded-[150px] flex justify-center text-[16px] font-[600]'>
-                      {kost.type}
+                    <div className='w-[125px] border-2 border-[#0A008A] rounded-[150px] flex justify-center text-[16px] font-[600]'>
+                      {kost.kostType.slice(4)}
                     </div>
                     <span className='text-[#BA1A1A] italic pl-2 self-center'>
-                      sisa {kost.room} kamar
+                      {/* sisa {kost.rooms.isAvailable} kamar */}
                     </span>
                   </div>
                   <div className='flex justify-end self-center pr-4'>
@@ -147,12 +47,9 @@ const Kostdata = () => {
                 <div className='grid grid-rows-auto'>
                   <p>{kost.name}</p>
                   <p>
-                    Rincian alamat kos secara lengkap dan kode pos Rincian alamat kos secara lengkap
-                    dan kode pos
+                    {kost.address}, {kost.district}, {kost.subdistrict}, {kost.city.city}, {kost.city.province.province} ({kost.postalCode})
                     <span className='text-[#000000]/[0.38] pl-2'>
-                      <Link to='/kos/:kosid/:roomid' >
-                        ...selengkapnya
-                      </Link>
+                      <Link to='/kos/:kosid/:roomid'>...selengkapnya</Link>
                     </span>
                   </p>
                 </div>
@@ -192,12 +89,12 @@ const Kostdata = () => {
                       />
                     </svg>
                   </span>
-                  <p className='font-[500]'>{kost.location.name}</p>
+                  <p className='font-[500]'>{kost.city.city}</p>
                 </div>
 
                 <div className='grid grid-flow-col'>
                   <div className='grid grid-flow-col auto-cols-max gap-4 text-[#0A008A] font-[600]'>
-                    {kost.facilities.map((facility, index) => {
+                    {/* {kost.facilities.map((facility, index) => {
                       return (
                         <React.Fragment key={index}>
                           <div className='border-2 rounded-[4px] border-[#0A008A] p-2 self-center'>
@@ -205,11 +102,11 @@ const Kostdata = () => {
                           </div>
                         </React.Fragment>
                       );
-                    })}
+                    })} */}
                   </div>
                   <div className='flex justify-end'>
                     <p className='text-[20px] font-[700]'>
-                      Rp {kost.price}
+                      Rp {kost.rooms[0].pricePerMonthly}
                       <span className='text-[16px] font-[400]'>/bulan</span>
                     </p>
                   </div>

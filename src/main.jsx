@@ -5,13 +5,10 @@ import ProfilePage from './pages/ProfilePage';
 // import EditProfile from './components/profile/editprofile';
 import EditprofilePage from './pages/EditprofilePage';
 import Changepass from './components/profile/changepass';
-import SignIn from './components/sign_in/SignIn.jsx';
-import SignUp from './components/sign_up/SignUp.jsx';
-import History from './components/history/history.jsx';
-import HistoryPay from './components/history/historyPayment.jsx';
-import HistoryCancel from './components/history/historyCancel.jsx';
-import PayNow from './components/history/payNow';
-import PayUpload from './components/history/payUpload';
+// import SignIn from './components/sign_in/SignIn.jsx';
+// import SignUp from './components/sign_up/SignUp.jsx';
+import { Login, Register } from './pages/authPage';
+import { HistoryBooking, HistoryConfirmation, HistoryPayment, HistoryCancel, HistoryBookingPayNow, HistoryBookingPayUpload, HistoryBookingPaySuccess } from './pages/historyPage';
 import LandingPage from './pages/landingPage';
 import Wishlistpage from './pages/Wishlistpage';
 import Homepage from './pages/Homepage';
@@ -34,17 +31,20 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           <Route path='/profil' element={<ProfilePage />} />
           <Route path='/editprofil' element={<EditprofilePage />} />
           <Route path='/gantipassword' element={<Changepass />} />
-          <Route path='/login' element={<SignIn />} />
-          <Route path='/register' element={<SignUp />} />
-          <Route path='/history' element={<History />} />
-          <Route path='/history/payment' element={<HistoryPay />} />
+          <Route path='/auth/login' element={<Login />} />
+          <Route path='/auth/register' element={<Register />} />
+          <Route path='/history' element={<HistoryBooking />} />
+          <Route path='/history/confirmation' element={<HistoryConfirmation />} />
+          <Route path='/history/payment' element={<HistoryPayment />} />
           <Route path='/history/cancellation' element={<HistoryCancel />} />
-          <Route path='/history/booknow' element={<PayNow />} />
-          <Route path='/history/booknow/receipt' element={<PayUpload />} />
+          <Route path='/history/booknow' element={<HistoryBookingPayNow />} />
+          <Route path='/history/booknow/receipt' element={<HistoryBookingPayUpload />} />
+          <Route path='/history/booknow/receipt/success' element={<HistoryBookingPaySuccess />} />
           <Route path='/verif' element={<Verif />} />
           <Route path='/verif/success/:otp' element={<Success />} />
           <Route path='/forget/:otp' element={<Forget />} />
           <Route path='/homepage' element={<Homepage />} />
+          <Route path='/homepage?city=:city' element={<Homepage />} />
           <Route path='/wishlist' element={<Wishlistpage />} />
           <Route path='/kos/:kosid/:roomid' element={<Rinciankos />} />
         </Routes>
