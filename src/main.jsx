@@ -44,6 +44,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           <Route path='/verif/success/:otp' element={<Success />} />
           <Route path='/forget/:otp' element={<Forget />} />
           <Route path='/homepage' element={<Homepage />} />
+          <Route path='/homepage?city=:city' element={<Homepage />} />
           <Route path='/wishlist' element={<Wishlistpage />} />
           <Route path='/kos/:kosid/:roomid' element={<Rinciankos />} />
         </Routes>
