@@ -84,8 +84,9 @@ const Homepage = () => {
             />
           </div>
           <button
-            className='w- full bg-[#0A008A] px-10 text-white hover:bg-[#A0A3FF] hover:text-[#FFFFFF] active:bg-black font-[600] rounded-[4px]'
+            className='bg-[#0A008A] px-10 text-white hover:bg-[#A0A3FF] hover:text-[#FFFFFF] active:bg-black font-[600] rounded-[4px]'
             type='submit'
+            // onClick=''
             onClick={handleClick}
           >
             Cari
