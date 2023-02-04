@@ -1,14 +1,49 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import Navbar from '../components/navbar/navbar';
 import Navbarsign from '../components/navbar/navbarnologin';
 import Footer from '../components/footer/footer';
 import Kostdata from '../components/homepage/homepage-constants/Homepage-kost-data';
 import Facilities from '../components/homepage/homepage-constants/Facilities';
 import magnifier from '../assets/Banner2_Magnifier.png';
+import axios from 'axios';
+import { useQuery } from '@tanstack/react-query';
 
 const Homepage = () => {
   const [isOpen, setIsOpen] = useState(false);
+
+  const [searchParams] = useSearchParams();
+  // setSearchParams('city');
+
+  const searchKost = useQuery({
+    queryKey: ['searchKost'],
+    queryFn: async () =>
+      await axios.get(
+        `https://be-naqos.up.railway.app/api/public/by-city-2/${searchParams.get(
+          'city',
+        )}?page=1&size=10&orderBy=id&orderType=desc`,
+      ),
+    enabled: false,
+  });
+
+  useEffect(() => {
+    searchKost.refetch();
+  }, [searchParams.get('city')]);
+
+  const handleClick = () => {
+    searchKost.refetch();
+  };
+
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter') {
+      searchKost.refetch();
+    }
+  };
+
+  // usesearchparams to get query params from url
+  // useEffect(() => {
+  //   console.log(searchParams.get('city'));
+  // }, [searchParams]);
 
   return (
     <React.Fragment>
@@ -23,8 +58,12 @@ const Homepage = () => {
             <input
               className='w-full text-black text-[9px] md:text-[16px] lg:text-[20px] focus:outline-none'
               type='search'
-              name=''
+              name='search'
               placeholder='Masukkan nama kota yang diinginkan'
+              onChange={(e) => {
+                searchParams.set('city', e.target.value.replace(/\s/g, '%20'));
+              }}
+              onKeyDown={handleKeyDown}
             />
           </div>
           <div className='col-span-1 block lg:hidden'>
@@ -45,6 +84,8 @@ const Homepage = () => {
             className='col-span-6 lg:col-span-1 px-10 rounded-[4px] w-full lg:w-auto
               bg-[#0A008A] text-white hover:bg-[#A0A3FF] hover:text-[#FFFFFF] active:bg-black font-[600]'
             type='submit'
+            // onClick=''
+            onClick={handleClick}
           >
             Cari
           </button>
