@@ -11,12 +11,12 @@ const Navbarsign = () => {
             </a>
         </div>
         <div className='col-span-5 flex justify-end pr-4 space-x-6'>
-            <Link to='/login'>
+            <Link to='/auth/login'>
                 <button type='button' className='btn btn-outline border-2 border-[#0A008A] rounded-[4px] text-[#0A008A] text-[16px] px-6 '>
                     Masuk
                 </button>
             </Link>
-            <Link to='/register'>
+            <Link to='/auth/register'>
                 <button type='button' className='btn btn-active text-[16px] bg-[#0A008A] text-white rounded-[4px] px-6'>
                     Daftar
                 </button>
