@@ -9,7 +9,11 @@ import icongoogle from '../../assets/icon_google.svg';
 
 const SignIn = () => {
   const navigate = useNavigate();
-  const { register, handleSubmit } = useForm();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
   const [isDisabled, setIsDisabled] = useState(false);
 
   const onFormSubmitHandler = async (data) => {
@@ -42,20 +46,42 @@ const SignIn = () => {
             Username
           </span>
           <input
-            {...register('username')}
             className='md:h-[55px] md:text-[20px] min-[393px]:h-[48px] min-[393px]:text-[12px] px-4 text-black font-[600] bg-white rounded-[526px] placeholder-[#b9b9bc] border-2 border-[#dadadc] focus:outline-none focus:border-[#0A008A]'
             type=''
             placeholder='Ketikkan alamat email'
+            name='username'
+            {...register('username', {
+              required: { value: true, message: 'Masukkan email' },
+              pattern: {
+                value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                message: 'Masukkan email yang valid',
+              },
+            })}
           />
+          {errors.username && errors.username.type === 'required' && (
+            <span className='text-red-500 text-sm'>{errors.username.message}</span>
+          )}
+          {errors.username && errors.username.type === 'pattern' && (
+            <span className='text-red-500 text-sm'>{errors.username.message}</span>
+          )}
           <span className='md:mt-[20px] md:mb-[11px] md:w-[209px] md:h-[24px] md:text-[20px] min-[393px]:text-[14px] min-[393px]:w-[175px] min-[393px]:mt-[14px] min-[393px]:mb-[14px] text-black text-left font-[600]'>
             Password
           </span>
           <input
-            {...register('password')}
             className='md:h-[55px] md:text-[20px] min-[393px]:h-[48px] min-[393px]:text-[12px] px-4 text-black font-[600] bg-white rounded-[526px] placeholder-[#b9b9bc] border-2 border-[#dadadc] focus:outline-none focus:border-[#0A008A]'
             type='password'
             placeholder='Minimal 6 karakter'
+            {...register('password', {
+              required: true,
+              minLength: 6,
+            })}
           />
+          {errors.password && errors.password.type === 'required' && (
+            <span className='text-red-500 text-sm'>Password harus diisi</span>
+          )}
+          {errors.password && errors.password.type === 'minLength' && (
+            <span className='text-red-500 text-sm'>Password minimal 6 karakter</span>
+          )}
           <img
             className='absolute pointer-events-none md:mt-[110px] md:ml-[480px] min-[393px]:mt-[115px] min-[393px]:ml-[330px]'
             src={iconeye}
