@@ -1,31 +1,56 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import imagetwo from '../../assets/img_kosTwo.png';
-import imagebri from '../../assets/img_bri.png';
+import imagefour from '../../assets/img_kosFour.png';
+import imagefive from '../../assets/img_kosFive.png';
+import imagesix from '../../assets/img_kosSix.png';
 import iconlocation from '../../assets/icon_location.svg';
 import iconarrowright from '../../assets/icon_arrow-right-2.svg';
-import iconupload from '../../assets/icon_upload.svg';
+import iconcancel from '../../assets/icon_cancel.svg';
 import iconarrowdown from '../../assets/icon_arrow-down.svg';
 
-const PayUploadHistory = () => {
-  const [histories, sethistories] = useState([]);
+const CancellationHistory = () => {
+  const [cancels, setCancels] = useState([]);
 
   useEffect(() => {
-    const historyList = [
+    const cancelList = [
+      {
+        id: 1,
+        name: 'Kos Jahe',
+        location: {
+          name: 'Tanggerang',
+        },
+        bookId: '00000001',
+        inDate: 'April 01, 23',
+        outDate: 'April 30,23',
+        date: 'Fri, 24 March 2023',
+        img: imagefour,
+      },
       {
         id: 2,
-        name: 'Kos Beringin',
+        name: 'Kos Timun',
         location: {
-          name: 'Yogyakarta',
+          name: 'Bogor',
         },
         bookId: '00000002',
-        inDate: 'April 03, 23',
-        outDate: 'May 03, 23',
-        img: imagetwo,
-        btn: 'payment',
+        inDate: 'April 01, 23',
+        outDate: 'May 01, 23',
+        date: 'Sat, 25 March 2023',
+        img: imagefive,
+      },
+      {
+        id: 3,
+        name: 'Kos Wortel',
+        location: {
+          name: 'Bogor',
+        },
+        bookId: '00000003',
+        inDate: 'April 11, 23',
+        outDate: 'May 11, 23',
+        date: 'Sun, 26 March 2023',
+        img: imagesix,
       },
     ];
-    sethistories(historyList);
+    setCancels(cancelList);
   }, []);
 
   return (
@@ -33,10 +58,10 @@ const PayUploadHistory = () => {
       {/* --- Breadcrumb --- */}
       <div className='flex flex-row'>
         <nav className='flex' aria-label='Breadcrumb'>
-          <ol className='inline-flex items-center space-x-1 md:space-x-3'>
+          <ol className='inline-flex items-center space-x-1 lg:space-x-3'>
             <li className='inline-flex items-center'>
               <Link to='/'>
-                <p className='text-[16px] lg:text-[20px] font-[600] text-[#000000] opacity-[.38] hover:underline hover:text-[#0A008A] hover:opacity-100'>
+                <p className='text-[16px] lg:text-[20px] font-[600] text-[#000000] opacity-[.38] hover:text-[#0A008A] hover:opacity-100 hover:underline'>
                   Home
                 </p>
               </Link>
@@ -57,7 +82,7 @@ const PayUploadHistory = () => {
                   ></path>
                 </svg>
                 <Link to='/history'>
-                  <p className='ml-1 md:ml-2 text-[16px] lg:text-[20px] font-[600] text-[#000000] opacity-[.38] hover:underline hover:text-[#0A008A] hover:opacity-100'>
+                  <p className='ml-1 lg:ml-2 text-[16px] lg:text-[20px] font-[600] text-[#000000] opacity-[.38] hover:text-[#0A008A] hover:opacity-100 hover:underline'>
                     Riwayat
                   </p>
                 </Link>
@@ -78,8 +103,8 @@ const PayUploadHistory = () => {
                     clipRule='evenodd'
                   ></path>
                 </svg>
-                <span className='ml-1 md:ml-2 text-[16px] lg:text-[20px] font-[600] text-[#000000] opacity-[.38] hover:text-[#0A008A] hover:underline hover:opacity-100'>
-                  Pemesanan Kos
+                <span className='ml-1 lg:ml-2 text-[16px] lg:text-[20px] font-[600] text-[#000000] opacity-[.38] hover:text-[#0A008A] hover:underline hover:opacity-100'>
+                  Pembatalan
                 </span>
               </div>
             </li>
@@ -88,12 +113,14 @@ const PayUploadHistory = () => {
       </div>
 
       {/* --- Options & Content --- */}
+
+      {/* --- DISPLAY PC --- */}
       <div className='flex flex-col lg:flex-row'>
         {/* --- Options --- */}
         <div className='flex flex-col text-black mt-[20px] lg:mt-[60px] lg:w-1/4'>
           <div className='hidden lg:block'>
             <Link to='/history'>
-              <p className='text-[#0A008A] hover:text-[#9b9b9b] text-[25px] font-[500] mb-[20px] text-left'>
+              <p className='text-[#9b9b9b] hover:text-[#9b9b9b] text-[25px] font-[500] mb-[20px] text-left'>
                 Pemesanan Kos
               </p>
             </Link>
@@ -111,7 +138,7 @@ const PayUploadHistory = () => {
             </Link>
             <hr className='mb-[20px]'></hr>
             <Link to='/history/cancellation'>
-              <p className='text-[#9b9b9b] hover:text-[#0A008A] text-[25px] font-[500] mb-[20px] text-left'>
+              <p className='text-[#0A008A] hover:text-[#0A008A] text-[25px] font-[500] mb-[20px] text-left'>
                 Pembatalan
               </p>
             </Link>
@@ -131,7 +158,7 @@ const PayUploadHistory = () => {
               className='dropdown-content mt-[-10px] menu py-0 px-0 shadow bg-base-100 rounded-box w-full drop-shadow-md'
             >
               <Link to='/history'>
-                <p className='text-[#0A008A] hover:text-[#0A008A] text-[20px] font-[500] m-[15px]'>
+                <p className='text-[#9b9b9b] hover:text-[#0A008A] text-[20px] font-[500] m-[15px]'>
                   Pemesanan Kos
                 </p>
               </Link>
@@ -149,7 +176,7 @@ const PayUploadHistory = () => {
               </Link>
               <hr className=''></hr>
               <Link to='/history/cancellation'>
-                <p className='text-[#9b9b9b] hover:text-[#0A008A] text-[20px] font-[500] m-[15px]'>
+                <p className='text-[#0A008A] hover:text-[#0A008A] text-[20px] font-[500] m-[15px]'>
                   Pembatalan
                 </p>
               </Link>
@@ -157,29 +184,49 @@ const PayUploadHistory = () => {
           </div>
         </div>
 
+        {/* --- Content if Empty --- */}
+        {/* <div className='flex flex-col text-center text-black ml-[80px] mt-[181px] mb-[100px]'>
+          <img
+            className='w-[273px] h-[254px] self-center mb-[44px]'
+            alt=''
+            src='src/assets/img_noCancelHistory.png'
+          />
+          <h1 className='text-[31px] font-[600] mb-[20px] w-[558px]'>Belum ada pembatalan baru</h1>
+          <p className='text-[20px] font-[500] mb-[50px] w-[558px]'>
+            Belum ada informasi terkait pembatalan pemesanan kos
+          </p>
+          <button
+            className='border-0 bg-[#0A008A] self-center rounded-[150px] outline-none text-white font-[600] text-[16px] w-[419px] h-[43px] hover:bg-[#A0A3FF] hover:text-[#0A008A] focus:bg-black focus:text-white focus:outline-none'
+            type='submit'
+          >
+            Kembali
+          </button>
+        </div> */}
+
+        {/* --- Content if there is Data --- */}
         <div className='flex flex-col lg:mx-[70px] lg:mt-[60px] mt-[10px] mb-[100px] lg:w-3/4'>
-          {histories.map((history, index) => {
+          {cancels.map((cancel, index) => {
             return (
               <React.Fragment key={index}>
                 <div>
                   <div className='flex flex-row py-2 lg:py-4 text-black'>
-                    <img className='w-[130px] lg:w-[200px] self-center' alt='' src={history.img} />
+                    <img className='w-[130px] lg:w-[200px] self-center' alt='' src={cancel.img} />
                     <div className='flex flex-col ml-[20px] lg:ml-[40px] text-left lg:w-[265px] space-y-[-5px] lg:space-y-0'>
-                      <h1 className='text-[14px] lg:text-[20px] font-[600]'>{history.name}</h1>
+                      <h1 className='text-[14px] lg:text-[20px] font-[600]'>{cancel.name}</h1>
                       <div className='flex flex-row'>
                         <img className='w-[10px] lg:w-auto' alt='' src={iconlocation} />
                         <p className='text-[12px] lg:text-[16px] font-[500] ml-1 lg:ml-2 lg:my-1'>
-                          {history.location.name}
+                          {cancel.location.name}
                         </p>
                       </div>
                       <p className='text-[12px] lg:text-[16px] font-[500] lg:mb-3'>
-                        Booking ID: {history.bookId}
+                        Booking ID: {cancel.bookId}
                       </p>
                       <div className='flex flex-row'>
                         <div className='flex flex-col text-center'>
                           <p className='text-[10px] lg:text-[12px] font-[400] lg:mb-1'>Check in</p>
                           <p className='text-[10px] lg:text-[16px] font-[600] lg:font-[400]'>
-                            {history.inDate}
+                            {cancel.inDate}
                           </p>
                         </div>
                         <div className='flex flex-col mx-[10px] lg:mx-[12px] justify-center'>
@@ -188,10 +235,29 @@ const PayUploadHistory = () => {
                         <div className='flex flex-col text-center'>
                           <p className='text-[10px] lg:text-[12px] font-[400] lg:mb-1'>Check out</p>
                           <p className='text-[10px] lg:text-[16px] font-[600] lg:font-[400]'>
-                            {history.outDate}
+                            {cancel.outDate}
                           </p>
                         </div>
                       </div>
+                    </div>
+                    <div className='lg:flex flex-col flex-1 w-[150px] text-right hidden'>
+                      <p className='mt-[85px] text-[#4A4A4A] text-[12px] font-[400]'>
+                        {cancel.date}
+                      </p>
+                      <div className='flex flex-row justify-end'>
+                        <img className='' alt='' src={iconcancel} />
+                        <p className='text-[12px] font-[600] text-[#BA1A1A] ml-2 mb-[4px] mt-1'>
+                          Cancelled
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  {/* --- Status di Mobile */}
+                  <div className='flex flex-col flex-1 lg:hidden'>
+                    <p className='text-[#4A4A4A] text-[12px] font-[400]'>{cancel.date}</p>
+                    <div className='flex flex-row gap-1 mb-2'>
+                      <img className='w-[14px]' alt='' src={iconcancel} />
+                      <p className='text-[12px] font-[600] text-[#BA1A1A]'>Cancelled</p>
                     </div>
                   </div>
                   <hr className='mb-4 lg:mb-8'></hr>
@@ -199,67 +265,13 @@ const PayUploadHistory = () => {
               </React.Fragment>
             );
           })}
-          <h1 className='mb-1 lg:mb-2 text-black text-[16px] lg:text-[25px] font-[600]'>
-            Detail Pembayaran
+          <h1 className='text-center text-black text-[16px] lg:text-[20px] font-[600] opacity-[.38]'>
+            Lihat lebih banyak lagi
           </h1>
-          <p className='mb-3 lg:mb-8 text-[#BA1A1A] text-[12px] lg:text-[16px] font-[500]'>
-            *Pembayaran akan hangus dalam 3 hari
-          </p>
-          <div className='lg:mb-5 mb-3 py-3 px-5 lg:py-6 lg:px-10 rounded-[16px] bg-[#e4e4fc] text-black'>
-            <div className='flex flex-row justify-between'>
-              <div className='flex flex-col'>
-                <p className='text-[16px] lg:text-[20px] font-[700]'>Total Pembayaran</p>
-              </div>
-              <div className='flex flex-col text-right'>
-                <p className='text-[16px] lg:text-[20px] font-[700]'>
-                  Rp<text className='text-[20px] lg:text-[30px]'>300.000</text>
-                </p>
-              </div>
-            </div>
-          </div>
-          <div className='mb-10 py-3 px-3 lg:py-5 lg:px-6 rounded-[16px] bg-[#e4e4fc] text-black'>
-            <div className='flex flex-row gap-2 lg:gap-8'>
-              <div className='flex flex-col'>
-                <img className='rounded-[16px] max-w-[100px] lg:max-w-none' alt='' src={imagebri} />
-              </div>
-              <div className='flex flex-col gap-0 lg:gap-2'>
-                <p className='text-[12px] lg:text-[16px] font-[500]'>
-                  ke rekening Bank BRI berikut
-                </p>
-                <p className='text-[20px] lg:text-[30px] font-[700]'>123-456-789-101-121</p>
-                <p className='text-[14px] lg:text-[20px] font-[600]'>atas nama RISMA EKAWATI</p>
-              </div>
-            </div>
-          </div>
-          <div className='flex flex-row gap-3 lg:gap-5 justify-center lg:justify-start'>
-            <label
-              className='cursor-pointer inline-flex items-center justify-center gap-2 w-[138px] h-[33px] lg:w-[178px] lg:h-[43px] mb-[65px] p-0 bg-white border-2 border-[#0A008A] rounded-[4px] outline-none text-[14px] lg:text-[16px] font-[600] text-[#0A008A] hover:bg-[#f3f4ff] hover:border-[#0A008A] hover:text-[#0A008A] active:bg-[#0A008A] active:text-white'
-              htmlFor='getFile'
-            >
-              <img className='w-[14px] lg:w-auto' alt='' src={iconupload} />
-              Upload Bukti
-            </label>
-            <input id='getFile' className='hidden' type='file' />
-            {/* <button
-              disabled
-              className='cursor-not-allowed w-[148px] h-[33px] lg:w-[178px] lg:h-[43px] mb-[65px] p-0 bg-[#e9e9ea] rounded-[4px] outline-none text-[14px] lg:text-[16px] font-[600] text-[#ababaf] hover:border-[#e9e9ea] hover:bg-[#e9e9ea] hover:text-[#ababaf]'
-              type='button'
-            >
-              Sudah Bayar
-            </button> */}
-            <Link to='/history/booknow/receipt/success'>
-              <button
-                className='w-[148px] h-[33px] lg:w-[178px] lg:h-[43px] mb-[65px] p-0 bg-[#0A008A] rounded-[4px] outline-none text-[14px] lg:text-[16px] font-[600] text-white hover:bg-[#A0A3FF] hover:text-[#0A008A] focus:bg-black focus:text-white'
-                type='button'
-              >
-                Sudah Bayar
-              </button>
-            </Link>
-          </div>
         </div>
       </div>
     </div>
   );
 };
 
-export default PayUploadHistory;
+export default CancellationHistory;
