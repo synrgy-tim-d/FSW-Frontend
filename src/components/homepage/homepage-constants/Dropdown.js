@@ -35,7 +35,7 @@ export const fasilitasBersama = [
     { id: 2,  name: 'fasilitasBersama', value: 'Ruang Tamu', checked: false},
     { id: 3,  name: 'fasilitasBersama', value: 'Dispenser', checked: false},
     { id: 4,  name: 'fasilitasBersama', value: 'Mesin Cuci', checked: false},
-    { id: 5,  name: 'fasilitasBersama', value: 'Penjaga Kos', checked: false},
+    { id: 5,  name: 'fasilitasBersama', value: 'Penjaga', checked: false},
     { id: 6,  name: 'fasilitasBersama', value: 'Dapur', checked: false},
     { id: 7,  name: 'fasilitasBersama', value: 'Kulkas', checked: false},
     { id: 8,  name: 'fasilitasBersama', value: 'TV', checked: false},
