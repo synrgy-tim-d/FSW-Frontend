@@ -1,5 +1,5 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { Link, useSearchParams } from 'react-router-dom';
 import Navbar from '../components/navbar/navbar';
 import Navbarsign from '../components/navbar/navbarnologin';
 import Footer from '../components/footer/footer';
@@ -17,6 +17,8 @@ import {
 } from '../components/homepage/homepage-constants/Dropdown';
 import Kostdata from '../components/homepage/homepage-constants/Homepage-kost-data';
 import magnifier from '../assets/Banner2_Magnifier.png';
+import axios from 'axios';
+import { useQuery } from '@tanstack/react-query';
 
 const Homepage = () => {
   const title = ['Tipe Kos', 'Waktu Sewa', 'Urutkan', 'Fasilitas Kamar', 'Fasilitas Bersama'];
@@ -30,6 +32,39 @@ const Homepage = () => {
     console.log(fasilitasBersama);
   };
 
+  const [searchParams] = useSearchParams();
+  // setSearchParams('city');
+
+  const searchKost = useQuery({
+    queryKey: ['searchKost'],
+    queryFn: async () =>
+      await axios.get(
+        `https://be-naqos.up.railway.app/api/public/by-city-2/${searchParams.get(
+          'city',
+        )}?page=1&size=10&orderBy=id&orderType=desc`,
+      ),
+    enabled: false,
+  });
+
+  useEffect(() => {
+    searchKost.refetch();
+  }, [searchParams.get('city')]);
+
+  const handleClick = () => {
+    searchKost.refetch();
+  };
+
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter') {
+      searchKost.refetch();
+    }
+  };
+
+  // usesearchparams to get query params from url
+  // useEffect(() => {
+  //   console.log(searchParams.get('city'));
+  // }, [searchParams]);
+
   return (
     <React.Fragment>
       {localStorage.getItem('AUTH_TOKEN') === null ? <Navbarsign /> : <Navbar />}
@@ -40,14 +75,18 @@ const Homepage = () => {
             <input
               className='w-full text-black text-[20px]'
               type='search'
-              name=''
+              name='search'
               placeholder='Masukkan nama kota yang diinginkan'
+              onChange={(e) => {
+                searchParams.set('city', e.target.value.replace(/\s/g, '%20'));
+              }}
+              onKeyDown={handleKeyDown}
             />
           </div>
           <button
             className='w- full bg-[#0A008A] px-10 text-white hover:bg-[#A0A3FF] hover:text-[#FFFFFF] active:bg-black font-[600] rounded-[4px]'
             type='submit'
-            onClick=''
+            onClick={handleClick}
           >
             Cari
           </button>
@@ -72,7 +111,7 @@ const Homepage = () => {
 
         <div className='grid grid-cols-4 grid-flow-col gap-4'>
           <div className='col-span-3 grid grid-cols-auto auto-rows-max gap-8'>
-            <Kostdata />
+            <Kostdata fetchData={searchKost?.data?.data.data} />
           </div>
 
           <div className='col-span-1'>
