@@ -179,9 +179,9 @@ const Kostdata = ({ fetchData }) => {
 
                 <div className='grid grid-rows-auto'>
                   <p className='font-[600]'>{kost.name}</p>
-              //    <p className='text-[9px] md:text-[16px] lg:text-[20px] leading-none'>
-              //      Rincian alamat kos secara lengkap dan kode pos
-              //      <span className='text-[#000000]/[0.38] pl-2 hidden md:inline'>
+                  {/* <p className='text-[9px] md:text-[16px] lg:text-[20px] leading-none'>
+                    Rincian alamat kos secara lengkap dan kode pos
+                    <span className='text-[#000000]/[0.38] pl-2 hidden md:inline'> */}
                   <p>
                     {kost.address}, {kost.district}, {kost.subdistrict}, {kost.city.city}, {kost.city.province.province} ({kost.postalCode})
                     <span className='text-[#000000]/[0.38] pl-2'>
