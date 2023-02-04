@@ -88,15 +88,6 @@ const Homepage = () => {
               </div>
             )}
           </div>
-          <button
-            className='col-span-6 lg:col-span-1 px-10 rounded-[4px] w-full lg:w-auto
-              bg-[#0A008A] text-white hover:bg-[#A0A3FF] hover:text-[#FFFFFF] active:bg-black font-[600]'
-            type='submit'
-            // onClick=''
-            onClick={handleClick}
-          >
-            Cari
-          </button>
         </div>
         <div className='breadcrumb py-2 md:py-4 lg:py-8'>
           <ul>
