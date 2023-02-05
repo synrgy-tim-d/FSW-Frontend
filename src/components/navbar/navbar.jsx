@@ -96,6 +96,56 @@ const Navbar = () => {
         </ul>
       </div>
     </div>
+
+    // <header className='bg-[#FAFAFA] font-montserrat font-[400'>
+    //   <div className='flex items-center justify-between max-w-7xl mx-auto'>
+    //     <div className='col-span-1 pl-4'>
+    //       <Link to='/'>
+    //         <img className='w-full h-auto' src={LogoNaqos} />
+    //       </Link>
+    //     </div>
+
+
+    //       <nav className='flex items-center w-auto'>
+    //         <ul className='text-base flex justify-between'>
+    //           <li>
+    //             <a className='px-5 py-2' href="">Wishlist</a>
+    //           </li>
+    //           <li>
+    //             <a className='px-5 py-2' href="">Riwayat</a>
+    //         </li>
+    //         <li>
+    //             <a className='px-5 py-2' href="">Notifikasi</a>
+    //         </li>
+    //         <li tabIndex={0}>
+    //           <a className='px-5 py-2 font-[600]'>
+    //             Profil
+    //             <svg
+    //             className='fill-current'
+    //             xmlns='http://www.w3.org/2000/svg'
+    //             width='20'
+    //             height='20'
+    //             viewBox='0 0 24 24'
+    //           >
+    //             <path d='M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z' />
+    //           </svg>
+    //         </a>
+    //         <ul className='p-2 bg-base-100'>
+    //           <li>
+    //             <Link to='/editprofil' className='font-[600] hover:bg-[#F2EFFF]'>
+    //               Edit Profil
+    //             </Link>
+    //           </li>
+    //           <li>
+    //             <a className='font-[600] hover:bg-[#F2EFFF]'>Logout</a>
+    //           </li>
+    //         </ul>
+    //       </li>
+    //       </ul>
+
+    //       </nav>
+    //     </div>
+    // </header>
   );
 };
 
