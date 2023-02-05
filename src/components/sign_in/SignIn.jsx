@@ -6,29 +6,37 @@ import { useState } from 'react';
 import imglogo from '../../assets/LogoNaqosFix.png';
 import iconeye from '../../assets/icon_eye-slash.svg';
 import icongoogle from '../../assets/icon_google.svg';
+import { useMutation } from '@tanstack/react-query';
 
 const SignIn = () => {
   const navigate = useNavigate();
+
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
+  
   const [isDisabled, setIsDisabled] = useState(false);
+
+  const login = useMutation({
+    mutationFn: async(newTodo) => {
+      return await axios.post(appConfig.BE_AUTH_URL, newTodo)
+    },
+  })
 
   const onFormSubmitHandler = async (data) => {
     setIsDisabled(true);
+    login.mutate(data);
 
-    const loginAuthPayload = {
-      username: data.username,
-      password: data.password,
-    };
-
-    const responseAuth = await axios.post(appConfig.BE_AUTH_URL, loginAuthPayload);
-    localStorage.setItem('AUTH_TOKEN', responseAuth.data.data.access_token);
-    localStorage.setItem('REFRESH_TOKEN', responseAuth.data.data.refresh_token);
+    if (login.isSuccess) {
+      localStorage.setItem('AUTH_TOKEN', login?.data?.data.data.access_token);
+      localStorage.setItem('REFRESH_TOKEN', login?.data?.data.data.refresh_token);
+      navigate('/');
+    } else {
+      alert("Username atau Password salah!");
+    }
     setIsDisabled(false);
-    navigate('/');
   };
 
   return (
@@ -102,15 +110,13 @@ const SignIn = () => {
               Loading ...
             </button>
           ) : (
-            // <Link to='/'>
             <button
               className='lg:w-[481px] lg:h-[43px] lg:text-[16px] w-[302px] h-[36px] text-[14px] bg-[#0A008A] rounded-[150px] outline-none font-[600] text-white hover:bg-[#A0A3FF] hover:text-[#0A008A] focus:bg-[#000000] focus:text-white focus:outline-none'
               type='submit'
             >
               Masuk
             </button>
-            // </Link>
-          )}
+          ) }
         </div>
         <div className='flex flex-row justify-center lg:mt-[21px] mt-[5px]'>
           <hr className='lg:mt-3 lg:w-[195px] w-[130px] mt-3 bg-[#999999] border-1 border-[#999999]' />
