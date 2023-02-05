@@ -65,7 +65,7 @@ const SignUp = () => {
             placeholder='Isi nomor handphone Whatsapp aktif'
             {...register('phoneNumber', {
               required: true,
-              validate: (value) => Number(value) === value,
+              validate: (value) => Number(value) == value,
               pattern: {
                 minLength: /^\d{10}$/
               }
