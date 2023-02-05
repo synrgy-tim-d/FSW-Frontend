@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
 import { ButtonConfirm, ButtonConfirmDisabled } from './ownerButtonsHistory';
+import { SidebarOwner } from '../sidebar';
 import avatarone from '../../../assets/img_avatar.png';
 import kostone from '../../../assets/img_kosOne.png';
 import iconlocation from '../../../assets/icon_location.svg';
@@ -33,34 +33,11 @@ export const HistoryDetailOwner = () => {
   return (
     <div className='grid grid-cols-5'>
       {/* ---Sidebar--- */}
-      <div className='col-span-1 bg-[#0A008A] text-white h-screen px-8 py-16'>
-        <Link to=''>
-          <button
-            className='w-full h-[68px] px-6 mb-5 text-[25px] font-[600] flex flex-row items-center rounded-[8px] border-2 border-[#0A008A] bg-[#0A008A] text-white hover:border-[#A0A3FF] hover:bg-[#A0A3FF] hover:text-white focus:bg-black focus:border-black focus:text-white'
-            type='button'
-          >
-            Properti Saya
-          </button>
-        </Link>
-        <Link to='/owner/history'>
-          <button
-            className='w-full h-[68px] px-6 mb-5 text-[25px] font-[600] flex flex-row items-center rounded-[8px] border-2 border-white bg-white text-[#0A008A] hover:border-[#A0A3FF] hover:bg-[#A0A3FF] hover:text-white focus:bg-black focus:border-black focus:text-white'
-            type='button'
-          >
-            Riwayat Transaksi
-          </button>
-        </Link>
-        <Link to=''>
-          <button
-            className='w-full h-[68px] px-6 mb-5 text-[25px] font-[600] flex flex-row items-center rounded-[8px] border-2 border-[#0A008A] bg-[#0A008A] text-white hover:border-[#A0A3FF] hover:bg-[#A0A3FF] hover:text-white focus:bg-black focus:border-black focus:text-white'
-            type='button'
-          >
-            Akun Profil
-          </button>
-        </Link>
+      <div className='col-span-1 bg-[#0A008A] text-white min-h-screen h-full px-8 py-16'>
+        <SidebarOwner />
       </div>
       {/* ---Content--- */}
-      <div className='col-span-4 h-screen py-8 pl-10 pr-20'>
+      <div className='col-span-4 min-h-screen h-full py-8 pl-10 pr-20'>
         <p className='text-[25px] font-[600]'>Dipesan oleh</p>
         {bookings.map((booking, index) => {
           let component = null;
@@ -167,12 +144,6 @@ export const HistoryDetailOwner = () => {
                   <img className='w-[14px] lg:w-auto' alt='' src={icondownload} />
                   Download Bukti Pembayaran
                 </button>
-                {/* <button
-                  type='button'
-                  className='inline-flex self-center justify-center gap-2 rounded-[4px] w-2/6 py-2 font-[600] text-[16px] text-white border-2 border-[#0A008A] bg-[#0A008A] hover:bg-[#A0A3FF] hover:text-[#0A008A] focus:bg-black focus:text-white focus:outline-none'
-                >
-                  Konfirmasi Pembayaran
-                </button> */}
                 {component}
               </div>
             </React.Fragment>

@@ -1,12 +1,15 @@
 import React from 'react';
 import profile from '../../assets//Profile.svg';
 import { Link } from 'react-router-dom';
+import { SidebarOwner } from '../owner/sidebar';
 
 const ChangePassOwner = () => {
   return (
     <React.Fragment>
       <div className='grid grid-cols-5'>
-        <div className='col-span-1 bg-[#0A008A] h-full'></div>
+        <div className='col-span-1 bg-[#0A008A] h-full px-8 py-16'>
+          <SidebarOwner />
+        </div>
         <div className='col-span-4 grid grid-rows-auto w-2/3 justify-self-center gap-y-12 py-12'>
           <div className='grid grid-flow-row justify-self-center gap-y-4'>
             <img className='' src={profile} alt='' />

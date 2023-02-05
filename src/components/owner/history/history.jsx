@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
 import { ButtonPending, ButtonDetail } from '../../owner/history/ownerButtonsHistory';
+import { SidebarOwner } from '../sidebar';
 import avatarzero from '../../../assets/img_avatarNone.svg';
 import avatarone from '../../../assets/img_avatar.png';
 import iconarrowdown from '../../../assets/icon_arrow-down.svg';
@@ -75,34 +75,11 @@ export const HistoryOwner = () => {
   return (
     <div className='grid grid-cols-5'>
       {/* ---Sidebar--- */}
-      <div className='col-span-1 bg-[#0A008A] text-white h-screen px-8 py-16'>
-        <Link to=''>
-          <button
-            className='w-full h-[68px] px-6 mb-5 text-[25px] font-[600] flex flex-row items-center rounded-[8px] border-2 border-[#0A008A] bg-[#0A008A] text-white hover:border-[#A0A3FF] hover:bg-[#A0A3FF] hover:text-white focus:bg-black focus:border-black focus:text-white'
-            type='button'
-          >
-            Properti Saya
-          </button>
-        </Link>
-        <Link to='/owner/history'>
-          <button
-            className='w-full h-[68px] px-6 mb-5 text-[25px] font-[600] flex flex-row items-center rounded-[8px] border-2 border-white bg-white text-[#0A008A] hover:border-[#A0A3FF] hover:bg-[#A0A3FF] hover:text-white focus:bg-black focus:border-black focus:text-white'
-            type='button'
-          >
-            Riwayat Transaksi
-          </button>
-        </Link>
-        <Link to=''>
-          <button
-            className='w-full h-[68px] px-6 mb-5 text-[25px] font-[600] flex flex-row items-center rounded-[8px] border-2 border-[#0A008A] bg-[#0A008A] text-white hover:border-[#A0A3FF] hover:bg-[#A0A3FF] hover:text-white focus:bg-black focus:border-black focus:text-white'
-            type='button'
-          >
-            Akun Profil
-          </button>
-        </Link>
+      <div className='col-span-1 bg-[#0A008A] text-white min-h-screen h-full px-8 py-16'>
+        <SidebarOwner />
       </div>
       {/* ---Content--- */}
-      <div className='col-span-4 h-screen py-8 pl-10 pr-20'>
+      <div className='col-span-4 min-h-screen h-full py-8 pl-10 pr-20'>
         {/* Filter */}
         <div className='flex flex-row gap-5 mb-4 lg:mb-8'>
           {/* Dropdown Bulan */}
