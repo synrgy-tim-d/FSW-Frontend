@@ -5,8 +5,6 @@ import ProfilePage from './pages/ProfilePage';
 // import EditProfile from './components/profile/editprofile';
 import EditprofilePage from './pages/EditprofilePage';
 import Changepass from './components/profile/changepass';
-// import SignIn from './components/sign_in/SignIn.jsx';
-// import SignUp from './components/sign_up/SignUp.jsx';
 import { Login, Register } from './pages/authPage';
 import { HistoryBooking, HistoryConfirmation, HistoryPayment, HistoryCancel, HistoryBookingPayNow, HistoryBookingPayUpload, HistoryBookingPaySuccess } from './pages/historyPage';
 import LandingPage from './pages/landingPage';
@@ -16,6 +14,8 @@ import Verif from './pages/verif';
 import Success from './components/verif/success';
 import Forget from './pages/forget';
 import Rinciankos from './pages/Rinciankos.jsx';
+import { HistoryOwner } from './components/owner/history/history';
+import { HistoryDetailOwner } from './components/owner/history/historyDetail';
 import './index.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
@@ -46,6 +46,8 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           <Route path='/homepage' element={<Homepage />} />
           <Route path='/wishlist' element={<Wishlistpage />} />
           <Route path='/kos/:kosid/:roomid' element={<Rinciankos />} />
+          <Route path='/owner/history' element={<HistoryOwner />} />
+          <Route path='/owner/history/detail' element={<HistoryDetailOwner />} />
         </Routes>
       </BrowserRouter>
     </QueryClientProvider>
