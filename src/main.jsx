@@ -50,8 +50,8 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           <Route path='/wishlist' element={<Wishlistpage />} />
           <Route path='/kos/:kosid/:roomid' element={<Rinciankos />} />
           <Route path='/profilpemilik' element={<Ownerprofile />} />
-          <Route path='/editprofilowner/editprofilowner' element={ <EditOwnerProfile /> } />
-          <Route path='/editprofilowner/gantipasswordowner' element={ <ChangePassOwner /> } />
+          <Route path='/profilpemilik/editprofilowner' element={ <EditOwnerProfile /> } />
+          <Route path='/profilpemilik/gantipasswordowner' element={ <ChangePassOwner /> } />
         </Routes>
       </BrowserRouter>
     </QueryClientProvider>
