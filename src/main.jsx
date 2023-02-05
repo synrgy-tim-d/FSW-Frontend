@@ -19,7 +19,9 @@ import { HistoryDetailOwner } from './components/owner/history/historyDetail';
 import './index.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-
+import Ownerprofile from './components/owner-profile/profile';
+import EditOwnerProfile from './components/owner-profile/editprofile';
+import ChangePassOwner from './components/owner-profile/changepass';
 const queryClient = new QueryClient();
 
 ReactDOM.createRoot(document.getElementById('root')).render(
@@ -44,10 +46,14 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           <Route path='/verif/success/:otp' element={<Success />} />
           <Route path='/forget/:otp' element={<Forget />} />
           <Route path='/homepage' element={<Homepage />} />
+          <Route path='/homepage?city=:city' element={<Homepage />} />
           <Route path='/wishlist' element={<Wishlistpage />} />
           <Route path='/kos/:kosid/:roomid' element={<Rinciankos />} />
           <Route path='/owner/history' element={<HistoryOwner />} />
           <Route path='/owner/history/detail' element={<HistoryDetailOwner />} />
+          <Route path='/profilpemilik' element={<Ownerprofile />} />
+          <Route path='/editprofilowner/editprofilowner' element={ <EditOwnerProfile /> } />
+          <Route path='/editprofilowner/gantipasswordowner' element={ <ChangePassOwner /> } />
         </Routes>
       </BrowserRouter>
     </QueryClientProvider>

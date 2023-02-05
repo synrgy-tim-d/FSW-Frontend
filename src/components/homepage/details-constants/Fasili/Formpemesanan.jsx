@@ -5,7 +5,7 @@ const Formpemesanan = () => {
     <React.Fragment>
       <form
         action='|'
-        className='shadow-[#000000] shadow-md w-full grid grid-rows-auto gap-y-6 justify-items-center rounded-[8px]'
+        className='shadow-[#000000] shadow-md w-full grid grid-rows-auto gap-y-6 justify-items-center rounded-[8px] sticky top-12 '
       >
         <div className='mt-8'>
           <p className='text-[20px] font-[700]'>

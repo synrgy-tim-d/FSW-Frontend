@@ -11,29 +11,29 @@ const Password = ({ password }) => {
 const Profile = () => {
   return (
     <React.Fragment>
-      <ul className='breadcrumb pl-[70px] pt-[25px] font-[Montserrat] text-[20px] font-[600] bg-[#FAFAFA]'>
+      <ul className='breadcrumb pl-[32px] md:pl-[70px] pt-[30px] md:pt-[25px] font-[Montserrat] text-[20px] font-[600] bg-[#FAFAFA]'>
         <li>
-          <Link to='/' className='text-[20px] font-[600] hover:underline'>
+          <Link to='/' className='text-[16px] sm:text-[20px] font-[600] hover:underline'>
             Home
           </Link>
         </li>
         <li>
-          <Link to='/profil' className='text-[20px] font-[600] hover:underline'>
+          <Link to='/profil' className='text-[16px] sm:text-[20px] font-[600] hover:underline'>
             Profile
           </Link>
         </li>
       </ul>
-      <div className='w-full grid grid-cols-6 grid-flow-col font-[Montserrat] bg-[#FAFAFA]'>
-        <div className='col-span-2 grid grid-row-2 grid-flow-row justify-items-center content-center gap-16'>
+      <div className='w-full grid grid-rows-auto lg:grid-cols-6 grid-flow-row lg:grid-flow-col gap-6 font-[Montserrat] bg-[#FAFAFA]'>
+        <div className='row-span-1 lg:col-span-2 grid grid-row-2 grid-flow-row justify-items-center content-center gap-16 p-20'>
           <div>
             <img className='w-full h-auto' src={profile} alt='' />
           </div>
-          <div className='text-[31px] font-[600]'>Nama Pengguna</div>
+          <div className='text-[24px] sm:text-[30px] font-[600]'>Nama Pengguna</div>
         </div>
-        <div className='w-3/4 col-span-4 justify-self-center grid gap-4'>
+        <div className='w-11/12 md:w-3/4 row-span-1 lg:col-span-4 justify-self-center grid gap-4'>
           <form className='grid gap-12 bg-[#C0C1FF]/[0.38] rounded-2xl p-8'>
             <div className='grid grid-cols-2'>
-              <div className='text-[25px] font-[600]'>Informasi Akun</div>
+              <div className='text-[17px] sm:text-[25px] font-[600]'>Informasi Akun</div>
               <Link to='/editprofil' className='w-full flex justify-end'>
                 <button
                   type='button'
@@ -44,37 +44,45 @@ const Profile = () => {
               </Link>
             </div>
 
-            <div className='grid gap-4 text-[16px] font-[500] px-8 pb-12'>
-              <div className='grid grid-flow-col grid-cols-3 border-b-2 border-[#0A008A] pb-2'>
-                <div className='col-span-1'>Nama Pengguna</div>
-                <div className='col-span-2'>Nama Pengguna</div>
+            <div className='grid gap-4 text-[12px] sm:text-[16px] font-[500] px-8 pb-12'>
+              <div className='grid grid-cols-1 sm:grid-cols-3 grid-flow-row sm:grid-flow-col border-b-2 border-[#0A008A] pb-2 gap-y-2'>
+                <div className='col-span-1 font-[700] text-[16px] sm:text-[16px] sm:font-[500]'>
+                  Nama Pengguna
+                </div>
+                <div className='col-span-1 sm:col-span-2'>Nama Pengguna</div>
               </div>
-              <div className='grid grid-flow-col grid-cols-3 border-b-2 border-[#0A008A] pb-2'>
-                <div className='col-span-1'>Nomor HP</div>
-                <div className='col-span-2'>+62xxxxxxxxxxx</div>
+              <div className='grid grid-cols-1 sm:grid-cols-3 grid-flow-row sm:grid-flow-col border-b-2 border-[#0A008A] pb-2 gap-y-2'>
+                <div className='col-span-1 font-[700] text-[16px] sm:text-[16px] sm:font-[500]'>
+                  Nomor HP
+                </div>
+                <div className='col-span-1 sm:col-span-2'>+62xxxxxxxxxxx</div>
               </div>
-              <div className='grid grid-flow-col grid-cols-3 border-b-2 border-[#0A008A] pb-2'>
-                <div className='col-span-1'>Email</div>
-                <div className='col-span-2'>Namapengguna@gmail.com</div>
+              <div className='grid grid-cols-1 sm:grid-cols-3 grid-flow-row sm:grid-flow-col border-b-2 border-[#0A008A] pb-2 gap-y-2'>
+                <div className='col-span-1 font-[700] text-[16px] sm:text-[16px] sm:font-[500]'>
+                  Email
+                </div>
+                <div className='col-span-1 sm:col-span-2'>Namapengguna@gmail.com</div>
               </div>
             </div>
           </form>
 
           <form action='|' className='grid gap-12 bg-[#C0C1FF]/[0.38] rounded-2xl p-8'>
             <div className='grid grid-cols-2'>
-              <div className='text-[25px] font-[600]'>Login & Security</div>
+              <div className='text-[17px] sm:text-[25px] font-[600]'>Login & Security</div>
               <Link to='/gantipassword' className='w-full flex justify-end'>
                 <button
                   type='button'
-                  className='rounded-[150px] bg-inherit text-[#000000]/[0.38] text-[20px] font-[600]'
+                  className='rounded-[150px] bg-inherit text-[#000000]/[0.38] text-[16px] sm:text-[20px] font-[600]'
                 >
                   Ganti Password
                 </button>
               </Link>
             </div>
             <div className='text-[16px] font-[500] px-8'>
-              <div className='grid grid-flow-col grid-cols-3 border-b-2 border-[#0A008A] pb-2'>
-                <div className='col-span-1'>Password</div>
+              <div className='grid grid-cols-1 sm:grid-cols-3 grid-flow-row sm:grid-flow-col border-b-2 border-[#0A008A] pb-2 gap-y-2'>
+                <div className='col-span-1 sm:col-span-1 font-[700] text-[16px] sm:text-[16px] sm:font-[500]'>
+                  Password
+                </div>
                 <Password password={'Password'} />
               </div>
             </div>
@@ -91,7 +99,7 @@ const Profile = () => {
               </label>
             </div>
             <input type='checkbox' id='profile-modal' className='modal-toggle' />
-            <div className='modal inset-0 z-0 bg-black/50'>
+            <div className='modal inset-0 z-0 bg-black/50 p-7 lg:p-0'>
               <div className='modal-box bg-white p-16 rounded-[12px] text-[#000000] grid gap-4 shadow-2xl '>
                 <div className='logout-img justify-self-center pb-8'>
                   <img src={logout} alt='' />

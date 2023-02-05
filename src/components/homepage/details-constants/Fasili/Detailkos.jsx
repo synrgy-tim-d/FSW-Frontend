@@ -6,7 +6,7 @@ const Detailkos = () => {
       <div className='grid gap-4'>
         <p className='flex text-[39px] font-[700]'>
           Kos Alamanda
-          <span className='ml-4 p-1 px-3 border-2 border-[#0A008A] rounded-[70px] text-[16px] font-[600]'>
+          <span className='ml-4 py-3 px-3 border-2 border-[#0A008A] rounded-[70px] text-[20px] font-[600]'>
             Campuran
           </span>
         </p>
