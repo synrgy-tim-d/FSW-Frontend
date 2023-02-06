@@ -6,7 +6,15 @@ import ProfilePage from './pages/ProfilePage';
 import EditprofilePage from './pages/EditprofilePage';
 import Changepass from './components/profile/changepass';
 import { Login, Register } from './pages/authPage';
-import { HistoryBooking, HistoryConfirmation, HistoryPayment, HistoryCancel, HistoryBookingPayNow, HistoryBookingPayUpload, HistoryBookingPaySuccess } from './pages/historyPage';
+import {
+  HistoryBooking,
+  HistoryConfirmation,
+  HistoryPayment,
+  HistoryCancel,
+  HistoryBookingPayNow,
+  HistoryBookingPayUpload,
+  HistoryBookingPaySuccess,
+} from './pages/historyPage';
 import LandingPage from './pages/landingPage';
 import Wishlistpage from './pages/Wishlistpage';
 import Homepage from './pages/Homepage';
@@ -23,6 +31,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import Ownerprofile from './components/owner-profile/profile';
 import EditOwnerProfile from './components/owner-profile/editprofile';
 import ChangePassOwner from './components/owner-profile/changepass';
+import OwnerDataKamar from './components/owner-constants/OwnerDataKamar';
 const queryClient = new QueryClient();
 
 ReactDOM.createRoot(document.getElementById('root')).render(
@@ -54,8 +63,9 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           <Route path='/owner/history/detail' element={<HistoryDetailOwner />} />
           <Route path='/owner/property' element={<PropertyOwner />} />
           <Route path='/profilpemilik' element={<Ownerprofile />} />
-          <Route path='/editprofilowner/editprofilowner' element={ <EditOwnerProfile /> } />
-          <Route path='/editprofilowner/gantipasswordowner' element={ <ChangePassOwner /> } />
+          <Route path='/editprofilowner/editprofilowner' element={<EditOwnerProfile />} />
+          <Route path='/editprofilowner/gantipasswordowner' element={<ChangePassOwner />} />
+          <Route path='/datakamar' element={<OwnerDataKamar />} />
         </Routes>
       </BrowserRouter>
     </QueryClientProvider>
