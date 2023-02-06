@@ -1,5 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import BCA from '../../../assets/LogoBCA.png'
+import Mandiri from '../../../assets/LogoMandiri.png'
+import BNI from '../../../assets/LogoBNI.png'
+import BRI from '../../../assets/LogoBRI.png'
+import BTN from '../../../assets/LogoBTN.png'
 
 const AddOwnerProfile = () => {
     return (
@@ -7,10 +12,7 @@ const AddOwnerProfile = () => {
         <div className='grid grid-cols-5 bg-[#FAFAFA]'>
             <div className='col-span-1 bg-[#0A008A] h-full'></div>
 
-            <div className='col-span-4 grid grid-rows-auto w-2/3 justify-self-left pl-14 gap-y-12 py-12'>{/* <div className='grid grid-flow-row justify-self-center gap-y-4'>
-                    <img className='' src={profile} alt='' />
-                    <p className='text-left text-[24px] sm:text-[30px] font-[600]'>Ibu Kos</p>
-                </div> */}
+            <div className='col-span-4 grid grid-rows-auto w-2/3 justify-self-left pl-14 gap-y-12 py-12'>
 
             <div className=''>
                 <p className='text-[39px] text-[#000000] font-[600]'>Silahkan Lengkapi Data Pemilik/Pengelola Kos</p>
@@ -34,6 +36,14 @@ const AddOwnerProfile = () => {
                 <label className="relative block pb-10">
                     <span className="block text-[20px] font-semibold text-[#000000]">Rekening Bank</span>
                     <span className="block text-[20px] text-[#000000] pb-3">Rekening yang digunakan untuk pembayaran melalui transfer</span>
+                </label>
+
+                <label htmlFor="" className='relative w-full cursor-pointer'>
+                    <input type='radio' id='payment1' name='payment' />
+                    <div className='flex items-center p-5 pr-16 h-24 bg border-2 rounded'>
+                        <img className='h-[55px]' src={BCA} alt='BCA' />
+                        <p className='text-bold'>Bank BCA</p>
+                    </div>
                 </label>
 
                 <label className="relative block pb-10">
