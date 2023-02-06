@@ -1,11 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const Password = ({ password }) => {
-    const mask = '*'.repeat(password.length);
-    return <span>{mask}</span>;
-};
-
 const AddOwnerProfile = () => {
     return (
         <React.Fragment>
@@ -59,7 +54,22 @@ const AddOwnerProfile = () => {
 
                     <input className="placeholder:text-base placeholder:font-semibold placeholder:text-[#46464F]/[0.38] block bg-white w-full border border-slate-300 rounded-full py-4 pl-6 pr-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm" placeholder="Isi nama kepemilikan rekening bank" type="text" name="search" />
                 </label>
-            </form>
+                </form>
+            <div className='grid grid-flow-col place-content-between pt-24'>
+            <button
+                className='rounded border-2 border-[#0A008A] text=[#0A008A] bg-white font-[600] p-2 px-3'
+                type='button'
+            >
+                Kembali
+            </button>
+
+            <button
+                className='rounded border-2 border-[#0A008A] bg-[#0A008A] text-white font-[600] p-2 px-3'
+                type='button'
+            >
+                Simpan & Lanjutkan
+            </button>
+            </div>
         </div>
         </div>
         </React.Fragment>
