@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import bannerImg from '../../assets/Banner1.png';
+import { useState } from 'react';
+// import bannerImg from '../../assets/Banner1.png';
 import magnifier from '../../assets/Banner2_Magnifier.png';
 import BgImage from '../../assets/Banner3_bgImage.jpg';
 import { Link, useNavigate } from 'react-router-dom';
