@@ -31,7 +31,6 @@ import Ownerprofile from './components/owner-profile/profile';
 import EditOwnerProfile from './components/owner-profile/editprofile';
 import ChangePassOwner from './components/owner-profile/changepass';
 import OwnerDataKamar from './components/owner-constants/OwnerDataKamar';
-import OwnerDataKos from './components/owner-constants/OwnerDataKos';
 const queryClient = new QueryClient();
 
 ReactDOM.createRoot(document.getElementById('root')).render(
@@ -63,7 +62,6 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           <Route path='/editprofilowner/editprofilowner' element={<EditOwnerProfile />} />
           <Route path='/editprofilowner/gantipasswordowner' element={<ChangePassOwner />} />
           <Route path='/datakamar' element={<OwnerDataKamar />} />
-          <Route path='/datakos' element={<OwnerDataKos />} />
         </Routes>
       </BrowserRouter>
     </QueryClientProvider>
