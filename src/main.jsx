@@ -14,9 +14,8 @@ import Verif from './pages/verif';
 import Success from './components/verif/success';
 import Forget from './pages/forget';
 import Rinciankos from './pages/Rinciankos.jsx';
-import { HistoryOwner } from './components/owner/history/history';
-import { HistoryDetailOwner } from './components/owner/history/historyDetail';
-import { PropertyOwner } from './components/owner/property/property';
+import { OwnerHistoryPage, OwnerHistoryDetailPage } from './pages/ownerHistoryPage';
+import { OwnerPropertyPage } from './pages/ownerPropertyPage';
 import './index.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
@@ -50,9 +49,9 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           <Route path='/homepage?city=:city' element={<Homepage />} />
           <Route path='/wishlist' element={<Wishlistpage />} />
           <Route path='/kos/:kosid/:roomid' element={<Rinciankos />} />
-          <Route path='/owner/history' element={<HistoryOwner />} />
-          <Route path='/owner/history/detail' element={<HistoryDetailOwner />} />
-          <Route path='/owner/property' element={<PropertyOwner />} />
+          <Route path='/owner/history' element={<OwnerHistoryPage />} />
+          <Route path='/owner/history/detail' element={<OwnerHistoryDetailPage />} />
+          <Route path='/owner/property' element={<OwnerPropertyPage />} />
           <Route path='/profilpemilik' element={<Ownerprofile />} />
           <Route path='/editprofilowner/editprofilowner' element={ <EditOwnerProfile /> } />
           <Route path='/editprofilowner/gantipasswordowner' element={ <ChangePassOwner /> } />

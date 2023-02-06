@@ -26,12 +26,12 @@ export const ButtonDetail = () => {
 
 export const ButtonConfirm = () => {
   return (
-    <button
-      type='button'
-      className='inline-flex self-center justify-center gap-2 rounded-[4px] w-2/6 py-2 font-[600] text-[16px] text-white border-2 border-[#0A008A] bg-[#0A008A] hover:bg-[#A0A3FF] hover:text-[#0A008A] focus:bg-black focus:text-white focus:outline-none'
+    <label
+      htmlFor='my-modal'
+      className='inline-flex self-center justify-center cursor-pointer gap-2 rounded-[4px] w-2/6 py-2 font-[600] text-[16px] text-white border-2 border-[#0A008A] bg-[#0A008A] hover:bg-[#A0A3FF] hover:text-[#0A008A] focus:bg-black focus:text-white focus:outline-none'
     >
       Konfirmasi Pembayaran
-    </button>
+    </label>
   );
 };
 
