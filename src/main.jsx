@@ -24,13 +24,13 @@ import Verif from './pages/verif';
 import Success from './components/verif/success';
 import Forget from './pages/forget';
 import Rinciankos from './pages/Rinciankos.jsx';
-import DataKamarPage from './pages/DataKamarPage';
 import './index.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import Ownerprofile from './components/owner-profile/profile';
 import EditOwnerProfile from './components/owner-profile/editprofile';
 import ChangePassOwner from './components/owner-profile/changepass';
+import OwnerDataKamar from './components/owner-constants/OwnerDataKamar';
 const queryClient = new QueryClient();
 
 ReactDOM.createRoot(document.getElementById('root')).render(
@@ -61,7 +61,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           <Route path='/profilpemilik' element={<Ownerprofile />} />
           <Route path='/editprofilowner/editprofilowner' element={<EditOwnerProfile />} />
           <Route path='/editprofilowner/gantipasswordowner' element={<ChangePassOwner />} />
-          <Route path='/owner/datakos/datakamar' element={<DataKamarPage />} />
+          <Route path='/datakamar' element={<OwnerDataKamar />} />
         </Routes>
       </BrowserRouter>
     </QueryClientProvider>
