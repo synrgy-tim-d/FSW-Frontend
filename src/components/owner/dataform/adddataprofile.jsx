@@ -43,7 +43,7 @@ const AddOwnerProfile = () => {
                         <div className='flex items-center p-5 pr-16 h-[55px] bg border-2 rounded-[100px]'>
                             <input type='radio' id='BCA' name='payment' />
                             <img className='h-[55px]' src={BCA} alt='BCA' />
-                            <p className='pr-4'>Bank BCA</p>
+                            <p className='pl-4 font-semibold'>Bank BCA</p>
                         </div>
                     </div>
                 </label>
@@ -53,7 +53,7 @@ const AddOwnerProfile = () => {
                         <div className='flex items-center p-5 pr-16 h-[55px] bg border-2 rounded-[100px]'>
                             <input type='radio' id='Mandiri' name='payment' />
                             <img className='pl-2 h-[20px]' src={Mandiri} alt='Mandiri' />
-                            <p className='pr-4'>Bank Mandiri</p>
+                            <p className='pl-4 font-semibold'>Bank Mandiri</p>
                         </div>
                     </div>
                 </label>
@@ -63,7 +63,7 @@ const AddOwnerProfile = () => {
                         <div className='flex items-center p-5 pr-16 h-[55px] bg border-2 rounded-[100px]'>
                             <input type='radio' id='BNI' name='payment' />
                             <img className='pl-2 h-[20px]' src={BNI} alt='BNI' />
-                            <p className='pr-4'>Bank BNI</p>
+                            <p className='pl-4 font-semibold'>Bank BNI</p>
                         </div>
                     </div>
                 </label>
@@ -73,7 +73,7 @@ const AddOwnerProfile = () => {
                         <div className='flex items-center p-5 pr-16 h-[55px] bg border-2 rounded-[100px]'>
                             <input type='radio' id='BRI' name='payment' />
                             <img className='pl-2 h-[20px]' src={BRI} alt='BRI' />
-                            <p className='pr-4'>Bank BRI</p>
+                            <p className='pl-4 font-semibold'>Bank BRI</p>
                         </div>
                     </div>
                 </label>
@@ -83,7 +83,7 @@ const AddOwnerProfile = () => {
                         <div className='flex items-center p-5 pr-16 h-[55px] bg border-2 rounded-[100px]'>
                             <input type='radio' id='BTN' name='payment' />
                             <img className='pl-2 h-[20px]' src={BTN} alt='BTN' />
-                            <p className='pr-4'>Bank BTN</p>
+                            <p className='pl-4 font-semibold'>Bank BTN</p>
                         </div>
                     </div>
                 </label>
@@ -92,7 +92,7 @@ const AddOwnerProfile = () => {
                     <div className='pt-2 pb-10'>
                         <div className='flex items-center p-5 pr-16 h-[55px] bg border-2 rounded-[100px]'>
                             <input type='radio' id='other' name='payment' />
-                            <p className='pl-2 pr-4'>Lainnya</p>
+                            <p className='pl-2 pr-4 font-semibold'>Lainnya</p>
                         </div>
                     </div>
                 </label>
