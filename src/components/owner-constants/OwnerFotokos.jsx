@@ -54,7 +54,7 @@ const OwnerFotokos = () => {
                     />
                     {/* Modal Pop Up */}
                     {showModal && (
-                      <div className='absolute top-0 left-0 bottom-0 right-0 bg-black bg-opacity-50 flex items-center justify-center'>
+                      <div className='absolute inset-0 w-[411px] bg-black bg-opacity-50 flex items-center justify-center'>
                         <div className='bg-white grid grid-flow-row gap-4 p-4 rounded-[8px]'>
                           <button
                             onClick={() => setShowModal(false)}
