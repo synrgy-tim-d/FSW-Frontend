@@ -2,8 +2,14 @@ import React from 'react';
 import profile from '../../assets//Profile.svg';
 import { Link } from 'react-router-dom';
 import { SidebarOwner } from '../owner/sidebar';
+import { useNavigate } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
+import axios from 'axios';
 
 const ChangePassOwner = () => {
+  const { register, handleSubmit, errors } = useForm();
+  const navigate = useNavigate();
+
   return (
     <React.Fragment>
       <div className='grid grid-cols-5'>
@@ -33,6 +39,7 @@ const ChangePassOwner = () => {
                       id='inline-password'
                       type='password'
                       placeholder='Masukkan password lama'
+                      ref={register}
                     />
                   </div>
                   <div>
@@ -49,14 +56,14 @@ const ChangePassOwner = () => {
                 </div>
                 <div className='flex justify-center'>
                   <Link to='/profilpemilik' className='w-[60%] md:w-[70%]'>
-                    <button
+                    <input
                       id='reset-password'
-                      type='button'
+                      type='submit'
                       className='w-full rounded-[150px] text-center py-2 text-[14px] sm:text-[16px] 
                   text-white bg-[#0A008A] hover:bg-[#A0A3FF] hover:text-[#FFFFFF] active:bg-black'
                     >
                       Reset Password
-                    </button>
+                    </input>
                   </Link>
                 </div>
               </form>
