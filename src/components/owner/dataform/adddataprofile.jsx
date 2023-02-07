@@ -33,16 +33,67 @@ const AddOwnerProfile = () => {
                     <input className="placeholder:text-base placeholder:font-semibold placeholder:text-[#46464F]/[0.38] block bg-white w-full border border-slate-300 rounded-full py-4 pl-6 pr-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm" placeholder="Isi nomor handphone Whatsapp aktif" type="text" name="search" />
                 </label>
 
-                <label className="relative block pb-10">
+                <label className="relative block">
                     <span className="block text-[20px] font-semibold text-[#000000]">Rekening Bank</span>
-                    <span className="block text-[20px] text-[#000000] pb-3">Rekening yang digunakan untuk pembayaran melalui transfer</span>
+                    <span className="block text-[20px] text-[#000000]">Rekening yang digunakan untuk pembayaran melalui transfer</span>
+                </label>
+
+                <label htmlFor="" className='relative w-full cursor-pointer pb-10'>
+                    <div className='pt-4'>
+                        <div className='flex items-center p-5 pr-16 h-[55px] bg border-2 rounded-[100px]'>
+                            <input type='radio' id='BCA' name='payment' />
+                            <img className='h-[55px]' src={BCA} alt='BCA' />
+                            <p className='pr-4'>Bank BCA</p>
+                        </div>
+                    </div>
                 </label>
 
                 <label htmlFor="" className='relative w-full cursor-pointer'>
-                    <input type='radio' id='payment1' name='payment' />
-                    <div className='flex items-center p-5 pr-16 h-24 bg border-2 rounded'>
-                        <img className='h-[55px]' src={BCA} alt='BCA' />
-                        <p className='text-bold'>Bank BCA</p>
+                    <div className='pt-2'>
+                        <div className='flex items-center p-5 pr-16 h-[55px] bg border-2 rounded-[100px]'>
+                            <input type='radio' id='Mandiri' name='payment' />
+                            <img className='pl-2 h-[20px]' src={Mandiri} alt='Mandiri' />
+                            <p className='pr-4'>Bank Mandiri</p>
+                        </div>
+                    </div>
+                </label>
+
+                <label htmlFor="" className='relative w-full cursor-pointer'>
+                    <div className='pt-2'>
+                        <div className='flex items-center p-5 pr-16 h-[55px] bg border-2 rounded-[100px]'>
+                            <input type='radio' id='BNI' name='payment' />
+                            <img className='pl-2 h-[20px]' src={BNI} alt='BNI' />
+                            <p className='pr-4'>Bank BNI</p>
+                        </div>
+                    </div>
+                </label>
+
+                <label htmlFor="" className='relative w-full cursor-pointer'>
+                    <div className='pt-2'>
+                        <div className='flex items-center p-5 pr-16 h-[55px] bg border-2 rounded-[100px]'>
+                            <input type='radio' id='BRI' name='payment' />
+                            <img className='pl-2 h-[20px]' src={BRI} alt='BRI' />
+                            <p className='pr-4'>Bank BRI</p>
+                        </div>
+                    </div>
+                </label>
+
+                <label htmlFor="" className='relative w-full cursor-pointer'>
+                    <div className='pt-2'>
+                        <div className='flex items-center p-5 pr-16 h-[55px] bg border-2 rounded-[100px]'>
+                            <input type='radio' id='BTN' name='payment' />
+                            <img className='pl-2 h-[20px]' src={BTN} alt='BTN' />
+                            <p className='pr-4'>Bank BTN</p>
+                        </div>
+                    </div>
+                </label>
+
+                <label htmlFor="" className='relative w-full cursor-pointer'>
+                    <div className='pt-2 pb-10'>
+                        <div className='flex items-center p-5 pr-16 h-[55px] bg border-2 rounded-[100px]'>
+                            <input type='radio' id='other' name='payment' />
+                            <p className='pl-2 pr-4'>Lainnya</p>
+                        </div>
                     </div>
                 </label>
 
