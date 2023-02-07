@@ -7,43 +7,6 @@ const EditProfile = () => {
 
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const fetchCurrentUserProfile = async () => {
-      try {
-        
-        const authToken = localStorage.getItem("AUTH_TOKEN");
-
-        const currentUserRequest = await axios.get(
-          `${appConfig.BE_URL}/users/get`,
-          {
-            headers: {
-              authorization: `Bearer ${authToken}`,
-            },
-          }
-        );
-
-        const currentUserResponse = currentUserRequest.data;
-        if (currentUserResponse.code == 200)  {
-          // console.log(currentUserResponse)
-          fullnameRef.current.value = currentUserResponse.data.fullname;
-          phoneNumberRef.current.value = currentUserResponse.data.phoneNumber;
-          usernameRef.current.value = currentUserResponse.data.username;
-          setPictureUrl(currentUserResponse.data.imgUrl)
-        } else {
-          navigate("/auth/login")
-        }
-        
-      } catch (err) {
-        console.log(err)
-        navigate("/auth/login")
-      }
-    }
-
-
-    
-    fetchCurrentUserProfile();
-  },[])
-
   const [fullname, setFullname] = useState();
   const [phoneNumber, setPhoneNumber] = useState();
   const [username, setUsername] = useState();
@@ -63,7 +26,6 @@ const EditProfile = () => {
   }
   const onChangePictureHandler = (e) => {
     if (e.target.files && e.target.files[0]) {
-      console.log("MASUK PAK")
       let reader = new FileReader();
       reader.onload = (e) => {
         setPictureUrl(e.target.result)
@@ -91,12 +53,12 @@ const EditProfile = () => {
       const authToken = localStorage.getItem("AUTH_TOKEN");
       const payload = new FormData();
   
-      payload.append("fullname",fullname);
+      payload.append("fullname",fullname );
       payload.append("phoneNumber", phoneNumber);
       payload.append("username",username);
       payload.append("img",picture);
   
-      const editProfileRequest = await axios.post(
+      const editProfileRequest = await axios.put(
         `${appConfig.BE_URL}/users/update_data`,
         payload,
         {
@@ -117,8 +79,44 @@ const EditProfile = () => {
     } catch (err) {
       navigate("/editprofil")
     }
-
   }
+
+  useEffect(() => {
+    const fetchCurrentUserProfile = async () => {
+      try {
+        
+        const authToken = localStorage.getItem("AUTH_TOKEN");
+
+        const currentUserRequest = await axios.get(
+          `${appConfig.BE_URL}/users/get`,
+          {
+            headers: {
+              authorization: `Bearer ${authToken}`,
+            },
+          }
+        );
+
+        const currentUserResponse = currentUserRequest.data;
+        if (currentUserResponse.code == 200)  {
+          fullnameRef.current.value = currentUserResponse.data.fullname != null ? currentUserResponse.data.fullname : "";
+          setFullname(currentUserResponse.data.fullname != null ? currentUserResponse.data.fullname : "");
+          phoneNumberRef.current.value = currentUserResponse.data.phoneNumber != null ? currentUserResponse.data.phoneNumber : "";
+          setPhoneNumber(currentUserResponse.data.phoneNumber != null ? currentUserResponse.data.phoneNumber : "");
+          usernameRef.current.value = currentUserResponse.data.username != null ? currentUserResponse.data.username : "";
+          setUsername(currentUserResponse.data.username != null ? currentUserResponse.data.username : "");
+          setPictureUrl(currentUserResponse.data.imgUrl != null ? currentUserResponse.data.imgUrl : "")
+        } else {
+          navigate("/auth/login")
+        }
+        
+      } catch (err) {
+        console.log(err)
+        navigate("/auth/login")
+      }
+    }
+
+    fetchCurrentUserProfile();
+  },[])
 
   return (
     <React.Fragment>
