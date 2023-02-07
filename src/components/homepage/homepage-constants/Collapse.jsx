@@ -95,6 +95,10 @@ export const CollapseCheckbox = ({ items, buttonText }) => {
 };
 
 export const CollapseRadio = ({ items, buttonText }) => {
+  useEffect(() => {
+    console.log('DEBUG :', items);
+  });
+
   const [isOpen, setIsOpen] = useState(true);
 
   return (
@@ -112,20 +116,23 @@ export const CollapseRadio = ({ items, buttonText }) => {
           className='grid grid-flow-col lg:grid-rows-auto lg:grid-flow-row
         text-[12px] lg:text-[16px] lg:grid-rows-auto gap-x-4 lg:gap-x-0 lg:gap-y-2 pt-2 py-4'
         >
-          {items.map((item, index) => (
-            <li key={index}>
-              <input
-                type='radio'
-                name={item.name}
-                value={item.id}
-                onChange={(el) => {
-                  const temp = items.find((e) => e.id === el.target.value);
-                  // temp.checked = true;
-                }}
-              />
-              <label className='pl-2'>{item.value}</label>
-            </li>
-          ))}
+          {items?.map((item, index) => {
+            return (
+              <li key={index}>
+                <input
+                  key={index}
+                  type='radio'
+                  name={item.name}
+                  value={item.id}
+                  onChange={(el) => {
+                    const temp = items.find((e) => e.id === el.target.value);
+                    // temp.checked = true;
+                  }}
+                />
+                <label className='pl-2'>{item.value}</label>
+              </li>
+            );
+          })}
         </ul>
       )}
     </div>

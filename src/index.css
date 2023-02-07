@@ -30,12 +30,6 @@
   content: '\00a0'url(/src/assets/breadcrumb-arrow.svg) '\00a0';
   opacity: 0.38;
 }
-[type='radio'] {
-  position: absolute;
-  opacity: 0;
-  width: 0;
-  height: 0;
-}
 
 /* IMAGE STYLES */
 [type='radio'] + img {
