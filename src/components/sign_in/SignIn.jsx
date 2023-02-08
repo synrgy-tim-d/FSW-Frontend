@@ -1,46 +1,53 @@
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import LoadingBar from 'react-top-loading-bar';
+import { useNavigate, Link } from 'react-router-dom';
+import { useMutation } from '@tanstack/react-query';
 import axios from 'axios';
 import appConfig from '../../config';
-import { useNavigate, Link } from 'react-router-dom';
-import { useState } from 'react';
 import imglogo from '../../assets/LogoNaqosFix.png';
 import iconeye from '../../assets/icon_eye-slash.svg';
 import icongoogle from '../../assets/icon_google.svg';
-import { useMutation } from '@tanstack/react-query';
 
 const SignIn = () => {
   const navigate = useNavigate();
-
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
-  
+
   const [isDisabled, setIsDisabled] = useState(false);
+  const [progressLoading, setProgressLoading] = useState(0);
 
   const login = useMutation({
-    mutationFn: async(newTodo) => {
-      return await axios.post(appConfig.BE_AUTH_URL, newTodo)
+    mutationFn: async (newTodo) => {
+      return await axios.post(appConfig.BE_AUTH_URL, newTodo);
     },
-  })
+  });
 
   const onFormSubmitHandler = async (data) => {
     setIsDisabled(true);
-    login.mutate(data);
+    setProgressLoading(50);
 
-    if (login.isSuccess) {
-      localStorage.setItem('AUTH_TOKEN', login?.data?.data.data.access_token);
-      localStorage.setItem('REFRESH_TOKEN', login?.data?.data.data.refresh_token);
-      navigate('/');
-    } else {
-      alert("Username atau Password salah!");
-    }
+    login.mutate(data, {
+      onSuccess: () => {
+        setProgressLoading(100);
+        localStorage.setItem('AUTH_TOKEN', login?.data?.data.data.access_token);
+        localStorage.setItem('REFRESH_TOKEN', login?.data?.data.data.refresh_token);
+        // navigate('/');
+      },
+      onError: () => {
+        setProgressLoading(100);
+        alert('Username atau Password salah!');
+      },
+    });
     setIsDisabled(false);
   };
 
   return (
     <div className='px-[15px] font-[Montserrat]'>
+      <LoadingBar waitingTime={50} color='#f11946' progress={progressLoading} height='20px' />
       <form onSubmit={handleSubmit(onFormSubmitHandler)}>
         <div className='flex flex-row justify-center'>
           <img
@@ -119,7 +126,7 @@ const SignIn = () => {
             >
               Masuk
             </button>
-          ) }
+          )}
         </div>
         <div className='flex flex-row justify-center lg:mt-[21px] mt-[5px]'>
           <hr className='lg:mt-3 lg:w-[195px] w-[130px] mt-3 bg-[#999999] border-1 border-[#999999]' />
