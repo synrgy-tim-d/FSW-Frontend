@@ -40,7 +40,8 @@ function Banner() {
                   <img className='absolute ml-4 pointer-events-none' src={magnifier} />
                   <input
                     type='search'
-                    className='w-full pl-12 py-1 lg:py-5 text-l lg:text-2xl font-normal text-gray-700 bg-white border-none ring-2 ring-gray-300 focus:ring-none rounded transition ease-in-out '
+                    className='w-full pl-12 py-1 lg:py-5 text-l lg:text-2xl font-normal 
+                    text-gray-700 bg-white border-none ring-2 ring-gray-300 focus:outline-none rounded transition ease-in-out '
                     placeholder='Mau Kos di Mana?'
                     onChange={changeSearch}
                     onKeyDown={handleKeyDown}
