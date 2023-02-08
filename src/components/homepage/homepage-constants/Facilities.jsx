@@ -1,4 +1,3 @@
-import React from 'react';
 import { CollapseCheckbox, CollapseRadio, CollapseCheckboxType } from './Collapse';
 import { tipeKos, waktuSewa, urutanHarga, fasilitasKamar, fasilitasBersama } from './Dropdown';
 
@@ -7,11 +6,19 @@ const Facilities = () => {
 
   const submitHandle = (e) => {
     e.preventDefault();
-    console.log(tipeKos);
-    console.log(waktuSewa);
-    console.log(urutanHarga);
-    console.log(fasilitasKamar);
-    console.log(fasilitasBersama);
+    const kostType = tipeKos.filter((el) => el.checked === true);
+    const rentalTime = waktuSewa.filter((el) => el.checked === true);
+    const price = urutanHarga.filter((el) => el.checked === true);
+    const roomFacilities = fasilitasKamar.filter((el) => el.checked === true);
+    const kostFacilities = fasilitasBersama.filter((el) => el.checked === true);
+    console.log(kostType)
+    console.log(rentalTime)
+    console.log(price)
+    console.log(roomFacilities)
+    console.log(kostFacilities)
+    if (kostType.length === 0) {
+      console.log('tidak ada')
+    }
   };
 
   return (

@@ -65,10 +65,7 @@ const Homepage = () => {
               name='search'
               placeholder='Masukkan nama kota yang diinginkan'
               value={search}
-              onChange={(e) => {
-                // searchParams.set('city', e.target.value.replace(/\s/g, '%20'));
-                setSearch(e.target.value);
-              }}
+              onChange={(e) => {setSearch(e.target.value)}}
               onKeyDown={handleKeyDown}
             />
           </div>

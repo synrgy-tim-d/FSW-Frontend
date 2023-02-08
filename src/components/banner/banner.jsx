@@ -14,7 +14,7 @@ function Banner() {
   const navigate = useNavigate();
   const handleKeyDown = (e) => {
     if (e.key === 'Enter') {
-      if (search === '' || search === ' ') { 
+      if (search === '' || search === ' ') {
         navigate(`/homepage`);
       } else {
         navigate(`/homepage?city=${search}`);
