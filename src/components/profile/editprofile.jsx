@@ -47,30 +47,46 @@ const EditProfile = () => {
 
   const onClickSaveHandler =async (e) => {
     e.preventDefault();
-    console.log(fullname, phoneNumber, username, picture);
+    // console.log(fullname, phoneNumber, username, picture);
     try {
 
       const authToken = localStorage.getItem("AUTH_TOKEN");
-      const payload = new FormData();
+      const profilePayload = new FormData();
   
-      payload.append("fullname",fullname );
-      payload.append("phoneNumber", phoneNumber);
-      payload.append("username",username);
-      payload.append("img",picture);
-  
-      const editProfileRequest = await axios.put(
-        `${appConfig.BE_URL}/users/update_data`,
-        payload,
-        {
-          headers: {
-            authorization: `Bearer ${authToken}`,
-          },
-        }
-      );
+      profilePayload.append("fullname",fullname );
+      profilePayload.append("phoneNumber", phoneNumber);
+      // profilePayload.append("username",username);
+      // profilePayload.append("img",picture);
 
+
+      const editProfileRequest = await axios.put(
+          `${appConfig.BE_URL}/users/update_data`,
+          profilePayload,
+          {
+            headers: {
+              authorization: `Bearer ${authToken}`,
+            },
+          }
+        );
+      
+
+      const avatarPayload = new FormData();
+
+      avatarPayload.append("imageFile", picture)
+
+      const editAvatarRequest = await axios.put(
+          `${appConfig.BE_URL}/users/avatar`, 
+          avatarPayload,
+          {
+            headers: {
+              authorization: `Bearer ${authToken}`,
+            },
+          }
+        );
 
       const editProfileResponse = editProfileRequest.data;
-      if (editProfileResponse.code == 200)  {
+      const editAvatarResponse = editAvatarRequest.data;
+      if (editProfileResponse.code == 200 && editAvatarResponse.code == 200)  {
         navigate("/profil")
       } else {
         navigate("/editprofil")
@@ -100,10 +116,13 @@ const EditProfile = () => {
         if (currentUserResponse.code == 200)  {
           fullnameRef.current.value = currentUserResponse.data.fullname != null ? currentUserResponse.data.fullname : "";
           setFullname(currentUserResponse.data.fullname != null ? currentUserResponse.data.fullname : "");
+
           phoneNumberRef.current.value = currentUserResponse.data.phoneNumber != null ? currentUserResponse.data.phoneNumber : "";
           setPhoneNumber(currentUserResponse.data.phoneNumber != null ? currentUserResponse.data.phoneNumber : "");
+
           usernameRef.current.value = currentUserResponse.data.username != null ? currentUserResponse.data.username : "";
           setUsername(currentUserResponse.data.username != null ? currentUserResponse.data.username : "");
+          
           setPictureUrl(currentUserResponse.data.imgUrl != null ? currentUserResponse.data.imgUrl : "")
         } else {
           navigate("/auth/login")
@@ -140,7 +159,7 @@ const EditProfile = () => {
       <div className='w-full grid grid-cols-1 lg:grid-cols-6 grid-flow-row lg:grid-flow-col gap-6 font-[Montserrat] bg-[#FAFAFA] py-8 lg:py-[7.4rem] '>
         <div className='col-span-1 lg:col-span-2 grid grid-row-2 grid-flow-row justify-items-center content-center gap-16'>
           <div className='relative'>
-            <div className='rounded-full overflow-hidden w-[200px]'>
+            <div className='rounded-full overflow-hidden max-w-[200px]'>
               <img className='w-full h-auto' src={pictureUrl} alt='' />
             </div>
             <button className='absolute bg-[#898484] p-[14px] rounded-full bottom-[5%] right-[1%]' onClick={(e) => {onClickPictureButton(e)}}>

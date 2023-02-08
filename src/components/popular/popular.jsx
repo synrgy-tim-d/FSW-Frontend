@@ -27,7 +27,7 @@ const popularCities = [
   },
   {
     id: 4,
-    name: 'Tanggerang',
+    name: 'Tangerang',
     pictureUrl:
       'https://res.cloudinary.com/dqzqbgi8e/image/upload/v1673952075/naqos/cities/tangerang_dbumxu.png',
   },
