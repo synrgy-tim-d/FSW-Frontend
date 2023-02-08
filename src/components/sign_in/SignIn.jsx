@@ -1,8 +1,10 @@
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import LoadingBar from 'react-top-loading-bar';
+import { useNavigate, Link } from 'react-router-dom';
+import { useMutation } from '@tanstack/react-query';
 import axios from 'axios';
 import appConfig from '../../config';
-import { useNavigate, Link } from 'react-router-dom';
-import { useState } from 'react';
 import imglogo from '../../assets/LogoNaqosFix.png';
 import iconeye from '../../assets/icon_eye-slash.svg';
 import icongoogle from '../../assets/icon_google.svg';
@@ -14,25 +16,38 @@ const SignIn = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
+
   const [isDisabled, setIsDisabled] = useState(false);
+  const [progressLoading, setProgressLoading] = useState(0);
+
+  const login = useMutation({
+    mutationFn: async (newTodo) => {
+      return await axios.post(appConfig.BE_AUTH_URL, newTodo);
+    },
+  });
 
   const onFormSubmitHandler = async (data) => {
     setIsDisabled(true);
+    setProgressLoading(50);
 
-    const loginAuthPayload = {
-      username: data.username,
-      password: data.password,
-    };
-
-    const responseAuth = await axios.post(appConfig.BE_AUTH_URL, loginAuthPayload);
-    localStorage.setItem('AUTH_TOKEN', responseAuth.data.data.access_token);
-    localStorage.setItem('REFRESH_TOKEN', responseAuth.data.data.refresh_token);
+    login.mutate(data, {
+      onSuccess: () => {
+        setProgressLoading(100);
+        localStorage.setItem('AUTH_TOKEN', login?.data?.data.data.access_token);
+        localStorage.setItem('REFRESH_TOKEN', login?.data?.data.data.refresh_token);
+        navigate('/');
+      },
+      onError: () => {
+        setProgressLoading(100);
+        alert('Username atau Password salah!');
+      },
+    });
     setIsDisabled(false);
-    navigate('/');
   };
 
   return (
     <div className='px-[15px] font-[Montserrat]'>
+      <LoadingBar waitingTime={50} color='#f11946' progress={progressLoading} height='20px' />
       <form onSubmit={handleSubmit(onFormSubmitHandler)}>
         <div className='flex flex-row justify-center'>
           <img
@@ -67,26 +82,29 @@ const SignIn = () => {
           <span className='lg:mt-[20px] lg:mb-[10px] lg:w-[209px] lg:h-[24px] lg:text-[20px] text-[14px] w-[175px] mt-[15px] mb-[10px] text-black text-left font-[600]'>
             Password
           </span>
-          <input
-            className='lg:h-[55px] lg:text-[20px] h-[48px] text-[12px] px-4 text-black font-[600] bg-white rounded-[526px] placeholder-[#b9b9bc] border-2 border-[#dadadc] focus:outline-none focus:border-[#0A008A]'
-            type='password'
-            placeholder='Minimal 6 karakter'
-            {...register('password', {
-              required: true,
-              minLength: 6,
-            })}
-          />
-          {errors.password && errors.password.type === 'required' && (
-            <span className='text-red-500 text-sm'>Password harus diisi</span>
-          )}
-          {errors.password && errors.password.type === 'minLength' && (
-            <span className='text-red-500 text-sm'>Password minimal 6 karakter</span>
-          )}
-          <img
-            className='absolute right-0 lg:right-auto pointer-events-none lg:mt-[110px] lg:ml-[480px] mt-[105px] mr-[30px]'
-            src={iconeye}
-          />
-          <Link to='#'>
+          <div className='flex flex-col flex-1'>
+            <input
+              className='lg:h-[55px] w-full lg:text-[20px] h-[48px] text-[12px] px-4 text-black font-[600] bg-white rounded-[526px] placeholder-[#b9b9bc] border-2 border-[#dadadc] focus:outline-none focus:border-[#0A008A]'
+              type='password'
+              placeholder='Minimal 6 karakter'
+              {...register('password', {
+                required: true,
+                minLength: 6,
+              })}
+            />
+            {errors.password && errors.password.type === 'required' && (
+              <span className='text-red-500 text-sm'>Password harus diisi</span>
+            )}
+            {errors.password && errors.password.type === 'minLength' && (
+              <span className='text-red-500 text-sm'>Password minimal 6 karakter</span>
+            )}
+            <img
+              className='absolute right-0 lg:right-auto pointer-events-none lg:mt-[15px] lg:ml-[480px] mt-[12px] mr-[30px]'
+              src={iconeye}
+            />
+          </div>
+
+          <Link to='/forget/:otp'>
             <p className='lg:mt-[10px] lg:text-[16px] lg:font-[600] text-[14px] font-[500] mt-1 text-left text-black hover:text-black'>
               Lupa Password
             </p>
@@ -102,14 +120,12 @@ const SignIn = () => {
               Loading ...
             </button>
           ) : (
-            // <Link to='/'>
             <button
               className='lg:w-[481px] lg:h-[43px] lg:text-[16px] w-[302px] h-[36px] text-[14px] bg-[#0A008A] rounded-[150px] outline-none font-[600] text-white hover:bg-[#A0A3FF] hover:text-[#0A008A] focus:bg-[#000000] focus:text-white focus:outline-none'
               type='submit'
             >
               Masuk
             </button>
-            // </Link>
           )}
         </div>
         <div className='flex flex-row justify-center lg:mt-[21px] mt-[5px]'>

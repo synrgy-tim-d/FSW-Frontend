@@ -16,28 +16,36 @@
 
 .breadcrumb li {
   display: inline;
-  color: #46464F;
+  color: #46464f;
   opacity: 0.38;
 }
 
 .breadcrumb li:hover {
-  color: #0A008A;
+  color: #0a008a;
   opacity: 1;
 }
 
-.breadcrumb li+li:before {
+.breadcrumb li + li:before {
   padding: 8px;
-  content: '\00a0'url(/src/assets/breadcrumb-arrow.svg)'\00a0' ;
+  content: '\00a0'url(/src/assets/breadcrumb-arrow.svg) '\00a0';
   opacity: 0.38;
+}
+[type='radio'] {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* IMAGE STYLES */
+[type='radio'] + img {
+  cursor: pointer;
+}
+
+/* CHECKED STYLES */
+[type='radio']:checked + img {
+  outline: 2px solid #311643;
+  @apply rounded-xl;
 }
 
 /* Add Styles Here -TECHLEAD */
-
-.dark-background {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.5);
-}

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 // import image from '../../../assets/Homepage-Kos1.svg';
 
@@ -28,124 +28,12 @@ const LikeButton = (props) => {
   );
 };
 
-  // const Kostdata = () => {
-  // const [kosts, setKosts] = useState([]);
-  // const [selectedIndex, setSelectedIndex] = useState(-1);
-  // const handleClick = (index) => {
-  //  setSelectedIndex(index);
-  // };
-
-  // useEffect(() => {
-  //   const kostList = [
-  //     {
-  //       id: 1,
-  //       name: 'Kos Alamanda',
-  //       type: 'Campur',
-  //       room: 5,
-  //       description:
-  //         'Rincian alamat kos secara lengkap dan kode pos Rincian alamat kos secara lengkap dan kode pos',
-  //       review: 5,
-  //       location: {
-  //         name: 'Yogyakarta',
-  //       },
-  //       facilities: [
-  //         {
-  //           name: 'Wifi',
-  //         },
-  //         {
-  //           name: 'AC',
-  //         },
-  //         {
-  //           name: 'KM Dalam',
-  //         },
-  //       ],
-  //       price: '1.000.000',
-  //     },
-  //     {
-  //       id: 2,
-  //       name: 'Kos Cendana',
-  //       type: 'Putri',
-  //       room: 12,
-  //       description:
-  //         'Rincian alamat kos secara lengkap dan kode pos Rincian alamat kos secara lengkap dan kode pos',
-  //       review: 4.5,
-  //       location: {
-  //         name: 'Surakarta',
-  //       },
-  //       facilities: [
-  //         {
-  //           name: 'Listrik',
-  //         },
-  //         {
-  //           name: 'AC',
-  //         },
-  //         {
-  //           name: 'TV',
-  //         },
-  //       ],
-  //       price: '1.000.000',
-  //     },
-  //     {
-  //       id: 3,
-  //       name: 'Kos Jupiter',
-  //       type: 'Putra',
-  //       room: 2,
-  //       description:
-  //         'Rincian alamat kos secara lengkap dan kode pos Rincian alamat kos secara lengkap dan kode pos',
-  //       review: 2.7,
-  //       location: {
-  //         name: 'Jakarta Timur',
-  //       },
-  //       facilities: [
-  //         {
-  //           name: 'Listrik',
-  //         },
-  //         {
-  //           name: 'Wifi',
-  //         },
-  //         {
-  //           name: 'AC',
-  //         },
-  //       ],
-  //       price: '3.000.000',
-  //     },
-  //     {
-  //       id: 4,
-  //       name: 'Kos Saturnus',
-  //       type: 'Putri',
-  //       room: 9,
-  //       description:
-  //         'Rincian alamat kos secara lengkap dan kode pos Rincian alamat kos secara lengkap dan kode pos',
-  //       review: 4.2,
-  //       location: {
-  //         name: 'Surabaya',
-  //       },
-  //       facilities: [
-  //         {
-  //           name: 'KM Dalam',
-  //         },
-  //         {
-  //           name: 'Wifi',
-  //         },
-  //         {
-  //           name: 'Kipas Angin',
-  //         },
-  //       ],
-  //       price: '600.000',
-  //     },
-  //   ];
-  //   setKosts(kostList);
-  // }, []);
-
-  // return (
-  //   <div className='text-[10px] md:text-[16px] lg:text-[20px] font-[Montserrat] text-[#000000] col-span-3 grid grid-cols-auto auto-rows-max gap-8 md:px-2 lg:px-4'>
-  //   {kosts.map((kost, index) => {
-
 const Kostdata = ({ fetchData }) => {
-  console.log(fetchData);
   return (
     <div className='text-[10px] sm:text-[14px] md:text-[18px] lg:text-[20px] font-[Montserrat] text-[#000000] col-span-3 grid grid-cols-auto auto-rows-max gap-8 md:px-2 lg:px-4'>
       {fetchData?.map((kost) => {
+        const facilities = [].concat(...kost.rooms.map(room => room.facilities.map(facility => facility.name)));
+        const uniqueFacilities = [...new Set(facilities)];
         return (
           <React.Fragment key={kost.id}>
             <div className='grid grid-cols-3 grid-flow-col bg-white rounded-[16px]'>
@@ -163,18 +51,18 @@ const Kostdata = ({ fetchData }) => {
                     text-[12px] lg:text-[16px] font-[600] leading-none
                     hidden'
                     >
-                    //  {kost.type}
+                    {/* {kost.type} */}
                       {kost.kostType.slice(4)}
                     </div>
                     <span className='text-[#BA1A1A] italic md:pl-2 self-center'>
-                      {/* sisa {kost.rooms.isAvailable} kamar */}
+                      sisa {kost.rooms.filter(room => room.isAvailable === true).length} kamar
                     </span>
                   </div>
                   <div className='flex justify-end self-center pr-4'>
                     <LikeButton
-                      key={index}
-                      onClick={() => handleClick(index)}
-                      isFilled={selectedIndex === index}
+                      key={kost.id}
+                      // onClick={() => handleClick()}
+                      // isFilled={selectedIndex === index}
                     />
                   </div>
                 </div>
@@ -235,15 +123,15 @@ const Kostdata = ({ fetchData }) => {
 
                 <div className='grid lg:grid-cols-2 grid-flow-col'>
                   <div className='hidden lg:grid col-span-1 grid-flow-col auto-cols-max gap-4 text-[#0A008A] font-[600]'>
-                    {/* {kost.facilities.map((facility, index) => {
+                    {uniqueFacilities.map((facility) => {
                       return (
-                        <React.Fragment key={index}>
+                        <React.Fragment key={facility}>
                           <div className='border-2 rounded-[4px] border-[#0A008A] p-2 self-center'>
-                            {facility.name}
+                            {facility}
                           </div>
                         </React.Fragment>
                       );
-                    })} */}
+                    })}
                   </div>
                   <div className='lg:col-span-1 flex justify-start lg:justify-end'>
                     <p className='font-[700] lg:pl-8'>
