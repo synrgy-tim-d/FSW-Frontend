@@ -66,11 +66,15 @@ const SignUp = () => {
             {...register('phoneNumber', {
               required: true,
               validate: (value) => Number(value) == value,
+              minLength: 10
             })}
             aria-invalid={errors.phoneNumber ? 'true' : 'false'}
           />
           {errors.phoneNumber && errors.phoneNumber.type === 'validate' && (
             <span className='text-red-500 text-sm'>Nomor handphone harus berupa angka</span>
+          )}
+          {errors.phoneNumber && errors.phoneNumber.type === 'minLength' && (
+            <span className='text-red-500 text-sm'>Nomor handphone minimal 10 digit</span>
           )}
           {errors.phoneNumber && errors.phoneNumber.type === 'required' && (
             <span className='text-red-500 text-sm'>Nomor handphone harus diisi</span>

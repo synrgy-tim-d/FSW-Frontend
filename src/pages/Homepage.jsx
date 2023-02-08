@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useSearchParams } from 'react-router-dom';
+import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import Navbar from '../components/navbar/navbar';
 import Navbarsign from '../components/navbar/navbarnologin';
 import Footer from '../components/footer/footer';
@@ -13,16 +13,15 @@ const Homepage = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const [searchParams] = useSearchParams();
-  // setSearchParams('city');
+
+  const [search, setSearch] = useState(searchParams.get('city'));
+
+  const navigate = useNavigate();
 
   const searchKost = useQuery({
     queryKey: ['searchKost'],
     queryFn: async () =>
-      await axios.get(
-        `https://be-naqos.up.railway.app/api/public/by-city-2/${searchParams.get(
-          'city',
-        )}?page=1&size=10&orderBy=id&orderType=desc`,
-      ),
+      await axios.get(`https://be-naqos.up.railway.app/api/public/kost?start=0&limit=10&page=1&search=%5B%22${searchParams.get('city')}%22%5D&fields=%5B%22city.city%22%5D&filters=%5B%7B%22field%22%3A%22isAvailable%22%2C%22value%22%3A%22%22%2C%22op%22%3A%22in%22%2C%22valueIn%22%3A%5B%22true%22%5D%7D%5D`),
     enabled: false,
   });
 
@@ -32,18 +31,23 @@ const Homepage = () => {
 
   const handleClick = () => {
     searchKost.refetch();
+    if (search === '' || search === ' ') { 
+      navigate(`/homepage`);
+    } else {
+      navigate(`/homepage?city=${search.replace(/\s/g, '%20')}`);
+    }
   };
 
   const handleKeyDown = (e) => {
     if (e.key === 'Enter') {
       searchKost.refetch();
+      if (search === '' || search === ' ') { 
+        navigate(`/homepage`);
+      } else {
+        navigate(`/homepage?city=${search.replace(/\s/g, '%20')}`);
+      }
     }
   };
-
-  // usesearchparams to get query params from url
-  // useEffect(() => {
-  //   console.log(searchParams.get('city'));
-  // }, [searchParams]);
 
   return (
     <React.Fragment>
@@ -60,8 +64,10 @@ const Homepage = () => {
               type='search'
               name='search'
               placeholder='Masukkan nama kota yang diinginkan'
+              value={search}
               onChange={(e) => {
-                searchParams.set('city', e.target.value.replace(/\s/g, '%20'));
+                // searchParams.set('city', e.target.value.replace(/\s/g, '%20'));
+                setSearch(e.target.value);
               }}
               onKeyDown={handleKeyDown}
             />
@@ -70,6 +76,7 @@ const Homepage = () => {
             className='col-span-1 lg:col-span-1 lg:px-10 rounded-[4px] w-full lg:w-auto text-[10px] sm:text-[16px]
                 bg-[#0A008A] text-white hover:bg-[#A0A3FF] hover:text-[#FFFFFF] active:bg-black font-[600]'
             type='submit'
+            onClick={handleClick}
           >
             Cari
           </button>
@@ -112,7 +119,7 @@ const Homepage = () => {
 
         <div className='sticky top-0 grid lg:grid-cols-4 grid-flow-row lg:grid-flow-col gap-4'>
           <div className='row-start-2 lg:row-start-1 lg:col-span-3 grid grid-cols-auto auto-rows-max gap-8'>
-            <Kostdata />
+            <Kostdata fetchData={searchKost?.data?.data?.data} />
           </div>
           <div className='row-start-1 lg:col-span-1 grid grid-cols-1 lg:grid-cols-1 justify-items-stretch'>
             <form action='|'>
