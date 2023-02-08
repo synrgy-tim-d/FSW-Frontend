@@ -31,13 +31,21 @@ const Homepage = () => {
 
   const handleClick = () => {
     searchKost.refetch();
-    navigate(`/homepage?city=${searchParams.get('city')}`);
+    if (search === '' || search === ' ') { 
+      navigate(`/homepage`);
+    } else {
+      navigate(`/homepage?city=${search.replace(/\s/g, '%20')}`);
+    }
   };
 
   const handleKeyDown = (e) => {
     if (e.key === 'Enter') {
       searchKost.refetch();
-      
+      if (search === '' || search === ' ') { 
+        navigate(`/homepage`);
+      } else {
+        navigate(`/homepage?city=${search.replace(/\s/g, '%20')}`);
+      }
     }
   };
 
@@ -58,7 +66,7 @@ const Homepage = () => {
               placeholder='Masukkan nama kota yang diinginkan'
               value={search}
               onChange={(e) => {
-                searchParams.set('city', e.target.value.replace(/\s/g, '%20'));
+                // searchParams.set('city', e.target.value.replace(/\s/g, '%20'));
                 setSearch(e.target.value);
               }}
               onKeyDown={handleKeyDown}
