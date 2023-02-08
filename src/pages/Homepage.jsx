@@ -18,11 +18,7 @@ const Homepage = () => {
   const searchKost = useQuery({
     queryKey: ['searchKost'],
     queryFn: async () =>
-      await axios.get(
-        `https://be-naqos.up.railway.app/api/public/by-city-2/${searchParams.get(
-          'city',
-        )}?page=1&size=10&orderBy=id&orderType=desc`,
-      ),
+      await axios.get(`https://be-naqos.up.railway.app/api/public/kost?start=0&limit=10&page=1&search=%5B%22${searchParams.get('city')}%22%5D&fields=%5B%22city.city%22%5D&filters=%5B%7B%22field%22%3A%22isAvailable%22%2C%22value%22%3A%22%22%2C%22op%22%3A%22in%22%2C%22valueIn%22%3A%5B%22true%22%5D%7D%5D`),
     enabled: false,
   });
 
@@ -70,6 +66,7 @@ const Homepage = () => {
             className='col-span-1 lg:col-span-1 lg:px-10 rounded-[4px] w-full lg:w-auto text-[10px] sm:text-[16px]
                 bg-[#0A008A] text-white hover:bg-[#A0A3FF] hover:text-[#FFFFFF] active:bg-black font-[600]'
             type='submit'
+            onClick={handleClick}
           >
             Cari
           </button>
@@ -112,7 +109,7 @@ const Homepage = () => {
 
         <div className='sticky top-0 grid lg:grid-cols-4 grid-flow-row lg:grid-flow-col gap-4'>
           <div className='row-start-2 lg:row-start-1 lg:col-span-3 grid grid-cols-auto auto-rows-max gap-8'>
-            <Kostdata />
+            <Kostdata fetchData={searchKost?.data?.data?.data} />
           </div>
           <div className='row-start-1 lg:col-span-1 grid grid-cols-1 lg:grid-cols-1 justify-items-stretch'>
             <form action='|'>
