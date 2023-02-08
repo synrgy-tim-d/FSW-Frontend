@@ -6,7 +6,7 @@ import BRI from '../../../assets/LogoBRI.png'
 import BTN from '../../../assets/LogoBTN.png'
 
 const AddOwnerProfile = () => {
-    const [selectedPayment, setSelectedPayment] = useState();
+    const [selectedPayment, setSelectedPayment] = useState('BCA');
 
     const handleChange = (e) => {
         setSelectedPayment(e.target.value);
@@ -103,6 +103,7 @@ const AddOwnerProfile = () => {
                 </label>
 
                 <label className="relative block pb-10">
+                    {/* <span className='block text-[20px] font-semibold text-[#B9B9BC]'></span> */}
                     <span className={ selectedPayment === 'other' ? 'text-[#000000]' : 'text-[#B9B9BC]'}>Rekening Bank Lain/Pengelola</span>
                     <span className="block text-[20px] text-[#B9B9BC] pb-3">Rekening bank lain yang tidak tertera diatas</span>
 
