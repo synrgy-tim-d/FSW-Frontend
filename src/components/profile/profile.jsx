@@ -28,7 +28,7 @@ const Profile = () => {
         }
       } catch (err) {
         console.log(err);
-        // navigate("/")
+        navigate("/auth/login")
       }
     };
 
