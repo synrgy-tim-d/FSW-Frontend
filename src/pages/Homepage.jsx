@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useSearchParams } from 'react-router-dom';
+import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import Navbar from '../components/navbar/navbar';
 import Navbarsign from '../components/navbar/navbarnologin';
 import Footer from '../components/footer/footer';
@@ -13,7 +13,10 @@ const Homepage = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const [searchParams] = useSearchParams();
-  // setSearchParams('city');
+
+  const [search, setSearch] = useState(searchParams.get('city'));
+
+  const navigate = useNavigate();
 
   const searchKost = useQuery({
     queryKey: ['searchKost'],
@@ -28,18 +31,15 @@ const Homepage = () => {
 
   const handleClick = () => {
     searchKost.refetch();
+    navigate(`/homepage?city=${searchParams.get('city')}`);
   };
 
   const handleKeyDown = (e) => {
     if (e.key === 'Enter') {
       searchKost.refetch();
+      
     }
   };
-
-  // usesearchparams to get query params from url
-  // useEffect(() => {
-  //   console.log(searchParams.get('city'));
-  // }, [searchParams]);
 
   return (
     <React.Fragment>
@@ -56,8 +56,10 @@ const Homepage = () => {
               type='search'
               name='search'
               placeholder='Masukkan nama kota yang diinginkan'
+              value={search}
               onChange={(e) => {
                 searchParams.set('city', e.target.value.replace(/\s/g, '%20'));
+                setSearch(e.target.value);
               }}
               onKeyDown={handleKeyDown}
             />

@@ -12,13 +12,10 @@ function Banner() {
   };
 
   const navigate = useNavigate();
+  
   const handleKeyDown = (e) => {
     if (e.key === 'Enter') {
-      if (search === '' || search === ' ') {
-        navigate(`/homepage`);
-      } else {
-        navigate(`/homepage?city=${search}`);
-      }
+      navigate(`/homepage?city=${search}`);
     }
   };
 
