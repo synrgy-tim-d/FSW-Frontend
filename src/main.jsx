@@ -31,6 +31,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import Ownerprofile from './components/owner-profile/profile';
 import EditOwnerProfile from './components/owner-profile/editprofile';
 import ChangePassOwner from './components/owner-profile/changepass';
+import OwnerFotokos from './components/owner-constants/OwnerFotokos';
 import AddOwnerProfile from './components/owner/dataform/adddataprofile';
 import OwnerDataKamar from './components/owner-constants/OwnerDataKamar';
 const queryClient = new QueryClient();
@@ -64,6 +65,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           <Route path='/owner/history/detail' element={<HistoryDetailOwner />} />
           <Route path='/owner/property' element={<PropertyOwner />} />
           <Route path='/profilpemilik' element={<Ownerprofile />} />
+          <Route path='/fotokos' element={ <OwnerFotokos /> } />
           <Route path='/owner/formdata' element={ <AddOwnerProfile /> } />
           <Route path='/editprofilowner/editprofilowner' element={<EditOwnerProfile />} />
           <Route path='/editprofilowner/gantipasswordowner' element={<ChangePassOwner />} />
