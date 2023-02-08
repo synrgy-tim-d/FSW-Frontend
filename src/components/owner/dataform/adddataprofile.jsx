@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import BCA from '../../../assets/LogoBCA.png'
 import Mandiri from '../../../assets/LogoMandiri.png'
 import BNI from '../../../assets/LogoBNI.png'
