@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
+import appConfig from '../../config';
 import axios from 'axios';
 
 const changepass = () => {
@@ -12,8 +13,48 @@ const changepass = () => {
   } = useForm();
   const navigate = useNavigate();
 
-  const onFormSubmitHandler = (data) => {
-    console.log(data);
+  const [status, setStatus] = useState('');
+
+  const onFormSubmitHandler = async (data) => {
+    const changedPassPayload = {
+      oldPassword: data.oldPassword,
+      newPassword: data.newPassword,
+      confirmPassword: data.confirmPassword,
+    };
+
+    const authToken = localStorage.getItem('AUTH_TOKEN');
+    console.log(authToken);
+    try {
+      const userRequest = await axios.put(
+        `${appConfig.BE_URL}/users/password`,
+        changedPassPayload,
+        {
+          headers: {
+            authorization: `Bearer ${authToken}`,
+          },
+        },
+      );
+      const userResponse = userRequest.data;
+      console.log(userResponse);
+      if (userResponse.code == 200) {
+        setStatus('success');
+        navigate('/profil');
+      } else if ((userResponse.code = 406)) {
+        setStatus('failedPassMismatch');
+      } else {
+        setStatus('failed');
+      }
+    } catch (err) {
+      console.log(err.response.status);
+      if ((err.response.status = 406)) {
+        setStatus('failedPassMismatch');
+      } else {
+        setStatus('failed');
+      }
+      navigate('/gantipassword');
+    }
+
+    console.log('ayam', status);
   };
 
   return (
@@ -46,6 +87,19 @@ const changepass = () => {
             onSubmit={handleSubmit(onFormSubmitHandler)}
           >
             <div className='text-[20px] md:text-[25px] weight-[600] ml-4'>Ganti Password</div>
+
+            {status === 'success' && (
+              <span className='text-green-500 text-sm'>Password Changed!</span>
+            )}
+
+            {status === 'failedPassMismatch' && (
+              <span className='text-red-500 text-sm'>Password Mismatch!</span>
+            )}
+
+            {status === 'failed' && (
+              <span className='text-red-500 text-sm'>Failed change password!</span>
+            )}
+
             <div
               className='grid grid-rows-2 grid-flow-row gap-2 md:gap-6
             text-[16px] lg:text-[20px] font-[500] px-16'
