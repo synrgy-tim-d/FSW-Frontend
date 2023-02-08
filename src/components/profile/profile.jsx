@@ -40,7 +40,7 @@ const Profile = () => {
         
       } catch (err) {
         console.log(err)
-        navigate("/auth/login")
+        // navigate("/")
       }
     }
 
