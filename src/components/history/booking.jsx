@@ -11,6 +11,116 @@ import iconclose from '../../assets/icon_close.svg';
 
 const BookingHistory = () => {
   const [booking, setbooking] = useState([]);
+  const [values, setvalues] = useState(0);
+
+  let rating = null;
+
+  const ratingSet = (values) => {
+    console.log(values);
+    return (
+      <div className='flex flex-row gap-1'>
+        <svg
+          id='1'
+          width='35'
+          height='36'
+          viewBox='0 0 35 36'
+          fill='none'
+          xmlns='http://www.w3.org/2000/svg'
+          onClick={() => setvalues(1)}
+          className='cursor-pointer'
+        >
+          <path
+            d='M16.7421 6.04044C17.0223 5.36673 17.9767 5.36673 18.2569 6.04044L21.3573 13.4947C21.4754 13.7787 21.7425 13.9727 22.0491 13.9973L30.0966 14.6425C30.8239 14.7008 31.1188 15.6085 30.5647 16.0832L24.4334 21.3353C24.1998 21.5354 24.0978 21.8494 24.1691 22.1486L26.0423 30.0015C26.2116 30.7113 25.4395 31.2723 24.8168 30.8919L17.9271 26.6837C17.6646 26.5234 17.3344 26.5234 17.0719 26.6837L10.1822 30.8919C9.55947 31.2723 8.78735 30.7113 8.95665 30.0015L10.8299 22.1486C10.9012 21.8494 10.7992 21.5354 10.5656 21.3353L4.4343 16.0832C3.88015 15.6085 4.17507 14.7008 4.9024 14.6425L12.9498 13.9973C13.2565 13.9727 13.5236 13.7787 13.6417 13.4947L16.7421 6.04044Z'
+            stroke='#EA9A3D'
+            strokeWidth='1.5'
+            strokeLinecap='round'
+            strokeLinejoin='round'
+            fill={` ${ values >= 1 ? '#EA9A3D' : '' }`}
+          />
+        </svg>
+        <svg
+          id='2'
+          width='35'
+          height='36'
+          viewBox='0 0 35 36'
+          fill='none'
+          xmlns='http://www.w3.org/2000/svg'
+          onClick={() => setvalues(2)}
+          className='cursor-pointer'
+        >
+          <path
+            d='M16.7421 6.04044C17.0223 5.36673 17.9767 5.36673 18.2569 6.04044L21.3573 13.4947C21.4754 13.7787 21.7425 13.9727 22.0491 13.9973L30.0966 14.6425C30.8239 14.7008 31.1188 15.6085 30.5647 16.0832L24.4334 21.3353C24.1998 21.5354 24.0978 21.8494 24.1691 22.1486L26.0423 30.0015C26.2116 30.7113 25.4395 31.2723 24.8168 30.8919L17.9271 26.6837C17.6646 26.5234 17.3344 26.5234 17.0719 26.6837L10.1822 30.8919C9.55947 31.2723 8.78735 30.7113 8.95665 30.0015L10.8299 22.1486C10.9012 21.8494 10.7992 21.5354 10.5656 21.3353L4.4343 16.0832C3.88015 15.6085 4.17507 14.7008 4.9024 14.6425L12.9498 13.9973C13.2565 13.9727 13.5236 13.7787 13.6417 13.4947L16.7421 6.04044Z'
+            stroke='#EA9A3D'
+            strokeWidth='1.5'
+            strokeLinecap='round'
+            strokeLinejoin='round'
+            fill={` ${ values >= 2 ? '#EA9A3D' : '' }`}
+          />
+        </svg>
+        <svg
+          id='3'
+          width='35'
+          height='36'
+          viewBox='0 0 35 36'
+          fill='none'
+          xmlns='http://www.w3.org/2000/svg'
+          onClick={() => setvalues(3)}
+          className='cursor-pointer'
+        >
+          <path
+            d='M16.7421 6.04044C17.0223 5.36673 17.9767 5.36673 18.2569 6.04044L21.3573 13.4947C21.4754 13.7787 21.7425 13.9727 22.0491 13.9973L30.0966 14.6425C30.8239 14.7008 31.1188 15.6085 30.5647 16.0832L24.4334 21.3353C24.1998 21.5354 24.0978 21.8494 24.1691 22.1486L26.0423 30.0015C26.2116 30.7113 25.4395 31.2723 24.8168 30.8919L17.9271 26.6837C17.6646 26.5234 17.3344 26.5234 17.0719 26.6837L10.1822 30.8919C9.55947 31.2723 8.78735 30.7113 8.95665 30.0015L10.8299 22.1486C10.9012 21.8494 10.7992 21.5354 10.5656 21.3353L4.4343 16.0832C3.88015 15.6085 4.17507 14.7008 4.9024 14.6425L12.9498 13.9973C13.2565 13.9727 13.5236 13.7787 13.6417 13.4947L16.7421 6.04044Z'
+            stroke='#EA9A3D'
+            strokeWidth='1.5'
+            strokeLinecap='round'
+            strokeLinejoin='round'
+            fill={` ${ values >= 3 ? '#EA9A3D' : '' }`}
+          />
+        </svg>
+        <svg
+          id='4'
+          width='35'
+          height='36'
+          viewBox='0 0 35 36'
+          fill='none'
+          xmlns='http://www.w3.org/2000/svg'
+          onClick={() => setvalues(4)}
+          className='cursor-pointer'
+        >
+          <path
+            d='M16.7421 6.04044C17.0223 5.36673 17.9767 5.36673 18.2569 6.04044L21.3573 13.4947C21.4754 13.7787 21.7425 13.9727 22.0491 13.9973L30.0966 14.6425C30.8239 14.7008 31.1188 15.6085 30.5647 16.0832L24.4334 21.3353C24.1998 21.5354 24.0978 21.8494 24.1691 22.1486L26.0423 30.0015C26.2116 30.7113 25.4395 31.2723 24.8168 30.8919L17.9271 26.6837C17.6646 26.5234 17.3344 26.5234 17.0719 26.6837L10.1822 30.8919C9.55947 31.2723 8.78735 30.7113 8.95665 30.0015L10.8299 22.1486C10.9012 21.8494 10.7992 21.5354 10.5656 21.3353L4.4343 16.0832C3.88015 15.6085 4.17507 14.7008 4.9024 14.6425L12.9498 13.9973C13.2565 13.9727 13.5236 13.7787 13.6417 13.4947L16.7421 6.04044Z'
+            stroke='#EA9A3D'
+            strokeWidth='1.5'
+            strokeLinecap='round'
+            strokeLinejoin='round'
+            fill={` ${ values >= 4 ? '#EA9A3D' : '' }`}
+          />
+        </svg>
+        <svg
+          id='5'
+          width='35'
+          height='36'
+          viewBox='0 0 35 36'
+          fill='none'
+          xmlns='http://www.w3.org/2000/svg'
+          onClick={() => setvalues(5)}
+          className='cursor-pointer'
+        >
+          <path
+            d='M16.7421 6.04044C17.0223 5.36673 17.9767 5.36673 18.2569 6.04044L21.3573 13.4947C21.4754 13.7787 21.7425 13.9727 22.0491 13.9973L30.0966 14.6425C30.8239 14.7008 31.1188 15.6085 30.5647 16.0832L24.4334 21.3353C24.1998 21.5354 24.0978 21.8494 24.1691 22.1486L26.0423 30.0015C26.2116 30.7113 25.4395 31.2723 24.8168 30.8919L17.9271 26.6837C17.6646 26.5234 17.3344 26.5234 17.0719 26.6837L10.1822 30.8919C9.55947 31.2723 8.78735 30.7113 8.95665 30.0015L10.8299 22.1486C10.9012 21.8494 10.7992 21.5354 10.5656 21.3353L4.4343 16.0832C3.88015 15.6085 4.17507 14.7008 4.9024 14.6425L12.9498 13.9973C13.2565 13.9727 13.5236 13.7787 13.6417 13.4947L16.7421 6.04044Z'
+            stroke='#EA9A3D'
+            strokeWidth='1.5'
+            strokeLinecap='round'
+            strokeLinejoin='round'
+            fill={` ${ values >= 5 ? '#EA9A3D' : '' }`}
+          />
+        </svg>
+      </div>
+    );
+  };
+
+  const setRating = (values) => {
+    rating = ratingSet(values);
+  };
 
   useEffect(() => {
     const bookingList = [
@@ -294,18 +404,9 @@ const BookingHistory = () => {
           </div>
           <div className='flex flex-col justify-center items-center'>
             <h3 className='font-bold text-lg mt-[5px]'>Kos Semak-Semak</h3>
-            <div className='rating gap-2 mt-[5px]'>
-              <input type='radio' name='rating-2' className='mask mask-star-2 bg-[#EA9A3D]' />
-              <input type='radio' name='rating-2' className='mask mask-star-2 bg-[#EA9A3D]' />
-              <input
-                type='radio'
-                name='rating-2'
-                className='mask mask-star-2 bg-[#EA9A3D]'
-                checked
-              />
-              <input type='radio' name='rating-2' className='mask mask-star-2 bg-[#EA9A3D]' />
-              <input type='radio' name='rating-2' className='mask mask-star-2 bg-[#EA9A3D]' />
-            </div>
+            {/* Rating */}
+            {setRating(values)}
+            {rating}
           </div>
           <div className='flex flex-row justify-center text-center mt-4 lg:mt-[30px]'>
             <div className='lg:w-[695px] lg:h-[180px] w-full mx-5 lg:mx-0 rounded-[8px] bg-[#F2EFFF] px-3 py-3 lg:py-5'>

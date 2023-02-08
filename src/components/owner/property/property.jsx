@@ -21,17 +21,17 @@ export const PropertyOwner = () => {
     setproperties(propertyList);
   }, []);
   return (
-    <div className='col-span-4 h-screen py-8 pl-10 pr-20'>
+    <div className='col-span-4 h-screen py-4 px-5 lg:py-8 lg:px-10'>
       {/* Button Tambah Properti */}
       <button
         type='button'
-        className='inline-flex self-center justify-center gap-2 mt-8 rounded-[4px] px-5 py-2 font-[600] text-[16px] text-white border-2 border-[#0A008A] bg-[#0A008A] hover:bg-[#A0A3FF] hover:text-[#0A008A] focus:bg-black focus:text-white focus:outline-none'
+        className='inline-flex self-center justify-center gap-2 mt-0 lg:mt-8 rounded-[4px] px-3 lg:px-5 py-2 font-[600] text-[12px] lg:text-[16px] text-white border-2 border-[#0A008A] bg-[#0A008A] hover:bg-[#A0A3FF] hover:text-[#0A008A] focus:bg-black focus:text-white focus:outline-none'
       >
-        <img className='w-[12px] lg:w-auto' alt='' src={iconplus} /> Tambah Properti
+        <img className='w-[18px] lg:w-auto' alt='' src={iconplus} /> Tambah Properti
       </button>
       {/* Card Properti */}
-      <div className='flex flex-row mt-16'>
-        <div className='w-1/3 absolute z-30 bg-white px-8 py-8 rounded-[16px] drop-shadow-[4px_4px_12px_rgba(0,0,0,0.15)]'>
+      <div className='flex flex-row mt-8 lg:mt-16'>
+        <div className='lg:w-1/3 mr-5 lg:mr-0 absolute z-30 bg-white p-4 lg:p-8 rounded-[16px] drop-shadow-[4px_4px_12px_rgba(0,0,0,0.15)]'>
           {properties.map((property, index) => {
             let draft = null;
             let warningcard = null;
@@ -49,28 +49,42 @@ export const PropertyOwner = () => {
                   <div className='flex flex-col'>
                     <div className='flex flex-row gap-5'>
                       <div className='px-2 py-1 self-center w-fit rounded-[70px] border-[1px] border-[#0A008A]'>
-                        <p className='text-[12px] font-[600]'>{property.type}</p>
+                        <p className='text-[10px] lg:text-[12px] font-[600]'>{property.type}</p>
                       </div>
                       {draft}
                     </div>
-                    <p className='text-[25px] font-[700] mt-4'>{property.name}</p>
-                    <p className='text-[12px] font-[400]'>
-                      Rincian alamat kos secara lengkap dan kode pos
-                    </p>
+                    {/* Name and Description Desktop */}
+                    <div className='lg:flex flex-col hidden'>
+                      <p className='text-[25px] font-[700] mt-4'>{property.name}</p>
+                      <p className='text-[12px] font-[400]'>
+                        Rincian alamat kos secara lengkap dan kode pos
+                      </p>
+                    </div>
+                    {/* Name, Description, and Image Mobile */}
+                    <div className='flex flex-row lg:hidden mt-4 gap-2'>
+                      <img className='w-[65px] h-[50px] self-center' alt='' src={property.kostImg} />
+                      <div className='flex flex-col'>
+                        <p className='text-[20px] font-[700]'>{property.name}</p>
+                        <p className='text-[10px] font-[500]'>
+                          Rincian alamat kos secara lengkap dan kode pos
+                        </p>
+                      </div>
+                    </div>
                     <div className='flex flex-row gap-2 mt-3'>
-                      <img className='w-[12px] lg:w-auto' alt='' src={iconlocation} />
-                      <p className='text-[16px] font-[600] text-[#4A4A4A]'>{property.location}</p>
+                      <img className='w-[10px] lg:w-auto' alt='' src={iconlocation} />
+                      <p className='text-[12px] lg:text-[16px] font-[600] text-[#4A4A4A]'>{property.location}</p>
                     </div>
                   </div>
-                  <div className='flex flex-col'>
+                  {/* Image Web Desktop */}
+                  <div className='lg:flex flex-col hidden'>
                     <img className='w-[100px] lg:w-auto' alt='' src={property.kostImg} />
                   </div>
                 </div>
                 {warningcard}
-                <div className='flex flex-row mt-5 gap-10'>
+                <div className='flex flex-row mt-5 gap-5 lg:gap-10'>
                   <label
                     htmlFor='my-modal'
-                    className='inline-flex self-center justify-center cursor-pointer w-full rounded-[4px] py-2 font-[600] text-[16px] text-[#0A008A] border-2 border-[#0A008A] bg-white hover:bg-[#A0A3FF] hover:text-[#0A008A] focus:bg-black focus:text-white focus:outline-none'
+                    className='inline-flex self-center justify-center cursor-pointer w-full rounded-[4px] py-1 lg:py-2 font-[600] text-[12px] lg:text-[16px] text-[#0A008A] border-2 border-[#0A008A] bg-white hover:bg-[#A0A3FF] hover:text-[#0A008A] focus:bg-black focus:text-white focus:outline-none'
                   >
                     Hapus Kos
                   </label>

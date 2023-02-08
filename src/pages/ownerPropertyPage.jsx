@@ -26,7 +26,7 @@ export const OwnerPropertyPage = () => {
   return (
     <div className='grid grid-cols-5'>
       {/* ---Sidebar--- */}
-      <div className='col-span-1 bg-[#0A008A] text-white min-h-screen h-full px-8 py-16'>
+      <div className='col-span-1 bg-[#0A008A] text-white min-h-screen h-full text-center py-6 lg:px-8 lg:py-16'>
         <SidebarOwner />
       </div>
       {/* ---Content--- */}

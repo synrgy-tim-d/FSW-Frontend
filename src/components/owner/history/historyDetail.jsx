@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { ButtonConfirm, ButtonConfirmDisabled } from './ownerButtonsHistory';
+import { Link } from 'react-router-dom';
 import avatarone from '../../../assets/img_avatar.png';
 import kostone from '../../../assets/img_kosOne.png';
 import iconlocation from '../../../assets/icon_location.svg';
@@ -32,8 +33,8 @@ export const HistoryDetailOwner = () => {
     setbookings(bookingList);
   }, []);
   return (
-    <div className='col-span-4 min-h-screen h-full py-8 pl-10 pr-20'>
-      <p className='text-[25px] font-[600]'>Dipesan oleh</p>
+    <div className='col-span-4 min-h-screen h-full py-4 pl-5 pr-5 lg:py-8 lg:pl-10 lg:pr-20'>
+      <p className='text-[20px] lg:text-[25px] font-[600]'>Dipesan oleh</p>
       {bookings.map((booking, index) => {
         let component = null;
         if (booking.status === 'done') {
@@ -44,35 +45,37 @@ export const HistoryDetailOwner = () => {
         return (
           <React.Fragment key={index}>
             {/* Rincian Pemesan */}
-            <div className='flex flex-row gap-5 mt-5'>
+            <div className='flex flex-row gap-2 lg:gap-5 mt-5'>
               <img
                 className='w-[50px] lg:w-auto self-start rounded-full'
                 alt=''
                 src={booking.avatar}
               />
               <div className='flex flex-col text-left space-y-[-5px] lg:space-y-0'>
-                <p className='text-[14px] lg:text-[20px] font-[600] mt-3 pb-1'>{booking.rentor}</p>
+                <p className='text-[14px] lg:text-[20px] font-[600] lg:mt-3 pb-1'>
+                  {booking.rentor}
+                </p>
                 <p className='text-[12px] lg:text-[14px] font-[400] pb-3'>{booking.date}</p>
                 <button
                   type='button'
-                  className='inline-flex self-center gap-2 rounded-[4px] px-4 py-2 font-[600] text-[16px] text-[#0A008A] border-2 border-[#0A008A] bg-white'
+                  className='inline-flex self-start lg:self-center gap-2 rounded-[4px] px-2 lg:px-4 py-1 lg:py-2 font-[600] text-[12px] lg:text-[16px] text-[#0A008A] border-2 border-[#0A008A] bg-white'
                 >
-                  <img className='w-[14px] lg:w-auto' alt='' src={iconwhatsapp} />
+                  <img className='w-[18px] lg:w-auto' alt='' src={iconwhatsapp} />
                   {booking.phoneNumber}
                 </button>
               </div>
             </div>
             {/* Rincian Kos */}
-            <p className='mt-16 text-[20px] lg:text-[25px] font-[600]'>Rincian Pemesanan</p>
-            <div className='flex flex-row gap-10 mt-5'>
+            <p className='mt-8 lg:mt-16 text-[20px] lg:text-[25px] font-[600]'>Rincian Pemesanan</p>
+            <div className='flex flex-row gap-5 lg:gap-10 mt-5'>
               <img
-                className='w-[50px] lg:w-auto self-start rounded-[8px]'
+                className='w-[80px] lg:w-auto self-start rounded-[8px]'
                 alt=''
                 src={booking.kostImg}
               />
               <div className='flex flex-col'>
-                <p className='text-[14px] lg:text-[20px] font-[600] pb-1'>{booking.name}</p>
-                <div className='flex flex-row gap-2 pb-1'>
+                <p className='text-[14px] lg:text-[20px] font-[600] lg:pb-1'>{booking.name}</p>
+                <div className='flex flex-row gap-2 lg:pb-1'>
                   <img className='w-[12px] lg:w-auto' alt='' src={iconlocation} />
                   <p className='text-[12px] lg:text-[16px] font-[500] text-[#4A4A4A]'>
                     {booking.location}
@@ -101,30 +104,34 @@ export const HistoryDetailOwner = () => {
               </div>
             </div>
             {/* Rincian Pembayaran */}
-            <p className='mt-16 text-[20px] lg:text-[25px] font-[600]'>Rincian Pembayaran</p>
+            <p className='mt-8 lg:mt-16 text-[20px] lg:text-[25px] font-[600]'>
+              Rincian Pembayaran
+            </p>
             <div className='mt-5 mb-4 lg:mb-10 p-4 lg:p-6 rounded-[16px] bg-[#e4e4fc] text-black'>
               <div className='flex flex-row justify-between lg:mb-4'>
                 <div className='flex flex-col lg:space-y-1'>
-                  <p className='mb-3 text-[14px] lg:text-[20px] font-[500]'>Harga kos</p>
-                  <p className='mb-3 text-[14px] lg:text-[20px] font-[500]'>Waktu sewa</p>
+                  <p className='mb-2 lg:mb-3 text-[12px] lg:text-[20px] font-[500]'>Harga kos</p>
+                  <p className='mb-2 lg:mb-3 text-[12px] lg:text-[20px] font-[500]'>Waktu sewa</p>
                 </div>
                 <div className='flex flex-col text-right lg:space-y-1'>
-                  <p className='mb-3 text-[10px] lg:text-[14px] font-[500]'>
+                  <p className='mb-2 lg:mb-3 text-[10px] lg:text-[14px] font-[500]'>
                     <strong className='text-[14px] lg:text-[20px] font-[600]'>
                       Rp{booking.price}
                     </strong>
                     /Bulan
                   </p>
-                  <p className='mb-3 text-[14px] lg:text-[20px] font-[500]'>{booking.duration}</p>
+                  <p className='mb-2 lg:mb-3 text-[12px] lg:text-[20px] font-[500]'>
+                    {booking.duration}
+                  </p>
                 </div>
               </div>
               <hr className='mb-3 lg:mb-4 border-[1px] border-[#0A008A]'></hr>
               <div className='flex flex-row justify-between'>
                 <div className='flex flex-col'>
-                  <p className='text-[14px] lg:text-[20px] font-[700]'>Total Pembayaran</p>
+                  <p className='text-[13px] lg:text-[20px] font-[700]'>Total Pembayaran</p>
                 </div>
                 <div className='flex flex-col text-right'>
-                  <p className='text-[14px] lg:text-[20px] font-[700]'>Rp{booking.price}</p>
+                  <p className='text-[13px] lg:text-[20px] font-[700]'>Rp{booking.price}</p>
                 </div>
               </div>
             </div>
@@ -132,7 +139,7 @@ export const HistoryDetailOwner = () => {
             <div className='flex flex-col mt-16 gap-5 items-center'>
               <button
                 type='button'
-                className='inline-flex self-center justify-center gap-2 rounded-[4px] w-2/6 py-2 font-[600] text-[16px] text-[#0A008A] border-2 border-[#0A008A] bg-white hover:bg-[#A0A3FF] hover:text-[#0A008A] focus:bg-white focus:text-[#0A008A] focus:outline-none'
+                className='inline-flex self-center justify-center gap-2 rounded-[4px] w-full lg:w-2/6 py-1 lg:py-2 font-[600] text-[12px] lg:text-[16px] text-[#0A008A] border-2 border-[#0A008A] bg-white hover:bg-[#A0A3FF] hover:text-[#0A008A] focus:bg-white focus:text-[#0A008A] focus:outline-none'
               >
                 <img className='w-[14px] lg:w-auto' alt='' src={icondownload} />
                 Download Bukti Pembayaran
@@ -162,12 +169,14 @@ export const HistoryDetailOwner = () => {
             </p>
           </div>
           <div className='flex flex-row justify-center gap-5 my-4 lg:mt-[20px] lg:mb-[60px]'>
-            <label
-              htmlFor='my-modal'
-              className='cursor-pointer inline-flex items-center justify-center w-full lg:w-1/2 h-[33px] lg:h-[43px] p-0 bg-[#0A008A] border-2 border-[#0A008A] self-end rounded-[150px] outline-none text-[16px] font-[600] text-white hover:bg-[#A0A3FF] hover:border-[#A0A3FF] hover:text-[#0A008A] active:bg-black active:text-white'
-            >
-              Kembali ke Riwayat Transaksi
-            </label>
+            <Link to='/owner/history' className='lg:w-1/2'>
+              <label
+                htmlFor='my-modal'
+                className='cursor-pointer inline-flex items-center justify-center w-full h-[33px] lg:h-[43px] px-5 lg:px-0 lg:p-0 bg-[#0A008A] border-2 border-[#0A008A] self-end rounded-[150px] outline-none text-[16px] font-[600] text-white hover:bg-[#A0A3FF] hover:border-[#A0A3FF] hover:text-[#0A008A] active:bg-black active:text-white'
+              >
+                Kembali ke Riwayat Transaksi
+              </label>
+            </Link>
           </div>
         </div>
       </div>
