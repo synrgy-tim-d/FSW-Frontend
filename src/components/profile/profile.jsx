@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import profile from '../../assets/Profile.svg';
+import { Link, useNavigate } from 'react-router-dom';
+import axiosInstance from '../../utils/http-interceptor';
 import logout from '../../assets/Logout-img.svg';
 import appConfig from '../../config';
-import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+
 const Password = ({ password }) => {
   const mask = '*'.repeat(password.length);
   return <span>{mask}</span>;
@@ -13,39 +12,28 @@ const Password = ({ password }) => {
 const Profile = () => {
   const navigate = useNavigate();
 
-  const [user,setUser] = useState({});
+  const [user, setUser] = useState({});
 
   useEffect(() => {
     const fetchCurrentUserProfile = async () => {
       try {
-        
-        const authToken = localStorage.getItem("AUTH_TOKEN");
-
-        const currentUserRequest = await axios.get(
-          `${appConfig.BE_URL}/users/get`,
-          {
-            headers: {
-              authorization: `Bearer ${authToken}`,
-            },
-          }
-        );
+        const currentUserRequest = await axiosInstance.get(`${appConfig.BE_URL}/users/get`);
 
         const currentUserResponse = currentUserRequest.data;
-        if (currentUserResponse.code == 200)  {
-          console.log(currentUserResponse)
-          setUser(currentUserResponse.data)
+        if (currentUserResponse.code === 200) {
+          console.log(currentUserResponse);
+          setUser(currentUserResponse.data);
         } else {
-          navigate("/auth/login")
+          navigate('/auth/login');
         }
-        
       } catch (err) {
-        console.log(err)
+        console.log(err);
         // navigate("/")
       }
-    }
+    };
 
     fetchCurrentUserProfile();
-  },[])
+  }, []);
 
   return (
     <React.Fragment>
@@ -63,7 +51,7 @@ const Profile = () => {
       </ul>
       <div className='w-full grid grid-rows-auto lg:grid-cols-6 grid-flow-row lg:grid-flow-col gap-6 font-[Montserrat] bg-[#FAFAFA]'>
         <div className='row-span-1 lg:col-span-2 grid grid-row-2 grid-flow-row justify-items-center content-center gap-16 p-20'>
-          <div className='rounded-full overflow-hidden object-cover'>
+          <div className='rounded-full overflow-hidden object-cover max-w-[200px]'>
             <img className='w-full h-auto' src={user.imgUrl} alt='avatar' />
           </div>
           <div className='text-[24px] sm:text-[30px] font-[600]'>{user.fullname}</div>

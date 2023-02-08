@@ -31,10 +31,11 @@ const SignIn = () => {
     setProgressLoading(50);
 
     login.mutate(data, {
-      onSuccess: () => {
+      onSuccess: (res) => {
+        // console.log(res)
         setProgressLoading(100);
-        localStorage.setItem('AUTH_TOKEN', login?.data?.data.data.access_token);
-        localStorage.setItem('REFRESH_TOKEN', login?.data?.data.data.refresh_token);
+        localStorage.setItem('AUTH_TOKEN', res?.data?.data.access_token);
+        localStorage.setItem('REFRESH_TOKEN', res?.data?.data.refresh_token);
         navigate('/');
       },
       onError: () => {
