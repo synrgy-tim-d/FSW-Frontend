@@ -35,7 +35,7 @@ const SignIn = () => {
         setProgressLoading(100);
         localStorage.setItem('AUTH_TOKEN', login?.data?.data.data.access_token);
         localStorage.setItem('REFRESH_TOKEN', login?.data?.data.data.refresh_token);
-        // navigate('/');
+        navigate('/');
       },
       onError: () => {
         setProgressLoading(100);
