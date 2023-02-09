@@ -7,26 +7,52 @@ import iconarrowright from '../../assets/icon_arrow-right-2.svg';
 import iconclose from '../../assets/icon_close.svg';
 import iconarrowdown from '../../assets/icon_arrow-down.svg';
 
+import { useQuery } from '@tanstack/react-query';
+import axios from 'axios';
+import BookingCard from './bookingCard';
+
+import { useParams } from 'react-router-dom';
+
 const PayNowHistory = () => {
   const [histories, sethistories] = useState([]);
 
-  useEffect(() => {
-    const historyList = [
-      {
-        id: 2,
-        name: 'Kos Beringin',
-        location: {
-          name: 'Yogyakarta',
+  const { bookid } = useParams();
+  const getBooking = useQuery({
+    queryKey: ['booking'],
+    queryFn: async () =>
+      await axios.get('https://fsw-backend.up.railway.app/api/book', {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('AUTH_TOKEN')}`,
         },
-        bookId: '00000002',
-        inDate: 'April 03, 23',
-        outDate: 'May 03, 23',
-        img: imagetwo,
-        btn: 'payment',
-      },
-    ];
-    sethistories(historyList);
-  }, []);
+      }),
+  });
+
+  const checkBookId = (bookId) => {
+    if (bookId === bookid) {
+      return true;
+    }
+    return false;
+  };
+
+  let price;
+
+  // useEffect(() => {
+  //   const historyList = [
+  //     {
+  //       id: 2,
+  //       name: 'Kos Beringin',
+  //       location: {
+  //         name: 'Yogyakarta',
+  //       },
+  //       bookId: '00000002',
+  //       inDate: 'April 03, 23',
+  //       outDate: 'May 03, 23',
+  //       img: imagetwo,
+  //       btn: 'payment',
+  //     },
+  //   ];
+  //   sethistories(historyList);
+  // }, []);
 
   return (
     <div className='lg:px-[70px] px-[20px] pt-[25px] lg:pt-[70px] font-[Montserrat] bg-[#FAFAFA] min-h-[700px]'>
@@ -158,47 +184,26 @@ const PayNowHistory = () => {
         </div>
 
         <div className='flex flex-col lg:mx-[70px] lg:mt-[60px] mt-[10px] mb-[100px] lg:w-3/4'>
-          {histories.map((history, index) => {
-            return (
-              <React.Fragment key={index}>
-                <div>
-                  <div className='flex flex-row py-2 lg:py-4 text-black'>
-                    <img className='w-[130px] lg:w-[200px] self-center' alt='' src={history.img} />
-                    <div className='flex flex-col ml-[20px] lg:ml-[40px] text-left lg:w-[265px] space-y-[-5px] lg:space-y-0'>
-                      <h1 className='text-[14px] lg:text-[20px] font-[600]'>{history.name}</h1>
-                      <div className='flex flex-row'>
-                        <img className='w-[10px] lg:w-auto' alt='' src={iconlocation} />
-                        <p className='text-[12px] lg:text-[16px] font-[500] ml-1 lg:ml-2 lg:my-1'>
-                          {history.location.name}
-                        </p>
-                      </div>
-                      <p className='text-[12px] lg:text-[16px] font-[500] lg:mb-3'>
-                        Booking ID: {history.bookId}
-                      </p>
-                      <div className='flex flex-row'>
-                        <div className='flex flex-col text-center'>
-                          <p className='text-[10px] lg:text-[12px] font-[400] lg:mb-1'>Check in</p>
-                          <p className='text-[10px] lg:text-[16px] font-[600] lg:font-[400]'>
-                            {history.inDate}
-                          </p>
-                        </div>
-                        <div className='flex flex-col mx-[10px] lg:mx-[12px] justify-center'>
-                          <img className='w-[16px] lg:w-auto' alt='' src={iconarrowright} />
-                        </div>
-                        <div className='flex flex-col text-center'>
-                          <p className='text-[10px] lg:text-[12px] font-[400] lg:mb-1'>Check out</p>
-                          <p className='text-[10px] lg:text-[16px] font-[600] lg:font-[400]'>
-                            {history.outDate}
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <hr className='mb-4 lg:mb-8'></hr>
-                </div>
-              </React.Fragment>
-            );
-          })}
+          {getBooking.isLoading && <>Loading ...</>}
+          {getBooking.isSuccess &&
+            getBooking?.data.data
+              .filter((booking) => booking.booking_id == bookid)
+              .map((booking) => {
+                price = booking.BookingDetail.rent_price;
+
+                return (
+                  <BookingCard
+                    key={booking.booking_id}
+                    image={booking.Kost.SetupImages[0].url}
+                    kosName={booking.Kost.name}
+                    locationName={booking.Kost.SetupCity.city}
+                    bookingId={booking.booking_id}
+                    bookingStartDate={booking.booking_date_start}
+                    bookingEndDate={booking.booking_date_end}
+                    showButton={false}
+                  />
+                );
+              })}
           <h1 className='mb-2 lg:mb-5 text-black text-[16px] lg:text-[25px] font-[600]'>
             Rincian Pembayaran
           </h1>
@@ -210,7 +215,9 @@ const PayNowHistory = () => {
               </div>
               <div className='flex flex-col text-right lg:space-y-1'>
                 <p className='mb-3 text-[10px] lg:text-[14px] font-[500]'>
-                  <strong className='text-[14px] lg:text-[20px] font-[600]'>Rp300.000</strong>
+                  <strong className='text-[14px] lg:text-[20px] font-[600]'>{`Rp. ${new Intl.NumberFormat(
+                    'en-DE',
+                  ).format(price)}`}</strong>
                   /minggu
                 </p>
                 <p className='mb-3 text-[14px] lg:text-[20px] font-[500]'>1 minggu</p>
@@ -222,7 +229,9 @@ const PayNowHistory = () => {
                 <p className='text-[14px] lg:text-[20px] font-[700]'>Total Pembayaran</p>
               </div>
               <div className='flex flex-col text-right'>
-                <p className='text-[14px] lg:text-[20px] font-[700]'>Rp300.000</p>
+                <p className='text-[14px] lg:text-[20px] font-[700]'>{`Rp. ${new Intl.NumberFormat(
+                  'en-DE',
+                ).format(price)}`}</p>
               </div>
             </div>
           </div>

@@ -16,31 +16,44 @@ import Navbarsign from '../components/navbar/navbarnologin';
 import Navbar from '../components/navbar/navbar';
 import Footer from '../components/footer/footer';
 import magnifier from '../assets/Banner2_Magnifier.png';
-import { useQuery } from '@tanstack/react-query';
+import { useQuery, useMutation } from '@tanstack/react-query';
 import axios from 'axios';
 
 const Rinciankos = () => {
+  const [rentTime, setRentTime] = useState('HARIAN');
+  const [dateInput, setDateInput] = useState('');
+  const rentTimeHandler = (e) => {
+    setRentTime(e.target.value);
+  };
+  const dateInputHandler = (e) => {
+    setDateInput(e.target.value);
+  };
+
   const kostId = useParams();
   const [search, setSearch] = useState();
   const navigate = useNavigate();
 
-  const { isLoading, data } = useQuery({
+  const { isLoading, data, isSuccess } = useQuery({
     queryKey: ['kostDetail'],
     queryFn: async () =>
-      await axios.get(`https://be-naqos.up.railway.app/api/public/kost?search=%5B%22${kostId.kosid}%22%5D&fields=%5B%22id%22%5D`)
+      await axios.get(
+        `https://be-naqos.up.railway.app/api/public/kost?search=%5B%22${kostId.kosid}%22%5D&fields=%5B%22id%22%5D`,
+      ),
   });
 
   const searchKost = useQuery({
     queryKey: ['searchKost'],
     queryFn: async () =>
-      await axios.get(`https://be-naqos.up.railway.app/api/public/kost?start=0&limit=10&page=1&search=%5B%22${search}%22%5D&fields=%5B%22city.city%22%5D&filters=%5B%7B%22field%22%3A%22isAvailable%22%2C%22value%22%3A%22%22%2C%22op%22%3A%22in%22%2C%22valueIn%22%3A%5B%22true%22%5D%7D%5D`),
+      await axios.get(
+        `https://be-naqos.up.railway.app/api/public/kost?start=0&limit=10&page=1&search=%5B%22${search}%22%5D&fields=%5B%22city.city%22%5D&filters=%5B%7B%22field%22%3A%22isAvailable%22%2C%22value%22%3A%22%22%2C%22op%22%3A%22in%22%2C%22valueIn%22%3A%5B%22true%22%5D%7D%5D`,
+      ),
     enabled: false,
   });
 
   const reviewKost = useQuery({
     queryKey: ['testimoni'],
     queryFn: async () =>
-      await axios.get(`https://be-naqos.up.railway.app/api/public/kost_review/${kostId.kosid}`)
+      await axios.get(`https://be-naqos.up.railway.app/api/public/kost_review/${kostId.kosid}`),
   });
 
   useEffect(() => {
@@ -49,7 +62,7 @@ const Rinciankos = () => {
 
   const handleClick = () => {
     searchKost.refetch();
-    if (search === '' || search === ' ') { 
+    if (search === '' || search === ' ') {
       navigate(`/homepage`);
     } else {
       navigate(`/homepage?city=${search.replace(/\s/g, '%20')}`);
@@ -59,7 +72,7 @@ const Rinciankos = () => {
   const handleKeyDown = (e) => {
     if (e.key === 'Enter') {
       searchKost.refetch();
-      if (search === '' || search === ' ') { 
+      if (search === '' || search === ' ') {
         navigate(`/homepage`);
       } else {
         navigate(`/homepage?city=${search.replace(/\s/g, '%20')}`);
@@ -67,9 +80,43 @@ const Rinciankos = () => {
     }
   };
 
-  if (isLoading === false) {
+  const postBooking = useMutation({
+    mutationFn: async (data) => {
+      await axios.post(`https://fsw-backend.up.railway.app/api/book`, data, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('AUTH_TOKEN')}`,
+        },
+      });
+    },
+  });
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const dateSecond = new Date(dateInput).getTime();
+    let dateEnd;
+    if (rentTime === 'HARIAN') {
+      dateEnd = dateSecond + 86400000;
+    } else if (rentTime === 'MINGGUAN') {
+      dateEnd = dateSecond + 604800000;
+    } else if (rentTime === 'BULANAN') {
+      dateEnd = dateSecond + 2629746000;
+    }
+    const data = {
+      kos_id: kostId.kosid,
+      room_id: kostId.roomid,
+      booking_date_start: dateInput,
+      booking_date_end: new Date(dateEnd).toISOString().split('T')[0],
+      rent_time: rentTime,
+    };
+    // console.log(new Date(dateEnd).toISOString().split('T')[0]);
+    postBooking.mutate(data);
+    postBooking.isSuccess && navigate(`/history`);
+  };
+
+  if (!isLoading && isSuccess && searchKost.isSuccess) {
     const dataKost = data?.data?.data[0];
-    const kostReviews = reviewKost?.data?.data?.data
+    const kostReviews = reviewKost?.data?.data?.data;
+    const kostPrice = dataKost?.rooms.filter((room) => room.id === kostId.roomid)[0];
 
     return (
       <React.Fragment>
@@ -84,7 +131,9 @@ const Rinciankos = () => {
                 name='search'
                 placeholder='Masukkan nama kota yang diinginkan'
                 value={search}
-                onChange={(e) => {setSearch(e.target.value)}}
+                onChange={(e) => {
+                  setSearch(e.target.value);
+                }}
                 onKeyDown={handleKeyDown}
               />
             </div>
@@ -109,7 +158,10 @@ const Rinciankos = () => {
                 </Link>
               </li>
               <li>
-                <Link to={`/kos/${kostId.kosid}/${kostId.roomid}`} className='text-[24px] font-[600] hover:underline'>
+                <Link
+                  to={`/kos/${kostId.kosid}/${kostId.roomid}`}
+                  className='text-[24px] font-[600] hover:underline'
+                >
                   {dataKost.name}
                 </Link>
               </li>
@@ -126,17 +178,25 @@ const Rinciankos = () => {
                 </div>
                 <div className='grid grid-cols-2 grid-flow-col gap-6'>
                   <div>
-                    <img className='w-full h-auto bg-yellow-500' src={dataKost.imageKosts[0].url} alt='' />
+                    <img
+                      className='w-full h-auto bg-yellow-500'
+                      src={dataKost.imageKosts[0].url}
+                      alt=''
+                    />
                   </div>
                   <div>
-                    <img className='w-full h-auto bg-yellow-500' src={dataKost.imageKosts[0].url} alt='' />
+                    <img
+                      className='w-full h-auto bg-yellow-500'
+                      src={dataKost.imageKosts[0].url}
+                      alt=''
+                    />
                   </div>
                 </div>
               </div>
             </div>
             <div className='grid grid-cols-3 pt-12 gap-8'>
               <div className='col-span-2 grid grid-rows-auto gap-y-6'>
-                <Detailkos fetchData={dataKost} fetchReview={kostReviews}/>
+                <Detailkos fetchData={dataKost} fetchReview={kostReviews} />
                 <Contactperson fetchData={dataKost} />
                 <Faq fetchData={dataKost} />
                 <hr className='border-2' />
@@ -148,12 +208,36 @@ const Rinciankos = () => {
                 <hr className='border-2' />
                 <Deskripsikos fetchData={dataKost} />
                 <hr className='border-2' />
-                <Review fetchReview={kostReviews} />
-                <hr className='border-2' />
+                {/* <Review fetchReview={kostReviews} />
+                <hr className='border-2' /> */}
+                {/* {console.log(new Date(dateInput).getTime())} */}
                 <div>THIS PLACE WILL BE A CARROUSEL OF OTHER ROOM TYPES</div>
               </div>
               <div className='col-span-1 w-full px-20'>
-                <Formpemesanan />
+                <Formpemesanan
+                  dateOnChange={dateInputHandler}
+                  totalPayment={
+                    rentTime === 'HARIAN'
+                      ? kostPrice?.pricePerDaily
+                      : rentTime === 'MINGGUAN'
+                      ? kostPrice?.pricePerWeekly
+                      : rentTime === 'BULANAN'
+                      ? kostPrice?.pricePerMonthly
+                      : 99999999
+                  }
+                  // totalPayment={100}
+                  timeOnChange={rentTimeHandler}
+                  dateDesc={
+                    rentTime === 'HARIAN'
+                      ? 'Hari'
+                      : rentTime === 'MINGGUAN'
+                      ? 'Minggu'
+                      : rentTime === 'BULANAN'
+                      ? 'Bulan'
+                      : 99999999
+                  }
+                  submitOnClick={handleSubmit}
+                />
               </div>
             </div>
           </div>
