@@ -1,7 +1,29 @@
-// import React from 'react';
-import image from '../../../../assets/Banner1.png';
+// import image from '../../../../assets/Banner1.png';
 
-const Review = () => {
+const Review = ({ fetchReview }) => {
+  let totalRating = 0
+  let waktuReview = '';
+
+  const differenceTime = Math.floor(((new Date()) - (new Date(fetchReview[0].reviewDate.slice(0, 10))))/(1000 * 60 * 60 * 24));
+
+  for (let i = 0; i < fetchReview.length; i++) {
+    totalRating += fetchReview[i].rating;
+  }
+ 
+  const ratingAverage = totalRating/fetchReview.length;
+
+  if (differenceTime === 0) {
+    waktuReview = 'Hari ini';
+  } else if (differenceTime < 7) {
+    waktuReview = `${differenceTime} hari yang lalu`;
+  } else if (differenceTime < 30) {
+    waktuReview = `${Math.floor(differenceTime/7)} minggu yang lalu`;
+  } else if (differenceTime < 365) {
+    waktuReview = `${Math.floor(differenceTime/30)} bulan yang lalu`;
+  } else {
+    waktuReview = `${Math.floor(differenceTime/365)} tahun yang lalu`;
+  }
+
   return (
     <div className='grid grid-rows-auto grid-flow-row'>
       <div className='grid grid-flow-col content-center gap-2'>
@@ -20,8 +42,8 @@ const Review = () => {
               />
             </svg>
           </span>
-          <span className='font-[600]'>4.5</span>
-          <span className='italic'>(7 reviews)</span>
+          <span className='font-[600]'>{ratingAverage}</span>
+          <span className='italic'>({fetchReview.length} reviews)</span>
         </div>
         <div className='flex justify-end'>
           <button className='bg-[#FFFFFF] border-2 text-[#0A008A] border-[#0A008A] font-[700] p-2'>
@@ -32,11 +54,11 @@ const Review = () => {
 
       <div className='grid grid-cols-7'>
         <div className='col-span-1'>
-          <img className='rounded-full w-[70px] h-[70px]' src={image} alt='' />
+          <img className='rounded-full w-[70px] h-[70px]' src={fetchReview[0].userId.imgUrl} alt='' />
         </div>
         <div className='col-span-6 grid grid-rows-auto gap-2'>
-          <p className='text-[25px] font-[600]'>Hihang Hoheng</p>
-          <p className='text-[#627154] text-[16px]'>2 bulan yang lalu</p>
+          <p className='text-[25px] font-[600]'>{fetchReview[0].userId.fullname}</p>
+          <p className='text-[#627154] text-[16px]'>{waktuReview}</p>
           <span>
             <svg
               width='12'
@@ -52,9 +74,7 @@ const Review = () => {
             </svg>
           </span>
           <p className='text-[16px]'>
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laudantium numquam voluptate
-            officia rerum in fuga suscipit dolorum natus, ipsum aliquam itaque esse, quos mollitia
-            nobis facere quas sit expedita accusamus.
+            {fetchReview[0].reviewText}
           </p>
         </div>
       </div>

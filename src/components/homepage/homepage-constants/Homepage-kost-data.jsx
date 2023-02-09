@@ -75,7 +75,7 @@ const Kostdata = ({ fetchData }) => {
                   <p>
                     {kost.address}, {kost.district}, {kost.subdistrict}, {kost.city.city}, {kost.city.province.province} ({kost.postalCode})
                     <span className='text-[#000000]/[0.38] pl-2'>
-                      <Link to='/kos/:kosid/:roomid'>...selengkapnya</Link>
+                      <Link to={`/kos/${kost.id}/${kost.rooms[0]?.id}`}>...selengkapnya</Link>
                     </span>
                   </p>
                 </div>
