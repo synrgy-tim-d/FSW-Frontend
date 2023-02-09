@@ -40,14 +40,14 @@ export const ButtonDisabled = () => {
   );
 };
 
-export const ButtonPayment = () => {
+export const ButtonPayment = ({ bookId }) => {
   return (
     <div className='flex flex-row flex-1'>
       {/* --- WEB PC --- */}
       <div className='lg:flex flex-col flex-1 items-end hidden'>
         <Link
           to={{
-            pathname: '/history/booknow',
+            pathname: `/history/booknow/${bookId}`,
           }}
         >
           <button

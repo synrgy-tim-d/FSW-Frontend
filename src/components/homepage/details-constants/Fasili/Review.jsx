@@ -4,7 +4,7 @@ const Review = ({ fetchReview }) => {
   let totalRating = 0
   let waktuReview = '';
 
-  const differenceTime = Math.floor(((new Date()) - (new Date(fetchReview[0].reviewDate.slice(0, 10))))/(1000 * 60 * 60 * 24));
+  const differenceTime = Math.floor(((new Date()) - (new Date(fetchReview[0]?.reviewDate.slice(0, 10))))/(1000 * 60 * 60 * 24));
 
   for (let i = 0; i < fetchReview.length; i++) {
     totalRating += fetchReview[i].rating;
@@ -54,10 +54,10 @@ const Review = ({ fetchReview }) => {
 
       <div className='grid grid-cols-7'>
         <div className='col-span-1'>
-          <img className='rounded-full w-[70px] h-[70px]' src={fetchReview[0].userId.imgUrl} alt='' />
+          <img className='rounded-full w-[70px] h-[70px]' src={fetchReview[0]?.userId.imgUrl} alt='' />
         </div>
         <div className='col-span-6 grid grid-rows-auto gap-2'>
-          <p className='text-[25px] font-[600]'>{fetchReview[0].userId.fullname}</p>
+          <p className='text-[25px] font-[600]'>{fetchReview[0]?.userId.fullname}</p>
           <p className='text-[#627154] text-[16px]'>{waktuReview}</p>
           <span>
             <svg
@@ -74,7 +74,7 @@ const Review = ({ fetchReview }) => {
             </svg>
           </span>
           <p className='text-[16px]'>
-            {fetchReview[0].reviewText}
+            {fetchReview[0]?.reviewText}
           </p>
         </div>
       </div>

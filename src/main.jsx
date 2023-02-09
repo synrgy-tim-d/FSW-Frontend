@@ -50,7 +50,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           <Route path='/history/confirmation' element={<HistoryConfirmation />} />
           <Route path='/history/payment' element={<HistoryPayment />} />
           <Route path='/history/cancellation' element={<HistoryCancel />} />
-          <Route path='/history/booknow' element={<HistoryBookingPayNow />} />
+          <Route path='/history/booknow/:bookid' element={<HistoryBookingPayNow />} />
           <Route path='/history/booknow/receipt' element={<HistoryBookingPayUpload />} />
           <Route path='/history/booknow/receipt/success' element={<HistoryBookingPaySuccess />} />
           <Route path='/verif' element={<Verif />} />
@@ -64,8 +64,8 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           <Route path='/owner/history/detail' element={<OwnerHistoryDetailPage />} />
           <Route path='/owner/property' element={<OwnerPropertyPage />} />
           <Route path='/profilpemilik' element={<Ownerprofile />} />
-          <Route path='/fotokos' element={ <OwnerFotokos /> } />
-          <Route path='/owner/formdata' element={ <AddOwnerProfile /> } />
+          <Route path='/fotokos' element={<OwnerFotokos />} />
+          <Route path='/owner/formdata' element={<AddOwnerProfile />} />
           <Route path='/editprofilowner/editprofilowner' element={<EditOwnerProfile />} />
           <Route path='/editprofilowner/gantipasswordowner' element={<ChangePassOwner />} />
           <Route path='/datakamar' element={<OwnerDataKamar />} />

@@ -32,7 +32,6 @@ const SignIn = () => {
 
     login.mutate(data, {
       onSuccess: (res) => {
-        // console.log(res)
         setProgressLoading(100);
         localStorage.setItem('AUTH_TOKEN', res?.data?.data.access_token);
         localStorage.setItem('REFRESH_TOKEN', res?.data?.data.refresh_token);
@@ -48,7 +47,7 @@ const SignIn = () => {
 
   return (
     <div className='px-[15px] font-[Montserrat]'>
-      <LoadingBar waitingTime={50} color='#0A008A' progress={progressLoading} height='10px' />
+      <LoadingBar waitingTime={50} color='#0A008A' progress={progressLoading} height='5px' />
       <form onSubmit={handleSubmit(onFormSubmitHandler)}>
         <div className='flex flex-row justify-center'>
           <img
