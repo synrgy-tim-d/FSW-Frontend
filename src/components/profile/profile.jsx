@@ -4,7 +4,6 @@ import axiosInstance from '../../utils/http-interceptor';
 import logout from '../../assets/Logout-img.svg';
 import appConfig from '../../config';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 
 const Password = ({ password }) => {
