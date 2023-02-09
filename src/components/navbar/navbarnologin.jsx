@@ -16,7 +16,7 @@ const Navbarsign = () => {
   return (
     <div className='w-full navbar grid grid-cols-6 bg-[#FAFAFA] font-[Montserrat] text-[#000000] font-[600]'>
       <div className='cols-span-1 pl-4'>
-        <a href='/landingPage'>
+        <a href='/'>
           <img className='w-full h-auto' src={LogoNaqos}></img>
         </a>
       </div>
