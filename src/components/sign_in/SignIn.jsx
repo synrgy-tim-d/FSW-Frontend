@@ -46,6 +46,15 @@ const SignIn = () => {
     setIsDisabled(false);
   };
 
+
+  const [isPasswordHidden,setIsPasswordHidden] = useState(true);
+  const onClickPasswordEye = (e) => {
+    e.preventDefault;
+    setIsPasswordHidden((prev) => {
+      return !prev
+    })
+  }
+
   return (
     <div className='px-[15px] font-[Montserrat]'>
       <LoadingBar waitingTime={50} color='#0A008A' progress={progressLoading} height='5px' />
