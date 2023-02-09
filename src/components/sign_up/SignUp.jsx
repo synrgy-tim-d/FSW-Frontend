@@ -1,9 +1,11 @@
 import { useMutation } from '@tanstack/react-query';
 import { Link, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
+import { useState } from 'react';
 import axios from 'axios';
 import imglogo from '../../assets/LogoNaqosFix.png';
-import iconeye from '../../assets/icon_eye-slash.svg';
+import iconeyeslash from '../../assets/icon_eye-slash.svg';
+import iconeye from "../../assets/icon_eye.svg"
 import icongoogle from '../../assets/icon_google.svg';
 
 const SignUp = () => {
@@ -27,6 +29,15 @@ const SignUp = () => {
     postRegister.mutate(e);
     navigate('/verif');
   };
+
+  const [isPasswordHidden,setIsPasswordHidden] = useState(true);
+
+  const onClickPasswordEye = (e) => {
+    e.preventDefault;
+    setIsPasswordHidden((prev) => {
+      return !prev
+    })
+  }
 
   return (
     <div className='px-[15px] font-[Montserrat]'>
@@ -104,10 +115,10 @@ const SignUp = () => {
           <span className='lg:mt-[20px] lg:mb-[10px] lg:w-[209px] lg:h-[24px] lg:text-[20px] text-[14px] w-[175px] mt-[15px] mb-[10px] text-black text-left font-[600]'>
             Password
           </span>
-          <div className='flex flex-col flex-1'>
+          <div className='flex flex-col flex-1 relative'>
             <input
               className='lg:h-[55px] w-full lg:text-[20px] h-[48px] text-[12px] px-4 text-black font-[600] bg-white rounded-[526px] placeholder-[#b9b9bc] border-2 border-[#dadadc] focus:outline-none focus:border-[#0A008A]'
-              type='password'
+              type={isPasswordHidden ? "password" : "text"}
               name='password'
               placeholder='Minimal 6 karakter'
               {...register('password', {
@@ -121,10 +132,10 @@ const SignUp = () => {
             {errors.password && errors.password.type === 'minLength' && (
               <span className='text-red-500 text-sm'>Password minimal 6 karakter</span>
             )}
-            <img
-              className='absolute right-0 lg:right-auto pointer-events-none lg:mt-[15px] lg:ml-[480px] mt-[12px] mr-[30px]'
-              src={iconeye}
-            />
+
+            <div className='absolute top-1/2 -translate-y-1/2 right-[4%] cursor-pointer' onClick={(e) => {onClickPasswordEye(e)}}>
+              {isPasswordHidden ? <img src={iconeyeslash}/> : <img src={iconeye}/>}
+            </div>
           </div>
         </div>
         <div className='flex flex-row justify-center lg:mt-[29px] mt-[20px]'>
