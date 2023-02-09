@@ -14,7 +14,6 @@ const Testimonial = () => {
   }, {
     onSuccess: () => {
       testimoniers = data?.data?.data
-      dataKos = kostDetail?.data?.data?.data
     }
   });
 
@@ -22,6 +21,10 @@ const Testimonial = () => {
     queryKey: ['kostDetail'],
     queryFn: async () =>
       await axios.get(`https://be-naqos.up.railway.app/api/public/kost?search=%5B%22bec580b2-fc3a-479c-a00b-c71afe6c171c%22%5D&fields=%5B%22id%22%5D`)
+  }, {
+    onSuccess: () => {
+      dataKos = kostDetail?.data?.data?.data
+    }
   });
 
   if (isLoading === false){
