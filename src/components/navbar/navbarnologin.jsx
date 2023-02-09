@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import LogoNaqos from '../../assets/LogoNaqosPolos.png';
 import Drawer from 'react-modern-drawer';
+import LogoNaqos from '../../assets/LogoNaqosPolos.png';
+import Pencari from '../../assets/pencari.svg';
+import Pemilik from '../../assets/pemilik.svg';
 import 'react-modern-drawer/dist/index.css';
 
 const Navbarsign = () => {
@@ -12,7 +14,7 @@ const Navbarsign = () => {
   };
 
   return (
-    <div className='navbar grid grid-cols-6 bg-[#FAFAFA] font-[Montserrat] font-[600]'>
+    <div className='w-full navbar grid grid-cols-6 bg-[#FAFAFA] font-[Montserrat] text-[#000000] font-[600]'>
       <div className='cols-span-1 pl-4'>
         <a href='/landingPage'>
           <img className='w-full h-auto' src={LogoNaqos}></img>
@@ -45,8 +47,12 @@ const Navbarsign = () => {
             </svg>
           )}
         </button>
-        <Drawer open={isOpen} onClose={toggleDrawer} direction='right' className='grid grid-flow-row auto-rows-max gap-8 px-8 py-4 lg:hidden'>
-          {/* <div>Hello World</div> */}
+        <Drawer
+          open={isOpen}
+          onClose={toggleDrawer}
+          direction='right'
+          className='grid grid-flow-row auto-rows-max gap-8 px-8 py-4 lg:hidden'
+        >
           <Link to='/auth/login'>
             <button
               type='button'
@@ -67,19 +73,60 @@ const Navbarsign = () => {
         <Link to='/auth/login' className='hidden lg:block'>
           <button
             type='button'
-            className='btn btn-outline border-2 border-[#0A008A] rounded-[4px] text-[#0A008A] text-[16px] px-6 '
+            className='btn btn-outline 
+            border-2 border-[#0A008A] rounded-[4px] active:bg-[#0A008A] 
+            text-[#0A008A] active:text-white text-[16px] px-6 '
           >
             Masuk
           </button>
         </Link>
-        <Link to='/auth/register' className='hidden lg:block'>
+        {/* <button type='button' className='px-6 btn rounded-[4px] border-2 text-white bg-[#0A008A] hover:bg-[#A0A3FF] active:bg-black'> */}
+        <label
+          htmlFor='signin-modal'
+          className='hidden lg:block py-3.5
+          px-6 btn rounded-[4px] border-2 text-white bg-[#0A008A] hover:bg-[#A0A3FF] active:bg-black'
+        >
+          Daftar
+        </label>
+        {/* </button> */}
+        <input type='checkbox' id='signin-modal' className='modal-toggle' />
+        <div className='modal bg-[#000000]/50 w-full'>
+          <div
+            className='modal-box bg-white px-32 py-8
+          grid grid-flow-row auto-rows-max gap-8 rounded-[32px] shadow'
+          >
+            <p className='text-center text-[38px] font-[600]'>Daftar sebagai</p>
+            <Link to='auth/register'>
+              <label
+                htmlFor='signin-modal'
+                className='grid grid-flow-col auto-cols-max gap-4
+              border-2 border-[#0A008A] rounded-[8px] py-6 px-20 '
+              >
+                <img src={Pencari} alt='Pencari Kos' />
+                <p className='self-center'>Pencari Kos</p>
+              </label>
+            </Link>
+            <Link to='/auth/register'>
+              <label
+                htmlFor='signin-modal'
+                className='grid grid-flow-col auto-cols-max gap-4
+              border-2 border-[#0A008A] rounded-[8px] py-8 px-20'
+              >
+                <img src={Pemilik} alt='Pemilik Kos' />
+                <p className='self-center'>Pemilik Kos</p>
+              </label>
+            </Link>
+          </div>
+        </div>
+
+        {/* <Link to='/auth/register' className='hidden lg:block'>
           <button
             type='button'
             className='btn btn-active text-[16px] bg-[#0A008A] text-white rounded-[4px] px-6'
           >
             Daftar
           </button>
-        </Link>
+        </Link> */}
       </div>
     </div>
   );
