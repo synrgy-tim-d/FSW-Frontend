@@ -19,7 +19,7 @@ const Detailkos = ({ fetchData, fetchReview }) => {
             {fetchData.kostType.slice(4)}
           </span>
         </p>
-        <p className='text-[39px] font-[700] self-center'>Tipe Kamar {fetchData.rooms[0].roomType.replace(/_/g, ' ').toLowerCase().split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')} {fetchData.city.city}</p>
+        <p className='text-[39px] font-[700] self-center'>Tipe Kamar {fetchData.rooms[0]?.roomType.replace(/_/g, ' ').toLowerCase().split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')} {fetchData.city.city}</p>
         <p className='text-[20px]'>
           {fetchData.address}, {fetchData.district}, {fetchData.subdistrict}, {fetchData.city.city}, {fetchData.city.province.province} ({fetchData.postalCode})
         </p>

@@ -12,7 +12,9 @@ const Review = ({ fetchReview }) => {
  
   const ratingAverage = totalRating/fetchReview.length;
 
-  if (differenceTime === 0) {
+  if (isNaN(differenceTime)) {
+    waktuReview = 'Belum ada review';
+  } else if(differenceTime === 0){
     waktuReview = 'Hari ini';
   } else if (differenceTime < 7) {
     waktuReview = `${differenceTime} hari yang lalu`;

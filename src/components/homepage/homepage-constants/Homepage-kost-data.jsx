@@ -39,7 +39,7 @@ const Kostdata = ({ fetchData }) => {
             <div className='grid grid-cols-3 grid-flow-col bg-white rounded-[16px]'>
               <Link to='/kos/:kosid/:roomid'>
                 <div className='col-span-1 rounded-[16px]'>
-                  <img className='w-full h-auto' src={kost.imageKosts[0].url} alt='' />
+                  <img className='w-full h-auto' src={kost.imageKosts[0]?.url} alt='' />
                 </div>
               </Link>
               <div className='col-span-2 grid grid-rows-auto grid-flow-row md:gap-1 sm:auto-rows-auto pl-2 md:p-4'>
