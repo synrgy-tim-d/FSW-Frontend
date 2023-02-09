@@ -17,7 +17,7 @@ const Profile = () => {
   const [user, setUser] = useState({});
 
   useQuery({
-    queryKey:["users",'get'],
+    queryKey:["user"],
     queryFn: async () => {
       const token = localStorage.getItem("AUTH_TOKEN")
       return await axios.get(
@@ -31,10 +31,8 @@ const Profile = () => {
     },
     onSuccess: (res) => {
       setUser(res?.data?.data)
-      console.log(res);
     },
     onError:(err) => {
-      console.log(err)
       navigate("/")
     }
   })

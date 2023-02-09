@@ -2,6 +2,8 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axiosInstance from '../../utils/http-interceptor';
 import appConfig from '../../config';
+import axios from 'axios';
+import { useMutation, useQuery } from '@tanstack/react-query';
 const EditProfile = () => {
   const navigate = useNavigate();
 
@@ -45,13 +47,10 @@ const EditProfile = () => {
 
   const onClickSaveHandler = async (e) => {
     e.preventDefault();
-    // console.log(fullname, phoneNumber, username, picture);
     try {
       const profilePayload = new FormData();
       profilePayload.append('fullname', fullname);
       profilePayload.append('phoneNumber', phoneNumber);
-      // profilePayload.append("username",username);
-      // profilePayload.append("img",picture);
 
       const editProfileRequest = await axiosInstance.put(
         `${appConfig.BE_URL}/users/update_data`,
@@ -79,49 +78,35 @@ const EditProfile = () => {
     }
   };
 
-  useEffect(() => {
-    const fetchCurrentUserProfile = async () => {
-      try {
-        const currentUserRequest = await axiosInstance.get(`${appConfig.BE_URL}/users/get`);
-
-        const currentUserResponse = currentUserRequest.data;
-        if (currentUserResponse.code === 200) {
-          fullnameRef.current.value =
-            currentUserResponse.data.fullname != null ? currentUserResponse.data.fullname : '';
-          setFullname(
-            currentUserResponse.data.fullname != null ? currentUserResponse.data.fullname : '',
-          );
-
-          phoneNumberRef.current.value =
-            currentUserResponse.data.phoneNumber != null
-              ? currentUserResponse.data.phoneNumber
-              : '';
-          setPhoneNumber(
-            currentUserResponse.data.phoneNumber != null
-              ? currentUserResponse.data.phoneNumber
-              : '',
-          );
-
-          usernameRef.current.value =
-            currentUserResponse.data.username != null ? currentUserResponse.data.username : '';
-          setUsername(
-            currentUserResponse.data.username != null ? currentUserResponse.data.username : '',
-          );
-
-          setPictureUrl(
-            currentUserResponse.data.imgUrl != null ? currentUserResponse.data.imgUrl : '',
-          );
-        } else {
-          navigate('/auth/login');
+  useQuery({
+    queryKey:["user"],
+    queryFn: async () => {
+      const token = localStorage.getItem("AUTH_TOKEN")
+      return await axios.get(
+        `${appConfig.BE_URL}/users/get`,
+        {
+          headers: {
+            authorization: `Bearer ${token}`,
+          },
         }
-      } catch (err) {
-        console.log(err);
-        navigate('/auth/login');
-      }
-    };
+      );
+    },
+    onSuccess: (res) => {
+      fullnameRef.current.value = res?.data?.data.fullname;
+      setFullname(res?.data?.data.fullname);
 
-    fetchCurrentUserProfile();
-  }, []);
+      phoneNumberRef.current.value = res?.data?.data.phoneNumber;
+      setPhoneNumber(res?.data?.data.phoneNumber);
+
+      usernameRef.current.value = res?.data?.data.username;
+      setUsername(res?.data?.data.username);
+
+      setPictureUrl(res?.data?.data.imgUrl)
+    },
+    onError: (err) => {
+      navigate("/");
+    }
+  })
 
   return (
     <React.Fragment>

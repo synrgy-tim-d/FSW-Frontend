@@ -3,10 +3,14 @@ import { Link } from 'react-router-dom';
 import LogoNaqos from '../../assets/LogoNaqosPolos.png';
 import Drawer from 'react-modern-drawer';
 import 'react-modern-drawer/dist/index.css';
+import { useNavigate } from 'react-router-dom';
 
 const Navbar = () => {
+  const navigate = useNavigate();
   const handleLogout = () => {
     localStorage.removeItem('AUTH_TOKEN');
+    localStorage.removeItem('REFRESH_TOKEN');
+    navigate("/")
     window.location.reload(false);
   };
 
