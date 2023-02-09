@@ -4,31 +4,22 @@ import 'swiper/css';
 import axios from 'axios';
 
 const Testimonial = () => {
-  let testimoniers = '';
-  let dataKos = '';
-
   const { isLoading, data } = useQuery({
     queryKey: ['testimoni'],
     queryFn: async () =>
       await axios.get(`https://be-naqos.up.railway.app/api/public/kost_review/bec580b2-fc3a-479c-a00b-c71afe6c171c`)
-  }, {
-    onSuccess: () => {
-      testimoniers = data?.data?.data
-    }
   });
 
   const kostDetail = useQuery({
     queryKey: ['kostDetail'],
     queryFn: async () =>
       await axios.get(`https://be-naqos.up.railway.app/api/public/kost?search=%5B%22bec580b2-fc3a-479c-a00b-c71afe6c171c%22%5D&fields=%5B%22id%22%5D`)
-  }, {
-    onSuccess: () => {
-      dataKos = kostDetail?.data?.data?.data
-    }
   });
-
-  if (isLoading === false){
-    if (dataKos.length !== 0 && testimoniers.length !== 0) {
+  
+  if (!isLoading && !kostDetail.isLoading){
+    const testimoniers = data?.data?.data;
+    const dataKos = kostDetail?.data?.data?.data;
+    if (testimoniers.length > 0 && dataKos.length > 0) {
       const testimoniersOne = [];
       for (let i = 0; i < testimoniers.length; i++) {
         testimoniersOne.push(
