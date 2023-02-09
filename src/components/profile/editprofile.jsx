@@ -104,8 +104,6 @@ const EditProfile = () => {
       setPictureUrl(res?.data?.data.imgUrl)
     },
     onError: (err) => {
-      localStorage.removeItem("AUTH_TOKEN");
-      localStorage.removeItem("REFRESH_TOKEN");
       navigate("/");
     }
   })
