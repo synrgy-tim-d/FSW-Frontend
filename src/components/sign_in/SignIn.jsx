@@ -48,7 +48,7 @@ const SignIn = () => {
 
   return (
     <div className='px-[15px] font-[Montserrat]'>
-      <LoadingBar waitingTime={50} color='#f11946' progress={progressLoading} height='20px' />
+      <LoadingBar waitingTime={50} color='#0A008A' progress={progressLoading} height='10px' />
       <form onSubmit={handleSubmit(onFormSubmitHandler)}>
         <div className='flex flex-row justify-center'>
           <img

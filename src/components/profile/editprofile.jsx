@@ -1,10 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
-import profile from '../../assets/Profile.svg';
 import { Link, useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import axiosInstance from '../../utils/http-interceptor';
 import appConfig from '../../config';
 const EditProfile = () => {
-
   const navigate = useNavigate();
 
   const [fullname, setFullname] = useState();
@@ -15,26 +13,26 @@ const EditProfile = () => {
   const onChangeFullnameHandler = (e) => {
     const fullnameTemp = e.target.value;
     setFullname(fullnameTemp);
-  }
+  };
   const onChangePhoneNumberHandler = (e) => {
     const phoneNumberTemp = e.target.value;
     setPhoneNumber(phoneNumberTemp);
-  }
+  };
   const onChangeUsernameHandler = (e) => {
     const usernameTemp = e.target.value;
     setUsername(usernameTemp);
-  }
+  };
   const onChangePictureHandler = (e) => {
     if (e.target.files && e.target.files[0]) {
-      let reader = new FileReader();
+      const reader = new FileReader();
       reader.onload = (e) => {
-        setPictureUrl(e.target.result)
+        setPictureUrl(e.target.result);
       };
       reader.readAsDataURL(e.target.files[0]);
       const pictureTemp = e.target.files[0];
       setPicture(pictureTemp);
     }
-  }
+  };
 
   const fullnameRef = useRef();
   const phoneNumberRef = useRef();
@@ -43,99 +41,87 @@ const EditProfile = () => {
 
   const onClickPictureButton = (e) => {
     pictureRef.current.click();
-  }
+  };
 
-  const onClickSaveHandler =async (e) => {
+  const onClickSaveHandler = async (e) => {
     e.preventDefault();
     // console.log(fullname, phoneNumber, username, picture);
     try {
-
-      const authToken = localStorage.getItem("AUTH_TOKEN");
       const profilePayload = new FormData();
-  
-      profilePayload.append("fullname",fullname );
-      profilePayload.append("phoneNumber", phoneNumber);
+      profilePayload.append('fullname', fullname);
+      profilePayload.append('phoneNumber', phoneNumber);
       // profilePayload.append("username",username);
       // profilePayload.append("img",picture);
 
-
-      const editProfileRequest = await axios.put(
-          `${appConfig.BE_URL}/users/update_data`,
-          profilePayload,
-          {
-            headers: {
-              authorization: `Bearer ${authToken}`,
-            },
-          }
-        );
-      
+      const editProfileRequest = await axiosInstance.put(
+        `${appConfig.BE_URL}/users/update_data`,
+        profilePayload,
+      );
 
       const avatarPayload = new FormData();
 
-      avatarPayload.append("imageFile", picture)
+      avatarPayload.append('imageFile', picture);
 
-      const editAvatarRequest = await axios.put(
-          `${appConfig.BE_URL}/users/avatar`, 
-          avatarPayload,
-          {
-            headers: {
-              authorization: `Bearer ${authToken}`,
-            },
-          }
-        );
+      const editAvatarRequest = await axiosInstance.put(
+        `${appConfig.BE_URL}/users/avatar`,
+        avatarPayload,
+      );
 
       const editProfileResponse = editProfileRequest.data;
       const editAvatarResponse = editAvatarRequest.data;
-      if (editProfileResponse.code == 200 && editAvatarResponse.code == 200)  {
-        navigate("/profil")
+      if (editProfileResponse.code === 200 && editAvatarResponse.code === 200) {
+        navigate('/profil');
       } else {
-        navigate("/editprofil")
+        navigate('/editprofil');
       }
-      
     } catch (err) {
-      navigate("/editprofil")
+      navigate('/editprofil');
     }
-  }
+  };
 
   useEffect(() => {
     const fetchCurrentUserProfile = async () => {
       try {
-        
-        const authToken = localStorage.getItem("AUTH_TOKEN");
-
-        const currentUserRequest = await axios.get(
-          `${appConfig.BE_URL}/users/get`,
-          {
-            headers: {
-              authorization: `Bearer ${authToken}`,
-            },
-          }
-        );
+        const currentUserRequest = await axiosInstance.get(`${appConfig.BE_URL}/users/get`);
 
         const currentUserResponse = currentUserRequest.data;
-        if (currentUserResponse.code == 200)  {
-          fullnameRef.current.value = currentUserResponse.data.fullname != null ? currentUserResponse.data.fullname : "";
-          setFullname(currentUserResponse.data.fullname != null ? currentUserResponse.data.fullname : "");
+        if (currentUserResponse.code === 200) {
+          fullnameRef.current.value =
+            currentUserResponse.data.fullname != null ? currentUserResponse.data.fullname : '';
+          setFullname(
+            currentUserResponse.data.fullname != null ? currentUserResponse.data.fullname : '',
+          );
 
-          phoneNumberRef.current.value = currentUserResponse.data.phoneNumber != null ? currentUserResponse.data.phoneNumber : "";
-          setPhoneNumber(currentUserResponse.data.phoneNumber != null ? currentUserResponse.data.phoneNumber : "");
+          phoneNumberRef.current.value =
+            currentUserResponse.data.phoneNumber != null
+              ? currentUserResponse.data.phoneNumber
+              : '';
+          setPhoneNumber(
+            currentUserResponse.data.phoneNumber != null
+              ? currentUserResponse.data.phoneNumber
+              : '',
+          );
 
-          usernameRef.current.value = currentUserResponse.data.username != null ? currentUserResponse.data.username : "";
-          setUsername(currentUserResponse.data.username != null ? currentUserResponse.data.username : "");
-          
-          setPictureUrl(currentUserResponse.data.imgUrl != null ? currentUserResponse.data.imgUrl : "")
+          usernameRef.current.value =
+            currentUserResponse.data.username != null ? currentUserResponse.data.username : '';
+          setUsername(
+            currentUserResponse.data.username != null ? currentUserResponse.data.username : '',
+          );
+
+          setPictureUrl(
+            currentUserResponse.data.imgUrl != null ? currentUserResponse.data.imgUrl : '',
+          );
         } else {
-          navigate("/auth/login")
+          navigate('/auth/login');
         }
-        
       } catch (err) {
-        console.log(err)
-        navigate("/auth/login")
+        console.log(err);
+        navigate('/auth/login');
       }
-    }
+    };
 
     fetchCurrentUserProfile();
-  },[])
+  }, []);
 
   return (
     <React.Fragment>
@@ -162,12 +148,34 @@ const EditProfile = () => {
             <div className='rounded-full overflow-hidden max-w-[200px]'>
               <img className='w-full h-auto' src={pictureUrl} alt='' />
             </div>
-            <button className='absolute bg-[#898484] p-[14px] rounded-full bottom-[5%] right-[1%]' onClick={(e) => {onClickPictureButton(e)}}>
-              <svg  viewBox="0 0 20 18" fill="currentColor" className="w-[20px] h-[20px] fill-white" xmlns="http://www.w3.org/2000/svg">
-                <path fillRule="evenodd" clipRule="evenodd" d="M2.5 2.5C1.83696 2.5 1.20107 2.76339 0.732233 3.23223C0.263392 3.70107 0 4.33696 0 5V15C0 15.663 0.263392 16.2989 0.732233 16.7678C1.20107 17.2366 1.83696 17.5 2.5 17.5H17.5C18.163 17.5 18.7989 17.2366 19.2678 16.7678C19.7366 16.2989 20 15.663 20 15V5C20 4.33696 19.7366 3.70107 19.2678 3.23223C18.7989 2.76339 18.163 2.5 17.5 2.5H15.5175C15.186 2.49993 14.8681 2.36819 14.6337 2.13375L13.2325 0.7325C12.7638 0.263627 12.128 0.000141594 11.465 0H8.535C7.87201 0.000141594 7.23623 0.263627 6.7675 0.7325L5.36625 2.13375C5.13188 2.36819 4.81399 2.49993 4.4825 2.5H2.5ZM10 13.75C10.4925 13.75 10.9801 13.653 11.4351 13.4645C11.89 13.2761 12.3034 12.9999 12.6517 12.6517C12.9999 12.3034 13.2761 11.89 13.4645 11.4351C13.653 10.9801 13.75 10.4925 13.75 10C13.75 9.50754 13.653 9.01991 13.4645 8.56494C13.2761 8.10997 12.9999 7.69657 12.6517 7.34835C12.3034 7.00013 11.89 6.72391 11.4351 6.53545C10.9801 6.347 10.4925 6.25 10 6.25C9.00544 6.25 8.05161 6.64509 7.34835 7.34835C6.64509 8.05161 6.25 9.00544 6.25 10C6.25 10.9946 6.64509 11.9484 7.34835 12.6517C8.05161 13.3549 9.00544 13.75 10 13.75Z" fill="white"/>
+            <button
+              className='absolute bg-[#898484] p-[14px] rounded-full bottom-[5%] right-[1%]'
+              onClick={(e) => {
+                onClickPictureButton(e);
+              }}
+            >
+              <svg
+                viewBox='0 0 20 18'
+                fill='currentColor'
+                className='w-[20px] h-[20px] fill-white'
+                xmlns='http://www.w3.org/2000/svg'
+              >
+                <path
+                  fillRule='evenodd'
+                  clipRule='evenodd'
+                  d='M2.5 2.5C1.83696 2.5 1.20107 2.76339 0.732233 3.23223C0.263392 3.70107 0 4.33696 0 5V15C0 15.663 0.263392 16.2989 0.732233 16.7678C1.20107 17.2366 1.83696 17.5 2.5 17.5H17.5C18.163 17.5 18.7989 17.2366 19.2678 16.7678C19.7366 16.2989 20 15.663 20 15V5C20 4.33696 19.7366 3.70107 19.2678 3.23223C18.7989 2.76339 18.163 2.5 17.5 2.5H15.5175C15.186 2.49993 14.8681 2.36819 14.6337 2.13375L13.2325 0.7325C12.7638 0.263627 12.128 0.000141594 11.465 0H8.535C7.87201 0.000141594 7.23623 0.263627 6.7675 0.7325L5.36625 2.13375C5.13188 2.36819 4.81399 2.49993 4.4825 2.5H2.5ZM10 13.75C10.4925 13.75 10.9801 13.653 11.4351 13.4645C11.89 13.2761 12.3034 12.9999 12.6517 12.6517C12.9999 12.3034 13.2761 11.89 13.4645 11.4351C13.653 10.9801 13.75 10.4925 13.75 10C13.75 9.50754 13.653 9.01991 13.4645 8.56494C13.2761 8.10997 12.9999 7.69657 12.6517 7.34835C12.3034 7.00013 11.89 6.72391 11.4351 6.53545C10.9801 6.347 10.4925 6.25 10 6.25C9.00544 6.25 8.05161 6.64509 7.34835 7.34835C6.64509 8.05161 6.25 9.00544 6.25 10C6.25 10.9946 6.64509 11.9484 7.34835 12.6517C8.05161 13.3549 9.00544 13.75 10 13.75Z'
+                  fill='white'
+                />
               </svg>
             </button>
-            <input type={"file"} className='hidden' ref={pictureRef} onChange={(e) => {onChangePictureHandler(e)}}/>
+            <input
+              type={'file'}
+              className='hidden'
+              ref={pictureRef}
+              onChange={(e) => {
+                onChangePictureHandler(e);
+              }}
+            />
           </div>
           <div className='text-[24px] sm:text-[30px] font-[600]'>{fullname}</div>
         </div>
@@ -191,7 +199,9 @@ const EditProfile = () => {
                     id='inline-full-name'
                     placeholder='Nama Pengguna'
                     ref={fullnameRef}
-                    onChange={(e) => {onChangeFullnameHandler(e)}}
+                    onChange={(e) => {
+                      onChangeFullnameHandler(e);
+                    }}
                   />
                 </div>
               </div>
@@ -209,7 +219,9 @@ const EditProfile = () => {
                     id='inline-phone-number'
                     placeholder='+62xxxxxxxxxxx'
                     ref={phoneNumberRef}
-                    onChange={(e) => {onChangePhoneNumberHandler(e)}}
+                    onChange={(e) => {
+                      onChangePhoneNumberHandler(e);
+                    }}
                   />
                 </div>
               </div>
@@ -227,7 +239,9 @@ const EditProfile = () => {
                     id='inline-email'
                     placeholder='namapengguna@gmail.com'
                     ref={usernameRef}
-                    onChange={(e) => {onChangeUsernameHandler(e)}}
+                    onChange={(e) => {
+                      onChangeUsernameHandler(e);
+                    }}
                   />
                 </div>
               </div>
@@ -238,7 +252,9 @@ const EditProfile = () => {
                   type='button'
                   className='col-start-1 col-span-1 lg:col-span-full rounded-[150px] p-2 sm:py-2 text-[14px] sm:text-[16px]
                   text-white bg-[#0A008A] hover:bg-[#A0A3FF] hover:text-[#FFFFFF] active:bg-black'
-                  onClick={(e) => {onClickSaveHandler(e)}}
+                  onClick={(e) => {
+                    onClickSaveHandler(e);
+                  }}
                 >
                   Simpan
                 </button>

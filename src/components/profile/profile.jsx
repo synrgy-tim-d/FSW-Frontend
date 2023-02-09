@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import profile from '../../assets/Profile.svg';
+import { Link, useNavigate } from 'react-router-dom';
+import axiosInstance from '../../utils/http-interceptor';
 import logout from '../../assets/Logout-img.svg';
 import appConfig from '../../config';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
+
 const Password = ({ password }) => {
   const mask = '*'.repeat(password.length);
   return <span>{mask}</span>;
@@ -14,7 +15,7 @@ const Password = ({ password }) => {
 const Profile = () => {
   const navigate = useNavigate();
 
-  const [user,setUser] = useState({});
+  const [user, setUser] = useState({});
 
   useQuery({
     queryKey:["users",'get'],
@@ -38,6 +39,27 @@ const Profile = () => {
       navigate("/")
     }
   })
+  
+  // useEffect(() => {
+  //   const fetchCurrentUserProfile = async () => {
+  //     try {
+  //       const currentUserRequest = await axiosInstance.get(`${appConfig.BE_URL}/users/get`);
+
+  //       const currentUserResponse = currentUserRequest.data;
+  //       if (currentUserResponse.code === 200) {
+  //         console.log(currentUserResponse);
+  //         setUser(currentUserResponse.data);
+  //       } else {
+  //         navigate('/auth/login');
+  //       }
+  //     } catch (err) {
+  //       console.log(err);
+  //       navigate("/auth/login")
+  //     }
+  //   };
+
+  //   fetchCurrentUserProfile();
+  // }, []);
 
   return (
     <React.Fragment>
