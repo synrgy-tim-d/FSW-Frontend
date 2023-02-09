@@ -129,8 +129,8 @@ const Testimonial = () => {
           name={testimoniers[i].userId.fullname}
           testimonial={testimoniers[i].reviewText}
           pictureUrl={testimoniers[i].userId.imgUrl}
-          kosAddress={dataKos[0].city.city}
-          kosName={dataKos[0].name}
+          kosAddress={dataKos[0]?.city.city}
+          kosName={dataKos[0]?.name}
         />,
       );
     }
@@ -143,8 +143,8 @@ const Testimonial = () => {
         name={testimoniers[i].userId.fullname}
         testimonial={testimoniers[i].reviewText}
         pictureUrl={testimoniers[i].userId.imgUrl}
-        kosAddress={dataKos[0].city.city}
-        kosName={dataKos[0].name}
+        kosAddress={dataKos[0]?.city.city}
+        kosName={dataKos[0]?.name}
         />,
       );
     }
