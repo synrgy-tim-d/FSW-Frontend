@@ -14,8 +14,7 @@ const Whyus = () => {
               <div className='lg:space-y-2'>
                 <h3 className='font-bold text-base lg:text-xl'>Murah</h3>
                 <p className='text-xs lg:text-base'>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                  incididunt ut.
+                  Kosan yang tersedia merupakan kosan dengan harga terjangkau
                 </p>
               </div>
             </div>
@@ -26,8 +25,7 @@ const Whyus = () => {
               <div className='lg:space-y-2'>
                 <h3 className='font-bold text-base lg:text-xl'>Reminder</h3>
                 <p className='text-xs lg:text-base'>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                  incididunt ut.
+                  Fitur reminder buat ngingetin kos yang harus segera dibayar setelah dibooking
                 </p>
               </div>
             </div>
@@ -38,8 +36,7 @@ const Whyus = () => {
               <div className='lg:space-y-2'>
                 <h3 className='font-bold text-base lg:text-xl'>Lengkap</h3>
                 <p className='text-xs lg:text-base'>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                  incididunt ut.
+                  Deskripsi dan keterangan lengkap dari setiap kos disertai FAQ Box biar ga bingung
                 </p>
               </div>
             </div>

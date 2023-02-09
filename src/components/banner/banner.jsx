@@ -33,14 +33,15 @@ function Banner() {
                 <h1 className='text-start font-bold text-2xl lg:text-6xl'>
                   Cari Kos Lengkap Aman di Kantong
                 </h1>
-                <p className='text-start text-xl lg:text-3xl'>Lorem ipsum dolor sit amet</p>
+                <p className='text-start text-xl lg:text-3xl'>Ngekos? ya Naqos</p>
               </div>
               <div className='flex space-x-4'>
                 <div className='relative flex items-center w-11/12'>
-                  <img className='absolute ml-4 pointer-events-none' src={magnifier} />
+                  <img className='absolute ml-4 pointer-events-none w-4 h-4 lg:w-auto lg:h-auto ' src={magnifier} />
                   <input
                     type='search'
-                    className='w-full pl-12 py-1 lg:py-5 text-l lg:text-2xl font-normal text-gray-700 bg-white border-none ring-2 ring-gray-300 focus:ring-none rounded transition ease-in-out '
+                    className='w-full pl-12 py-1 lg:py-5 text-l lg:text-2xl font-normal 
+                    text-gray-700 bg-white border-none ring-2 ring-gray-300 focus:outline-none rounded transition ease-in-out '
                     placeholder='Mau Kos di Mana?'
                     onChange={changeSearch}
                     onKeyDown={handleKeyDown}

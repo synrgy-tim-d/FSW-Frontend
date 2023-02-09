@@ -3,7 +3,7 @@ import imgsucess from '../../assets/img_success.png';
 
 const PaySuccessHistory = () => {
   return (
-    <div className='lg:px-[70px] px-[20px] pt-[25px] font-[Montserrat] bg-[#FAFAFA] min-h-[700px]'>
+    <div className='lg:px-[70px] px-[20px] pt-[25px] lg:pt-[70px] font-[Montserrat] bg-[#FAFAFA] min-h-[700px]'>
       {/* --- Breadcrumb --- */}
       <div className='flex flex-row'>
         <nav className='flex' aria-label='Breadcrumb'>
