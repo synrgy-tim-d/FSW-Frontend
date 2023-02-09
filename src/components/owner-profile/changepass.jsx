@@ -13,7 +13,7 @@ const ChangePassOwner = () => {
   return (
     <React.Fragment>
       <div className='grid grid-cols-5'>
-        <div className='col-span-1 bg-[#0A008A] h-full px-8 py-16'>
+        <div className='col-span-1 bg-[#0A008A] h-full text-white text-center py-6 lg:px-8 lg:py-16'>
           <SidebarOwner />
         </div>
         <div className='col-span-4 grid grid-rows-auto w-2/3 justify-self-center gap-y-12 py-12'>
