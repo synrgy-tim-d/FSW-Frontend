@@ -30,7 +30,7 @@ const SignUp = () => {
     navigate('/verif');
   };
 
-  const [isPasswordHidden,setIsPasswordHidden] = useState(true);
+  const [isPasswordHidden, setIsPasswordHidden] = useState(true);
 
   const onClickPasswordEye = (e) => {
     e.preventDefault;

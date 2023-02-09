@@ -20,6 +20,14 @@ const SignIn = () => {
 
   const [isDisabled, setIsDisabled] = useState(false);
   const [progressLoading, setProgressLoading] = useState(0);
+  const [isPasswordHidden, setIsPasswordHidden] = useState(true);
+
+  const onClickPasswordEye = (e) => {
+    e.preventDefault;
+    setIsPasswordHidden((prev) => {
+      return !prev
+    })
+  };
 
   const login = useMutation({
     mutationFn: async (newTodo) => {
