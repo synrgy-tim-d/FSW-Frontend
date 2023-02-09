@@ -80,7 +80,6 @@ const Navbarsign = () => {
             Masuk
           </button>
         </Link>
-        {/* <button type='button' className='px-6 btn rounded-[4px] border-2 text-white bg-[#0A008A] hover:bg-[#A0A3FF] active:bg-black'> */}
         <label
           htmlFor='signin-modal'
           className='hidden lg:block py-3.5
@@ -88,7 +87,6 @@ const Navbarsign = () => {
         >
           Daftar
         </label>
-        {/* </button> */}
         <input type='checkbox' id='signin-modal' className='modal-toggle' />
         <div className='modal bg-[#000000]/50 w-full'>
           <div
@@ -118,15 +116,6 @@ const Navbarsign = () => {
             </Link>
           </div>
         </div>
-
-        {/* <Link to='/auth/register' className='hidden lg:block'>
-          <button
-            type='button'
-            className='btn btn-active text-[16px] bg-[#0A008A] text-white rounded-[4px] px-6'
-          >
-            Daftar
-          </button>
-        </Link> */}
       </div>
     </div>
   );
