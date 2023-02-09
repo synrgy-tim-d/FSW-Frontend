@@ -5,8 +5,23 @@ import Mandiri from '../../../assets/LogoMandiri.png'
 import BNI from '../../../assets/LogoBNI.png'
 import BRI from '../../../assets/LogoBRI.png'
 import BTN from '../../../assets/LogoBTN.png'
+import { useState } from 'react';
 
+const bankList = ["BCA","Mandiri", "BNI", "BRI", "BTN","Lainnya"]
+const bankImages = {
+    BCA,Mandiri,BNI,BRI,BTN
+}
 const AddOwnerProfile = () => {
+    const [selectedBank,setSelectedBank] = useState();
+
+    const onChangeSelectBank = (e) => {
+        setSelectedBank(e.target.value);
+    }
+
+    const onFormSubmit = (e) => {
+        e.preventDefault;
+        console.log(selectedBank);
+    }
     return (
         <React.Fragment>
         <div className='grid grid-cols-5 bg-[#FAFAFA]'>
@@ -38,70 +53,25 @@ const AddOwnerProfile = () => {
                     <span className="block text-[20px] text-[#000000]">Rekening yang digunakan untuk pembayaran melalui transfer</span>
                 </label>
 
-                <label htmlFor="" className='relative w-full cursor-pointer pb-10'>
-                    <div className='pt-4'>
-                        <div className='flex items-center p-5 pr-16 h-[55px] bg border-2 rounded-[100px]'>
-                            <input type='radio' id='BCA' name='payment' />
-                            <img className='h-[55px]' src={BCA} alt='BCA' />
-                            <p className='pl-4 font-semibold'>Bank BCA</p>
-                        </div>
-                    </div>
-                </label>
+                {bankList.map((e,i) => {
+                    return (
+                        <label htmlFor="" className='relative w-full cursor-pointer pb-10'>
+                            <div className='pt-4'>
+                                <div className='flex items-center p-5 pr-16 h-[55px] bg border-2 rounded-[100px]'>
+                                    <input type='radio' id={e} name='payment' value={e} onChange={(e) => {onChangeSelectBank(e)}}/>
+                                    {(() => e=="Lainnya" ? ("") : (<img className='pl-2 h-[20px]' src={bankImages[e]} alt={e} />) )()}
+                                    <p className='pl-4 font-semibold'>{`${e=="Lainnya" ? "":"Bank"} ${e}`}</p>
+                                </div>
+                            </div>
+                        </label>
+                    )
+                })}
 
-                <label htmlFor="" className='relative w-full cursor-pointer'>
-                    <div className='pt-2'>
-                        <div className='flex items-center p-5 pr-16 h-[55px] bg border-2 rounded-[100px]'>
-                            <input type='radio' id='Mandiri' name='payment' />
-                            <img className='pl-2 h-[20px]' src={Mandiri} alt='Mandiri' />
-                            <p className='pl-4 font-semibold'>Bank Mandiri</p>
-                        </div>
-                    </div>
-                </label>
+                <label className="relative block pb-10 pt-10">
+                    <span className={`block text-[20px] font-semibold ${selectedBank == "Lainnya" ? "text-[#000000]":"text-[#B9B9BC]"} `}>Rekening Bank Lain/Pengelola</span>
+                    <span className={`block text-[20px] pb-3 ${selectedBank == "Lainnya" ? "text-[#000000]":"text-[#B9B9BC]"}`}>Rekening bank lain yang tidak tertera diatas</span>
 
-                <label htmlFor="" className='relative w-full cursor-pointer'>
-                    <div className='pt-2'>
-                        <div className='flex items-center p-5 pr-16 h-[55px] bg border-2 rounded-[100px]'>
-                            <input type='radio' id='BNI' name='payment' />
-                            <img className='pl-2 h-[20px]' src={BNI} alt='BNI' />
-                            <p className='pl-4 font-semibold'>Bank BNI</p>
-                        </div>
-                    </div>
-                </label>
-
-                <label htmlFor="" className='relative w-full cursor-pointer'>
-                    <div className='pt-2'>
-                        <div className='flex items-center p-5 pr-16 h-[55px] bg border-2 rounded-[100px]'>
-                            <input type='radio' id='BRI' name='payment' />
-                            <img className='pl-2 h-[20px]' src={BRI} alt='BRI' />
-                            <p className='pl-4 font-semibold'>Bank BRI</p>
-                        </div>
-                    </div>
-                </label>
-
-                <label htmlFor="" className='relative w-full cursor-pointer'>
-                    <div className='pt-2'>
-                        <div className='flex items-center p-5 pr-16 h-[55px] bg border-2 rounded-[100px]'>
-                            <input type='radio' id='BTN' name='payment' />
-                            <img className='pl-2 h-[20px]' src={BTN} alt='BTN' />
-                            <p className='pl-4 font-semibold'>Bank BTN</p>
-                        </div>
-                    </div>
-                </label>
-
-                <label htmlFor="" className='relative w-full cursor-pointer'>
-                    <div className='pt-2 pb-10'>
-                        <div className='flex items-center p-5 pr-16 h-[55px] bg border-2 rounded-[100px]'>
-                            <input type='radio' id='other' name='payment' />
-                            <p className='pl-2 pr-4 font-semibold'>Lainnya</p>
-                        </div>
-                    </div>
-                </label>
-
-                <label className="relative block pb-10">
-                    <span className="block text-[20px] font-semibold text-[#B9B9BC]">Rekening Bank Lain/Pengelola</span>
-                    <span className="block text-[20px] text-[#B9B9BC] pb-3">Rekening bank lain yang tidak tertera diatas</span>
-
-                    <input className="placeholder:text-base placeholder:font-semibold placeholder:text-[#46464F]/[0.38] block bg-white w-full border border-slate-300 rounded-full py-4 pl-6 pr-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm" placeholder="Ketikkan nama bank disini" type="text" name="search" />
+                    <input className="placeholder:text-base placeholder:font-semibold placeholder:text-[#46464F]/[0.38] block bg-white w-full border border-slate-300 rounded-full py-4 pl-6 pr-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm" placeholder="Ketikkan nama bank disini" type="text" name="search" disabled={selectedBank!="Lainnya"}/>
                 </label>
 
                 <label className="relative block pb-10">
@@ -127,6 +97,7 @@ const AddOwnerProfile = () => {
             <button
                 className='rounded border-2 border-[#0A008A] bg-[#0A008A] text-white font-[600] p-2 px-3'
                 type='button'
+                onClick={(e) => {onFormSubmit(e)}}
             >
                 Simpan & Lanjutkan
             </button>
