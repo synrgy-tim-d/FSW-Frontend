@@ -136,7 +136,7 @@ const Kostdata = ({ fetchData }) => {
                   <div className='lg:col-span-1 flex justify-start lg:justify-end'>
                     <p className='font-[700] lg:pl-8'>
                       {/* Rp {kost.price} */}
-                      Rp {kost.rooms[0].pricePerMonthly}
+                      Rp {kost.rooms[0]?.pricePerMonthly}
                       <span className='text-[10px] md:text-[14px] lg:text-[16px] font-[400]'>
                         /bulan
                       </span>
