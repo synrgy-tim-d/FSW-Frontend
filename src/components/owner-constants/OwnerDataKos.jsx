@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './datakosstyle.css'
 import kosimg from '../../assets/city-card.svg';
 import putri from '../../assets/radio_Putri.svg';
 import putra from '../../assets/radio_Putra.svg';

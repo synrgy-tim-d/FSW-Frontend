@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import BCA from '../../../assets/LogoBCA.png'
 import Mandiri from '../../../assets/LogoMandiri.png'
 import BNI from '../../../assets/LogoBNI.png'

@@ -25,7 +25,7 @@ const Ownerprofile = () => {
             <form className='grid gap-12 bg-[#C0C1FF]/[0.38] rounded-2xl p-8'>
               <div className='grid grid-cols-2'>
                 <div className='text-[17px] sm:text-[25px] font-[600]'>Informasi Akun</div>
-                <Link to='/editprofilowner/editprofilowner' className='w-full flex justify-end'>
+                <Link to='/ownerprofile/editownerprofile' className='w-full flex justify-end'>
                   <button
                     type='button'
                     className='rounded-[150px] bg-inherit text-[#000000]/[0.38] text-[20px] font-[600]'
@@ -58,7 +58,7 @@ const Ownerprofile = () => {
             <form action='|' className='grid gap-12 bg-[#C0C1FF]/[0.38] rounded-2xl p-8'>
               <div className='grid grid-cols-2'>
                 <div className='text-[17px] sm:text-[25px] font-[600]'>Login & Security</div>
-                <Link to='/editprofilowner/gantipasswordowner' className='w-full flex justify-end'>
+                <Link to='/ownerprofile/changepassword' className='w-full flex justify-end'>
                   <button
                     type='button'
                     className='rounded-[150px] bg-inherit text-[#000000]/[0.38] text-[16px] sm:text-[20px] font-[600]'
