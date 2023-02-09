@@ -5,6 +5,7 @@ import logout from '../../assets/Logout-img.svg';
 import appConfig from '../../config';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { useQuery } from '@tanstack/react-query';
 const Password = ({ password }) => {
   const mask = '*'.repeat(password.length);
   return <span>{mask}</span>;
@@ -15,37 +16,28 @@ const Profile = () => {
 
   const [user,setUser] = useState({});
 
-  useEffect(() => {
-    const fetchCurrentUserProfile = async () => {
-      try {
-        
-        const authToken = localStorage.getItem("AUTH_TOKEN");
-
-        const currentUserRequest = await axios.get(
-          `${appConfig.BE_URL}/users/get`,
-          {
-            headers: {
-              authorization: `Bearer ${authToken}`,
-            },
-          }
-        );
-
-        const currentUserResponse = currentUserRequest.data;
-        if (currentUserResponse.code == 200)  {
-          console.log(currentUserResponse)
-          setUser(currentUserResponse.data)
-        } else {
-          navigate("/auth/login")
+  useQuery({
+    queryKey:["users",'get'],
+    queryFn: async () => {
+      const token = localStorage.getItem("AUTH_TOKEN")
+      return await axios.get(
+        `${appConfig.BE_URL}/users/get`,
+        {
+          headers: {
+            authorization: `Bearer ${token}`,
+          },
         }
-        
-      } catch (err) {
-        console.log(err)
-        // navigate("/")
-      }
+      );
+    },
+    onSuccess: (res) => {
+      setUser(res?.data?.data)
+      console.log(res);
+    },
+    onError:(err) => {
+      console.log(err)
+      navigate("/")
     }
-
-    fetchCurrentUserProfile();
-  },[])
+  })
 
   return (
     <React.Fragment>

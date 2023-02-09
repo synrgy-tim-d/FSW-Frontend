@@ -169,7 +169,7 @@ const EditProfile = () => {
             </button>
             <input type={"file"} className='hidden' ref={pictureRef} onChange={(e) => {onChangePictureHandler(e)}}/>
           </div>
-          <div className='text-[24px] sm:text-[30px] font-[600]'>Nama Pengguna</div>
+          <div className='text-[24px] sm:text-[30px] font-[600]'>{fullname}</div>
         </div>
         <div className='w-11/12 lg:w-3/4 col-span-1 lg:col-span-4 justify-self-center lg:justify-self-start grid gap-4'>
           <form action='|' className='grid gap-12 bg-inherit rounded-2xl p-8'>
