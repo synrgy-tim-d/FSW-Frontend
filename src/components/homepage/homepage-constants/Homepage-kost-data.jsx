@@ -1,34 +1,76 @@
+import { useMutation } from '@tanstack/react-query';
+import axios from 'axios';
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-// import image from '../../../assets/Homepage-Kos1.svg';
-
-// Like Button
-const LikeButton = (props) => {
-  const [isFilled, setIsFilled] = useState(false);
-  const handleClick = () => {
-    setIsFilled(!isFilled);
-  };
-
-  return (
-    <button onClick={handleClick} className='flex items-center justify-center'>
-      <svg
-        className={`w-3 md:w-6 h-3 md:h-6 ${isFilled ? 'fill-black' : 'fill-none'}`}
-        viewBox='0 0 24 24'
-        xmlns='http://www.w3.org/2000/svg'
-      >
-        <path
-          d='M21 8.25C21 5.76472 18.9013 3.75 16.3125 3.75C14.3769 3.75 12.7153 4.87628 12 6.48342C11.2847 4.87628 9.62312 3.75 7.6875 3.75C5.09867 3.75 3 5.76472 3 8.25C3 15.4706 12 20.25 12 20.25C12 20.25 21 15.4706 21 8.25Z'
-          stroke='#3C3C3C'
-          strokeWidth='1.5'
-          strokeLinecap='round'
-          strokeLinejoin='round'
-        />
-      </svg>
-    </button>
-  );
-};
 
 const Kostdata = ({ fetchData }) => {
+  const LikeButton = ({kosId}) => {
+    const [isFilled, setIsFilled] = useState(false);
+
+    const postWishlist = useMutation({
+      mutationFn: async (data) => {
+        await axios.post(`https://be-naqos.up.railway.app/api/wishlists/add`, data, {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('AUTH_TOKEN')}`
+          },
+        });
+      },
+    });
+
+    const destroyWishlist = useMutation({
+      mutationFn: async (kosId) => {
+        await axios.delete(`https://be-naqos.up.railway.app/api/wishlists/destroy?kostId=${kosId}`, {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('AUTH_TOKEN')}`
+          },
+        });
+      },
+    });
+
+    const handleClick = (data) => {
+      data.preventDefault();
+      setIsFilled(!isFilled);
+
+      if (!isFilled) {
+        postWishlist.mutate({"kostId": `${kosId}`}, {
+          onSuccess: () => {
+            alert("Kost berhasil ditambahkan ke wishlist")
+          },
+          onError: () => {
+            alert("Kost gagal ditambahkan ke wishlist")
+          }
+        });
+      } else {
+        destroyWishlist.mutate(kosId, {
+          onSuccess: () => {
+            alert("Kost berhasil dihapus dari wishlist")
+          },
+          onError: () => {
+            alert("Kost gagal dihapus dari wishlist")
+          }
+        });
+      }
+    };
+
+    return (
+      <button onClick={handleClick} className='flex items-center justify-center'>
+        <svg
+          className={`w-3 md:w-6 h-3 md:h-6 ${isFilled ? 'fill-black' : 'fill-none'}`}
+          viewBox='0 0 24 24'
+          xmlns='http://www.w3.org/2000/svg'
+        >
+          <path
+            d='M21 8.25C21 5.76472 18.9013 3.75 16.3125 3.75C14.3769 3.75 12.7153 4.87628 12 6.48342C11.2847 4.87628 9.62312 3.75 7.6875 3.75C5.09867 3.75 3 5.76472 3 8.25C3 15.4706 12 20.25 12 20.25C12 20.25 21 15.4706 21 8.25Z'
+            stroke='#3C3C3C'
+            strokeWidth='1.5'
+            strokeLinecap='round'
+            strokeLinejoin='round'
+          />
+        </svg>
+      </button>
+    );
+  };
+
   return (
     <div className='text-[10px] sm:text-[14px] md:text-[18px] lg:text-[20px] font-[Montserrat] text-[#000000] col-span-3 grid grid-cols-auto auto-rows-max gap-8 md:px-2 lg:px-4'>
       {fetchData?.map((kost) => {
@@ -51,7 +93,6 @@ const Kostdata = ({ fetchData }) => {
                     text-[12px] lg:text-[16px] font-[600] leading-none
                     hidden'
                     >
-                    {/* {kost.type} */}
                       {kost.kostType.slice(4)}
                     </div>
                     <span className='text-[#BA1A1A] italic md:pl-2 self-center'>
@@ -59,11 +100,7 @@ const Kostdata = ({ fetchData }) => {
                     </span>
                   </div>
                   <div className='flex justify-end self-center pr-4'>
-                    <LikeButton
-                      key={kost.id}
-                      // onClick={() => handleClick()}
-                      // isFilled={selectedIndex === index}
-                    />
+                    <LikeButton kosId={kost.id} />
                   </div>
                 </div>
 
@@ -116,7 +153,6 @@ const Kostdata = ({ fetchData }) => {
                     </svg>
                   </span>
                   <p className='text-[10px] md:text-[12px] lg:text-[14px] font-[500]'>
-                    {/* {kost.location.name} */}
                     {kost.city.city}
                   </p>
                 </div>
@@ -135,7 +171,6 @@ const Kostdata = ({ fetchData }) => {
                   </div>
                   <div className='lg:col-span-1 flex justify-start lg:justify-end'>
                     <p className='font-[700] lg:pl-8'>
-                      {/* Rp {kost.price} */}
                       Rp {kost.rooms[0]?.pricePerMonthly}
                       <span className='text-[10px] md:text-[14px] lg:text-[16px] font-[400]'>
                         /bulan

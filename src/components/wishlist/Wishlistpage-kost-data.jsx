@@ -1,155 +1,119 @@
-import React, { useEffect, useState } from 'react';
-// import image from '../../../assets/Wishlistpage-Kos1.svg';
-import image from '../../assets/Wishlistpage-Kos1.svg'
+import { useMutation } from '@tanstack/react-query';
+import axios from 'axios';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
-const Kostdata = () => {
-  const [kosts, setKosts] = useState([]);
-  useEffect(() => {
-    const kostList = [
-      {
-        id: 1,
-        name: 'Kos Alamanda',
-        type: 'Campur',
-        room: 5,
-        description:
-          'Rincian alamat kos secara lengkap dan kode pos Rincian alamat kos secara lengkap dan kode pos',
-        review: 5,
-        location: {
-          name: 'Yogyakarta',
-        },
-        facilities: [
-          {
-            name: 'Wi-Fi',
+const Kostdata = ({ fetchData }) => {
+  const LikeButton = ({kosId}) => {
+    const [isFilled, setIsFilled] = useState(true);
+
+    const postWishlist = useMutation({
+      mutationFn: async (data) => {
+        await axios.post(`https://be-naqos.up.railway.app/api/wishlists/add`, data, {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('AUTH_TOKEN')}`
           },
-          {
-            name: 'AC',
-          },
-          {
-            name: 'KM Dalam',
-          },
-        ],
-        price: '1.000.000',
+        });
       },
-      {
-        id: 2,
-        name: 'Kos Cendana',
-        type: 'Putri',
-        room: 12,
-        description:
-          'Rincian alamat kos secara lengkap dan kode pos Rincian alamat kos secara lengkap dan kode pos',
-        review: 4.5,
-        location: {
-          name: 'Surakarta',
-        },
-        facilities: [
-          {
-            name: 'Listrik',
+    });
+
+    const destroyWishlist = useMutation({
+      mutationFn: async (kosId) => {
+        await axios.delete(`https://be-naqos.up.railway.app/api/wishlists/destroy?kostId=${kosId}`, {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('AUTH_TOKEN')}`
           },
-          {
-            name: 'AC',
-          },
-          {
-            name: 'TV',
-          },
-        ],
-        price: '1.000.000',
+        });
       },
-      {
-        id: 3,
-        name: 'Kos Jupiter',
-        type: 'Putra',
-        room: 2,
-        description:
-          'Rincian alamat kos secara lengkap dan kode pos Rincian alamat kos secara lengkap dan kode pos',
-        review: 2.7,
-        location: {
-          name: 'Jakarta Timur',
-        },
-        facilities: [
-          {
-            name: 'Listrik',
+    });
+
+    const handleClick = (data) => {
+      data.preventDefault();
+      setIsFilled(!isFilled);
+
+      if (!isFilled) {
+        postWishlist.mutate({"kostId": `${kosId}`}, {
+          onSuccess: () => {
+            alert("Kost berhasil ditambahkan ke wishlist")
           },
-          {
-            name: 'Wifi',
+          onError: () => {
+            alert("Kost gagal ditambahkan ke wishlist")
+          }
+        });
+      } else {
+        destroyWishlist.mutate(kosId, {
+          onSuccess: () => {
+            alert("Kost berhasil dihapus dari wishlist")
           },
-          {
-            name: 'AC',
-          },
-        ],
-        price: '3.000.000',
-      },
-      {
-        id: 4,
-        name: 'Kos Saturnus',
-        type: 'Putri',
-        room: 9,
-        description:
-          'Rincian alamat kos secara lengkap dan kode pos Rincian alamat kos secara lengkap dan kode pos',
-        review: 4.2,
-        location: {
-          name: 'Surabaya',
-        },
-        facilities: [
-          {
-            name: 'KM Dalam',
-          },
-          {
-            name: 'Wifi',
-          },
-          {
-            name: 'Kipas Angin',
-          },
-        ],
-        price: '600.000',
-      },
-    ];
-    setKosts(kostList);
-  }, []);
+          onError: () => {
+            alert("Kost gagal dihapus dari wishlist")
+          }
+        });
+      }
+    };
+
+    return (
+      <button onClick={handleClick} className='flex items-center justify-center'>
+        <svg
+          className={`w-3 md:w-6 h-3 md:h-6 ${isFilled ? 'fill-black' : 'fill-none'}`}
+          viewBox='0 0 24 24'
+          xmlns='http://www.w3.org/2000/svg'
+        >
+          <path
+            d='M21 8.25C21 5.76472 18.9013 3.75 16.3125 3.75C14.3769 3.75 12.7153 4.87628 12 6.48342C11.2847 4.87628 9.62312 3.75 7.6875 3.75C5.09867 3.75 3 5.76472 3 8.25C3 15.4706 12 20.25 12 20.25C12 20.25 21 15.4706 21 8.25Z'
+            stroke='#3C3C3C'
+            strokeWidth='1.5'
+            strokeLinecap='round'
+            strokeLinejoin='round'
+          />
+        </svg>
+      </button>
+    );
+  };
 
   return (
-    <div className='text-[20px] font-[Montserrat] text-[#000000] col-span-3 grid grid-cols-auto auto-rows-max gap-8 p-4'>
-      {kosts.map((kost, index) => {
+    <div className='text-[10px] sm:text-[14px] md:text-[18px] lg:text-[20px] font-[Montserrat] text-[#000000] col-span-3 grid grid-cols-auto auto-rows-max gap-8 md:px-2 lg:px-4'>
+      {fetchData?.map((kost) => {
+        // const facilities = [].concat(...kost.rooms.map(room => room.facilities.map(facility => facility.name)));
+        // const uniqueFacilities = [...new Set(facilities)];
         return (
-          <React.Fragment key={index}>
-            <div className='grid grid-cols-3 grid-flow-col'>
-              <div className='col-span-1 rounded-[16px]'>
-                <img className='w-full h-auto' src={image} alt='' />
-              </div>
-              <div className='col-span-2 grid grid-rows-auto grid-flow-row gap-2 p-4'>
+          <React.Fragment key={kost.id}>
+            <div className='grid grid-cols-3 grid-flow-col bg-white rounded-[16px]'>
+              <Link to='/kos/:kosid/:roomid'>
+                <div className='col-span-1 rounded-[16px]'>
+                  <img className='w-full h-auto' src={kost?.imgUrl[0]} alt='' />
+                </div>
+              </Link>
+              <div className='col-span-2 grid grid-rows-auto grid-flow-row md:gap-1 sm:auto-rows-auto pl-2 md:p-4'>
                 <div className='grid grid-flow-col'>
-                  <div className='grid grid-cols-auto grid-flow-col auto-cols-max content-center'>
-                    <div className='w-[85px] border-2 border-[#0A008A] rounded-[150px] flex justify-center'>
-                      {kost.type}
+                  <div className='grid grid-cols-auto md:grid-flow-col auto-cols-max content-center'>
+                    <div
+                      className='py-[0.1rem] md:p-[0.375rem] 
+                    lg:p-2 border-2 border-[#0A008A] rounded-[150px] md:flex justify-center 
+                    text-[12px] lg:text-[16px] font-[600] leading-none
+                    hidden'
+                    >
+                      {kost.kostType.slice(4)}
                     </div>
-                    <span className='text-[#BA1A1A] italic pl-2 self-center'>
-                      sisa {kost.room} kamar
+                    <span className='text-[#BA1A1A] italic md:pl-2 self-center'>
+                      {/* sisa {kost.rooms.filter(room => room.isAvailable === true).length} kamar */}
                     </span>
                   </div>
                   <div className='flex justify-end self-center pr-4'>
-                    <svg
-                      width='24'
-                      height='24'
-                      viewBox='0 0 24 24'
-                      fill='none'
-                      xmlns='http://www.w3.org/2000/svg'
-                    >
-                      <path
-                        d='M21 8.25C21 5.76472 18.9013 3.75 16.3125 3.75C14.3769 3.75 12.7153 4.87628 12 6.48342C11.2847 4.87628 9.62312 3.75 7.6875 3.75C5.09867 3.75 3 5.76472 3 8.25C3 15.4706 12 20.25 12 20.25C12 20.25 21 15.4706 21 8.25Z'
-                        stroke='#3C3C3C'
-                        strokeWidth='1.5'
-                        strokeLinecap='round'
-                        strokeLinejoin='round'
-                      />
-                    </svg>
+                    <LikeButton kosId={kost.id} />
                   </div>
                 </div>
 
                 <div className='grid grid-rows-auto'>
-                  <p>{kost.name}</p>
+                  <p className='font-[600]'>{kost.name}</p>
+                  {/* <p className='text-[10px] sm:text-[14px] md:text-[18px] lg:text-[20px] leading-none'>
+                    Rincian alamat kos secara lengkap dan kode pos
+                    <span className='text-[#000000]/[0.38] pl-2 hidden md:inline'> */}
                   <p>
-                    Rincian alamat kos secara lengkap dan kode pos Rincian alamat kos secara lengkap
-                    dan kode pos
-                    <span className='text-[#000000]/[0.38] pl-2'>...selengkapnya</span>
+                    {kost.address}, {kost.district}, {kost.subdistrict}, {kost.city.city} ({kost.postalCode})
+                    <span className='text-[#000000]/[0.38] pl-2'>
+                      <Link to={`/kos/${kost.id}/`}>...selengkapnya</Link>
+                    </span>
                   </p>
                 </div>
 
@@ -168,9 +132,9 @@ const Kostdata = () => {
                       />
                     </svg>
                   </span>
-                  <p>
-                    {kost.review}
-                    <span className='italic pl-1 text-[12px]'>(7 reviews)</span>
+                  <p className='text-[10px] md:text-[12px] lg:text-[14px] font-[500]'>
+                    {kost?.review}
+                    <span className='italic pl-1'>(7 reviews)</span>
                   </p>
                   <span className='self-center'>
                     <svg
@@ -188,25 +152,29 @@ const Kostdata = () => {
                       />
                     </svg>
                   </span>
-                  <p className='font-[500]'>{kost.location.name}</p>
+                  <p className='text-[10px] md:text-[12px] lg:text-[14px] font-[500]'>
+                    {kost.city.city}
+                  </p>
                 </div>
 
-                <div className='grid grid-flow-col'>
-                  <div className='grid grid-flow-col auto-cols-max gap-4 text-[#0A008A] font-[600]'>
-                    {kost.facilities.map((facility, index) => {
+                <div className='grid lg:grid-cols-2 grid-flow-col'>
+                  <div className='hidden lg:grid col-span-1 grid-flow-col auto-cols-max gap-4 text-[#0A008A] font-[600]'>
+                    {/* {uniqueFacilities.map((facility) => {
                       return (
-                        <React.Fragment key={index}>
+                        <React.Fragment key={facility}>
                           <div className='border-2 rounded-[4px] border-[#0A008A] p-2 self-center'>
-                            {facility.name}
+                            {facility}
                           </div>
                         </React.Fragment>
                       );
-                    })}
+                    })} */}
                   </div>
-                  <div className='flex justify-end'>
-                    <p className='text-[20px] font-[700]'>
-                      Rp {kost.price}
-                      <span className='text-[16px] font-[400]'>/bulan</span>
+                  <div className='lg:col-span-1 flex justify-start lg:justify-end'>
+                    <p className='font-[700] lg:pl-8'>
+                      {/* Rp {kost.rooms[0]?.pricePerMonthly} */}
+                      <span className='text-[10px] md:text-[14px] lg:text-[16px] font-[400]'>
+                        {/* /bulan */}
+                      </span>
                     </p>
                   </div>
                 </div>
