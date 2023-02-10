@@ -13,8 +13,6 @@ const PaySuccessHistory = () => {
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      console.log('berkurang 1 detik!');
-      console.log(timerState);
       setTimer((prev) => prev - 1);
       timerState === 0 && navigate('/history');
     }, 1000);
