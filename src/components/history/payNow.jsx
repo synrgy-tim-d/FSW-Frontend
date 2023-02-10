@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import imagetwo from '../../assets/img_kosTwo.png';
 import imageconfirm from '../../assets/img_confirmPayment.png';
 import iconlocation from '../../assets/icon_location.svg';
@@ -7,14 +7,14 @@ import iconarrowright from '../../assets/icon_arrow-right-2.svg';
 import iconclose from '../../assets/icon_close.svg';
 import iconarrowdown from '../../assets/icon_arrow-down.svg';
 
-import { useQuery } from '@tanstack/react-query';
+import { useQuery, useMutation } from '@tanstack/react-query';
 import axios from 'axios';
 import BookingCard from './bookingCard';
 
-import { useParams } from 'react-router-dom';
-
 const PayNowHistory = () => {
-  const [histories, sethistories] = useState([]);
+  const [paymentMethod, setpaymentMethod] = useState('BANK');
+
+  const navigate = useNavigate();
 
   const { bookid } = useParams();
   const getBooking = useQuery({
@@ -27,32 +27,36 @@ const PayNowHistory = () => {
       }),
   });
 
-  const checkBookId = (bookId) => {
-    if (bookId === bookid) {
-      return true;
-    }
-    return false;
+  let price;
+  let rentTime;
+
+  const choosePayment = (e) => {
+    setpaymentMethod(e.target.value);
   };
 
-  let price;
+  const putWillPay = useMutation({
+    mutationFn: async (data) => {
+      await axios.put(
+        `https://fsw-backend.up.railway.app/api/book?booking_id=${bookid}&willpay=true`,
+        data,
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('AUTH_TOKEN')}`,
+          },
+        },
+      );
+    },
+  });
 
-  // useEffect(() => {
-  //   const historyList = [
-  //     {
-  //       id: 2,
-  //       name: 'Kos Beringin',
-  //       location: {
-  //         name: 'Yogyakarta',
-  //       },
-  //       bookId: '00000002',
-  //       inDate: 'April 03, 23',
-  //       outDate: 'May 03, 23',
-  //       img: imagetwo,
-  //       btn: 'payment',
-  //     },
-  //   ];
-  //   sethistories(historyList);
-  // }, []);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const data = {
+      method: paymentMethod,
+    };
+    putWillPay.mutate(data);
+
+    navigate(`/history/booknow/receipt/${bookid}`);
+  };
 
   return (
     <div className='lg:px-[70px] px-[20px] pt-[25px] lg:pt-[70px] font-[Montserrat] bg-[#FAFAFA] min-h-[700px]'>
@@ -190,6 +194,9 @@ const PayNowHistory = () => {
               .filter((booking) => booking.booking_id == bookid)
               .map((booking) => {
                 price = booking.BookingDetail.rent_price;
+                rentTime = booking.BookingDetail.rent_time;
+
+                console.log();
 
                 return (
                   <BookingCard
@@ -198,6 +205,10 @@ const PayNowHistory = () => {
                     kosName={booking.Kost.name}
                     locationName={booking.Kost.SetupCity.city}
                     bookingId={booking.booking_id}
+                    isPaid={booking.BookingDetail.is_paid}
+                    willPay={booking.BookingDetail.will_pay}
+                    isConfirmed={booking.BookingDetail.is_confirmed}
+                    isCancelled={booking.BookingDetail.is_cancelled}
                     bookingStartDate={booking.booking_date_start}
                     bookingEndDate={booking.booking_date_end}
                     showButton={false}
@@ -218,9 +229,23 @@ const PayNowHistory = () => {
                   <strong className='text-[14px] lg:text-[20px] font-[600]'>{`Rp. ${new Intl.NumberFormat(
                     'en-DE',
                   ).format(price)}`}</strong>
-                  /minggu
+                  {rentTime === 'HARIAN'
+                    ? '/Hari'
+                    : rentTime === 'MINGGUAN'
+                    ? '/Minggu'
+                    : rentTime === 'BULANAN'
+                    ? '/Bulan'
+                    : 99999999}
                 </p>
-                <p className='mb-3 text-[14px] lg:text-[20px] font-[500]'>1 minggu</p>
+                <p className='mb-3 text-[14px] lg:text-[20px] font-[500]'>{`1 ${
+                  rentTime === 'HARIAN'
+                    ? 'Hari'
+                    : rentTime === 'MINGGUAN'
+                    ? 'Minggu'
+                    : rentTime === 'BULANAN'
+                    ? 'Bulan'
+                    : 99999999
+                }`}</p>
               </div>
             </div>
             <hr className='mb-3 lg:mb-4 border-[1px] border-[#0A008A]'></hr>
@@ -238,7 +263,7 @@ const PayNowHistory = () => {
           <h1 className='mb-3 lg:mb-5 text-black text-[16px] lg:text-[25px] font-[600]'>
             Bayar Melalui
           </h1>
-          <div className='dropdown lg:mx-0 mb-3 lg:mb-5'>
+          {/* <div className='dropdown lg:mx-0 mb-3 lg:mb-5'>
             <label
               tabIndex={0}
               className='justify-between cursor-pointer inline-flex items-center w-full max-w-[300px] h-[38px] lg:h-[48px] px-4 p-0 bg-white border-2 border-[#0A008A] rounded-[8px] outline-none text-[16px] lg:text-[20px] font-[500] text-black hover:bg-[#f3f4ff] hover:border-[#0A008A] hover:text-[#0A008A] active:bg-[#0A008A] active:text-white'
@@ -265,7 +290,21 @@ const PayNowHistory = () => {
                 </label>
               </div>
             </ul>
-          </div>
+          </div> */}
+
+          <select
+            className=' border-2 border-[#0A008A] rounded-[8px] outline-none text-[16px]  lg:text-[20px] font-[500] lg:mx-0 mb-3 lg:mb-5 mt-2 p-2 shadow bg-base-100 w-full max-w-[300px] drop-shadow-md'
+            name=''
+            id='payOption'
+            onChange={choosePayment}
+          >
+            <option className='' value='BANK'>
+              Transfer Bank
+            </option>
+            <option className='' value='CASH'>
+              Cash
+            </option>
+          </select>
           <p className='mb-10 text-[12px] lg:text-[16px] font-[400]'>
             *Pastikan memilih opsi dengan benar sebab opsi yang telah dipilih tidak dapat dirubah,
             setelah memilih opsi, segera lakukan pembayaran
@@ -307,14 +346,14 @@ const PayNowHistory = () => {
             >
               Periksa lagi
             </label>
-            <Link to='/history/booknow/receipt'>
-              <label
-                htmlFor='my-modal'
-                className='cursor-pointer inline-flex items-center justify-center w-[131px] h-[33px] lg:w-[151px] lg:h-[43px] p-0 bg-[#0A008A] border-2 border-[#0A008A] self-end rounded-[4px] outline-none text-[16px] font-[600] text-white hover:bg-[#A0A3FF] hover:border-[#A0A3FF] hover:text-[#0A008A] active:bg-black active:text-white'
-              >
-                Lanjutkan
-              </label>
-            </Link>
+
+            <label
+              htmlFor='my-modal'
+              className='cursor-pointer inline-flex items-center justify-center w-[131px] h-[33px] lg:w-[151px] lg:h-[43px] p-0 bg-[#0A008A] border-2 border-[#0A008A] self-end rounded-[4px] outline-none text-[16px] font-[600] text-white hover:bg-[#A0A3FF] hover:border-[#A0A3FF] hover:text-[#0A008A] active:bg-black active:text-white'
+              onClick={handleSubmit}
+            >
+              Lanjutkan
+            </label>
           </div>
         </div>
       </div>

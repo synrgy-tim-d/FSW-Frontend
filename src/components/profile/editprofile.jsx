@@ -69,12 +69,12 @@ const EditProfile = () => {
       const editProfileResponse = editProfileRequest.data;
       const editAvatarResponse = editAvatarRequest.data;
       if (editProfileResponse.code === 200 && editAvatarResponse.code === 200) {
-        navigate('/profil');
+        navigate('/profile');
       } else {
-        navigate('/editprofil');
+        navigate('/profile/editprofile');
       }
     } catch (err) {
-      navigate('/editprofil');
+      navigate('/profile/editprofile');
     }
   };
 
@@ -117,12 +117,12 @@ const EditProfile = () => {
           </Link>
         </li>
         <li>
-          <Link to='/profil' className='text-[16px] sm:text-[20px] font-[600] hover:underline'>
+          <Link to='/profile' className='text-[16px] sm:text-[20px] font-[600] hover:underline'>
             Profile
           </Link>
         </li>
         <li>
-          <Link to='/editprofil' className='text-[16px] sm:text-[20px] font-[600] hover:underline'>
+          <Link to='/profile/editprofile' className='text-[16px] sm:text-[20px] font-[600] hover:underline'>
             Profile Edit
           </Link>
         </li>

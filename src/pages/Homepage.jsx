@@ -120,7 +120,7 @@ const Homepage = () => {
           </div>
           <div className='row-start-1 lg:col-span-1 grid grid-cols-1 lg:grid-cols-1 justify-items-stretch'>
             <form action='|'>
-              <div className='sticky top-8 hidden lg:block'>
+              <div className='sticky top-36 hidden lg:block'>
                 <Facilities />
               </div>
             </form>
