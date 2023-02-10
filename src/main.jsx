@@ -93,8 +93,10 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           {/* Owner About Kost */}
           <Route path='owner/roomdetails' element={<OwnerDataKamar />} />
 
-          {/* Owner History */}
+          {/* Owner Property */}
           <Route path='/owner/property' element={<OwnerPropertyPage />} />
+
+          {/* Owner History */}
           <Route path='/owner/history' element={<OwnerHistoryPage />} />
           <Route path='/owner/history/detail' element={<OwnerHistoryDetailPage />} />
 

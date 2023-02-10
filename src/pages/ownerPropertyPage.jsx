@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { SidebarOwner } from '../components/owner/sidebar';
 import { PropertyOwner } from '../components/owner/property/property';
 import { PropertyOwnerNoData } from '../components/owner/property/propertyNoData';
+import { Link } from 'react-router-dom';
 
 export const OwnerPropertyPage = () => {
   const [properties, setproperties] = useState([]);
@@ -17,12 +18,14 @@ export const OwnerPropertyPage = () => {
     ];
     setproperties(propertyList);
   }, []);
+
   let component = null;
   if (Object.keys(properties).length > 0) {
     component = <PropertyOwner />;
   } else if (Object.keys(properties).length === 0) {
     component = <PropertyOwnerNoData />;
   }
+  
   return (
     <div className='grid grid-cols-5'>
       {/* ---Sidebar--- */}

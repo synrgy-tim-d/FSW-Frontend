@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { Draft, CardWarning, ButtonCompleting, ButtonEditing } from './propertyComponent';
 import iconlocation from '../../../assets/icon_locationBlue.svg';
 import iconplus from '../../../assets/icon_plus.svg';
@@ -23,12 +24,14 @@ export const PropertyOwner = () => {
   return (
     <div className='col-span-4 h-screen py-4 px-5 lg:py-8 lg:px-10'>
       {/* Button Tambah Properti */}
-      <button
-        type='button'
-        className='inline-flex self-center justify-center gap-2 mt-0 lg:mt-8 rounded-[4px] px-3 lg:px-5 py-2 font-[600] text-[12px] lg:text-[16px] text-white border-2 border-[#0A008A] bg-[#0A008A] hover:bg-[#A0A3FF] hover:text-[#0A008A] focus:bg-black focus:text-white focus:outline-none'
-      >
-        <img className='w-[18px] lg:w-auto' alt='' src={iconplus} /> Tambah Properti
-      </button>
+      <Link to='/owner/formdata'>
+        <button
+          type='button'
+          className='inline-flex self-center justify-center gap-2 mt-0 lg:mt-8 rounded-[4px] px-3 lg:px-5 py-2 font-[600] text-[12px] lg:text-[16px] text-white border-2 border-[#0A008A] bg-[#0A008A] hover:bg-[#A0A3FF] hover:text-[#0A008A] focus:bg-black focus:text-white focus:outline-none'
+        >
+          <img className='w-[18px] lg:w-auto' alt='' src={iconplus} /> Tambah Properti
+        </button>
+      </Link>
       {/* Card Properti */}
       <div className='flex flex-row mt-8 lg:mt-16'>
         <div className='lg:w-1/3 mr-5 lg:mr-0 absolute z-30 bg-white p-4 lg:p-8 rounded-[16px] drop-shadow-[4px_4px_12px_rgba(0,0,0,0.15)]'>
@@ -62,7 +65,11 @@ export const PropertyOwner = () => {
                     </div>
                     {/* Name, Description, and Image Mobile */}
                     <div className='flex flex-row lg:hidden mt-4 gap-2'>
-                      <img className='w-[65px] h-[50px] self-center' alt='' src={property.kostImg} />
+                      <img
+                        className='w-[65px] h-[50px] self-center'
+                        alt=''
+                        src={property.kostImg}
+                      />
                       <div className='flex flex-col'>
                         <p className='text-[20px] font-[700]'>{property.name}</p>
                         <p className='text-[10px] font-[500]'>
@@ -72,7 +79,9 @@ export const PropertyOwner = () => {
                     </div>
                     <div className='flex flex-row gap-2 mt-3'>
                       <img className='w-[10px] lg:w-auto' alt='' src={iconlocation} />
-                      <p className='text-[12px] lg:text-[16px] font-[600] text-[#4A4A4A]'>{property.location}</p>
+                      <p className='text-[12px] lg:text-[16px] font-[600] text-[#4A4A4A]'>
+                        {property.location}
+                      </p>
                     </div>
                   </div>
                   {/* Image Web Desktop */}

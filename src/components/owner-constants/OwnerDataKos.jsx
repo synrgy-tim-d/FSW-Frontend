@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import './datakosstyle.css'
+import { Link } from 'react-router-dom';
+import './datakosstyle.css';
 import kosimg from '../../assets/city-card.svg';
 import putri from '../../assets/radio_Putri.svg';
 import putra from '../../assets/radio_Putra.svg';
@@ -44,7 +45,7 @@ const OwnerDataKos = () => {
               <div className='gap-y-3 grid grid-flow-row'>
                 <p className='font-[600]'>Provinsi</p>
                 <select className='select select-bordered w-full max-w-xs rounded-xl text-[#B9B9BC]'>
-                  <option disabled selected>
+                  <option disabled defaultValue>
                     Pilih Provinsi
                   </option>
                   <option>DIY</option>
@@ -57,7 +58,7 @@ const OwnerDataKos = () => {
               <div className='gap-y-3 grid grid-flow-row'>
                 <p className='font-[600]'>Kabupate/Kota</p>
                 <select className='select select-bordered w-full max-w-xs rounded-xl text-[#B9B9BC]'>
-                  <option disabled selected>
+                  <option disabled defaultValue>
                     Pilih Kab/Kota
                   </option>
                   <option>Sleman</option>
@@ -70,7 +71,7 @@ const OwnerDataKos = () => {
               <div className='gap-y-3 grid grid-flow-row'>
                 <p className='font-[600]'>Kecamatan</p>
                 <select className='select select-bordered w-full max-w-xs rounded-xl text-[#B9B9BC]'>
-                  <option disabled selected>
+                  <option disabled defaultValue>
                     Pilih Kecamatan
                   </option>
                   <option>Mlati</option>
@@ -119,19 +120,25 @@ const OwnerDataKos = () => {
             </div>
 
             <div className='grid grid-flow-col place-content-between pt-24'>
-              <button
-                className='border-2 border-[#0A008A] text=[#0A008A] bg-white font-[600] p-2 px-3'
-                type='button'
-              >
-                Kembali
-              </button>
+              <Link to='/owner/formdata'>
+                <button
+                  className='border-2 border-[#0A008A] text=[#0A008A] bg-white font-[600] p-2 px-3'
+                  type='button'
+                >
+                  Kembali
+                </button>
+              </Link>
 
-              <button
-                className='border-2 border-[#0A008A] bg-[#0A008A] text-white font-[600] p-2 px-3'
-                type='button'
-              >
-                Simpan & Lanjutkan
-              </button>
+              {/* <Link to='/owner/kostfacility'> */}
+              <a href='/owner/kostfacility'>
+                <button
+                  className='border-2 border-[#0A008A] bg-[#0A008A] text-white font-[600] p-2 px-3'
+                  type='button'
+                >
+                  Simpan & Lanjutkan
+                </button>
+              </a>
+              {/* </Link> */}
             </div>
           </div>
         </div>
