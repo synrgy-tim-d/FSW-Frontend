@@ -1,7 +1,26 @@
-import { Link } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import imgsucess from '../../assets/img_success.png';
 
 const PaySuccessHistory = () => {
+  const navigate = useNavigate();
+
+  const [timerState, setTimer] = useState(7);
+
+  useEffect(() => {
+    setTimer((prev) => prev - 1);
+  }, []);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      console.log('berkurang 1 detik!');
+      console.log(timerState);
+      setTimer((prev) => prev - 1);
+      timerState === 0 && navigate('/history');
+    }, 1000);
+    return () => clearTimeout(timer);
+  }, [timerState]);
+
   return (
     <div className='lg:px-[70px] px-[20px] pt-[25px] lg:pt-[70px] font-[Montserrat] bg-[#FAFAFA] min-h-[700px]'>
       {/* --- Breadcrumb --- */}
@@ -68,7 +87,10 @@ const PaySuccessHistory = () => {
           <p className='lg:text-[16px] text-[12px] font-[500] mb-5 lg:mb-10 lg:w-[560px] mx-1 lg:mx-0'>
             Kami bakal kasih notif apabila pembayaran sudah di konfirmasi pemilik kos. Halaman akan
             ditutup dalam
-            <strong className='lg:text-[20px] text-[16px] font-[700]'> 5 detik</strong>
+            <strong className='lg:text-[20px] text-[16px] font-[700]'>
+              {' '}
+              {`${timerState} detik`}
+            </strong>
           </p>
           <Link to='/history'>
             <button
