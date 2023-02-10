@@ -74,7 +74,7 @@ const Navbar = () => {
                 <a className='font-[600]'>Notifikasi</a>
               </li>
               <li>
-                <Link to='/profil' className='font-[600] hover:bg-[#F2EFFF]'>
+                <Link to='/profile' className='font-[600] hover:bg-[#F2EFFF]'>
                   Profil
                 </Link>
               </li>
@@ -117,7 +117,7 @@ const Navbar = () => {
               </a>
               <ul className='p-2 bg-base-100'>
                 <li>
-                  <Link to='/profil' className='font-[600] hover:bg-[#F2EFFF]'>
+                  <Link to='/profile' className='font-[600] hover:bg-[#F2EFFF]'>
                     Profil
                   </Link>
                 </li>

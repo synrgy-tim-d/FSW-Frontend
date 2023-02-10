@@ -16,7 +16,7 @@ const Navbarsign = () => {
   return (
     <div className='w-full navbar grid grid-cols-6 bg-[#FAFAFA] font-[Montserrat] text-[#000000] font-[600]'>
       <div className='cols-span-1 pl-4'>
-        <a href='/landingPage'>
+        <a href='/'>
           <img className='w-full h-auto' src={LogoNaqos}></img>
         </a>
       </div>
@@ -80,7 +80,6 @@ const Navbarsign = () => {
             Masuk
           </button>
         </Link>
-        {/* <button type='button' className='px-6 btn rounded-[4px] border-2 text-white bg-[#0A008A] hover:bg-[#A0A3FF] active:bg-black'> */}
         <label
           htmlFor='signin-modal'
           className='hidden lg:block py-3.5
@@ -88,7 +87,6 @@ const Navbarsign = () => {
         >
           Daftar
         </label>
-        {/* </button> */}
         <input type='checkbox' id='signin-modal' className='modal-toggle' />
         <div className='modal bg-[#000000]/50 w-full'>
           <div
@@ -118,15 +116,6 @@ const Navbarsign = () => {
             </Link>
           </div>
         </div>
-
-        {/* <Link to='/auth/register' className='hidden lg:block'>
-          <button
-            type='button'
-            className='btn btn-active text-[16px] bg-[#0A008A] text-white rounded-[4px] px-6'
-          >
-            Daftar
-          </button>
-        </Link> */}
       </div>
     </div>
   );
