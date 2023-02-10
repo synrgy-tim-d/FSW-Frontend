@@ -54,9 +54,8 @@ const PayNowHistory = () => {
       method: paymentMethod,
     };
     putWillPay.mutate(data);
-    if (putWillPay.isSuccess) {
-      navigate(`/history/booknow/receipt/${bookid}`);
-    }
+
+    navigate(`/history/booknow/receipt/${bookid}`);
   };
 
   return (
@@ -353,7 +352,7 @@ const PayNowHistory = () => {
               className='cursor-pointer inline-flex items-center justify-center w-[131px] h-[33px] lg:w-[151px] lg:h-[43px] p-0 bg-[#0A008A] border-2 border-[#0A008A] self-end rounded-[4px] outline-none text-[16px] font-[600] text-white hover:bg-[#A0A3FF] hover:border-[#A0A3FF] hover:text-[#0A008A] active:bg-black active:text-white'
               onClick={handleSubmit}
             >
-              {putWillPay.isLoading ? 'Loading' : 'Lanjutkan'}
+              Lanjutkan
             </label>
           </div>
         </div>
