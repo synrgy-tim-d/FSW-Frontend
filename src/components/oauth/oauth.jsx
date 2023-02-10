@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
 
 function OauthGoogle() {
@@ -10,7 +11,12 @@ function OauthGoogle() {
 
   localStorage.setItem('AUTH_TOKEN', acc);
   localStorage.setItem('REFRESH_TOKEN', ref);
-  navigate('/');
+
+  useEffect(() => {
+    setTimeout(() => {
+      navigate('/');
+    }, 3000);
+  }, []);
 
   //   console.log(acc, ref);
   return <div>Redirecting to Landing Page...</div>;
