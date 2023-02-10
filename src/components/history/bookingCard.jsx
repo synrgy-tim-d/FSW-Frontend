@@ -32,6 +32,10 @@ function BookingCard({
   const dateStart = new Date(bookingStartDate);
   const dateEnd = new Date(bookingEndDate);
 
+  if (isPaid && !isConfirmed) {
+    return <></>;
+  }
+
   return (
     <div>
       <div className='flex flex-row py-2 lg:py-4 text-black'>
@@ -66,12 +70,21 @@ function BookingCard({
         {/* <div className='lg:flex flex-1 hidden'>{component}</div> */}
         {showButton ? (
           <div className='lg:flex flex-1 hidden'>
-            {willPay ? (
+            {/* {willPay ? (
               <ButtonPayment bookId={bookingId} />
             ) : isConfirmed ? (
               <ButtonReview />
             ) : isCancelled ? (
               <ButtonDisabled />
+            ) : (
+              <ButtonPayment bookId={bookingId} />
+            )} */}
+            {isPaid && isConfirmed ? (
+              <ButtonReview />
+            ) : isCancelled ? (
+              <ButtonDisabled />
+            ) : isPaid && !isConfirmed ? (
+              <></>
             ) : (
               <ButtonPayment bookId={bookingId} />
             )}

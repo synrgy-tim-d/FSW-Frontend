@@ -6,26 +6,39 @@ import iconarrowright from '../../assets/icon_arrow-right-2.svg';
 import iconarrowdown from '../../assets/icon_arrow-down.svg';
 import iconpending from '../../assets/icon_pending.svg';
 
-const ConfirmationHistory = () => {
-  const [booking, setbooking] = useState([]);
+import { useQuery } from '@tanstack/react-query';
+import axios from 'axios';
+import ConfirmCard from './confirmCard';
 
-  useEffect(() => {
-    const bookingList = [
-      {
-        id: 2,
-        name: 'Kos Beringin',
-        location: {
-          name: 'Yogyakarta',
+const ConfirmationHistory = () => {
+  const getBooking = useQuery({
+    queryKey: ['booking'],
+    queryFn: async () =>
+      await axios.get('https://fsw-backend.up.railway.app/api/book', {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('AUTH_TOKEN')}`,
         },
-        bookId: '00000002',
-        inDate: 'April 03, 23',
-        outDate: 'May 03, 23',
-        img: imagetwo,
-        btn: 'payment',
-      },
-    ];
-    setbooking(bookingList);
-  }, []);
+      }),
+  });
+  // const [booking, setbooking] = useState([]);
+
+  // useEffect(() => {
+  //   const bookingList = [
+  //     {
+  //       id: 2,
+  //       name: 'Kos Beringin',
+  //       location: {
+  //         name: 'Yogyakarta',
+  //       },
+  //       bookId: '00000002',
+  //       inDate: 'April 03, 23',
+  //       outDate: 'May 03, 23',
+  //       img: imagetwo,
+  //       btn: 'payment',
+  //     },
+  //   ];
+  //   setbooking(bookingList);
+  // }, []);
 
   return (
     <div className='lg:px-[70px] px-[20px] pt-[25px] lg:pt-[70px] font-[Montserrat] bg-[#FAFAFA] min-h-[700px]'>
@@ -179,76 +192,25 @@ const ConfirmationHistory = () => {
 
         {/* --- Content if there is Data --- */}
         <div className='flex flex-col lg:mx-[70px] lg:mt-[60px] mt-[10px] mb-[100px] lg:w-3/4'>
-          {booking.map((booking, index) => {
-            return (
-              <React.Fragment key={index}>
-                <div>
-                  <div className='flex flex-row py-2 lg:py-4 text-black'>
-                    <img className='w-[130px] lg:w-[200px] self-center' alt='' src={booking.img} />
-                    <div className='flex flex-col ml-[20px] lg:ml-[40px] text-left lg:w-[265px] space-y-[-5px] lg:space-y-0'>
-                      <h1 className='text-[14px] lg:text-[20px] font-[600]'>{booking.name}</h1>
-                      <div className='flex flex-row'>
-                        <img className='w-[10px] lg:w-auto' alt='' src={iconlocation} />
-                        <p className='text-[12px] lg:text-[16px] font-[500] ml-1 lg:ml-2 lg:my-1'>
-                          {booking.location.name}
-                        </p>
-                      </div>
-                      <p className='text-[12px] lg:text-[16px] font-[500] lg:mb-3'>
-                        Booking ID: {booking.bookId}
-                      </p>
-                      <div className='flex flex-row'>
-                        <div className='flex flex-col text-center'>
-                          <p className='text-[10px] lg:text-[12px] font-[400] lg:mb-1'>Check in</p>
-                          <p className='text-[10px] lg:text-[16px] font-[600] lg:font-[400]'>
-                            {booking.inDate}
-                          </p>
-                        </div>
-                        <div className='flex flex-col mx-[10px] lg:mx-[12px] justify-center'>
-                          <img className='w-[16px] lg:w-auto' alt='' src={iconarrowright} />
-                        </div>
-                        <div className='flex flex-col text-center'>
-                          <p className='text-[10px] lg:text-[12px] font-[400] lg:mb-1'>Check out</p>
-                          <p className='text-[10px] lg:text-[16px] font-[600] lg:font-[400]'>
-                            {booking.outDate}
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                    <div className='lg:flex flex-col flex-1 items-end hidden'>
-                      <label
-                        htmlFor='my-modal'
-                        className='cursor-pointer inline-flex items-center justify-center px-5 h-[43px] mb-[65px] p-0 bg-white border-2 border-[#0A008A] rounded-[4px] outline-none text-[16px] font-[600] text-[#0A008A] hover:bg-[#f3f4ff] hover:border-[#0A008A] hover:text-[#0A008A] active:bg-[#0A008A] active:text-white'
-                      >
-                        Chat Pemilik Kos
-                      </label>
-                      <div className='flex flex-row'>
-                        <img className='' alt='' src={iconpending} />
-                        <p className='text-[12px] font-[500] text-[#EA9A3D] ml-2 mb-[4px] mt-1'>
-                          Menunggu konfirmasi pembayaran
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                  {/* --- Button di Mobile */}
-                  <div className='flex flex-col flex-1 lg:hidden'>
-                    <label
-                      htmlFor='my-modal'
-                      className='cursor-pointer inline-flex items-center justify-center px-5 mx-10 h-[33px] mb-1 p-0 bg-white border-2 border-[#0A008A] rounded-[4px] outline-none text-[16px] font-[600] text-[#0A008A] hover:bg-[#f3f4ff] hover:border-[#0A008A] hover:text-[#0A008A] active:bg-[#0A008A] active:text-white'
-                    >
-                      Chat Pemilik Kos
-                    </label>
-                    <div className='flex flex-row justify-center'>
-                      <img className='w-[14px]' alt='' src={iconpending} />
-                      <p className='text-[12px] font-[500] text-[#EA9A3D] ml-2'>
-                        Menunggu konfirmasi pembayaran
-                      </p>
-                    </div>
-                  </div>
-                  <hr className='w-full mb-[30px]'></hr>
-                </div>
-              </React.Fragment>
-            );
-          })}
+          {getBooking.isLoading && <div className='text-xl text-center mx-20'>Loading ...</div>}
+          {getBooking.isSuccess &&
+            getBooking?.data.data.map((booking) => {
+              return (
+                <ConfirmCard
+                  key={booking.booking_id}
+                  image={booking.Kost.SetupImages[0].url}
+                  kosName={booking.Kost.name}
+                  locationName={booking.Kost.SetupCity.city}
+                  bookingId={booking.booking_id}
+                  isPaid={booking.BookingDetail.is_paid}
+                  willPay={booking.BookingDetail.will_pay}
+                  isConfirmed={booking.BookingDetail.is_confirmed}
+                  isCancelled={booking.BookingDetail.is_cancelled}
+                  bookingStartDate={booking.booking_date_start}
+                  bookingEndDate={booking.booking_date_end}
+                />
+              );
+            })}
           <h1 className='text-center text-black text-[16px] lg:text-[20px] font-[600] opacity-[.38]'>
             Lihat lebih banyak lagi
           </h1>
