@@ -58,7 +58,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           <Route path='/history/payment' element={<HistoryPayment />} />
           <Route path='/history/cancellation' element={<HistoryCancel />} />
           <Route path='/history/booknow/:bookid' element={<HistoryBookingPayNow />} />
-          <Route path='/history/booknow/receipt' element={<HistoryBookingPayUpload />} />
+          <Route path='/history/booknow/receipt/:bookid' element={<HistoryBookingPayUpload />} />
           <Route path='/history/booknow/receipt/success' element={<HistoryBookingPaySuccess />} />
 
           {/* Verification & Forget Password */}
