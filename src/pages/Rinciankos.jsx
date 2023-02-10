@@ -168,17 +168,17 @@ const Rinciankos = () => {
           </div>
           <div className='grid grid-rows-auto grid-flow-row pb-12'>
             <div className='grid grid-cols-12 gap-6'>
-              <div className='col-span-7 bg-green-500'>
+              <div className='col-span-7'>
                 <img className='w-full h-auto' src={dataKost.imageKosts[0]?.url} alt='' />
               </div>
               <div className='col-span-4 grid grid-rows-2 gap-6'>
-                <div className='bg-blue-500'>
+                <div className=''>
                   <img className='w-full h-auto' src={dataKost.imageKosts[0]?.url} alt='' />
                 </div>
                 <div className='grid grid-cols-2 grid-flow-col gap-6'>
                   <div>
                     <img
-                      className='w-full h-auto bg-yellow-500'
+                      className='w-full h-auto'
                       src={dataKost.imageKosts[0]?.url}
                       alt=''
                     />
@@ -209,7 +209,9 @@ const Rinciankos = () => {
                 <hr className='border-2' />
                 <Review fetchReview={kostReviews} />
                 <hr className='border-2' />
-                <div>THIS PLACE WILL BE A CARROUSEL OF OTHER ROOM TYPES</div>
+
+                {/* Not Done Yet */}
+                {/* <div>THIS PLACE WILL BE A CARROUSEL OF OTHER ROOM TYPES</div> */}
               </div>
               <div className='col-span-1 w-full px-20'>
                 <Formpemesanan

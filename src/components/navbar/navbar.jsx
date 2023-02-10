@@ -203,7 +203,7 @@ const Navbar = () => {
           </ul>
         </div>
       </div>
-      <div className='w-full h-[130px]'></div>
+      <div className='w-full h-[100px] md:h-[125px] lg:h-[150px]'></div>
     </React.Fragment>
   );
 };

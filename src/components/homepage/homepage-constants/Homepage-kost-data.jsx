@@ -37,7 +37,7 @@ const Kostdata = ({ fetchData }) => {
         return (
           <React.Fragment key={kost.id}>
             <div className='grid grid-cols-3 grid-flow-col bg-white rounded-[16px]'>
-              <Link to='/kos/:kosid/:roomid'>
+              <Link to={`/kos/${kost.id}/${kost.rooms[0]?.id}`}>
                 <div className='col-span-1 rounded-[16px]'>
                   <img className='w-full h-auto' src={kost.imageKosts[0]?.url} alt='' />
                 </div>
