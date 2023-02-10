@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ButtonDisabled, ButtonPayment, ButtonReview } from './buttonsHistory';
 import imageone from '../../assets/img_kosOne.png';
 import imagetwo from '../../assets/img_kosTwo.png';
 import imagethree from '../../assets/img_kosThree.png';
@@ -14,7 +13,6 @@ import axios from 'axios';
 import BookingCard from './bookingCard';
 
 const BookingHistory = () => {
-  const [booking, setbooking] = useState([]);
   const [values, setvalues] = useState(0);
 
   let rating = null;
@@ -39,7 +37,7 @@ const BookingHistory = () => {
             strokeWidth='1.5'
             strokeLinecap='round'
             strokeLinejoin='round'
-            fill={` ${ values >= 1 ? '#EA9A3D' : '' }`}
+            fill={` ${values >= 1 ? '#EA9A3D' : ''}`}
           />
         </svg>
         <svg
@@ -58,7 +56,7 @@ const BookingHistory = () => {
             strokeWidth='1.5'
             strokeLinecap='round'
             strokeLinejoin='round'
-            fill={` ${ values >= 2 ? '#EA9A3D' : '' }`}
+            fill={` ${values >= 2 ? '#EA9A3D' : ''}`}
           />
         </svg>
         <svg
@@ -77,7 +75,7 @@ const BookingHistory = () => {
             strokeWidth='1.5'
             strokeLinecap='round'
             strokeLinejoin='round'
-            fill={` ${ values >= 3 ? '#EA9A3D' : '' }`}
+            fill={` ${values >= 3 ? '#EA9A3D' : ''}`}
           />
         </svg>
         <svg
@@ -96,7 +94,7 @@ const BookingHistory = () => {
             strokeWidth='1.5'
             strokeLinecap='round'
             strokeLinejoin='round'
-            fill={` ${ values >= 4 ? '#EA9A3D' : '' }`}
+            fill={` ${values >= 4 ? '#EA9A3D' : ''}`}
           />
         </svg>
         <svg
@@ -115,7 +113,7 @@ const BookingHistory = () => {
             strokeWidth='1.5'
             strokeLinecap='round'
             strokeLinejoin='round'
-            fill={` ${ values >= 5 ? '#EA9A3D' : '' }`}
+            fill={` ${values >= 5 ? '#EA9A3D' : ''}`}
           />
         </svg>
       </div>
@@ -135,60 +133,6 @@ const BookingHistory = () => {
         },
       }),
   });
-
-  // useEffect(() => {
-  //   const bookingList = [
-  //     {
-  //       id: 1,
-  //       name: 'Kos Alamanda',
-  //       location: {
-  //         name: 'Yogyakarta',
-  //       },
-  //       bookId: '00000001',
-  //       inDate: 'April 01, 23',
-  //       outDate: 'April 30, 23',
-  //       img: imageone,
-  //       btn: 'payment',
-  //     },
-  //     {
-  //       id: 2,
-  //       name: 'Kos Beringin',
-  //       location: {
-  //         name: 'Yogyakarta',
-  //       },
-  //       bookId: '00000002',
-  //       inDate: 'April 03, 23',
-  //       outDate: 'May 03, 23',
-  //       img: imagetwo,
-  //       btn: 'payment',
-  //     },
-  //     {
-  //       id: 3,
-  //       name: 'Kos Semak-Semak',
-  //       location: {
-  //         name: 'Yogyakarta',
-  //       },
-  //       bookId: '00000003',
-  //       inDate: 'April 11, 23',
-  //       outDate: 'May 11, 23',
-  //       img: imagethree,
-  //       btn: 'review',
-  //     },
-  //     {
-  //       id: 4,
-  //       name: 'Kos Guntung',
-  //       location: {
-  //         name: 'Yogyakarta',
-  //       },
-  //       bookId: '00000004',
-  //       inDate: 'April 12, 23',
-  //       outDate: 'May 13, 23',
-  //       img: imagethree,
-  //       btn: 'payment',
-  //     },
-  //   ];
-  //   setbooking(bookingList);
-  // }, []);
 
   return (
     <div className='lg:px-[70px] px-[20px] pt-[25px] lg:pt-[70px] font-[Montserrat] bg-[#FAFAFA] min-h-[700px]'>
