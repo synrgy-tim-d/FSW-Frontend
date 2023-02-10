@@ -61,14 +61,53 @@ const Navbarsign = () => {
               Masuk
             </button>
           </Link>
-          <Link to='/auth/register'>
+          {/* <Link to='/auth/register'>
             <button
               type='button'
               className='btn btn-active text-[16px] bg-[#0A008A] text-white rounded-[4px] px-6 w-full'
             >
               Daftar
             </button>
-          </Link>
+          </Link> */}
+          <label
+            htmlFor='signin-modal-sidebar'
+            className='py-3.5 px-6 btn rounded-[4px] border-2 
+            text-white bg-[#0A008A] hover:bg-[#A0A3FF] active:bg-black'
+          >
+            Daftar
+          </label>
+          <input type='checkbox' id='signin-modal-sidebar' className='modal-toggle' />
+          <div className='modal bg-[#000000]/50 w-full'>
+            <div
+              className=' bg-white p-8
+          grid grid-flow-row auto-rows-max gap-8 rounded-[16px] shadow'
+            >
+              <p className='text-center text-[16px] font-[600]'>
+                Daftar sebagai
+                <span className='absolute pl-4'>
+                  <label htmlFor='signin-modal-sidebar'>X</label>
+                </span>
+              </p>
+              <Link to='auth/register'>
+                <label
+                  htmlFor='signin-modal-sidebar'
+                  className='grid grid-flow-col auto-cols-max gap-4
+              border-2 border-[#0A008A] rounded-[8px] px-4 py-2'
+                >
+                  <p className='self-center'>Pencari Kos</p>
+                </label>
+              </Link>
+              <Link to='/owner/property'>
+                <label
+                  htmlFor='signin-modal-sidebar'
+                  className='grid grid-flow-col auto-cols-max gap-4
+              border-2 border-[#0A008A] rounded-[8px] px-4 py-2'
+                >
+                  <p className='self-center'>Pemilik Kos</p>
+                </label>
+              </Link>
+            </div>
+          </div>
         </Drawer>
         <Link to='/auth/login' className='hidden lg:block'>
           <button
@@ -93,7 +132,12 @@ const Navbarsign = () => {
             className='modal-box bg-white px-32 py-8
           grid grid-flow-row auto-rows-max gap-8 rounded-[32px] shadow'
           >
-            <p className='text-center text-[38px] font-[600]'>Daftar sebagai</p>
+            <p className='text-center text-[16px] font-[600]'>
+              Daftar sebagai
+              <span className='absolute pl-48'>
+                <label htmlFor='signin-modal' className='pointer-events-auto'>X</label>
+              </span>
+            </p>
             <Link to='auth/register'>
               <label
                 htmlFor='signin-modal'

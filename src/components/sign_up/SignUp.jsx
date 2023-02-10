@@ -42,11 +42,13 @@ const SignUp = () => {
   return (
     <div className='px-[15px] font-[Montserrat]'>
       <div className='flex flex-row justify-center'>
-        <img
-          className='lg:mt-[70px] lg:w-[360px] lg:h-[163.72px] mt-[27px] w-[171px] h-[78px]'
-          alt=''
-          src={imglogo}
-        />
+        <Link to='/'>
+          <img
+            className='lg:mt-[70px] lg:w-[360px] lg:h-[163.72px] mt-[27px] w-[171px] h-[78px]'
+            alt=''
+            src={imglogo}
+          />
+        </Link>
       </div>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className='flex flex-col justify-center mx-auto lg:mt-[48px] lg:w-[526px] mt-[18px]'>
@@ -170,7 +172,9 @@ const SignUp = () => {
       <div className='flex flex-row justify-center lg:mt-[16px] mt-[5px]'>
         <a rel='noreferrer' href='https://fsw-backend.up.railway.app/oauth/PENYEWA' target='_blank'>
           <button
-            className='lg:w-[481px] lg:h-[44.96px] lg:text-[16px] w-[302px] h-[36px] text-[14px] bg-white border-2 border-[#b9b9bc] outline-none rounded-[150px] font-[600] text-[#B9B9BC] hover:bg-[#E9E9EA] hover:text-white hover:border-[#E9E9EA] focus:border-[#0A008A] focus:bg-white focus:text-[#0A008A] focus:outline-none'
+            className='lg:w-[481px] lg:h-[44.96px] lg:text-[16px] w-[302px] h-[36px] text-[14px] outline-none rounded-[150px] font-[600] focus:outline-none
+            bg-white border-2 border-[#b9b9bc] text-[#B9B9BC] hover:bg-[#0A008A] active:bg-[#0A008A] active:text-black 
+            hover:text-white hover:border-[#E9E9EA] focus:border-[#0A008A] focus:bg-white focus:text-[#0A008A]'
             type='submit'
           >
             Daftar dengan Google

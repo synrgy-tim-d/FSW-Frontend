@@ -9,6 +9,8 @@ import imglogo from '../../assets/LogoNaqosFix.png';
 import iconeyeslash from '../../assets/icon_eye-slash.svg';
 import iconeye from '../../assets/icon_eye.svg';
 import icongoogle from '../../assets/icon_google.svg';
+import Pencari from '../../assets/pencari.svg';
+import Pemilik from '../../assets/pemilik.svg';
 
 const SignIn = () => {
   const navigate = useNavigate();
@@ -59,18 +61,22 @@ const SignIn = () => {
       <LoadingBar waitingTime={50} color='#0A008A' progress={progressLoading} height='5px' />
       <form onSubmit={handleSubmit(onFormSubmitHandler)}>
         <div className='flex flex-row justify-center'>
-          <img
-            className='lg:mt-[70px] lg:w-[360px] lg:h-[163.72px] mt-[27px] w-[171px] h-[78px]'
-            alt=''
-            src={imglogo}
-          />
+          <Link to='/'>
+            <img
+              className='lg:mt-[70px] lg:w-[360px] lg:h-[163.72px] mt-[27px] w-[171px] h-[78px]'
+              alt=''
+              src={imglogo}
+            />
+          </Link>
         </div>
         <div className='flex flex-col justify-center mx-auto lg:mt-[48px] lg:w-[526px] mt-[18px]'>
           <span className='lg:mb-[10px] lg:w-[209px] lg:h-[24px] lg:text-[20px] text-[14px] w-[175px] mb-[10px] text-black text-left font-[600]'>
             Username
           </span>
           <input
-            className='lg:h-[55px] lg:text-[20px] h-[48px] text-[12px] px-4 text-black font-[600] bg-white rounded-[526px] placeholder-[#b9b9bc] border-2 border-[#dadadc] focus:outline-none focus:border-[#0A008A]'
+            className='lg:h-[55px] lg:text-[20px] h-[48px] text-[12px] px-4 
+            text-black font-[600] bg-white rounded-[526px] placeholder-[#b9b9bc] 
+            border-2 border-[#dadadc] focus:outline-none focus:border-[#0A008A]'
             type=''
             placeholder='Ketikkan alamat email'
             name='username'
@@ -150,7 +156,9 @@ const SignIn = () => {
       <div className='flex flex-row justify-center lg:mt-[16px] mt-[5px]'>
         <a rel='noreferrer' href='https://fsw-backend.up.railway.app/oauth/PENYEWA' target='_blank'>
           <button
-            className='lg:w-[481px] lg:h-[44.96px] lg:text-[16px] w-[302px] h-[36px] text-[14px] bg-white border-2 border-[#b9b9bc] outline-none rounded-[150px] font-[600] text-[#B9B9BC] hover:bg-[#E9E9EA] hover:text-white hover:border-[#E9E9EA] focus:border-[#0A008A] focus:bg-white focus:text-[#0A008A] focus:outline-none'
+            className='lg:w-[481px] lg:h-[44.96px] lg:text-[16px] w-[302px] h-[36px] text-[14px] outline-none rounded-[150px] font-[600] focus:outline-none
+            bg-white border-2 border-[#b9b9bc] text-[#B9B9BC] hover:bg-[#0A008A] active:bg-[#0A008A] active:text-black 
+            hover:text-white hover:border-[#E9E9EA] focus:border-[#0A008A] focus:bg-white focus:text-[#0A008A]'
             type='submit'
           >
             Masuk dengan Google
@@ -162,9 +170,44 @@ const SignIn = () => {
         <p className='lg:text-[16px] text-[14px] text-center text-black font-[600]'>
           Belum punya akun?
         </p>
-        <Link to='/auth/register'>
-          <p className='lg:text-[16px] text-[14px] text-center text-[#0A008A] font-[600]'>Daftar</p>
-        </Link>
+        {/* <Link to='/auth/register'> */}
+        {/* <p className='lg:text-[16px] text-[14px] text-center text-[#0A008A] font-[600]'>Daftar</p> */}
+        <label
+          htmlFor='signin-modal'
+          className='lg:text-[16px] text-[14px] text-center text-[#0A008A] font-[600]'
+        >
+          Daftar
+        </label>
+        <input type='checkbox' id='signin-modal' className='modal-toggle' />
+        <div className='modal bg-[#000000]/50 w-full'>
+          <div
+            className='modal-box bg-white px-32 py-8
+          grid grid-flow-row auto-rows-max gap-8 rounded-[32px] shadow'
+          >
+            <p className='text-center text-[38px] font-[600]'>Daftar sebagai</p>
+            <Link to='/auth/register'>
+              <label
+                htmlFor='signin-modal'
+                className='grid grid-flow-col auto-cols-max gap-4
+              border-2 border-[#0A008A] rounded-[8px] py-6 px-20 '
+              >
+                <img src={Pencari} alt='Pencari Kos' />
+                <p className='self-center'>Pencari Kos</p>
+              </label>
+            </Link>
+            <Link to='/owner/property'>
+              <label
+                htmlFor='signin-modal'
+                className='grid grid-flow-col auto-cols-max gap-4
+              border-2 border-[#0A008A] rounded-[8px] py-8 px-20'
+              >
+                <img src={Pemilik} alt='Pemilik Kos' />
+                <p className='self-center'>Pemilik Kos</p>
+              </label>
+            </Link>
+          </div>
+        </div>
+        {/* </Link> */}
       </div>
     </div>
   );
