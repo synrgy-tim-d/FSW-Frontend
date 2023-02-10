@@ -1,10 +1,32 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import LogoNaqos from '../../assets/LogoNaqosPolos.png';
 import Drawer from 'react-modern-drawer';
 import 'react-modern-drawer/dist/index.css';
 import { useNavigate } from 'react-router-dom';
 import NotificationBody from '../notification/NotificationBody';
+import { useQuery } from '@tanstack/react-query';
+import axios from 'axios';
+import appConfig from '../../config';
+const useOutsideAlerter = (ref, setIsNotificationHidden) => {
+  useEffect(() => {
+    /**
+     * Alert if clicked on outside of element
+     */
+    function handleClickOutside(event) {
+      if (ref.current && !ref.current.contains(event.target)) {
+        setIsNotificationHidden(true);
+      }
+    }
+    // Bind the event listener
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      // Unbind the event listener on clean up
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [ref]);
+}
+
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -25,10 +47,47 @@ const Navbar = () => {
   const [isNotificationHidden, setIsNotificationHidden] = useState(true)
   const onClickNotificationHandler = (e) => {
     e.preventDefault();
-    setIsNotificationHidden((prev) => {
-      return !prev
-    });
+    console.log("ASASA")
+    setIsNotificationHidden(false);
   }
+
+  const [notifications,setNotifications] = useState([]);
+
+  useQuery({
+    queryKey:['notifications'],
+    queryFn: async () => {
+        const token = localStorage.getItem("AUTH_TOKEN")
+        return await axios.get(
+          `${appConfig.BE_URL}/notifications/get`,
+          {
+            headers: {
+              authorization: `Bearer ${token}`,
+            },
+          }
+        );
+    },
+    onSuccess: (res) => {
+        console.log(res);
+        setNotifications(res?.data?.notificationResponses)
+    },
+    onError: (err) => {
+        console.log(err)
+        setNotifications([false])
+    }
+  })
+
+  const wrapperRef = useRef(null);
+  useOutsideAlerter(wrapperRef,setIsNotificationHidden)
+  // useEffect(() => {
+  //   const handleClickOutside = (e) => {
+  //     if (ref.current && !ref.current.contains(e.target)) {
+  //       setIsNotificationHidden(true);
+  //     }
+  //   }
+
+  //   document.addEventListener("mousedown", handleClickOutside);
+  // })
+
 
   return (
     <React.Fragment>
@@ -111,7 +170,9 @@ const Navbar = () => {
             </li>
             <li className=''>
               <a className='font-[600]' onClick={(e) => {onClickNotificationHandler(e)}} >Notifikasi</a>
-              <NotificationBody isNotificationHiddenState={{isNotificationHidden, setIsNotificationHidden}}/>
+              <div className='w-full' ref={wrapperRef} >
+                <NotificationBody  notifications = {notifications} isNotificationHiddenState={{isNotificationHidden, setIsNotificationHidden}}/>
+              </div>
             </li>
             <li tabIndex={0}>
               <a className='font-[600]'>
@@ -128,7 +189,7 @@ const Navbar = () => {
               </a>
               <ul className='p-2 bg-base-100'>
                 <li>
-                  <Link to='/profil' className='font-[600] hover:bg-[#F2EFFF]'>
+                  <Link to='/profile' className='font-[600] hover:bg-[#F2EFFF]'>
                     Profil
                   </Link>
                 </li>

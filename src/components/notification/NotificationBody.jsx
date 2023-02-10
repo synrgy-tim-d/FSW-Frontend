@@ -1,7 +1,10 @@
 import React from 'react'
 import IconClose from "../../assets/icon_close.svg"
 import { useState } from 'react'
-function NotificationBody({isNotificationHiddenState}) {
+import axios from 'axios';
+import { useQuery } from '@tanstack/react-query';
+import appConfig from '../../config';
+function NotificationBody({notifications,isNotificationHiddenState}) {
     // const [isNotificationHidden, setIsNotificationHidden] = useState(true)
     const onClickCloseNotificationHandler = (e) =>{
         e.preventDefault();
@@ -16,12 +19,25 @@ function NotificationBody({isNotificationHiddenState}) {
                 <img src={IconClose} />
             </button>
         </div>
-        <div className='flex flex-wrap w-full px-7 py-4'>
-            <div className='grid grid-cols-1 grid-flow-row gap-2'>
-                <h3 className='font-[600] text-black'>Pembayaran Berhasil Dikonfirmasi</h3>
-                <p className='text-black font-[300] text-base'>Pembayaran sudah diterima, kamar sudah dapat ditempati sesuai jadwal</p>
-                <p className='text-black font-[200] text-sm'>Fri, 24 March 2023 18:07 WIB</p>
-            </div>
+        <div className='flex flex-wrap w-full py-4 overflow-auto lg:max-h-[380px] mb-8'>
+            {
+                notifications.map((e,i) => {
+                    if (!e) {
+                        return (
+                            <div className='grid grid-cols-1 grid-flow-row gap-2 w-full py-4 px-7' key={i}>
+                                <h3 className='font-[600] text-black'>Error</h3>
+                                <p className='text-black font-[300] text-base'>Error</p>
+                                <p className='text-black font-[200] text-sm'>Error</p>
+                            </div>)
+                    }
+                    return (
+                        <div className='grid grid-cols-1 grid-flow-row gap-2 w-full py-4 px-7' key={i}>
+                            <h3 className='font-[600] text-black'>{e.title}</h3>
+                            <p className='text-black font-[300] text-base'>{e.content}</p>
+                            <p className='text-black font-[200] text-sm'>{e.lastUpdated ? e.lastUpdated : "null"}</p>
+                        </div>)
+                })
+            }
         </div>
     </div>
   )
