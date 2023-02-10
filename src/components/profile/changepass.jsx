@@ -38,7 +38,7 @@ const changepass = () => {
       console.log(userResponse);
       if (userResponse.code == 200) {
         setStatus('success');
-        navigate('/profil');
+        navigate('/profile');
       } else if ((userResponse.code = 406)) {
         setStatus('failedPassMismatch');
       } else {
@@ -51,10 +51,10 @@ const changepass = () => {
       } else {
         setStatus('failed');
       }
-      navigate('/gantipassword');
+      navigate('/profile/changepassword');
     }
 
-    console.log('ayam', status);
+    console.log(status);
   };
 
   return (
@@ -66,13 +66,13 @@ const changepass = () => {
           </Link>
         </li>
         <li>
-          <Link to='/profil' className='text-[16px] sm:text-[20px] font-[600] hover:underline'>
+          <Link to='/profile' className='text-[16px] sm:text-[20px] font-[600] hover:underline'>
             Profile
           </Link>
         </li>
         <li>
           <Link
-            to='/gantipassword'
+            to='/profile/changepassword'
             className='text-[16px] sm:text-[20px] font-[600] hover:underline'
           >
             Ganti Password
