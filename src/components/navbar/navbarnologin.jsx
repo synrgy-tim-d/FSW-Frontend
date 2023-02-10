@@ -104,7 +104,7 @@ const Navbarsign = () => {
                 <p className='self-center'>Pencari Kos</p>
               </label>
             </Link>
-            <Link to='/auth/register'>
+            <Link to='/owner/property'>
               <label
                 htmlFor='signin-modal'
                 className='grid grid-flow-col auto-cols-max gap-4
