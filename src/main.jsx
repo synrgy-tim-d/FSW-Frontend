@@ -33,6 +33,7 @@ import OwnerDataKamar from './components/owner-constants/OwnerDataKamar';
 import OwnerDataKos from './components/owner-constants/OwnerDataKos';
 import OwnerFasilitasKos from './components/owner-constants/OwnerFasilitasKos';
 import './index.css';
+import OauthGoogle from './components/oauth/oauth';
 const queryClient = new QueryClient();
 
 ReactDOM.createRoot(document.getElementById('root')).render(
@@ -46,6 +47,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           {/* Sign In & Sign Up */}
           <Route path='/auth/login' element={<Login />} />
           <Route path='/auth/register' element={<Register />} />
+          <Route path='/auth/oauth' element={<OauthGoogle />} />
 
           {/* Profile Page */}
           <Route path='/profile' element={<ProfilePage />} />
@@ -73,8 +75,6 @@ ReactDOM.createRoot(document.getElementById('root')).render(
 
           {/* Wishlist Page */}
           <Route path='/wishlist' element={<Wishlistpage />} />
-
-          
 
           {/*------------------**** HERE GOES THE OWNER PAGE ****------------------*/}
 
