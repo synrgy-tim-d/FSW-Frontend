@@ -30,7 +30,6 @@ const Kostdata = ({ fetchData }) => {
     const handleClick = (data) => {
       data.preventDefault();
       setIsFilled(!isFilled);
-
       if (!isFilled) {
         postWishlist.mutate({"kostId": `${kosId}`}, {
           onSuccess: () => {

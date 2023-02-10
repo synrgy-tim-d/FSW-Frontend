@@ -6,7 +6,6 @@ import { Link } from 'react-router-dom';
 const Kostdata = ({ fetchData }) => {
   const LikeButton = ({kosId}) => {
     const [isFilled, setIsFilled] = useState(false);
-
     const postWishlist = useMutation({
       mutationFn: async (data) => {
         await axios.post(`https://be-naqos.up.railway.app/api/wishlists/add`, data, {

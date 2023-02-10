@@ -17,7 +17,6 @@ import axios from 'axios';
 
 const Wishlistpage = () => {
   const title = ['Urutkan', 'Fasilitas Kamar', 'Fasilitas Bersama'];
-
   const getWishlist = useQuery({
     queryKey: ['getWishlist'],
     queryFn: async () =>
