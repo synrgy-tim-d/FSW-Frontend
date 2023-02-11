@@ -12,7 +12,7 @@ function NotificationBody({notifications,isNotificationHiddenState}) {
         isNotificationHiddenState.setIsNotificationHidden(true);
     }
   return (
-    <div className={`lg:w-[433px] lg:max-h-[480px] fixed bg-white drop-shadow-md lg:right-[8%] lg:top-[10%] flex flex-wrap items-start ${isNotificationHiddenState.isNotificationHidden ? 'hidden':""}`}>
+    <div className={`lg:w-[433px] lg:max-h-[480px] fixed bg-white drop-shadow-md lg:right-[8%] lg:top-[75%] flex flex-wrap items-start ${isNotificationHiddenState.isNotificationHidden ? 'hidden':""}`}>
         <div className='flex justify-between p-7 w-full'>
             <h2 className='text-2xl font-semibold text-black'>Notifikasi</h2>
             <button onClick={(e) => {onClickCloseNotificationHandler(e)}}>
