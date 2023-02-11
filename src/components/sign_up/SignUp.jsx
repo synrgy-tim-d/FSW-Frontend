@@ -39,6 +39,19 @@ const SignUp = () => {
     });
   };
 
+  const [phoneNumber, setPhoneNumber] = useState('');
+
+  const handleInputChange = (event) => {
+    const input = event.target.value;
+    const filteredInput = input.replace(/\D/g, "");
+    const lastDigit = filteredInput[filteredInput.length - 1];
+    if (lastDigit === "0") {
+      setPhoneNumber(filteredInput.slice(0, -1));
+    } else {
+      setPhoneNumber(filteredInput);
+    }
+  };
+
   return (
     <div className='px-[15px] font-[Montserrat]'>
       <div className='flex flex-row justify-center'>
@@ -56,7 +69,7 @@ const SignUp = () => {
             Nama Lengkap
           </span>
           <input
-            className='lg:h-[55px] lg:text-[20px] h-[48px] text-[12px] px-4 text-black font-[600] bg-white rounded-[526px] placeholder-[#b9b9bc] border-2 border-[#dadadc] focus:outline-none focus:border-[#0A008A]'
+            className='lg:h-[55px] lg:text-[18px] h-[48px] text-[12px] px-4 text-black font-[600] bg-white rounded-[526px] placeholder-[#b9b9bc] border-2 border-[#dadadc] focus:outline-none focus:border-[#0A008A]'
             type='text'
             name='fullname'
             placeholder='Ketikkan nama lengkapmu disini'
@@ -68,21 +81,27 @@ const SignUp = () => {
           {errors.fullname && errors.fullname.type === 'required' && (
             <span className='text-red-500 text-sm'>{errors.fullname.message}</span>
           )}
-          <span className='lg:mt-[20px] lg:mb-[10px] lg:w-[209px] lg:h-[24px] lg:text-[20px] text-[14px] w-[175px] mt-[15px] mb-[10px] text-black text-left font-[600]'>
+          <span className='lg:mt-[20px] lg:mb-[10px] lg:w-[209px] lg:h-[24px] lg:text-[18px] text-[14px] w-[175px] mt-[15px] mb-[10px] text-black text-left font-[600]'>
             Nomor Handphone
           </span>
-          <input
-            className=' lg:h-[55px] lg:text-[20px] h-[48px] text-[12px] px-4 text-black font-[600] bg-white rounded-[526px] placeholder-[#b9b9bc] border-2 border-[#dadadc] focus:outline-none focus:border-[#0A008A]'
-            // type='number'
-            name='phoneNumber'
-            placeholder='Isi nomor handphone Whatsapp aktif'
-            {...register('phoneNumber', {
-              required: true,
-              validate: (value) => Number(value) == value,
-              minLength: 10,
-            })}
-            aria-invalid={errors.phoneNumber ? 'true' : 'false'}
-          />
+          <div className='flex items-stretch rounded-[526px] border-2 border-[#dadadc] focus:border-[#0A008A] px-4 py-3 text-[12px] lg:text-[18px] space-x-2'>
+            <span className='font-[600] text-[#B9B9BC]'>+62</span>
+            <input
+              className='w-full text-black font-[600] placeholder-[#b9b9bc] focus:outline-none'
+              type='tel'
+              name='phoneNumber'
+              placeholder='Isi nomor handphone Whatsapp aktif'
+              s
+              {...register('phoneNumber', {
+                required: true,
+                validate: (value) => Number(value) == value,
+                minLength: 10,
+              })}
+              aria-invalid={errors.phoneNumber ? 'true' : 'false'}
+              value={phoneNumber}
+              onChange={handleInputChange}
+            />
+          </div>
           {errors.phoneNumber && errors.phoneNumber.type === 'validate' && (
             <span className='text-red-500 text-sm'>Nomor handphone harus berupa angka</span>
           )}
@@ -92,11 +111,11 @@ const SignUp = () => {
           {errors.phoneNumber && errors.phoneNumber.type === 'required' && (
             <span className='text-red-500 text-sm'>Nomor handphone harus diisi</span>
           )}
-          <span className='lg:mt-[20px] lg:mb-[10px] lg:w-[209px] lg:h-[24px] lg:text-[20px] text-[14px] w-[175px] mt-[15px] mb-[10px] text-black text-left font-[600]'>
+          <span className='lg:mt-[20px] lg:mb-[10px] lg:w-[209px] lg:h-[24px] lg:text-[18px] text-[14px] w-[175px] mt-[15px] mb-[10px] text-black text-left font-[600]'>
             Email
           </span>
           <input
-            className='lg:h-[55px] lg:text-[20px] h-[48px] text-[12px] px-4 text-black font-[600] bg-white rounded-[526px] placeholder-[#b9b9bc] border-2 border-[#dadadc] focus:outline-none focus:border-[#0A008A]'
+            className='lg:h-[55px] lg:text-[18px] h-[48px] text-[12px] px-4 text-black font-[600] bg-white rounded-[526px] placeholder-[#b9b9bc] border-2 border-[#dadadc] focus:outline-none focus:border-[#0A008A]'
             type='text'
             name='username'
             placeholder='Ketikkan alamat email'
@@ -119,7 +138,7 @@ const SignUp = () => {
           </span>
           <div className='flex flex-col flex-1 relative'>
             <input
-              className='lg:h-[55px] w-full lg:text-[20px] h-[48px] text-[12px] px-4 text-black font-[600] bg-white rounded-[526px] placeholder-[#b9b9bc] border-2 border-[#dadadc] focus:outline-none focus:border-[#0A008A]'
+              className='lg:h-[55px] w-full lg:text-[18px] h-[48px] text-[12px] px-4 text-black font-[600] bg-white rounded-[526px] placeholder-[#b9b9bc] border-2 border-[#dadadc] focus:outline-none focus:border-[#0A008A]'
               type={isPasswordHidden ? 'password' : 'text'}
               name='password'
               placeholder='Minimal 6 karakter'
