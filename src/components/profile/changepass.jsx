@@ -4,8 +4,34 @@ import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import appConfig from '../../config';
 import axios from 'axios';
+import iconeye from '../../assets/icon_eye.svg';
+import iconeyeslash from '../../assets/icon_eye-slash.svg';
 
 const changepass = () => {
+  const [isOldPasswordHidden, setIsOldPasswordHidden] = useState(true);
+  const onClickOldPasswordEye = (e) => {
+    e.preventDefault;
+    setIsOldPasswordHidden((prev) => {
+      return !prev;
+    });
+  };
+
+  const [isPasswordHidden, setIsPasswordHidden] = useState(true);
+  const onClickPasswordEye = (e) => {
+    e.preventDefault;
+    setIsPasswordHidden((prev) => {
+      return !prev;
+    });
+  };
+
+  const [isConfirmationHidden, setIsConfirmationHidden] = useState(true);
+  const onClickConfirmationEye = (e) => {
+    e.preventDefault;
+    setIsConfirmationHidden((prev) => {
+      return !prev;
+    });
+  };
+
   const {
     register,
     handleSubmit,
@@ -101,85 +127,138 @@ const changepass = () => {
             )}
 
             <div
-              className='grid grid-rows-2 grid-flow-row gap-2 md:gap-6
+              className='grid grid-rows-2 grid-flow-row gap-2 md:gap-4
             text-[16px] lg:text-[20px] font-[500] px-16'
             >
-              <div>
-                <label htmlFor='inline-password'>Password Lama</label>
-              </div>
-              <div>
-                <input
-                  className='w-full rounded-[526px] pl-5 p-2 border-2 border-[#46464F]/[0.20] bg-inherit'
-                  id='inline-password'
-                  type='password'
-                  placeholder='Masukkan password lama'
-                  name='oldPassword'
-                  {...register('oldPassword', {
-                    required: true,
-                    minLength: 6,
-                  })}
-                />
-                {errors.oldPassword && errors.oldPassword.type === 'required' && (
+              <div className='flex flex-col'>
+                <label htmlFor='inline-password' className='font-[500] pb-4'>
+                  Password Lama
+                </label>
+                <div className='flex rounded-[526px] pl-5 p-2 border-2 border-[#46464F]/[0.20]'>
+                  <input
+                    className='w-full focus:outline-none bg-inherit text-[16px]'
+                    id='inline-password'
+                    type={isOldPasswordHidden ? 'password' : 'text'}
+                    placeholder='Masukkan password lama'
+                    name='oldPassword'
+                    {...register('oldPassword', {
+                      required: true,
+                      minLength: 6,
+                    })}
+                  />
+                  {/* {errors.oldPassword && errors.oldPassword.type === 'required' && (
                   <span className='text-red-500 text-sm'>Password harus diisi</span>
                 )}
 
                 {errors.oldPassword && errors.oldPassword.type === 'minLength' && (
                   <span className='text-red-500 text-sm'>Password minimal 6 karakter</span>
-                )}
+                )} */}
+                  <div
+                    className='cursor-pointer flex justify-end'
+                    onClick={(e) => {
+                      onClickOldPasswordEye(e);
+                    }}
+                  >
+                    {isOldPasswordHidden ? <img src={iconeyeslash} /> : <img src={iconeye} />}
+                  </div>
+                </div>
+                <div className='p-0'>
+                  {errors.confirmPassword && errors.confirmPassword.type === 'required' && (
+                    <span className='text-red-500 text-sm'>Password harus diisi</span>
+                  )}
+
+                  {errors.confirmPassword && errors.confirmPassword.type === 'minLength' && (
+                    <span className='text-red-500 text-sm'>Password minimal 6 karakter</span>
+                  )}
+                </div>
               </div>
-              <div>
-                <label htmlFor='inline-new-password'>Password Baru</label>
+
+              <div className='flex flex-col'>
+                <label htmlFor='inline-new-password' className='font-[500] pb-4'>
+                  Password Baru
+                </label>
+                <div className='flex rounded-[526px] pl-5 p-2 border-2 border-[#46464F]/[0.20]'>
+                  <input
+                    className='w-full focus:outline-none bg-inherit text-[16px]'
+                    id='inline-new-password'
+                    type={isPasswordHidden ? 'password' : 'text'}
+                    placeholder='Minimal 6 karakter'
+                    name='newPassword'
+                    {...register('newPassword', {
+                      required: true,
+                      minLength: true,
+                    })}
+                  />
+                  <div
+                    className='cursor-pointer flex justify-end'
+                    onClick={(e) => {
+                      onClickPasswordEye(e);
+                    }}
+                  >
+                    {isPasswordHidden ? <img src={iconeyeslash} /> : <img src={iconeye} />}
+                  </div>
+                </div>
+                <div className='p-0'>
+                  {errors.confirmPassword && errors.confirmPassword.type === 'required' && (
+                    <span className='text-red-500 text-[14px]'>Password harus diisi</span>
+                  )}
+
+                  {errors.confirmPassword && errors.confirmPassword.type === 'minLength' && (
+                    <span className='text-red-500 text-sm'>Password minimal 6 karakter</span>
+                  )}
+                </div>
               </div>
-              <div>
-                <input
-                  className='w-full rounded-[526px] pl-5 p-2 border-2 border-[#46464F]/[0.20] bg-inherit'
-                  id='inline-new-password'
-                  type='password'
-                  placeholder='Minimal 6 karakter'
-                  name='newPassword'
-                  {...register('newPassword', {
-                    required: true,
-                    minLength: true,
-                  })}
-                />
-                {errors.confirmPassword && errors.confirmPassword.type === 'required' && (
+
+              <div className='flex flex-col'>
+                <label htmlFor='inline-confirm-password' className='font-[500] pb-4'>
+                  Masukkan Kembali Password Baru
+                </label>
+                <div className='flex rounded-[526px] pl-5 p-2 border-2 border-[#46464F]/[0.20]'>
+                  <input
+                    className='w-full focus:outline-none bg-inherit text-[16px]'
+                    id='inline-confirm-password'
+                    type={isConfirmationHidden ? 'password' : 'text'}
+                    placeholder='Konfirmasi Password'
+                    name='confirmPassword'
+                    {...register('confirmPassword', {
+                      required: true,
+                      minLength: 6,
+                    })}
+                  />
+                  {/* {errors.confirmPassword && errors.confirmPassword.type === 'required' && (
                   <span className='text-red-500 text-sm'>Password harus diisi</span>
                 )}
 
                 {errors.confirmPassword && errors.confirmPassword.type === 'minLength' && (
                   <span className='text-red-500 text-sm'>Password minimal 6 karakter</span>
-                )}
-              </div>
-              <div>
-                <label htmlFor='inline-confirm-password'>Masukkan Kembali Password Baru</label>
-              </div>
-              <div>
-                <input
-                  className='w-full rounded-[526px] pl-5 p-2 border-2 border-[#46464F]/[0.20] bg-inherit'
-                  id='inline-confirm-password'
-                  type='password'
-                  placeholder='Sama dengan sebelumnya'
-                  name='confirmPassword'
-                  {...register('confirmPassword', {
-                    required: true,
-                    minLength: 6,
-                  })}
-                />
-                {errors.confirmPassword && errors.confirmPassword.type === 'required' && (
-                  <span className='text-red-500 text-sm'>Password harus diisi</span>
-                )}
+                )} */}
+                  <div
+                    className='self-center cursor-pointer flex justify-end'
+                    onClick={(e) => {
+                      onClickConfirmationEye(e);
+                    }}
+                  >
+                    {isConfirmationHidden ? <img src={iconeyeslash} /> : <img src={iconeye} />}
+                  </div>
+                </div>
+                <div className='p-0'>
+                  {errors.confirmPassword && errors.confirmPassword.type === 'required' && (
+                    <span className='text-red-500 text-sm'>Password harus diisi</span>
+                  )}
 
-                {errors.confirmPassword && errors.confirmPassword.type === 'minLength' && (
-                  <span className='text-red-500 text-sm'>Password minimal 6 karakter</span>
-                )}
+                  {errors.confirmPassword && errors.confirmPassword.type === 'minLength' && (
+                    <span className='text-red-500 text-sm'>Password minimal 6 karakter</span>
+                  )}
+                </div>
               </div>
             </div>
+
             <div className='flex justify-center'>
               {/* <Link to='/profil' className='w-[60%] md:w-[70%]'> */}
               <input
                 id='reset-password'
                 type='submit'
-                className='w-full rounded-[150px] text-center py-2 text-[14px] sm:text-[16px] 
+                className='rounded-[150px] text-center py-2 text-[14px] sm:text-[16px] w-[60%] md:w-[70%]
                   text-white bg-[#0A008A] hover:bg-[#A0A3FF] hover:text-[#FFFFFF] active:bg-black'
                 value='Reset Password'
               ></input>
