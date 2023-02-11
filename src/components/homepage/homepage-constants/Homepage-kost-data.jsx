@@ -1,4 +1,4 @@
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
@@ -6,6 +6,17 @@ import { Link } from 'react-router-dom';
 const Kostdata = ({ fetchData }) => {
   const LikeButton = ({kosId}) => {
     const [isFilled, setIsFilled] = useState(false);
+  // console.log(kosId)
+    const wishlistStatus = useQuery({
+      queryKey: ['wishlistStatus'],
+      queryFn: async () =>
+        await axios.get(`https://be-naqos.up.railway.app/api/wishlists/status?kostId=${kosId}`, {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('AUTH_TOKEN')}`
+          }
+        })
+    });
+
     const postWishlist = useMutation({
       mutationFn: async (data) => {
         await axios.post(`https://be-naqos.up.railway.app/api/wishlists/add`, data, {
@@ -26,48 +37,55 @@ const Kostdata = ({ fetchData }) => {
       },
     });
 
-    const handleClick = (data) => {
-      data.preventDefault();
-      setIsFilled(!isFilled);
+    if (!wishlistStatus.isLoading) {
+      const status = wishlistStatus?.data?.data?.data?.kostId
+      
+      // console.log(status)
 
-      if (!isFilled) {
-        postWishlist.mutate({"kostId": `${kosId}`}, {
-          onSuccess: () => {
-            alert("Kost berhasil ditambahkan ke wishlist")
-          },
-          onError: () => {
-            alert("Kost gagal ditambahkan ke wishlist")
-          }
-        });
-      } else {
-        destroyWishlist.mutate(kosId, {
-          onSuccess: () => {
-            alert("Kost berhasil dihapus dari wishlist")
-          },
-          onError: () => {
-            alert("Kost gagal dihapus dari wishlist")
-          }
-        });
-      }
-    };
+      const handleClick = (data) => {
+        data.preventDefault();
+        setIsFilled(!isFilled);
 
-    return (
-      <button onClick={handleClick} className='flex items-center justify-center'>
-        <svg
-          className={`w-3 md:w-6 h-3 md:h-6 ${isFilled ? 'fill-black' : 'fill-none'}`}
-          viewBox='0 0 24 24'
-          xmlns='http://www.w3.org/2000/svg'
-        >
-          <path
-            d='M21 8.25C21 5.76472 18.9013 3.75 16.3125 3.75C14.3769 3.75 12.7153 4.87628 12 6.48342C11.2847 4.87628 9.62312 3.75 7.6875 3.75C5.09867 3.75 3 5.76472 3 8.25C3 15.4706 12 20.25 12 20.25C12 20.25 21 15.4706 21 8.25Z'
-            stroke='#3C3C3C'
-            strokeWidth='1.5'
-            strokeLinecap='round'
-            strokeLinejoin='round'
-          />
-        </svg>
-      </button>
-    );
+        if (!isFilled) {
+          postWishlist.mutate({"kostId": `${kosId}`}, {
+            onSuccess: () => {
+              alert("Kost berhasil ditambahkan ke wishlist")
+            },
+            onError: () => {
+              alert("Kost gagal ditambahkan ke wishlist")
+            }
+          });
+        } else {
+          destroyWishlist.mutate(kosId, {
+            onSuccess: () => {
+              alert("Kost berhasil dihapus dari wishlist")
+            },
+            onError: () => {
+              alert("Kost gagal dihapus dari wishlist")
+            }
+          });
+        }
+      };
+
+      return (
+        <button onClick={handleClick} className='flex items-center justify-center'>
+          <svg
+            className={`w-3 md:w-6 h-3 md:h-6 ${isFilled ? 'fill-black' : 'fill-none'}`}
+            viewBox='0 0 24 24'
+            xmlns='http://www.w3.org/2000/svg'
+          >
+            <path
+              d='M21 8.25C21 5.76472 18.9013 3.75 16.3125 3.75C14.3769 3.75 12.7153 4.87628 12 6.48342C11.2847 4.87628 9.62312 3.75 7.6875 3.75C5.09867 3.75 3 5.76472 3 8.25C3 15.4706 12 20.25 12 20.25C12 20.25 21 15.4706 21 8.25Z'
+              stroke='#3C3C3C'
+              strokeWidth='1.5'
+              strokeLinecap='round'
+              strokeLinejoin='round'
+            />
+          </svg>
+        </button>
+      );
+    }
+
   };
 
   return (
@@ -75,6 +93,7 @@ const Kostdata = ({ fetchData }) => {
       {fetchData?.map((kost) => {
         const facilities = [].concat(...kost.rooms.map(room => room.facilities.map(facility => facility.name)));
         const uniqueFacilities = [...new Set(facilities)];
+        console.log(kost.id)
         return (
           <React.Fragment key={kost.id}>
             <div className='grid grid-cols-3 grid-flow-col bg-white rounded-[16px]'>
@@ -99,7 +118,7 @@ const Kostdata = ({ fetchData }) => {
                     </span>
                   </div>
                   <div className='flex justify-end self-center pr-4'>
-                    <LikeButton kosId={kost.id} />
+                    <LikeButton kosId={kost?.id} />
                   </div>
                 </div>
 
