@@ -14,12 +14,13 @@ const Navbarsign = () => {
   };
 
   return (
-    <div className='w-full navbar grid grid-cols-6 bg-[#FAFAFA] font-[Montserrat] text-[#000000] font-[600]'>
-      <div className='cols-span-1 pl-4'>
-        <a href='/'>
-          <img className='w-full h-auto' src={LogoNaqos}></img>
-        </a>
-      </div>
+    <div className='w-full navbar grid grid-cols-6 bg-[#FAFAFA] px-4 font-[Montserrat] text-[#000000] font-[600]'>
+      
+      <div className='col-span-1  max-w-[170px] translate-x-[18%] py-5'>
+          <Link to='/'>
+            <img className='w-full h-auto' src={LogoNaqos} />
+          </Link>
+        </div>
       <div className='col-span-5 flex justify-end pr-4 space-x-6'>
         <button
           onClick={toggleDrawer}
