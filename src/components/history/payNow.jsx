@@ -8,7 +8,7 @@ import iconclose from '../../assets/icon_close.svg';
 import iconarrowdown from '../../assets/icon_arrow-down.svg';
 
 import { useQuery, useMutation } from '@tanstack/react-query';
-import axios from 'axios';
+import axiosInstance from '../../utils/http-interceptor';
 import BookingCard from './bookingCard';
 
 const PayNowHistory = () => {
@@ -19,12 +19,7 @@ const PayNowHistory = () => {
   const { bookid } = useParams();
   const getBooking = useQuery({
     queryKey: ['booking'],
-    queryFn: async () =>
-      await axios.get('https://fsw-backend.up.railway.app/api/book', {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem('AUTH_TOKEN')}`,
-        },
-      }),
+    queryFn: async () => await axiosInstance.get('https://fsw-backend.up.railway.app/api/book'),
   });
 
   let price;
@@ -36,14 +31,9 @@ const PayNowHistory = () => {
 
   const putWillPay = useMutation({
     mutationFn: async (data) => {
-      await axios.put(
+      await axiosInstance.put(
         `https://fsw-backend.up.railway.app/api/book?booking_id=${bookid}&willpay=true`,
         data,
-        {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem('AUTH_TOKEN')}`,
-          },
-        },
       );
     },
   });

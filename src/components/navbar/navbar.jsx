@@ -91,8 +91,8 @@ const Navbar = () => {
 
   return (
     <React.Fragment>
-      <div className='fixed shadow-2xl shadow-black/[0.38] z-[100] navbar grid grid-cols-6 bg-[#FAFAFA] font-[Montserrat] font-[400] w-full '>
-        <div className='col-span-1 pl-4 max-w-[170px] translate-x-[18%] py-3'>
+      <div className='fixed drop-shadow-xl px-4  drop-shadow-black/[0.38] z-[100] navbar grid grid-cols-6 bg-[#FAFAFA] font-[Montserrat] font-[400] w-full '>
+        <div className='col-span-1 max-w-[170px] translate-x-[18%] py-3'>
           <Link to='/'>
             <img className='w-full h-auto' src={LogoNaqos} />
           </Link>
@@ -203,7 +203,7 @@ const Navbar = () => {
           </ul>
         </div>
       </div>
-      <div className='w-full h-[100px] md:h-[125px] lg:h-[150px]'></div>
+      <div className='w-full h-[80px] md:h-[105px] lg:h-[130px] bg-[#FAFAFA]'></div>
     </React.Fragment>
   );
 };

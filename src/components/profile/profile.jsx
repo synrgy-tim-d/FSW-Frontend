@@ -17,26 +17,23 @@ const Profile = () => {
   const [user, setUser] = useState({});
 
   useQuery({
-    queryKey:["user"],
+    queryKey: ['user'],
     queryFn: async () => {
-      const token = localStorage.getItem("AUTH_TOKEN")
-      return await axios.get(
-        `${appConfig.BE_URL}/users/get`,
-        {
-          headers: {
-            authorization: `Bearer ${token}`,
-          },
-        }
-      );
+      const token = localStorage.getItem('AUTH_TOKEN');
+      return await axios.get(`${appConfig.BE_URL}/users/get`, {
+        headers: {
+          authorization: `Bearer ${token}`,
+        },
+      });
     },
     onSuccess: (res) => {
-      setUser(res?.data?.data)
+      setUser(res?.data?.data);
     },
-    onError:(err) => {
-      navigate("/")
-    }
-  })
-  
+    onError: (err) => {
+      navigate('/');
+    },
+  });
+
   // useEffect(() => {
   //   const fetchCurrentUserProfile = async () => {
   //     try {
@@ -86,7 +83,7 @@ const Profile = () => {
               <Link to='/profile/editprofile' className='w-full flex justify-end'>
                 <button
                   type='button'
-                  className='rounded-[150px] bg-inherit text-[#000000]/[0.38] text-[20px] font-[600]'
+                  className='rounded-[150px] bg-inherit text-[#000000]/[0.38] text-[20px] font-[600] hover:text-[#0A008A]'
                 >
                   Edit profil
                 </button>
@@ -104,7 +101,10 @@ const Profile = () => {
                 <div className='col-span-1 font-[700] text-[16px] sm:text-[16px] sm:font-[500]'>
                   Nomor HP
                 </div>
-                <div className='col-span-1 sm:col-span-2'>{user.phoneNumber}</div>
+                <div className='col-span-1 sm:col-span-2'>
+                  <span>+62{' '}</span>
+                  {user.phoneNumber}
+                </div>
               </div>
               <div className='grid grid-cols-1 sm:grid-cols-3 grid-flow-row sm:grid-flow-col border-b-2 border-[#0A008A] pb-2 gap-y-2'>
                 <div className='col-span-1 font-[700] text-[16px] sm:text-[16px] sm:font-[500]'>
@@ -121,7 +121,7 @@ const Profile = () => {
               <Link to='/profile/changepassword' className='w-full flex justify-end'>
                 <button
                   type='button'
-                  className='rounded-[150px] bg-inherit text-[#000000]/[0.38] text-[16px] sm:text-[20px] font-[600]'
+                  className='rounded-[150px] bg-inherit text-[#000000]/[0.38] text-[16px] sm:text-[20px] font-[600] hover:text-[#0A008A]'
                 >
                   Ganti Password
                 </button>
