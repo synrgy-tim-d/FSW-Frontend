@@ -9,7 +9,7 @@ import iconarrowdown from '../../assets/icon_arrow-down.svg';
 import iconclose from '../../assets/icon_close.svg';
 
 import { useQuery } from '@tanstack/react-query';
-import axios from 'axios';
+import axiosInstance from '../../utils/http-interceptor';
 import BookingCard from './bookingCard';
 
 const BookingHistory = () => {
@@ -126,12 +126,7 @@ const BookingHistory = () => {
 
   const getBooking = useQuery({
     queryKey: ['booking'],
-    queryFn: async () =>
-      await axios.get('https://fsw-backend.up.railway.app/api/book', {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem('AUTH_TOKEN')}`,
-        },
-      }),
+    queryFn: async () => await axiosInstance.get('https://fsw-backend.up.railway.app/api/book'),
   });
 
   return (
@@ -289,23 +284,22 @@ const BookingHistory = () => {
           {getBooking.isLoading && <div className='text-xl text-center mx-20'>Loading ...</div>}
           {getBooking.isSuccess &&
             getBooking?.data.data.map((booking) => {
+              console.log(booking);
               return (
-                <React.Fragment key={booking.booking_id}>
-                  <BookingCard
-                    key={booking.booking_id}
-                    image={booking.Kost.SetupImages[0].url}
-                    kosName={booking.Kost.name}
-                    locationName={booking.Kost.SetupCity.city}
-                    bookingId={booking.booking_id}
-                    isPaid={booking.BookingDetail.is_paid}
-                    willPay={booking.BookingDetail.will_pay}
-                    isConfirmed={booking.BookingDetail.is_confirmed}
-                    isCancelled={booking.BookingDetail.is_cancelled}
-                    bookingStartDate={booking.booking_date_start}
-                    bookingEndDate={booking.booking_date_end}
-                    showButton={true}
-                  />
-                </React.Fragment>
+                <BookingCard
+                  key={booking.booking_id}
+                  image={booking.Kost.SetupImages[0].url}
+                  kosName={booking.Kost.name}
+                  locationName={booking.Kost.SetupCity.city}
+                  bookingId={booking.booking_id}
+                  isPaid={booking.BookingDetail.is_paid}
+                  willPay={booking.BookingDetail.will_pay}
+                  isConfirmed={booking.BookingDetail.is_confirmed}
+                  isCancelled={booking.BookingDetail.is_cancelled}
+                  bookingStartDate={booking.booking_date_start}
+                  bookingEndDate={booking.booking_date_end}
+                  showButton={true}
+                />
               );
             })}
           <h1 className='text-center text-black text-[16px] lg:text-[20px] font-[600] opacity-[.38]'>

@@ -7,18 +7,13 @@ import iconarrowdown from '../../assets/icon_arrow-down.svg';
 import iconpending from '../../assets/icon_pending.svg';
 
 import { useQuery } from '@tanstack/react-query';
-import axios from 'axios';
+import axiosInstance from '../../utils/http-interceptor';
 import ConfirmCard from './confirmCard';
 
 const ConfirmationHistory = () => {
   const getBooking = useQuery({
     queryKey: ['booking'],
-    queryFn: async () =>
-      await axios.get('https://fsw-backend.up.railway.app/api/book', {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem('AUTH_TOKEN')}`,
-        },
-      }),
+    queryFn: async () => await axiosInstance.get('https://fsw-backend.up.railway.app/api/book'),
   });
   // const [booking, setbooking] = useState([]);
 
