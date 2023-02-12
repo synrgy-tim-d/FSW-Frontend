@@ -13,18 +13,15 @@ import {
 } from '../components/homepage/homepage-constants/Dropdown';
 import Kostdata from '../components/wishlist/Wishlistpage-kost-data';
 import { useQuery } from '@tanstack/react-query';
-import axios from 'axios';
+import axiosInstance from '../utils/http-interceptor';
 
 const Wishlistpage = () => {
   const title = ['Urutkan', 'Fasilitas Kamar', 'Fasilitas Bersama'];
+
   const getWishlist = useQuery({
     queryKey: ['getWishlist'],
     queryFn: async () =>
-      await axios.get(`https://be-naqos.up.railway.app/api/wishlists/get?page=1&size=100`, {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem('AUTH_TOKEN')}`
-        }
-      })
+      await axiosInstance.get(`https://be-naqos.up.railway.app/api/wishlists/get?page=1&size=100`)
   });
 
   const submitHandle = (e) => {

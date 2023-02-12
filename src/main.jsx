@@ -33,6 +33,8 @@ import OwnerDataKamar from './components/owner-constants/OwnerDataKamar';
 import OwnerDataKos from './components/owner-constants/OwnerDataKos';
 import OwnerFasilitasKos from './components/owner-constants/OwnerFasilitasKos';
 import './index.css';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import OauthGoogle from './components/oauth/oauth';
 const queryClient = new QueryClient();
 
@@ -76,7 +78,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           {/* Wishlist Page */}
           <Route path='/wishlist' element={<Wishlistpage />} />
 
-          {/*------------------**** HERE GOES THE OWNER PAGE ****------------------*/}
+          {/* ------------------**** HERE GOES THE OWNER PAGE ****------------------ */}
 
           {/* Owner Form Data */}
           <Route path='/owner/formdata' element={<AddOwnerProfile />} />
@@ -106,6 +108,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           <Route path='/ownerprofile/changepassword' element={<ChangePassOwner />} />
         </Routes>
       </BrowserRouter>
+      <ToastContainer />
     </QueryClientProvider>
   </React.StrictMode>,
 );

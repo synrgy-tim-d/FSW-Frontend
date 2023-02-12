@@ -114,6 +114,7 @@ const Rinciankos = () => {
 
   if (!isLoading && isSuccess && searchKost.isSuccess) {
     const dataKost = data?.data?.data[0];
+    console.log(dataKost)
     const kostReviews = reviewKost?.data?.data?.data;
     const kostPrice = dataKost?.rooms.filter((room) => room.id === kostId.roomid)[0];
 
