@@ -60,20 +60,20 @@ const Fasilitasbersama = ({ fetchData }) => {
     <div className='grid gap-4 text-[Montserrat] text-[20px]'>
       <p className='font-[700]'>Fasilitas Bersama</p>
       <div className='grid grid-rows-4 grid-flow-col auto-cols-max gap-8 gap-x-6'>
-        {fetchData?.facilities.map((facility) => {
-          const facilityName = [].concat(...facility.map(fasilitas => fasilitas.name))
-          const fasilitasBersama = Fasilitas.filter(fasilitas => facilityName.includes(fasilitas.text));
+        {fetchData?.facilities?.map((facility) => {
+          const facilityName = [].concat(facility?.name)
+          const fasilitasBersama = Fasilitas.filter(fasilitas => facilityName.includes(fasilitas?.text));
           return (
-            <React.Fragment key={facility.id}>
+            <React.Fragment key={facility?.id}>
               <div className='grid grid-cols-5 grid-flow-col gap-2'>
-                {fasilitasBersama.map((roomFacility) => {
+                {fasilitasBersama?.map((roomFacility) => {
                   return (
-                    <React.Fragment key={roomFacility.id}>
+                    <React.Fragment key={roomFacility?.id}>
                       <span className='self-center'>
-                        <img className='rounded-full bg-[#FFDCBD] h-6 w-6' src={roomFacility.image} alt='' />
+                        <img className='rounded-full bg-[#FFDCBD] h-6 w-6' src={roomFacility?.image} alt='' />
                       </span>
                       <span className='col-span-4 self-center justify-self-start'>
-                        <p>{roomFacility.text}</p>
+                        <p>{roomFacility?.text}</p>
                       </span>
                   </React.Fragment>
                   );

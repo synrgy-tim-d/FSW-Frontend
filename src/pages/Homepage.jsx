@@ -49,16 +49,7 @@ const Homepage = () => {
     }
   };
 
-  // if (!searchKost.isLoading) {
-  //   // for (let i = 0; i<searchKost?.data?.data?.data?.length; i++) {
-  //   // }
-  // }
-
-  
-
   if (!searchKost.isLoading) {
-    // const kostId = [].concat(searchKost?.data?.data?.data.map(id => id.id))
-    // console.log(kostId)
     return (
       <React.Fragment>
         {localStorage.getItem('AUTH_TOKEN') === null ? <Navbarsign /> : <Navbar />}

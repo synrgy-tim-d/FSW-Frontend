@@ -114,9 +114,9 @@ const Carousel = () => {
             <div
               className='px-20 lg:px-28 py-2 lg:py-3 hover:bg-[#FFDEAA] hover:cursor-pointer'
               onClick={(event) => changePlace(event, 'location')}
-              id='Tanggerang'
+              id='Tangerang'
             >
-              Tanggerang
+              Tangerang
             </div>
             <div
               className='px-20 lg:px-28 py-2 lg:py-3 hover:bg-[#FFDEAA] hover:cursor-pointer'

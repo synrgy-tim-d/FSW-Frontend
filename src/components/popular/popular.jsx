@@ -56,25 +56,22 @@ const Popular = () => {
         <p className='text-lg lg:text-4xl font-bold font-montserrat'>Kos Populer di Kota Besar</p>
       </div>
       <div className='w-full grid lg:grid-cols-4 lg:py-8 lg:gap-y-7 lg:gap-x-5 grid-cols-2 py-8 gap-y-3 gap-x-3'>
-        {(() => {
-          const frame = popularCities.map((e, i) => {
-            return (
-              <Link to={`/homepage?city=${e.name}`} key={i}>
-                <div
-                  key={i}
-                  className='w-full lg:h-[221px] h-[100px] overflow-hidden rounded-lg flex items-center relative object-cover hover:scale-95 transition duration-200 ease-in-out cursor-pointer'
-                >
-                  <img src={e.pictureUrl} className='w-full min-h-full' />
-                  <p className='absolute text-white font-montserrat font-bold lg:text-3xl top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10'>
-                    {e.name}
-                  </p>
-                  <div className='w-full h-full bg-[#0A008A61] absolute opacity-700' />
-                </div>
-              </Link>
-            );
-          });
-          return frame;
-        })()}
+        {popularCities.map((e, i) => {
+          return (
+            <Link to={`/homepage?city=${e.name}`} key={i}>
+              <div
+                key={i}
+                className='w-full lg:h-[221px] h-[100px] overflow-hidden rounded-lg flex items-center relative object-cover hover:scale-95 transition duration-200 ease-in-out cursor-pointer'
+              >
+                <img src={e.pictureUrl} className='w-full min-h-full' />
+                <p className='absolute text-white font-montserrat font-bold lg:text-3xl top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10'>
+                  {e.name}
+                </p>
+                <div className='w-full h-full bg-[#0A008A61] absolute opacity-700' />
+              </div>
+            </Link>
+          );
+        })}
       </div>
     </div>
   );
