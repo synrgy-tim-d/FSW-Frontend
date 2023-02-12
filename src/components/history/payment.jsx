@@ -1,7 +1,4 @@
-import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import icondownload from '../../assets/icon_download.svg';
-import iconcompleted from '../../assets/icon_completed.svg';
 import iconarrowdown from '../../assets/icon_arrow-down.svg';
 
 import { useQuery } from '@tanstack/react-query';

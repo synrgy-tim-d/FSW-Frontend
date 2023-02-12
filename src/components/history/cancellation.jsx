@@ -1,57 +1,16 @@
-import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import imagefour from '../../assets/img_kosFour.png';
-import imagefive from '../../assets/img_kosFive.png';
-import imagesix from '../../assets/img_kosSix.png';
-import iconlocation from '../../assets/icon_location.svg';
-import iconarrowright from '../../assets/icon_arrow-right-2.svg';
-import iconcancel from '../../assets/icon_cancel.svg';
+
 import iconarrowdown from '../../assets/icon_arrow-down.svg';
 
-const CancellationHistory = () => {
-  const [cancels, setCancels] = useState([]);
+import { useQuery } from '@tanstack/react-query';
+import axiosInstance from '../../utils/http-interceptor';
+import CancelCard from './CancelCard';
 
-  useEffect(() => {
-    const cancelList = [
-      {
-        id: 1,
-        name: 'Kos Jahe',
-        location: {
-          name: 'Tanggerang',
-        },
-        bookId: '00000001',
-        inDate: 'April 01, 23',
-        outDate: 'April 30,23',
-        date: 'Fri, 24 March 2023',
-        img: imagefour,
-      },
-      {
-        id: 2,
-        name: 'Kos Timun',
-        location: {
-          name: 'Bogor',
-        },
-        bookId: '00000002',
-        inDate: 'April 01, 23',
-        outDate: 'May 01, 23',
-        date: 'Sat, 25 March 2023',
-        img: imagefive,
-      },
-      {
-        id: 3,
-        name: 'Kos Wortel',
-        location: {
-          name: 'Bogor',
-        },
-        bookId: '00000003',
-        inDate: 'April 11, 23',
-        outDate: 'May 11, 23',
-        date: 'Sun, 26 March 2023',
-        img: imagesix,
-      },
-    ];
-    setCancels(cancelList);
-  }, []);
+const CancellationHistory = () => {
+  const getBooking = useQuery({
+    queryKey: ['booking'],
+    queryFn: async () => await axiosInstance.get('https://fsw-backend.up.railway.app/api/book'),
+  });
 
   return (
     <div className='lg:px-[70px] px-[20px] pt-[25px] lg:pt-[70px] font-[Montserrat] bg-[#FAFAFA] min-h-[700px]'>
@@ -205,66 +164,24 @@ const CancellationHistory = () => {
 
         {/* --- Content if there is Data --- */}
         <div className='flex flex-col lg:mx-[70px] lg:mt-[60px] mt-[10px] mb-[100px] lg:w-3/4'>
-          {cancels.map((cancel, index) => {
-            return (
-              <React.Fragment key={index}>
-                <div>
-                  <div className='flex flex-row py-2 lg:py-4 text-black'>
-                    <img className='w-[130px] lg:w-[200px] self-center' alt='' src={cancel.img} />
-                    <div className='flex flex-col ml-[20px] lg:ml-[40px] text-left lg:w-[265px] space-y-[-5px] lg:space-y-0'>
-                      <h1 className='text-[14px] lg:text-[20px] font-[600]'>{cancel.name}</h1>
-                      <div className='flex flex-row'>
-                        <img className='w-[10px] lg:w-auto' alt='' src={iconlocation} />
-                        <p className='text-[12px] lg:text-[16px] font-[500] ml-1 lg:ml-2 lg:my-1'>
-                          {cancel.location.name}
-                        </p>
-                      </div>
-                      <p className='text-[12px] lg:text-[16px] font-[500] lg:mb-3'>
-                        Booking ID: {cancel.bookId}
-                      </p>
-                      <div className='flex flex-row'>
-                        <div className='flex flex-col text-center'>
-                          <p className='text-[10px] lg:text-[12px] font-[400] lg:mb-1'>Check in</p>
-                          <p className='text-[10px] lg:text-[16px] font-[600] lg:font-[400]'>
-                            {cancel.inDate}
-                          </p>
-                        </div>
-                        <div className='flex flex-col mx-[10px] lg:mx-[12px] justify-center'>
-                          <img className='w-[16px] lg:w-auto' alt='' src={iconarrowright} />
-                        </div>
-                        <div className='flex flex-col text-center'>
-                          <p className='text-[10px] lg:text-[12px] font-[400] lg:mb-1'>Check out</p>
-                          <p className='text-[10px] lg:text-[16px] font-[600] lg:font-[400]'>
-                            {cancel.outDate}
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                    <div className='lg:flex flex-col flex-1 w-[150px] text-right hidden'>
-                      <p className='mt-[85px] text-[#4A4A4A] text-[12px] font-[400]'>
-                        {cancel.date}
-                      </p>
-                      <div className='flex flex-row justify-end'>
-                        <img className='' alt='' src={iconcancel} />
-                        <p className='text-[12px] font-[600] text-[#BA1A1A] ml-2 mb-[4px] mt-1'>
-                          Cancelled
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                  {/* --- Status di Mobile */}
-                  <div className='flex flex-col flex-1 lg:hidden'>
-                    <p className='text-[#4A4A4A] text-[12px] font-[400]'>{cancel.date}</p>
-                    <div className='flex flex-row gap-1 mb-2'>
-                      <img className='w-[14px]' alt='' src={iconcancel} />
-                      <p className='text-[12px] font-[600] text-[#BA1A1A]'>Cancelled</p>
-                    </div>
-                  </div>
-                  <hr className='mb-4 lg:mb-8'></hr>
-                </div>
-              </React.Fragment>
-            );
-          })}
+          {getBooking.isLoading && <div className='text-xl text-center mx-20'>Loading ...</div>}
+          {getBooking.isSuccess &&
+            getBooking?.data?.data
+              .filter((booking) => booking.BookingDetail.is_cancelled === true)
+              .map((booking) => {
+                return (
+                  <CancelCard
+                    key={booking.booking_id}
+                    image={booking.Kost.SetupImages[0].url}
+                    kosName={booking.Kost.name}
+                    locationName={booking.Kost.SetupCity.city}
+                    bookingId={booking.booking_id}
+                    bookingStartDate={booking.booking_date_start}
+                    bookingEndDate={booking.booking_date_end}
+                    cancelDate={booking.BookingDetail.updated_at}
+                  />
+                );
+              })}
           <h1 className='text-center text-black text-[16px] lg:text-[20px] font-[600] opacity-[.38]'>
             Lihat lebih banyak lagi
           </h1>
