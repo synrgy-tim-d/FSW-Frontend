@@ -1,9 +1,9 @@
 import { useMutation } from '@tanstack/react-query';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import axiosInstance from '../../utils/http-interceptor';
 import { toast } from 'react-toastify';
-import axios from 'axios';
+// import axios from 'axios';
 
 const LikeButton = ({kosId}) => {
   const [isFilled, setIsFilled] = useState(true);
@@ -67,46 +67,47 @@ const Kostdata = ({ fetchData }) => {
   return (
     <div className='text-[10px] sm:text-[14px] md:text-[18px] lg:text-[20px] font-[Montserrat] text-[#000000] col-span-3 grid grid-cols-auto auto-rows-max gap-8 md:px-2 lg:px-4'>
       {fetchData?.map((kost) => {
-        const [dataKost, setDataKost] = useState([]);
-        const [kostReview, setKostReview] = useState([]);
+        console.log(kost)
+        // const [dataKost, setDataKost] = useState([]);
+        // const [kostReview, setKostReview] = useState([]);
 
-        useEffect(() => {
-          fetchDataKost();
-          fetchDataReview();
-        }, []);
+        // useEffect(() => {
+        //   fetchDataKost();
+        //   fetchDataReview();
+        // }, []);
 
-        const fetchDataKost = () => {
-          return axios
-            .get(`https://be-naqos.up.railway.app/api/public/kost/?start=0&limit=100&page=1&search=%5B%22${kost.id}%22%5D&fields=%5B%22id%22%5D`)
-            .then((response) => {
-              const result = response.data?.data;
-              setDataKost(result)
-            });
-        };
+        // const fetchDataKost = () => {
+        //   return axios
+        //     .get(`https://be-naqos.up.railway.app/api/public/kost/?start=0&limit=100&page=1&search=%5B%22${kost.id}%22%5D&fields=%5B%22id%22%5D`)
+        //     .then((response) => {
+        //       const result = response.data?.data;
+        //       setDataKost(result)
+        //     });
+        // };
 
-        const fetchDataReview = () => {
-          return axios
-            .get(`https://be-naqos.up.railway.app/api/public/kost_review/${kost.id}`)
-            .then((response) => {
-              const result = response.data?.data;
-              setKostReview(result)
-            });
-        };
+        // const fetchDataReview = () => {
+        //   return axios
+        //     .get(`https://be-naqos.up.railway.app/api/public/kost_review/${kost.id}`)
+        //     .then((response) => {
+        //       const result = response.data?.data;
+        //       setKostReview(result)
+        //     });
+        // };
 
-        let totalRating = 0
+        // let totalRating = 0
 
-        for (let i = 0; i < kostReview.length; i++) {
-          totalRating += kostReview[i].rating;
-        }
+        // for (let i = 0; i < kostReview.length; i++) {
+        //   totalRating += kostReview[i].rating;
+        // }
       
-        const ratingAverage = totalRating/kostReview.length;
-        const facilities = [].concat(dataKost[0]?.rooms?.map(room => room?.facilities?.map(facility => facility?.name)));
-        const fasilitas = [].concat(...facilities)
-        const uniqueFacilities = [...new Set(fasilitas)];
+        // const ratingAverage = totalRating/kostReview.length;
+        // const facilities = [].concat(dataKost[0]?.rooms?.map(room => room?.facilities?.map(facility => facility?.name)));
+        // const fasilitas = [].concat(...facilities)
+        // const uniqueFacilities = [...new Set(fasilitas)];
         return (
-          <React.Fragment key={kost.id}>
+          <React.Fragment key={kost?.id}>
             <div className='grid grid-cols-3 grid-flow-col bg-white rounded-[16px]'>
-              <Link to='/kos/:kosid/:roomid'>
+              <Link to={`/kos/${kost.id}/:roomid`}>
                 <div className='col-span-1 rounded-[16px]'>
                   <img className='w-full h-auto' src={kost?.imgUrl[0]} alt='' />
                 </div>
@@ -120,23 +121,24 @@ const Kostdata = ({ fetchData }) => {
                     text-[12px] lg:text-[16px] font-[600] leading-none
                     hidden'
                     >
-                      {kost.kostType.slice(4)}
+                      {kost?.kostType?.slice(4)}
                     </div>
                     <span className='text-[#BA1A1A] italic md:pl-2 self-center'>
-                      sisa {dataKost[0]?.rooms?.filter((room) => room.isAvailable === true).length} kamar
+                      {/* sisa {dataKost[0]?.rooms?.filter((room) => room.isAvailable === true).length} kamar */}
+                      sisa 1 kamar
                     </span>
                   </div>
                   <div className='flex justify-end self-center pr-4'>
-                    <LikeButton kosId={kost.id} />
+                    <LikeButton kosId={kost?.id} />
                   </div>
                 </div>
 
                 <div className='grid grid-rows-auto'>
-                  <p className='font-[600]'>{kost.name}</p>
+                  <p className='font-[600]'>{kost?.name}</p>
                   <p>
-                    {kost.address}, {kost.subdistrict}, {kost.district}, {kost.city.city} ({kost.postalCode})
+                    {kost?.address}, {kost?.subdistrict}, {kost?.district}, {kost?.city?.city} ({kost.postalCode})
                     <span className='text-[#000000]/[0.38] pl-2'>
-                      <Link to={`/kos/${kost.id}/${dataKost[0]?.rooms[0]?.id}`}>...selengkapnya</Link>
+                      <Link to={`/kos/${kost.id}/:roomid`}>...selengkapnya</Link>
                     </span>
                   </p>
                 </div>
@@ -157,8 +159,10 @@ const Kostdata = ({ fetchData }) => {
                     </svg>
                   </span>
                   <p className='text-[10px] md:text-[12px] lg:text-[14px] font-[500]'>
-                    {isNaN(ratingAverage) ? 0 : ratingAverage}
-                    <span className='italic pl-1'>({kostReview?.length} reviews)</span>
+                    {/* {isNaN(ratingAverage) ? 0 : ratingAverage}
+                    <span className='italic pl-1'>({kostReview?.length} reviews)</span> */}
+                    0
+                    <span className='italic pl-1'>(0 reviews)</span>
                   </p>
                   <span className='self-center'>
                     <svg
@@ -177,13 +181,13 @@ const Kostdata = ({ fetchData }) => {
                     </svg>
                   </span>
                   <p className='text-[10px] md:text-[12px] lg:text-[14px] font-[500]'>
-                    {kost.city.city}
+                    {kost?.city?.city}
                   </p>
                 </div>
 
                 <div className='grid lg:grid-cols-2 grid-flow-col'>
                   <div className='hidden lg:grid col-span-1 grid-flow-col auto-cols-max gap-4 text-[#0A008A] font-[600]'>
-                    {uniqueFacilities?.map((facility, index) => {
+                    {/* {uniqueFacilities?.map((facility, index) => {
                       return (
                         <React.Fragment key={index}>
                           <div className='border-2 rounded-[4px] border-[#0A008A] p-2 self-center'>
@@ -191,15 +195,15 @@ const Kostdata = ({ fetchData }) => {
                           </div>
                         </React.Fragment>
                       );
-                    })}
+                    })} */}
                   </div>
                   <div className='lg:col-span-1 flex justify-start lg:justify-end'>
-                    <p className='font-[700] lg:pl-8'>
+                    {/* <p className='font-[700] lg:pl-8'>
                       Rp {dataKost[0]?.rooms[0]?.pricePerMonthly}
                       <span className='text-[10px] md:text-[14px] lg:text-[16px] font-[400]'>
                         /bulan
                       </span>
-                    </p>
+                    </p> */}
                   </div>
                 </div>
               </div>

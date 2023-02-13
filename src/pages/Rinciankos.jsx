@@ -9,9 +9,6 @@ import Peraturankos from '../components/homepage/details-constants/Fasili/Peratu
 import Deskripsikos from '../components/homepage/details-constants/Fasili/Deskripsikos';
 import Review from '../components/homepage/details-constants/Fasili/Review';
 import Formpemesanan from '../components/homepage/details-constants/Fasili/Formpemesanan';
-// import Bigimg from '../assets/Dummy-img-details/Big-img.svg';
-// import Medimg from '../assets/Dummy-img-details/Med-img.svg';
-// import Smallimg1 from '../assets/Dummy-img-details/Small-img1.svg';
 import Navbarsign from '../components/navbar/navbarnologin';
 import Navbar from '../components/navbar/navbar';
 import Footer from '../components/footer/footer';
@@ -114,9 +111,8 @@ const Rinciankos = () => {
 
   if (!isLoading && isSuccess && searchKost.isSuccess) {
     const dataKost = data?.data?.data[0];
-    console.log(dataKost)
     const kostReviews = reviewKost?.data?.data?.data;
-    const kostPrice = dataKost?.rooms.filter((room) => room.id === kostId.roomid)[0];
+    const kostPrice = dataKost?.rooms?.filter((room) => room?.id === kostId?.roomid)[0];
 
     return (
       <React.Fragment>
@@ -174,20 +170,20 @@ const Rinciankos = () => {
               </div>
               <div className='col-span-4 grid grid-rows-2 gap-6'>
                 <div className=''>
-                  <img className='w-full h-auto' src={dataKost.imageKosts[0]?.url} alt='' />
+                  <img className='w-full h-auto' src={dataKost.imageKosts[1]?.url ?? dataKost.imageKosts[0]?.url} alt='' />
                 </div>
                 <div className='grid grid-cols-2 grid-flow-col gap-6'>
                   <div>
                     <img
                       className='w-full h-auto'
-                      src={dataKost.imageKosts[0]?.url}
+                      src={dataKost.imageKosts[2]?.url ?? dataKost.imageKosts[0]?.url}
                       alt=''
                     />
                   </div>
                   <div>
                     <img
                       className='w-full h-auto bg-yellow-500'
-                      src={dataKost.imageKosts[0]?.url}
+                      src={dataKost.imageKosts[3]?.url ?? dataKost.imageKosts[0]?.url}
                       alt=''
                     />
                   </div>
