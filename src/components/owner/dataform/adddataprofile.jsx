@@ -165,7 +165,7 @@ const AddOwnerProfile = () => {
 
             <label className='relative block pb-10'>
               {/* <span className='block text-[20px] font-semibold text-[#B9B9BC]'></span> */}
-              <span className={selectedPayment === 'other' ? 'text-[#000000]' : 'text-[#B9B9BC]'}>
+              <span className={selectedPayment === 'other' ? 'block text-[20px] font-semibold text-[#000000]' : 'block text-[20px] font-semibold text-[#B9B9BC]'}>
                 Rekening Bank Lain/Pengelola
               </span>
               <span className='block text-[20px] text-[#B9B9BC] pb-3'>
