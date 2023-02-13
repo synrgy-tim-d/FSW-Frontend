@@ -6,9 +6,9 @@ import LogoNaqosPolosWhite from '../../assets/LogoNaqosFixWhite.png'
 
 export const SidebarForm = () => {
     const activeLink =
-    'w-full h-[68px] px-4 mb-1.5 text-[22px] font-[600] flex flex-row items-center rounded-[8px] text-white hover:border-white';
+    'w-full h-[68px] px-4 mb-1.5 text-[22px] font-[600] flex flex-row items-center rounded-[8px] text-white';
     const normalLink =
-    'w-full h-[68px] px-4 mb-1.5 text-[22px] font-[600] flex flex-row items-center rounded-[8px] text-[#FFFFFF61] border-2 border-[#0A008A] bg-[#0A008A] hover:bg-white hover:border-white hover:text-[#0A008A]';
+    'w-full h-[68px] px-4 mb-1.5 text-[22px] font-[600] flex flex-row items-center rounded-[8px] text-[#FFFFFF61] border-2 border-[#0A008A] bg-[#0A008A] hover:text-white';
 
     const [isOpen, setIsOpen] = useState(false);
 
