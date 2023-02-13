@@ -2,12 +2,13 @@ import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import Drawer from 'react-modern-drawer';
 import 'react-modern-drawer/dist/index.css';
+import LogoNaqosPolosWhite from '../../assets/LogoNaqosFixWhite.png'
 
 export const SidebarForm = () => {
     const activeLink =
-    'w-full h-[68px] px-6 mb-5 text-[25px] font-[600] flex flex-row items-center rounded-[8px] text-[#0A008A] border-2 border-white hover:bg-[#0A008A] hover:text-white';
+    'w-full h-[68px] px-4 mb-1.5 text-[22px] font-[600] flex flex-row items-center rounded-[8px] text-white hover:border-white';
     const normalLink =
-    'w-full h-[68px] px-6 mb-5 text-[25px] font-[600] flex flex-row items-center rounded-[8px] text-white border-2 border-[#0A008A] bg-[#0A008A] hover:bg-white hover:border-white hover:text-[#0A008A]';
+    'w-full h-[68px] px-4 mb-1.5 text-[22px] font-[600] flex flex-row items-center rounded-[8px] text-[#FFFFFF61] border-2 border-[#0A008A] bg-[#0A008A] hover:bg-white hover:border-white hover:text-[#0A008A]';
 
     const [isOpen, setIsOpen] = useState(false);
 
@@ -39,7 +40,7 @@ export const SidebarForm = () => {
             </svg>
             )}
         </button>
-        <Drawer open={isOpen} onClose={toggleDrawer} direction='left' className=''>
+        {/* <Drawer open={isOpen} onClose={toggleDrawer} direction='left' className=''>
             <ul
             className='bg-[#0A008A] text-white text-[20px] px-4 py-10 h-full text-start'
             >
@@ -59,31 +60,76 @@ export const SidebarForm = () => {
                 </NavLink>
             </li>
             </ul>
-        </Drawer>
+        </Drawer> */}
         </div>
+
+        {/* Desktop version */}
         <div className='hidden lg:block'>
+        {/* Image Naqos */}
+        <img src={LogoNaqosPolosWhite} alt="" />
+
+        {/* Data Pemilik */}
         <NavLink
-            to='/owner/property'
+            to='/owner/formdata'
             className={({ isActive }) => (isActive ? activeLink : normalLink)}
         >
             <button className='' type='button'>
-            Properti Saya
+                <button className='w-9 h-9 rounded-full bg-[#FFFFFF61] text-[#0A008A] text-[20px]'>
+                    1
+                </button>
+                <span className='pl-6'>Data Pemilik</span>
             </button>
         </NavLink>
+
+        {/* Data Kos */}
         <NavLink
-            to='/owner/history'
+            to='/owner/kostdata'
             className={({ isActive }) => (isActive ? activeLink : normalLink)}
         >
             <button className='' type='button'>
-            Riwayat Transaksi
+                <button className='w-9 h-9 rounded-full bg-[#FFFFFF61] text-[#0A008A] text-[20px]'>
+                    2
+                </button>
+                <span className='pl-6'>Data Kos</span>
             </button>
         </NavLink>
+
+        {/* Tentang Kos */}
         <NavLink
-            to='/profilpemilik'
+            to='/owner/kostfacility'
             className={({ isActive }) => (isActive ? activeLink : normalLink)}
         >
             <button className='' type='button'>
-            Akun Profil
+                <button className='w-9 h-9 rounded-full bg-[#FFFFFF61] text-[#0A008A] text-[20px]'>
+                    3
+                </button>
+                <span className='pl-6'>Tentang Kos</span>
+            </button>
+        </NavLink>
+
+        {/* Foto Kos */}
+        <NavLink
+            to='/fotokos'
+            className={({ isActive }) => (isActive ? activeLink : normalLink)}
+        >
+            <button className='' type='button'>
+                <button className='w-9 h-9 rounded-full bg-[#FFFFFF61] text-[#0A008A] text-[20px]'>
+                    4
+                </button>
+                <span className='pl-6'>Foto Kos</span>
+            </button>
+        </NavLink>
+
+        {/* Data Kamar */}
+        <NavLink
+            to='/owner/roomdetails'
+            className={({ isActive }) => (isActive ? activeLink : normalLink)}
+        >
+            <button className='' type='button'>
+                <button className='w-9 h-9 rounded-full bg-[#FFFFFF61] text-[#0A008A] text-[20px]'>
+                    5
+                </button>
+                <span className='pl-6'>Data Kamar</span>
             </button>
         </NavLink>
         </div>
