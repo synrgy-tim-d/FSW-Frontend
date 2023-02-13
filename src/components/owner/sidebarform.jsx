@@ -40,27 +40,37 @@ export const SidebarForm = () => {
             </svg>
             )}
         </button>
-        {/* <Drawer open={isOpen} onClose={toggleDrawer} direction='left' className=''>
+        <Drawer open={isOpen} onClose={toggleDrawer} direction='left' className=''>
             <ul
             className='bg-[#0A008A] text-white text-[20px] px-4 py-10 h-full text-start'
             >
             <li className='mb-5 border-2 rounded-[8px] pl-3 py-1 border-[#0A008A] hover:border-white'>
-                <NavLink to='/owner/property' className='font-[600]'>
-                Properti Saya
+                <NavLink to='/owner/formdata' className='font-[600]'>
+                Data Pemilik
                 </NavLink>
             </li>
             <li className='mb-5 border-2 rounded-[8px] pl-3 py-1 border-[#0A008A] hover:border-white'>
-                <NavLink to='/owner/history' className='font-[600]'>
-                Riwayat Transaksi
+                <NavLink to='/owner/kostdata' className='font-[600]'>
+                Data Kos
                 </NavLink>
             </li>
             <li className='mb-5 border-2 rounded-[8px] pl-3 py-1 border-[#0A008A] hover:border-white'>
-                <NavLink to='/profilpemilik' className='font-[600]'>
-                Akun Profil
+                <NavLink to='/owner/kostfacility' className='font-[600]'>
+                Tentang Kos
+                </NavLink>
+            </li>
+            <li className='mb-5 border-2 rounded-[8px] pl-3 py-1 border-[#0A008A] hover:border-white'>
+                <NavLink to='/owner/kostphotos' className='font-[600]'>
+                Foto Kos
+                </NavLink>
+            </li>
+            <li className='mb-5 border-2 rounded-[8px] pl-3 py-1 border-[#0A008A] hover:border-white'>
+                <NavLink to='/owner/roomdetails' className='font-[600]'>
+                Data Kamar
                 </NavLink>
             </li>
             </ul>
-        </Drawer> */}
+        </Drawer>
         </div>
 
         {/* Desktop version */}
