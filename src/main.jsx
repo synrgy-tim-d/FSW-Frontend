@@ -36,11 +36,13 @@ import './index.css';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import OauthGoogle from './components/oauth/oauth';
+import AddKostProvider from './context/kost';
 const queryClient = new QueryClient();
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
+      <AddKostProvider>
       <BrowserRouter>
         <Routes>
           {/* Landing Page */}
@@ -109,6 +111,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         </Routes>
       </BrowserRouter>
       <ToastContainer />
+      </AddKostProvider>
     </QueryClientProvider>
   </React.StrictMode>,
 );
