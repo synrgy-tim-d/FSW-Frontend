@@ -25,7 +25,9 @@ const AddOwnerProfile = () => {
     return (
         <React.Fragment>
         <div className='grid grid-cols-5 bg-[#FAFAFA]'>
-            <div className='col-span-1 bg-[#0A008A] h-full'></div>
+            <div className='col-span-1 bg-[#0A008A] text-white min-h-screen h-full text-center py-6 lg:px-8 lg:py-16'>
+                <SidebarForm />
+            </div>
 
             <div className='col-span-4 grid grid-rows-auto w-2/3 justify-self-left pl-14 gap-y-12 py-12'>
 
