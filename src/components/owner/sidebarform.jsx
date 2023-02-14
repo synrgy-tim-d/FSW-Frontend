@@ -46,27 +46,42 @@ export const SidebarForm = () => {
             >
             <li className='mb-5 border-2 rounded-[8px] pl-3 py-1 border-[#0A008A] hover:border-white'>
                 <NavLink to='/owner/formdata' className='font-[600]'>
-                Data Pemilik
+                <button className='w-9 h-9 rounded-full bg-white text-[#0A008A] text-[20px]'>
+                    1
+                </button>
+                <span className='pl-4'>Data Pemilik</span>
                 </NavLink>
             </li>
             <li className='mb-5 border-2 rounded-[8px] pl-3 py-1 border-[#0A008A] hover:border-white'>
                 <NavLink to='/owner/kostdata' className='font-[600]'>
-                Data Kos
+                <button className='w-9 h-9 rounded-full bg-white text-[#0A008A] text-[20px]'>
+                    2
+                </button>
+                <span className='pl-4'>Data Kos</span>
                 </NavLink>
             </li>
             <li className='mb-5 border-2 rounded-[8px] pl-3 py-1 border-[#0A008A] hover:border-white'>
                 <NavLink to='/owner/kostfacility' className='font-[600]'>
-                Tentang Kos
+                <button className='w-9 h-9 rounded-full bg-white text-[#0A008A] text-[20px]'>
+                    3
+                </button>
+                <span className='pl-4'>Tentang Kos</span>
                 </NavLink>
             </li>
             <li className='mb-5 border-2 rounded-[8px] pl-3 py-1 border-[#0A008A] hover:border-white'>
                 <NavLink to='/owner/kostphotos' className='font-[600]'>
-                Foto Kos
+                <button className='w-9 h-9 rounded-full bg-white text-[#0A008A] text-[20px]'>
+                    4
+                </button>
+                <span className='pl-4'>Foto Kos</span>
                 </NavLink>
             </li>
             <li className='mb-5 border-2 rounded-[8px] pl-3 py-1 border-[#0A008A] hover:border-white'>
                 <NavLink to='/owner/roomdetails' className='font-[600]'>
-                Data Kamar
+                <button className='w-9 h-9 rounded-full bg-white text-[#0A008A] text-[20px]'>
+                    5
+                </button>
+                <span className='pl-4'>Data Kamar</span>
                 </NavLink>
             </li>
             </ul>
