@@ -9,10 +9,10 @@ import AC from '../../../../assets/Fasilitas-kamar/AC.svg';
 import TV from '../../../../assets/Fasilitas-kamar/TV.svg';
 import Listrik from '../../../../assets/Fasilitas-kamar/Electricity.svg';
 import KipasAngin from '../../../../assets/Fasilitas-kamar/Fan.svg';
-import { useParams } from 'react-router-dom';
+// import { useParams } from 'react-router-dom';
 
 const Fasilitaskamar = ({ fetchData }) => {
-  const roomId = useParams();
+  // const roomId = useParams();
   const [Fasilitas, setFasilitas] = useState([]);
 
   useEffect(() => {
@@ -24,7 +24,7 @@ const Fasilitaskamar = ({ fetchData }) => {
       },
       {
         id: 2,
-        text: 'KM Dalam',
+        text: 'Kamar Mandi Dalam',
         image: KMDalam,
       },
       {
@@ -76,30 +76,30 @@ const Fasilitaskamar = ({ fetchData }) => {
     setFasilitas(FacilityList);
   }, []);
 
-  const rooms = fetchData.rooms.filter( room => room.id === `${roomId.roomid}`);
+  // const rooms = fetchData?.facilities?.filter( room => room.id === `${roomId.roomid}`);
 
   return (
     <div className='grid gap-4 text-[Montserrat] text-[20px]'>
       <p className='font-[700]'>Fasilitas Kamar</p>
       <div className='grid grid-rows-4 grid-flow-col auto-cols-max gap-8 gap-x-6'>
-        {rooms?.map((facilities) => {
-          const facilityName = [].concat(...facilities.facilities.map(facility => facility.name))
-          const fasilitasKamar = Fasilitas.filter(fasilitas => facilityName.includes(fasilitas.text));
+        {fetchData?.facilities?.map((facility) => {
+          // const facilityName = [].concat(...facilities.facilities.map(facility => facility.name))
+          const fasilitasKamar = Fasilitas.filter(fasilitas => facility?.name?.includes(fasilitas.text));
           return (
-            <React.Fragment key={facilities.id}>
+            <React.Fragment key={facility.id}>
               <div className='grid grid-cols-5 grid-flow-col gap-2'>
-                {fasilitasKamar.map((roomFacility) => {
+                {/* {fasilitasKamar.map((roomFacility) => {
                   return (
-                    <React.Fragment key={roomFacility.id}>
+                    <React.Fragment key={roomFacility.id}> */}
                       <span className='self-center'>
-                        <img className='rounded-full bg-[#FFDCBD] h-6 w-6' src={roomFacility.image} alt='' />
+                        <img className='rounded-full bg-[#FFDCBD] h-6 w-6' src={fasilitasKamar?.image} alt='' />
                       </span>
                       <span className='col-span-4 self-center justify-self-start'>
-                        <p>{roomFacility.text}</p>
+                        <p>{fasilitasKamar?.text}</p>
                       </span>
-                  </React.Fragment>
+                  {/* </React.Fragment>
                   );
-                })}
+                })} */}
               </div>
             </React.Fragment>
           );

@@ -8,11 +8,11 @@ const Faq = ({ fetchData }) => {
           <div tabIndex={0} className='collapse collapse-plus collapse-arrow'>
             <input type='checkbox' />
             <div className='collapse-title pl-2 p-2 text-[20px] text-[#B9B9BC] font-[600] bg-white'>
-              {fetchData.question1}
+              {fetchData?.question1}
             </div>
             <div className='collapse-content'>
               <div className='p-2 w-full bg-white text-[14px] font-[500]'>
-              {fetchData.answer1}
+              {fetchData?.answer1}
               </div>
             </div>
           </div>
@@ -24,11 +24,11 @@ const Faq = ({ fetchData }) => {
           <div tabIndex={0} className='collapse collapse-plus'>
             <input type='checkbox' />
             <div className='collapse-title pl-2 p-2 text-[20px] text-[#B9B9BC] font-[600] bg-white'>
-            {fetchData.question2}
+            {fetchData?.question2}
             </div>
             <div className='collapse-content'>
               <div className='p-2 w-full bg-white text-[14px] font-[500]'>
-                {fetchData.answer2}
+                {fetchData?.answer2}
               </div>
             </div>
           </div>
@@ -40,11 +40,11 @@ const Faq = ({ fetchData }) => {
           <div tabIndex={0} className='collapse collapse-plus'>
             <input type='checkbox' />
             <div className='collapse-title pl-2 p-2 text-[20px] text-[#B9B9BC] font-[600] bg-white'>
-            {fetchData.question3}
+            {fetchData?.question3}
             </div>
             <div className='collapse-content'>
               <div className='p-2 w-full bg-white text-[14px] font-[500]'>
-                {fetchData.answer3}
+                {fetchData?.answer3}
               </div>
             </div>
           </div>

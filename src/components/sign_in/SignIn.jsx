@@ -11,6 +11,7 @@ import iconeye from '../../assets/icon_eye.svg';
 import icongoogle from '../../assets/icon_google.svg';
 import Pencari from '../../assets/pencari.svg';
 import Pemilik from '../../assets/pemilik.svg';
+import { toast } from 'react-toastify';
 
 const SignIn = () => {
   const navigate = useNavigate();
@@ -25,7 +26,7 @@ const SignIn = () => {
   const [isPasswordHidden, setIsPasswordHidden] = useState(true);
 
   const onClickPasswordEye = (e) => {
-    e.preventDefault;
+    e.preventDefault();
     setIsPasswordHidden((prev) => {
       return !prev;
     });
@@ -50,7 +51,7 @@ const SignIn = () => {
       },
       onError: () => {
         setProgressLoading(100);
-        alert('Username atau Password salah!');
+        toast.error('Username atau Password salah!');
       },
     });
     setIsDisabled(false);

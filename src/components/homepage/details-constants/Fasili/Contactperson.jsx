@@ -1,5 +1,4 @@
 import React from 'react';
-import image from '../../../../assets/Banner1.png';
 import { Link } from 'react-router-dom';
 
 const Contactperson = ({fetchData}) => {
@@ -9,14 +8,14 @@ const Contactperson = ({fetchData}) => {
         <div className='grid col-span-1 place-content-center'>
           <img
             className='w-[150px] h-[150px] object-fill bg-inherit rounded-full'
-            src={fetchData.ownerId.imgUrl}
+            src={fetchData?.ownerId?.imgUrl}
             alt=''
           />
         </div>
         <div className='col-span-4 grid grid-rows-auto auto-rows-max gap-4 content-center'>
-          <p className='text-[20px] font-[600]'>{fetchData.ownerId.fullname}</p>
-          <p className='tect-[12px]'>Pemilik {fetchData.name}</p>
-          <Link to={`https://wa.me/${fetchData.ownerId.phoneNumber}`}>
+          <p className='text-[20px] font-[600]'>{fetchData?.ownerId?.fullname}</p>
+          <p className='tect-[12px]'>Pemilik {fetchData?.name}</p>
+          <Link to={`https://wa.me/0${fetchData?.ownerId?.phoneNumber}`}>
             <div className='flex justify-center p-1 rounded-[4px] w-1/4 border-2 border-[#0A008A]'>
               <span>
                 <svg
@@ -34,7 +33,7 @@ const Contactperson = ({fetchData}) => {
                   />
                 </svg>
               </span>
-              <p className='pl-2 text-[#0A008A] text-[16px] font-[600]'>{fetchData.ownerId.phoneNumber}</p>
+              <p className='pl-2 text-[#0A008A] text-[16px] font-[600]'>0{fetchData?.ownerId?.phoneNumber}</p>
             </div>
           </Link>
         </div>

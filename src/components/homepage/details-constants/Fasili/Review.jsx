@@ -1,5 +1,3 @@
-// import image from '../../../../assets/Banner1.png';
-
 const Review = ({ fetchReview }) => {
   let totalRating = 0
   let waktuReview = '';
@@ -44,7 +42,7 @@ const Review = ({ fetchReview }) => {
               />
             </svg>
           </span>
-          <span className='font-[600]'>{ratingAverage}</span>
+          <span className='font-[600]'>{isNaN(ratingAverage) ? 0 : ratingAverage}</span>
           <span className='italic'>({fetchReview.length} reviews)</span>
         </div>
         <div className='flex justify-end'>
@@ -56,10 +54,10 @@ const Review = ({ fetchReview }) => {
 
       <div className='grid grid-cols-7'>
         <div className='col-span-1'>
-          <img className='rounded-full w-[70px] h-[70px]' src={fetchReview[0]?.userId.imgUrl} alt='' />
+          <img className='rounded-full w-[70px] h-[70px]' src={fetchReview[0]?.userId?.imgUrl} alt='' />
         </div>
         <div className='col-span-6 grid grid-rows-auto gap-2'>
-          <p className='text-[25px] font-[600]'>{fetchReview[0]?.userId.fullname}</p>
+          <p className='text-[25px] font-[600]'>{fetchReview[0]?.userId?.fullname}</p>
           <p className='text-[#627154] text-[16px]'>{waktuReview}</p>
           <span>
             <svg

@@ -1,9 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Link } from 'react-router-dom';
 import LogoNaqos from '../../assets/LogoNaqosPolos.png';
 import Drawer from 'react-modern-drawer';
 import 'react-modern-drawer/dist/index.css';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import NotificationBody from '../notification/NotificationBody';
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
@@ -47,7 +46,6 @@ const Navbar = () => {
   const [isNotificationHidden, setIsNotificationHidden] = useState(true)
   const onClickNotificationHandler = (e) => {
     e.preventDefault();
-    console.log("ASASA")
     setIsNotificationHidden(false);
   }
 
@@ -67,11 +65,9 @@ const Navbar = () => {
         );
     },
     onSuccess: (res) => {
-        console.log(res);
         setNotifications(res?.data?.notificationResponses)
     },
-    onError: (err) => {
-        console.log(err)
+    onError: () => {
         setNotifications([false])
     }
   })
