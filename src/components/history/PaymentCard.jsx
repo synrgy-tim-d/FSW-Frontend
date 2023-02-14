@@ -1,10 +1,10 @@
 import icondownload from '../../assets/icon_download.svg';
 import iconcompleted from '../../assets/icon_completed.svg';
 
-function PaymentCard({ kosName, bookingId, paymentDate, price, payment_image_url }) {
+function PaymentCard({ kosName, bookingId, paymentDate, price, paymentImageUrl }) {
   const date = new Date(paymentDate);
-  const staticUrl = payment_image_url.slice(0, 49);
-  const downUrl = payment_image_url.slice(49);
+  const staticUrl = paymentImageUrl.slice(0, 49);
+  const downUrl = paymentImageUrl.slice(49);
   return (
     <div>
       <div className='flex flex-row py-2 lg:py-4 text-black'>

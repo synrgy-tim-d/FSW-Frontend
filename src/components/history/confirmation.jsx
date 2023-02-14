@@ -1,10 +1,6 @@
-import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import imagetwo from '../../assets/img_kosTwo.png';
-import iconlocation from '../../assets/icon_location.svg';
-import iconarrowright from '../../assets/icon_arrow-right-2.svg';
+
 import iconarrowdown from '../../assets/icon_arrow-down.svg';
-import iconpending from '../../assets/icon_pending.svg';
 
 import { useQuery } from '@tanstack/react-query';
 import axiosInstance from '../../utils/http-interceptor';

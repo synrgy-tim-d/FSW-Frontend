@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Link, useParams, useNavigate } from 'react-router-dom';
-import imagetwo from '../../assets/img_kosTwo.png';
+
 import imagebri from '../../assets/img_bri.png';
-import iconlocation from '../../assets/icon_location.svg';
-import iconarrowright from '../../assets/icon_arrow-right-2.svg';
+
 import iconupload from '../../assets/icon_upload.svg';
 import iconarrowdown from '../../assets/icon_arrow-down.svg';
 
