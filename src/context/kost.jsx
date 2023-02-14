@@ -29,7 +29,14 @@ const InitialAddKostState = {
     roomCostDay:null,
     roomCostWeek:null,
     roomCostMonth:null,
-    roomPhotos:null
+    roomPhotos1:null,
+    roomPhotos2:null,
+    roomPhotos3:null,
+    roomPhotos4:null,
+    roomPhotosUrl1:null,
+    roomPhotosUrl2:null,
+    roomPhotosUrl3:null,
+    roomPhotosUrl4:null
 }
 
 export const AddKostActions = {
@@ -61,7 +68,14 @@ export const AddKostActions = {
     SET_ROOM_COST_DAY:'SET_ROOM_COST_DAY',
     SET_ROOM_COST_WEEK:'SET_ROOM_COST_WEEK',
     SET_ROOM_COST_MONTH:'SET_ROOM_COST_MONTH',
-    SET_ROOM_PHOTOS:'SET_ROOM_PHOTOS',
+    SET_ROOM_PHOTOS_1:'SET_ROOM_PHOTOS_1',
+    SET_ROOM_PHOTOS_2:'SET_ROOM_PHOTOS_2',
+    SET_ROOM_PHOTOS_3:'SET_ROOM_PHOTOS_3',
+    SET_ROOM_PHOTOS_4:'SET_ROOM_PHOTOS_4',
+    SET_ROOM_PHOTOS_URL_1:'SET_ROOM_PHOTOS_URL_1',
+    SET_ROOM_PHOTOS_URL_2:'SET_ROOM_PHOTOS_URL_2',
+    SET_ROOM_PHOTOS_URL_3:'SET_ROOM_PHOTOS_URL_3',
+    SET_ROOM_PHOTOS_URL_4:'SET_ROOM_PHOTOS_URL_4',
     RESET:'RESET',
 }
 
@@ -123,8 +137,22 @@ const AddKostReducer = (state,action) => {
             return {...state, roomCostWeek:action.payload}
         case AddKostActions.SET_ROOM_COST_MONTH :
             return {...state, roomCostMonth:action.payload}
-        case AddKostActions.SET_ROOM_PHOTOS :
-            return {...state, roomPhotos:action.payload}
+        case AddKostActions.SET_ROOM_PHOTOS_1 :
+            return {...state, roomPhotos1:action.payload}
+        case AddKostActions.SET_ROOM_PHOTOS_2 :
+            return {...state, roomPhotos2:action.payload}
+        case AddKostActions.SET_ROOM_PHOTOS_3 :
+            return {...state, roomPhotos3:action.payload}
+        case AddKostActions.SET_ROOM_PHOTOS_4 :
+            return {...state, roomPhotos4:action.payload}
+        case AddKostActions.SET_ROOM_PHOTOS_URL_1 :
+            return {...state, roomPhotosUrl1:action.payload}
+        case AddKostActions.SET_ROOM_PHOTOS_URL_2 :
+            return {...state, roomPhotosUrl2:action.payload}
+        case AddKostActions.SET_ROOM_PHOTOS_URL_3 :
+            return {...state, roomPhotosUrl3:action.payload}
+        case AddKostActions.SET_ROOM_PHOTOS_URL_4 :
+            return {...state, roomPhotosUrl4:action.payload}
         case AddKostActions.RESET :
             return InitialAddKostState
     }

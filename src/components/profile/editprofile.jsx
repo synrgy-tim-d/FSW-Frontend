@@ -47,7 +47,6 @@ const EditProfile = () => {
     pictureRef.current.click();
   };
 
-
   const [progressLoading, setProgressLoading] = useState(0);
 
   const onClickSaveHandler = async (e) => {
