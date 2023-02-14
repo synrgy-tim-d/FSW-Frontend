@@ -91,21 +91,12 @@ const AddOwnerProfile = () => {
           <SidebarForm />
         </div>
 
-        <div className='col-span-4 grid grid-rows-auto w-2/3 justify-self-left pl-14 gap-y-12 py-12'>
-          <div className=''>
-            <p className='text-[39px] text-[#000000] font-[600]'>
-              Silahkan Lengkapi Data Pemilik/Pengelola Kos
-            </p>
-            <p className='text-[20px] text-[#000000]'>
-              Data pemilik digunakan apabila calon penyewa akan melakukan negosiasi dan pembayaran
-            </p>
-          </div>
+            <div className='col-span-4 grid grid-rows-auto w-2/3 justify-self-left pl-14 gap-y-12 py-12'>
 
-          <form>
-            <label className='relative block pb-10'>
-              <span className='block text-[20px] font-semibold text-[#000000] pb-3'>
-                Nama Pemilik/Pengelola
-              </span>
+            <div className=''>
+                <p className='text-[39px] text-[#000000] font-[600]'>Silahkan Lengkapi Data Pemilik/Pengelola Kos</p>
+                <p className='text-[20px] text-[#000000]'>Data pemilik digunakan apabila calon penyewa akan melakukan negosiasi dan pembayaran</p>
+            </div>
 
               <input
                 className='placeholder:text-base placeholder:font-semibold placeholder:text-[#46464F]/[0.38] block bg-white w-full border border-slate-300 rounded-full py-4 pl-6 pr-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm'
@@ -117,10 +108,9 @@ const AddOwnerProfile = () => {
               />
             </label>
 
-            <label className='relative block pb-10'>
-              <span className='block text-[20px] font-semibold text-[#000000] pb-3'>
-                Nomor HP (WhatsApp) Pemilik/Pengelola
-              </span>
+            <form>
+                <label className="relative block pb-10">
+                    <span className="block text-[20px] font-semibold text-[#000000] pb-3">Nama Pemilik/Pengelola</span>
 
               <input
                 className='placeholder:text-base placeholder:font-semibold placeholder:text-[#46464F]/[0.38] block bg-white w-full border border-slate-300 rounded-full py-4 pl-6 pr-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm'
@@ -132,12 +122,16 @@ const AddOwnerProfile = () => {
               />
             </label>
 
-            <label className='relative block'>
-              <span className='block text-[20px] font-semibold text-[#000000]'>Rekening Bank</span>
-              <span className='block text-[20px] text-[#000000]'>
-                Rekening yang digunakan untuk pembayaran melalui transfer
-              </span>
-            </label>
+                <label className="relative block pb-10">
+                    <span className="block text-[20px] font-semibold text-[#000000] pb-3">Nomor HP (WhatsApp) Pemilik/Pengelola</span>
+
+                    <input className="placeholder:text-base placeholder:font-semibold placeholder:text-[#46464F]/[0.38] block bg-white w-full border border-slate-300 rounded-full py-4 pl-6 pr-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm" placeholder="Isi nomor handphone Whatsapp aktif" type="text" name="search" />
+                </label>
+
+                <label className="relative block">
+                    <span className="block text-[20px] font-semibold text-[#000000]">Rekening Bank</span>
+                    <span className="block text-[20px] text-[#000000]">Rekening yang digunakan untuk pembayaran melalui transfer</span>
+                </label>
 
             <label htmlFor='' className='relative w-full cursor-pointer pb-10'>
               <div className='pt-4'>
@@ -260,10 +254,8 @@ const AddOwnerProfile = () => {
               />
             </label>
 
-            <label className='relative block pb-10'>
-              <span className='block text-[20px] font-semibold text-[#000000] pb-3'>
-                Nomor Rekening
-              </span>
+                <label className="relative block pb-10">
+                    <span className="block text-[20px] font-semibold text-[#000000] pb-3">Nomor Rekening</span>
 
               <input
                 className='placeholder:text-base placeholder:font-semibold placeholder:text-[#46464F]/[0.38] block bg-white w-full border border-slate-300 rounded-full py-4 pl-6 pr-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm'
@@ -275,10 +267,8 @@ const AddOwnerProfile = () => {
               />
             </label>
 
-            <label className='relative block pb-10'>
-              <span className='block text-[20px] font-semibold text-[#000000] pb-3'>
-                Kepemilikan Rekening
-              </span>
+                <label className="relative block pb-10">
+                    <span className="block text-[20px] font-semibold text-[#000000] pb-3">Kepemilikan Rekening</span>
 
               <input
                 className='placeholder:text-base placeholder:font-semibold placeholder:text-[#46464F]/[0.38] block bg-white w-full border border-slate-300 rounded-full py-4 pl-6 pr-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm'
@@ -292,10 +282,10 @@ const AddOwnerProfile = () => {
           </form>
           <div className='grid grid-flow-col place-content-between pt-24'>
             <button
-              className='rounded border-2 border-[#0A008A] text=[#0A008A] bg-white font-[600] p-2 px-3'
-              type='button'
+                className='rounded border-2 border-[#0A008A] text=[#0A008A] bg-white font-[600] p-2 px-3'
+                type='button'
             >
-              Kembali
+                Kembali
             </button>
             
             <Link to='/owner/kostdata'>
@@ -304,13 +294,12 @@ const AddOwnerProfile = () => {
                 type='button'
               >
                 Simpan & Lanjutkan
-              </button>
+            </button>
             </Link>
-          </div>
+            </div>
         </div>
-      </div>
-    </React.Fragment>
-  );
+        </React.Fragment>
+    );
 };
 
 export default AddOwnerProfile;
