@@ -51,7 +51,6 @@ function OwnerFasilitasKos() {
   const [peraturanKosCheckedState, setPeraturanKosCheckedState] = useState(
     new Array(peraturanKos.length).fill(false),
   );
-
   const peraturanKosOnChangeHandler = (position) => {
     const updatedCheckedState = peraturanKosCheckedState.map((item, index) =>
       index === position ? !item : item,

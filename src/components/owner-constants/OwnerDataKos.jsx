@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import axiosInstance from '../../utils/http-interceptor';
+import axios from 'axios';
 import './datakosstyle.css';
 import kosimg from '../../assets/city-card.svg';
 import putri from '../../assets/radio_Putri.svg';
@@ -13,13 +13,13 @@ import appConfig from '../../config';
 const OwnerDataKos = () => {
   const provincesData = useQuery({
     queryKey: ['provinces'],
-    queryFn: async () => await axiosInstance.get(`${appConfig.BE_URL}/provinces`),
+    queryFn: async () => await axios.get(`${appConfig.BE_URL}/provinces`),
     keepPreviousData: true,
   });
 
   const citiesData = useQuery({
     queryKey: ['cities'],
-    queryFn: async () => await axiosInstance.get(`${appConfig.BE_URL}/cities`),
+    queryFn: async () => await axios.get(`${appConfig.BE_URL}/cities`),
     keepPreviousData: true,
   });
 

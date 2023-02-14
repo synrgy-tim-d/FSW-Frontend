@@ -144,14 +144,14 @@ const OwnerFotokos = () => {
                 </button>
               </Link>
 
-              <a href='owner/roomdetails'>
+              <Link to='/owner/roomdetails'>
                 <button
                   className='border-2 border-[#0A008A] bg-[#0A008A] text-white font-[600] p-2 px-3'
                   type='button'
                 >
                   Simpan & Lanjutkan
                 </button>
-              </a>
+              </Link>
             </div>
           </div>
         </div>
