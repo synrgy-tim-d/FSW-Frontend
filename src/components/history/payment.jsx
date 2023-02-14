@@ -168,7 +168,6 @@ const PaymentHistory = () => {
             getBooking?.data.data
               .filter((booking) => booking.BookingDetail.is_confirmed === true)
               .map((booking) => {
-                console.log(booking);
                 return (
                   <PaymentCard
                     key={booking.booking_id}
@@ -176,7 +175,7 @@ const PaymentHistory = () => {
                     kosName={booking.Kost.name}
                     paymentDate={booking.BookingDetail.updated_at}
                     price={booking.BookingDetail.rent_price}
-                    payment_image_url={booking.BookingDetail.payment_image_url}
+                    paymentImageUrl={booking.BookingDetail.payment_image_url}
                   />
                 );
               })}

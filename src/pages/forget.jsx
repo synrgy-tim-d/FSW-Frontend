@@ -7,7 +7,6 @@ import { useParams } from 'react-router-dom';
 
 function Forget() {
   const { otp } = useParams();
-  console.log(otp);
 
   return (
     <div className='flex flex-wrap w-full  lg:gap-28 gap-16 py-14'>

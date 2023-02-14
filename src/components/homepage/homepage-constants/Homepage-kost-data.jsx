@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { useMutation } from '@tanstack/react-query';
 import { ToastContainer, toast } from 'react-toastify';
 import axiosInstance from '../../../utils/http-interceptor';
-import axios from 'axios';
+// import axios from 'axios';
 
 const LikeButton = ({ kosId }) => {
   const [kostWishlist, setKostWishlist] = useState({
@@ -112,33 +112,33 @@ const Kostdata = ({ fetchData }) => {
         theme='light'
       />
       {fetchData?.map((kost) => {
-        const facilities = [].concat(...kost?.rooms?.map((room) => room?.facilities?.map((facility) => facility?.name)));
-        const uniqueFacilities = [...new Set(facilities)];
-        const [kostReview, setKostReview] = useState([]);
-        useEffect(() => {
-          fetchDataReview();
-        }, []);
-        const fetchDataReview = () => {
-          return axios
-            .get(`https://be-naqos.up.railway.app/api/public/kost_review/${kost.id}`)
-            .then((response) => {
-              const result = response.data?.data;
-              setKostReview(result)
-            });
-        };
-        let totalRating = 0
+        // const facilities = [].concat(...kost?.rooms?.map((room) => room?.facilities?.map((facility) => facility?.name)));
+        // const uniqueFacilities = [...new Set(facilities)];
+        // const [kostReview, setKostReview] = useState([]);
+        // useEffect(() => {
+        //   fetchDataReview();
+        // }, []);
+        // const fetchDataReview = () => {
+        //   return axios
+        //     .get(`https://be-naqos.up.railway.app/api/public/kost_review/${kost.id}`)
+        //     .then((response) => {
+        //       const result = response.data?.data;
+        //       setKostReview(result)
+        //     });
+        // };
+        // let totalRating = 0
 
-        for (let i = 0; i < kostReview.length; i++) {
-          totalRating += kostReview[i].rating;
-        }
+        // for (let i = 0; i < kostReview.length; i++) {
+        //   totalRating += kostReview[i].rating;
+        // }
       
-        const ratingAverage = totalRating/kostReview.length;
+        // const ratingAverage = totalRating/kostReview.length;
         return (
-          <React.Fragment key={kost.id}>
+          <React.Fragment key={kost?.id}>
             <div className='grid grid-cols-3 grid-flow-col bg-white rounded-[16px]'>
-              <Link to={`/kos/${kost.id}/${kost.rooms[0]?.id}`}>
+              <Link to={`/kos/${kost?.id}/${kost?.rooms[0]?.id}`}>
                 <div className='col-span-1 rounded-[16px]'>
-                  <img className='w-full h-auto' src={kost.imageKosts[0]?.url} alt='' />
+                  <img className='w-full h-auto' src={kost?.imageKosts[0]?.url} alt='' />
                 </div>
               </Link>
               <div className='col-span-2 grid grid-rows-auto grid-flow-row md:gap-1 sm:auto-rows-auto pl-2 md:p-4'>
@@ -150,10 +150,10 @@ const Kostdata = ({ fetchData }) => {
                     text-[12px] lg:text-[16px] font-[600] leading-none
                     hidden'
                     >
-                      {kost.kostType.slice(4)}
+                      {kost?.kostType?.slice(4)}
                     </div>
                     <span className='text-[#BA1A1A] italic md:pl-2 self-center'>
-                      sisa {kost.rooms.filter((room) => room.isAvailable === true).length} kamar
+                      sisa {kost?.rooms?.filter((room) => room?.isAvailable === true).length} kamar
                     </span>
                   </div>
                   <div className='flex justify-end self-center pr-4'>
@@ -162,11 +162,11 @@ const Kostdata = ({ fetchData }) => {
                 </div>
 
                 <div className='grid grid-rows-auto'>
-                  <p className='font-[600]'>{kost.name}</p>
+                  <p className='font-[600]'>{kost?.name}</p>
                   <p>
-                    {kost.address}, {kost.subdistrict}, {kost.district}, {kost.city.city}, {kost.city.province.province} ({kost.postalCode})
+                    {kost?.address}, {kost?.subdistrict}, {kost?.district}, {kost?.city?.city}, {kost?.city?.province?.province} ({kost?.postalCode})
                     <span className='text-[#000000]/[0.38] pl-2'>
-                      <Link to={`/kos/${kost.id}/${kost.rooms[0]?.id}`}>...selengkapnya</Link>
+                      <Link to={`/kos/${kost?.id}/${kost?.rooms[0]?.id}`}>...selengkapnya</Link>
                     </span>
                   </p>
                 </div>
@@ -187,8 +187,10 @@ const Kostdata = ({ fetchData }) => {
                     </svg>
                   </span>
                   <p className='text-[10px] md:text-[12px] lg:text-[14px] font-[500]'>
-                    {isNaN(ratingAverage) ? 0 : ratingAverage}
-                    <span className='italic pl-1'>({kostReview?.length} reviews)</span>
+                    {/* {isNaN(ratingAverage) ? 0 : ratingAverage}
+                    <span className='italic pl-1'>({kostReview?.length} reviews)</span> */}
+                    {0}
+                    <span className='italic pl-1'>(0 reviews)</span>
                   </p>
                   <span className='self-center'>
                     <svg
@@ -207,17 +209,17 @@ const Kostdata = ({ fetchData }) => {
                     </svg>
                   </span>
                   <p className='text-[10px] md:text-[12px] lg:text-[14px] font-[500]'>
-                    {kost.city.city}
+                    {kost?.city?.city}
                   </p>
                 </div>
 
                 <div className='grid lg:grid-cols-2 grid-flow-col'>
                   <div className='hidden lg:grid col-span-1 grid-flow-col auto-cols-max gap-4 text-[#0A008A] font-[600]'>
-                    {uniqueFacilities?.map((facility, index) => {
+                    {kost?.facilities?.map((facility) => {
                       return (
-                        <React.Fragment key={index}>
+                        <React.Fragment key={facility.id}>
                           <div className='border-2 rounded-[4px] border-[#0A008A] p-2 self-center'>
-                            {facility}
+                            {facility.name}
                           </div>
                         </React.Fragment>
                       );
@@ -225,7 +227,7 @@ const Kostdata = ({ fetchData }) => {
                   </div>
                   <div className='lg:col-span-1 flex justify-start lg:justify-end'>
                     <p className='font-[700] lg:pl-8'>
-                      Rp {kost.rooms[0]?.pricePerMonthly}
+                      Rp {kost?.pricePerMonthly}
                       <span className='text-[10px] md:text-[14px] lg:text-[16px] font-[400]'>
                         /bulan
                       </span>

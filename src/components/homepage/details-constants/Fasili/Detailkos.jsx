@@ -9,19 +9,18 @@ const Detailkos = ({ fetchData, fetchReview }) => {
   }
  
   const ratingAverage = totalRating/fetchReview.length;
-  
   return (
     <React.Fragment>
       <div className='grid gap-4'>
         <p className='flex text-[39px] font-[700]'>
-          {fetchData.name}
+          {fetchData?.name}
           <span className='ml-4 py-3 px-3 border-2 border-[#0A008A] rounded-[70px] text-[20px] font-[600]'>
-            {fetchData.kostType.slice(4)}
+            {fetchData?.kostType?.slice(4)}
           </span>
         </p>
-        <p className='text-[39px] font-[700] self-center'>Tipe Kamar {fetchData.rooms[0]?.roomType.replace(/_/g, ' ').toLowerCase().split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')} {fetchData.city.city}</p>
+        <p className='text-[39px] font-[700] self-center'>Tipe Kamar {fetchData?.rooms[0]?.roomType?.replace(/_/g, ' ').toLowerCase().split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')} {fetchData?.city?.city}</p>
         <p className='text-[20px]'>
-          {fetchData.address}, {fetchData.district}, {fetchData.subdistrict}, {fetchData.city.city}, {fetchData.city.province.province} ({fetchData.postalCode})
+          {fetchData?.address}, {fetchData?.subdistrict}, {fetchData?.district}, {fetchData?.city?.city}, {fetchData?.city?.province?.province} ({fetchData?.postalCode})
         </p>
         <div className='grid grid-flow-col gap-4'>
           <div className='grid grid-flow-col auto-cols-max gap-2 content-center'>
@@ -39,7 +38,7 @@ const Detailkos = ({ fetchData, fetchReview }) => {
                 />
               </svg>
             </span>
-            <span>{ratingAverage}</span>
+            <span>{isNaN(ratingAverage) ? 0 : ratingAverage}</span>
             <span>({fetchReview.length} reviews)</span>
             <span className='self-center'>
               <svg
@@ -57,8 +56,8 @@ const Detailkos = ({ fetchData, fetchReview }) => {
                 />
               </svg>
             </span>
-            <Link to={`https://www.google.com/maps/dir//@${fetchData.latitude},${fetchData.longitude}`}>
-              <span>{fetchData.city.city}</span>
+            <Link to={`https://www.google.com/maps/dir//@${fetchData?.latitude},${fetchData?.longitude}`}>
+              <span>{fetchData?.city?.city}</span>
             </Link>
           </div>
           <div className='grid grid-flow-col auto-cols-max gap-4 justify-end'>
