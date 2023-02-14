@@ -1,12 +1,42 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 import './datakosstyle.css';
 import kosimg from '../../assets/city-card.svg';
 import putri from '../../assets/radio_Putri.svg';
 import putra from '../../assets/radio_Putra.svg';
 import campuran from '../../assets/radio_Campuran.svg';
+import { useAddKost, AddKostActions } from '../../context/kost';
+import { useQuery } from '@tanstack/react-query';
+import appConfig from '../../config';
 
 const OwnerDataKos = () => {
+  const addKost = useAddKost();
+
+  const kostNameRef = useRef(null);
+  const onChangeKostName = (e) => {
+    e.preventDefault();
+    addKost.dispatch({
+      type: AddKostActions.SET_KOST_NAME,
+      payload: e.target.value
+    })
+  }
+
+  const kostAddressRef = useRef(null);
+  const onChangeKostAddress = (e) => {
+    e.preventDefault();
+    addKost.dispatch({
+      type: AddKostActions.SET_KOST_ADDRESS,
+      payload: e.target.value
+    })
+  }
+
+  useEffect(() => {
+    kostNameRef.current.value = addKost.kostName;
+    kostAddressRef.current.value = addKost.kostAddress;
+  },[])
+
+
   return (
     <React.Fragment>
       <div className='grid grid-cols-5 text-[16px] font-[400] font-montserrat'>
@@ -24,12 +54,14 @@ const OwnerDataKos = () => {
                 <p className='font-[600]'>Apa Nama Kos yang dikelola?</p>
                 <p>
                   Ketik <span className='italic'>Kos</span> (spasi){' '}
-                  <span className='italic'>Nama Kos</span> tanpa perlu ktik alamat atau nama daerah
+                  <span className='italic'>Nama Kos</span> tanpa perlu ketik alamat atau nama daerah
                 </p>
                 <input
                   type='text'
                   className='border-2 rounded-full font-[500] py-2 px-3'
                   placeholder='Ketikkan nama kos beserta tipe kamar disini'
+                  ref={kostNameRef}
+                  onChange={(e) => onChangeKostName(e)}
                 />
               </div>
 
@@ -39,32 +71,32 @@ const OwnerDataKos = () => {
                 <textarea
                   className='font-[600] text-gray-700  border-2 border-[#CECECE] rounded-[8px] px-2 py-2 w-[820px] h-[180px]'
                   placeholder='Tulis alamat kos hingga rincian patokan tertentu (misal: 300 meter dari UGM)'
+                  ref={kostAddressRef}
+                  onChange={(e) => onChangeKostAddress(e)}
                 />
               </div>
 
               <div className='gap-y-3 grid grid-flow-row'>
                 <p className='font-[600]'>Provinsi</p>
-                <select className='select select-bordered w-full max-w-xs rounded-xl text-[#B9B9BC]'>
+                <select className='select select-bordered w-full max-w-xs rounded-xl text-[#B9B9BC]' >
                   <option disabled defaultValue>
                     Pilih Provinsi
                   </option>
-                  <option>DIY</option>
-                  <option>Jawa Timur</option>
-                  <option>Jawa Barat</option>
-                  <option>DKI Jakarta</option>
+                  {/* {provinces.map((e,i) => {
+                    return (<option value={[e.name, e.id]} key={i} selected={addKost.kostLocationProvince === e.name}>{e.name}</option>)
+                  })} */}
                 </select>
               </div>
 
               <div className='gap-y-3 grid grid-flow-row'>
-                <p className='font-[600]'>Kabupate/Kota</p>
+                <p className='font-[600]'>Kabupaten/Kota</p>
                 <select className='select select-bordered w-full max-w-xs rounded-xl text-[#B9B9BC]'>
                   <option disabled defaultValue>
                     Pilih Kab/Kota
                   </option>
-                  <option>Sleman</option>
-                  <option>Bantul</option>
-                  <option>Yogyakarta</option>
-                  <option>Kulonprogo</option>
+                  {/* {district.map((e,i) => {
+                    return (<option value={[e.name, e.id]} key={i} selected={addKost.kostLocationDistrict === e.name}>{e.name}</option>)
+                  })} */}
                 </select>
               </div>
 
@@ -74,10 +106,9 @@ const OwnerDataKos = () => {
                   <option disabled defaultValue>
                     Pilih Kecamatan
                   </option>
-                  <option>Mlati</option>
-                  <option>Pringsewu</option>
-                  <option>Turi</option>
-                  <option>Kotabaru</option>
+                  {/* {district.map((e,i) => {
+                    return (<option value={[e.name, e.id]} key={i} selected={addKost.kostLocationDistrict === e.name}>{e.name}</option>)
+                  })} */}
                 </select>
               </div>
 
@@ -130,14 +161,14 @@ const OwnerDataKos = () => {
               </Link>
 
               {/* <Link to='/owner/kostfacility'> */}
-              <a href='/owner/kostfacility'>
+              <Link to='/owner/kostfacility'>
                 <button
                   className='border-2 border-[#0A008A] bg-[#0A008A] text-white font-[600] p-2 px-3'
                   type='button'
                 >
                   Simpan & Lanjutkan
                 </button>
-              </a>
+              </Link>
               {/* </Link> */}
             </div>
           </div>

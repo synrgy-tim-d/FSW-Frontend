@@ -141,16 +141,16 @@ function OwnerFasilitasKos() {
             </div>
 
             <div className='grid grid-flow-col place-content-between pt-24'>
-              <a href='owner/kostdata'>
+              <Link to='owner/kostdata'>
                 <button
                   className='border-2 border-[#0A008A] text=[#0A008A] bg-white font-[600] p-2 px-3'
                   type='button'
                 >
                   Kembali
                 </button>
-              </a>
+              </Link >
 
-              <a href='owner/kostphotos'>
+              <Link to='owner/kostphotos'>
                 <div className='grid grid-flow-col'>
                   <button
                     className='border-2 border-[#0A008A] bg-[#0A008A] text-white font-[600] p-2 px-3'
@@ -159,7 +159,7 @@ function OwnerFasilitasKos() {
                     Simpan & Lanjut
                   </button>
                 </div>
-              </a>
+              </Link>
             </div>
           </div>
         </div>
