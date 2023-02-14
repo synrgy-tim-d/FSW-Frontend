@@ -1,10 +1,8 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import imageone from '../../assets/img_kosOne.png';
-import imagetwo from '../../assets/img_kosTwo.png';
+
 import imagethree from '../../assets/img_kosThree.png';
-import iconlocation from '../../assets/icon_location.svg';
-import iconarrowright from '../../assets/icon_arrow-right-2.svg';
+
 import iconarrowdown from '../../assets/icon_arrow-down.svg';
 import iconclose from '../../assets/icon_close.svg';
 
@@ -18,7 +16,6 @@ const BookingHistory = () => {
   let rating = null;
 
   const ratingSet = (values) => {
-    console.log(values);
     return (
       <div className='flex flex-row gap-1'>
         <svg
@@ -284,7 +281,6 @@ const BookingHistory = () => {
           {getBooking.isLoading && <div className='text-xl text-center mx-20'>Loading ...</div>}
           {getBooking.isSuccess &&
             getBooking?.data.data.map((booking) => {
-              console.log(booking);
               return (
                 <BookingCard
                   key={booking.booking_id}

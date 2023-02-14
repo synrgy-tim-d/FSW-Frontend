@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
-import imagetwo from '../../assets/img_kosTwo.png';
+
 import imageconfirm from '../../assets/img_confirmPayment.png';
-import iconlocation from '../../assets/icon_location.svg';
-import iconarrowright from '../../assets/icon_arrow-right-2.svg';
+
 import iconclose from '../../assets/icon_close.svg';
 import iconarrowdown from '../../assets/icon_arrow-down.svg';
 
@@ -185,8 +184,6 @@ const PayNowHistory = () => {
               .map((booking) => {
                 price = booking.BookingDetail.rent_price;
                 rentTime = booking.BookingDetail.rent_time;
-
-                console.log();
 
                 return (
                   <BookingCard

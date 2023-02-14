@@ -1,6 +1,13 @@
 import React from 'react';
 
-const Formpemesanan = ({ dateOnChange, totalPayment, timeOnChange, submitOnClick, dateDesc }) => {
+const Formpemesanan = ({
+  dateOnChange,
+  totalPayment,
+  timeOnChange,
+  submitOnClick,
+  dateDesc,
+  isLoading,
+}) => {
   return (
     <React.Fragment>
       <form
@@ -43,13 +50,23 @@ const Formpemesanan = ({ dateOnChange, totalPayment, timeOnChange, submitOnClick
           )}`}</div>
         </div>
         <div className='w-full px-6'>
-          <button
-            type='submit'
-            className='bg-[#0A008A] mb-8 p-2 text-[16px] text-white rounded w-full py-1 lg:py-2 px-12 hover:bg-[#A0A3FF] hover:text-[#FFFFFF] active:bg-black'
-            onClick={submitOnClick}
-          >
-            Sewa
-          </button>
+          {isLoading ? (
+            <button
+              type='submit'
+              className='bg-[#0A008A] mb-8 p-2 text-[16px] text-white rounded w-full py-1 lg:py-2 px-12 hover:bg-[#A0A3FF] hover:text-[#FFFFFF] active:bg-black'
+              onClick={submitOnClick}
+            >
+              Loading...
+            </button>
+          ) : (
+            <button
+              type='submit'
+              className='bg-[#0A008A] mb-8 p-2 text-[16px] text-white rounded w-full py-1 lg:py-2 px-12 hover:bg-[#A0A3FF] hover:text-[#FFFFFF] active:bg-black'
+              onClick={submitOnClick}
+            >
+              Sewa
+            </button>
+          )}
         </div>
       </form>
     </React.Fragment>
