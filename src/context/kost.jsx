@@ -15,7 +15,10 @@ const InitialAddKostState = {
     kostFacilities:null,
     kostRules:null,
     kostDescription:null,
-    kostFaq:[],
+    kostFaq:null,
+    kostFaqAnswer:null,
+    kostFaq2:null,
+    kostFaqAnswer2:null,
     kostFrontPhoto:null,
     kostBackPhoto:null,
     roomDescription:null,
@@ -45,6 +48,9 @@ export const AddKostActions = {
     SET_KOST_RULES:'SET_KOST_RULES',
     SET_KOST_DESCRIPTION:'SET_KOST_DESCRIPTION',
     SET_KOST_FAQ:'SET_KOST_FAQ',
+    SET_KOST_FAQ_ANSWER:'SET_KOST_FAQ_ANSWER',
+    SET_KOST_FAQ_2:'SET_KOST_FAQ_2',
+    SET_KOST_FAQ_ANSWER_2:'SET_KOST_FAQ_ANSWER_2',
     SET_KOST_FRONT_PHOTO:'SET_KOST_FRONT_PHOTO',
     SET_KOST_BACK_PHOTO:'SET_KOST_BACK_PHOTO',
     SET_ROOM_DESCRIPTION:'SET_ROOM_DESCRIPTION',
@@ -91,6 +97,12 @@ const AddKostReducer = (state,action) => {
             return {...state, kostDescription:action.payload}
         case AddKostActions.SET_KOST_FAQ :
             return {...state, kostFaq:action.payload}
+        case AddKostActions.SET_KOST_FAQ_ANSWER :
+            return {...state, kostFaqAnswer:action.payload}
+        case AddKostActions.SET_KOST_FAQ_2 :
+            return {...state, kostFaq2:action.payload}
+        case AddKostActions.SET_KOST_FAQ_ANSWER_2 :
+            return {...state, kostFaqAnswer2:action.payload}
         case AddKostActions.SET_KOST_FRONT_PHOTO :
             return {...state, kostFrontPhoto:action.payload}
         case AddKostActions.SET_KOST_BACK_PHOTO :
