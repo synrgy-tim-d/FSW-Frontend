@@ -9,24 +9,27 @@ import AC from '../../../../assets/Fasilitas-kamar/AC.svg';
 import TV from '../../../../assets/Fasilitas-kamar/TV.svg';
 import Listrik from '../../../../assets/Fasilitas-kamar/Electricity.svg';
 import KipasAngin from '../../../../assets/Fasilitas-kamar/Fan.svg';
+// import { useParams } from 'react-router-dom';
 
-const Fasilitaskamar = () => {
+const Fasilitaskamar = ({ fetchData }) => {
+  // const roomId = useParams();
   const [Fasilitas, setFasilitas] = useState([]);
+
   useEffect(() => {
     const FacilityList = [
       {
         id: 1,
-        text: 'Wifi',
+        text: 'WiFi',
         image: Wifi,
       },
       {
         id: 2,
-        text: 'KM Dalam',
+        text: 'Kamar Mandi Dalam',
         image: KMDalam,
       },
       {
         id: 3,
-        text: 'Air Panas',
+        text: 'Water Heater',
         image: AirPanas,
       },
       {
@@ -73,28 +76,36 @@ const Fasilitaskamar = () => {
     setFasilitas(FacilityList);
   }, []);
 
+  // const rooms = fetchData?.facilities?.filter( room => room.id === `${roomId.roomid}`);
+
   return (
-    <>
-      <div className='grid gap-4 text-[Montserrat] text-[20px]'>
-        <p className='font-[700]'>Fasilitas Kamar</p>
-        <div className='grid grid-rows-4 grid-flow-col auto-cols-max gap-8 gap-x-6'>
-          {Fasilitas.map((fasilitas, index) => {
-            return (
-              <React.Fragment key={index}>
-                <div className='grid grid-cols-5 grid-flow-col gap-2'>
-                  <span className='self-center'>
-                    <img className='rounded-full bg-[#FFDCBD] h-6 w-6' src={fasilitas.image} alt='' />
-                  </span>
-                  <span className='col-span-4 self-center justify-self-start'>
-                    <p>{fasilitas.text}</p>
-                  </span>
-                </div>
-              </React.Fragment>
-            );
-          })}
-        </div>
+    <div className='grid gap-4 text-[Montserrat] text-[20px]'>
+      <p className='font-[700]'>Fasilitas Kamar</p>
+      <div className='grid grid-rows-4 grid-flow-col auto-cols-max gap-8 gap-x-6'>
+        {fetchData?.facilities?.map((facility) => {
+          // const facilityName = [].concat(...facilities.facilities.map(facility => facility.name))
+          const fasilitasKamar = Fasilitas.filter(fasilitas => facility?.name?.includes(fasilitas.text));
+          return (
+            <React.Fragment key={facility.id}>
+              <div className='grid grid-cols-5 grid-flow-col gap-2'>
+                {/* {fasilitasKamar.map((roomFacility) => {
+                  return (
+                    <React.Fragment key={roomFacility.id}> */}
+                      <span className='self-center'>
+                        <img className='rounded-full bg-[#FFDCBD] h-6 w-6' src={fasilitasKamar?.image} alt='' />
+                      </span>
+                      <span className='col-span-4 self-center justify-self-start'>
+                        <p>{fasilitasKamar?.text}</p>
+                      </span>
+                  {/* </React.Fragment>
+                  );
+                })} */}
+              </div>
+            </React.Fragment>
+          );
+        })}
       </div>
-    </>
+    </div>
   );
 };
 

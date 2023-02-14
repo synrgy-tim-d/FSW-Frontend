@@ -12,7 +12,7 @@ const EditOwnerProfile = () => {
   return (
     <React.Fragment>
       <div className='grid grid-cols-5 bg-[#FAFAFA]'>
-        <div className='col-span-1 bg-[#0A008A] h-full px-8 py-16'>
+        <div className='col-span-1 bg-[#0A008A] h-full text-white text-center py-6 lg:px-8 lg:py-16'>
           <SidebarOwner />
         </div>
 
@@ -77,7 +77,7 @@ const EditOwnerProfile = () => {
                 </div>
               </div>
               <div className='flex'>
-                <Link to='/profilpemilik' className='w-full grid grid-cols-3 px-8'>
+                <Link to='/ownerprofile' className='w-full grid grid-cols-3 px-8'>
                   <button
                     type='button'
                     className='col-start-1 col-span-1 lg:col-span-full rounded-[150px] p-2 sm:py-2 text-[14px] sm:text-[16px]

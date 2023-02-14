@@ -1,73 +1,133 @@
-import React, { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ButtonDisabled, ButtonPayment, ButtonReview } from './buttonsHistory';
-import imageone from '../../assets/img_kosOne.png';
-import imagetwo from '../../assets/img_kosTwo.png';
+
 import imagethree from '../../assets/img_kosThree.png';
-import iconlocation from '../../assets/icon_location.svg';
-import iconarrowright from '../../assets/icon_arrow-right-2.svg';
+
 import iconarrowdown from '../../assets/icon_arrow-down.svg';
 import iconclose from '../../assets/icon_close.svg';
 
-const BookingHistory = () => {
-  const [booking, setbooking] = useState([]);
+import { useQuery } from '@tanstack/react-query';
+import axiosInstance from '../../utils/http-interceptor';
+import BookingCard from './bookingCard';
 
-  useEffect(() => {
-    const bookingList = [
-      {
-        id: 1,
-        name: 'Kos Alamanda',
-        location: {
-          name: 'Yogyakarta',
-        },
-        bookId: '00000001',
-        inDate: 'April 01, 23',
-        outDate: 'April 30, 23',
-        img: imageone,
-        btn: 'payment',
-      },
-      {
-        id: 2,
-        name: 'Kos Beringin',
-        location: {
-          name: 'Yogyakarta',
-        },
-        bookId: '00000002',
-        inDate: 'April 03, 23',
-        outDate: 'May 03, 23',
-        img: imagetwo,
-        btn: 'payment',
-      },
-      {
-        id: 3,
-        name: 'Kos Semak-Semak',
-        location: {
-          name: 'Yogyakarta',
-        },
-        bookId: '00000003',
-        inDate: 'April 11, 23',
-        outDate: 'May 11, 23',
-        img: imagethree,
-        btn: 'review',
-      },
-      {
-        id: 4,
-        name: 'Kos Guntung',
-        location: {
-          name: 'Yogyakarta',
-        },
-        bookId: '00000004',
-        inDate: 'April 12, 23',
-        outDate: 'May 13, 23',
-        img: imagethree,
-        btn: 'payment',
-      },
-    ];
-    setbooking(bookingList);
-  }, []);
+const BookingHistory = () => {
+  const [values, setvalues] = useState(0);
+
+  let rating = null;
+
+  const ratingSet = (values) => {
+    return (
+      <div className='flex flex-row gap-1'>
+        <svg
+          id='1'
+          width='35'
+          height='36'
+          viewBox='0 0 35 36'
+          fill='none'
+          xmlns='http://www.w3.org/2000/svg'
+          onClick={() => setvalues(1)}
+          className='cursor-pointer'
+        >
+          <path
+            d='M16.7421 6.04044C17.0223 5.36673 17.9767 5.36673 18.2569 6.04044L21.3573 13.4947C21.4754 13.7787 21.7425 13.9727 22.0491 13.9973L30.0966 14.6425C30.8239 14.7008 31.1188 15.6085 30.5647 16.0832L24.4334 21.3353C24.1998 21.5354 24.0978 21.8494 24.1691 22.1486L26.0423 30.0015C26.2116 30.7113 25.4395 31.2723 24.8168 30.8919L17.9271 26.6837C17.6646 26.5234 17.3344 26.5234 17.0719 26.6837L10.1822 30.8919C9.55947 31.2723 8.78735 30.7113 8.95665 30.0015L10.8299 22.1486C10.9012 21.8494 10.7992 21.5354 10.5656 21.3353L4.4343 16.0832C3.88015 15.6085 4.17507 14.7008 4.9024 14.6425L12.9498 13.9973C13.2565 13.9727 13.5236 13.7787 13.6417 13.4947L16.7421 6.04044Z'
+            stroke='#EA9A3D'
+            strokeWidth='1.5'
+            strokeLinecap='round'
+            strokeLinejoin='round'
+            fill={` ${values >= 1 ? '#EA9A3D' : ''}`}
+          />
+        </svg>
+        <svg
+          id='2'
+          width='35'
+          height='36'
+          viewBox='0 0 35 36'
+          fill='none'
+          xmlns='http://www.w3.org/2000/svg'
+          onClick={() => setvalues(2)}
+          className='cursor-pointer'
+        >
+          <path
+            d='M16.7421 6.04044C17.0223 5.36673 17.9767 5.36673 18.2569 6.04044L21.3573 13.4947C21.4754 13.7787 21.7425 13.9727 22.0491 13.9973L30.0966 14.6425C30.8239 14.7008 31.1188 15.6085 30.5647 16.0832L24.4334 21.3353C24.1998 21.5354 24.0978 21.8494 24.1691 22.1486L26.0423 30.0015C26.2116 30.7113 25.4395 31.2723 24.8168 30.8919L17.9271 26.6837C17.6646 26.5234 17.3344 26.5234 17.0719 26.6837L10.1822 30.8919C9.55947 31.2723 8.78735 30.7113 8.95665 30.0015L10.8299 22.1486C10.9012 21.8494 10.7992 21.5354 10.5656 21.3353L4.4343 16.0832C3.88015 15.6085 4.17507 14.7008 4.9024 14.6425L12.9498 13.9973C13.2565 13.9727 13.5236 13.7787 13.6417 13.4947L16.7421 6.04044Z'
+            stroke='#EA9A3D'
+            strokeWidth='1.5'
+            strokeLinecap='round'
+            strokeLinejoin='round'
+            fill={` ${values >= 2 ? '#EA9A3D' : ''}`}
+          />
+        </svg>
+        <svg
+          id='3'
+          width='35'
+          height='36'
+          viewBox='0 0 35 36'
+          fill='none'
+          xmlns='http://www.w3.org/2000/svg'
+          onClick={() => setvalues(3)}
+          className='cursor-pointer'
+        >
+          <path
+            d='M16.7421 6.04044C17.0223 5.36673 17.9767 5.36673 18.2569 6.04044L21.3573 13.4947C21.4754 13.7787 21.7425 13.9727 22.0491 13.9973L30.0966 14.6425C30.8239 14.7008 31.1188 15.6085 30.5647 16.0832L24.4334 21.3353C24.1998 21.5354 24.0978 21.8494 24.1691 22.1486L26.0423 30.0015C26.2116 30.7113 25.4395 31.2723 24.8168 30.8919L17.9271 26.6837C17.6646 26.5234 17.3344 26.5234 17.0719 26.6837L10.1822 30.8919C9.55947 31.2723 8.78735 30.7113 8.95665 30.0015L10.8299 22.1486C10.9012 21.8494 10.7992 21.5354 10.5656 21.3353L4.4343 16.0832C3.88015 15.6085 4.17507 14.7008 4.9024 14.6425L12.9498 13.9973C13.2565 13.9727 13.5236 13.7787 13.6417 13.4947L16.7421 6.04044Z'
+            stroke='#EA9A3D'
+            strokeWidth='1.5'
+            strokeLinecap='round'
+            strokeLinejoin='round'
+            fill={` ${values >= 3 ? '#EA9A3D' : ''}`}
+          />
+        </svg>
+        <svg
+          id='4'
+          width='35'
+          height='36'
+          viewBox='0 0 35 36'
+          fill='none'
+          xmlns='http://www.w3.org/2000/svg'
+          onClick={() => setvalues(4)}
+          className='cursor-pointer'
+        >
+          <path
+            d='M16.7421 6.04044C17.0223 5.36673 17.9767 5.36673 18.2569 6.04044L21.3573 13.4947C21.4754 13.7787 21.7425 13.9727 22.0491 13.9973L30.0966 14.6425C30.8239 14.7008 31.1188 15.6085 30.5647 16.0832L24.4334 21.3353C24.1998 21.5354 24.0978 21.8494 24.1691 22.1486L26.0423 30.0015C26.2116 30.7113 25.4395 31.2723 24.8168 30.8919L17.9271 26.6837C17.6646 26.5234 17.3344 26.5234 17.0719 26.6837L10.1822 30.8919C9.55947 31.2723 8.78735 30.7113 8.95665 30.0015L10.8299 22.1486C10.9012 21.8494 10.7992 21.5354 10.5656 21.3353L4.4343 16.0832C3.88015 15.6085 4.17507 14.7008 4.9024 14.6425L12.9498 13.9973C13.2565 13.9727 13.5236 13.7787 13.6417 13.4947L16.7421 6.04044Z'
+            stroke='#EA9A3D'
+            strokeWidth='1.5'
+            strokeLinecap='round'
+            strokeLinejoin='round'
+            fill={` ${values >= 4 ? '#EA9A3D' : ''}`}
+          />
+        </svg>
+        <svg
+          id='5'
+          width='35'
+          height='36'
+          viewBox='0 0 35 36'
+          fill='none'
+          xmlns='http://www.w3.org/2000/svg'
+          onClick={() => setvalues(5)}
+          className='cursor-pointer'
+        >
+          <path
+            d='M16.7421 6.04044C17.0223 5.36673 17.9767 5.36673 18.2569 6.04044L21.3573 13.4947C21.4754 13.7787 21.7425 13.9727 22.0491 13.9973L30.0966 14.6425C30.8239 14.7008 31.1188 15.6085 30.5647 16.0832L24.4334 21.3353C24.1998 21.5354 24.0978 21.8494 24.1691 22.1486L26.0423 30.0015C26.2116 30.7113 25.4395 31.2723 24.8168 30.8919L17.9271 26.6837C17.6646 26.5234 17.3344 26.5234 17.0719 26.6837L10.1822 30.8919C9.55947 31.2723 8.78735 30.7113 8.95665 30.0015L10.8299 22.1486C10.9012 21.8494 10.7992 21.5354 10.5656 21.3353L4.4343 16.0832C3.88015 15.6085 4.17507 14.7008 4.9024 14.6425L12.9498 13.9973C13.2565 13.9727 13.5236 13.7787 13.6417 13.4947L16.7421 6.04044Z'
+            stroke='#EA9A3D'
+            strokeWidth='1.5'
+            strokeLinecap='round'
+            strokeLinejoin='round'
+            fill={` ${values >= 5 ? '#EA9A3D' : ''}`}
+          />
+        </svg>
+      </div>
+    );
+  };
+
+  const setRating = (values) => {
+    rating = ratingSet(values);
+  };
+
+  const getBooking = useQuery({
+    queryKey: ['booking'],
+    queryFn: async () => await axiosInstance.get('https://fsw-backend.up.railway.app/api/book'),
+  });
 
   return (
-    <div className='lg:px-[70px] px-[20px] pt-[25px] font-[Montserrat] bg-[#FAFAFA] min-h-[700px]'>
+    <div className='lg:px-[70px] px-[20px] pt-[25px] lg:pt-[70px] font-[Montserrat] bg-[#FAFAFA] min-h-[700px]'>
       {/* --- Breadcrumb --- */}
       <div className='flex flex-row'>
         <nav className='flex' aria-label='Breadcrumb'>
@@ -218,63 +278,26 @@ const BookingHistory = () => {
 
         {/* --- Content if there is Data --- */}
         <div className='flex flex-col lg:mx-[70px] lg:mt-[60px] mt-[10px] mb-[100px] lg:w-3/4'>
-          {booking.map((booking, index) => {
-            let component = null;
-            switch (booking.btn) {
-              case 'disabled':
-                component = <ButtonDisabled />;
-                break;
-              case 'payment':
-                component = <ButtonPayment />;
-                break;
-              case 'review':
-                component = <ButtonReview />;
-                break;
-              default:
-                component = <ButtonDisabled />;
-            }
-            return (
-              <React.Fragment key={index}>
-                <div>
-                  <div className='flex flex-row py-2 lg:py-4 text-black'>
-                    <img className='w-[130px] lg:w-[200px] self-center' alt='' src={booking.img} />
-                    <div className='flex flex-col ml-[20px] lg:ml-[40px] text-left lg:w-[265px] space-y-[-5px] lg:space-y-0'>
-                      <h1 className='text-[14px] lg:text-[20px] font-[600]'>{booking.name}</h1>
-                      <div className='flex flex-row'>
-                        <img className='w-[10px] lg:w-auto' alt='' src={iconlocation} />
-                        <p className='text-[12px] lg:text-[16px] font-[500] ml-1 lg:ml-2 lg:my-1'>
-                          {booking.location.name}
-                        </p>
-                      </div>
-                      <p className='text-[12px] lg:text-[16px] font-[500] lg:mb-3'>
-                        Booking ID: {booking.bookId}
-                      </p>
-                      <div className='flex flex-row'>
-                        <div className='flex flex-col text-center'>
-                          <p className='text-[10px] lg:text-[12px] font-[400] lg:mb-1'>Check in</p>
-                          <p className='text-[10px] lg:text-[16px] font-[600] lg:font-[400]'>
-                            {booking.inDate}
-                          </p>
-                        </div>
-                        <div className='flex flex-col mx-[10px] lg:mx-[12px] justify-center'>
-                          <img className='w-[16px] lg:w-auto' alt='' src={iconarrowright} />
-                        </div>
-                        <div className='flex flex-col text-center'>
-                          <p className='text-[10px] lg:text-[12px] font-[400] lg:mb-1'>Check out</p>
-                          <p className='text-[10px] lg:text-[16px] font-[600] lg:font-[400]'>
-                            {booking.outDate}
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                    <div className='lg:flex flex-1 hidden'>{component}</div>
-                  </div>
-                  <div className='flex flex-1 lg:hidden'>{component}</div>
-                  <hr className='w-full mb-4 lg:mb-8'></hr>
-                </div>
-              </React.Fragment>
-            );
-          })}
+          {getBooking.isLoading && <div className='text-xl text-center mx-20'>Loading ...</div>}
+          {getBooking.isSuccess &&
+            getBooking?.data.data.map((booking) => {
+              return (
+                <BookingCard
+                  key={booking.booking_id}
+                  image={booking.Kost.SetupImages[0].url}
+                  kosName={booking.Kost.name}
+                  locationName={booking.Kost.SetupCity.city}
+                  bookingId={booking.booking_id}
+                  isPaid={booking.BookingDetail.is_paid}
+                  willPay={booking.BookingDetail.will_pay}
+                  isConfirmed={booking.BookingDetail.is_confirmed}
+                  isCancelled={booking.BookingDetail.is_cancelled}
+                  bookingStartDate={booking.booking_date_start}
+                  bookingEndDate={booking.booking_date_end}
+                  showButton={true}
+                />
+              );
+            })}
           <h1 className='text-center text-black text-[16px] lg:text-[20px] font-[600] opacity-[.38]'>
             Lihat lebih banyak lagi
           </h1>
@@ -294,18 +317,9 @@ const BookingHistory = () => {
           </div>
           <div className='flex flex-col justify-center items-center'>
             <h3 className='font-bold text-lg mt-[5px]'>Kos Semak-Semak</h3>
-            <div className='rating gap-2 mt-[5px]'>
-              <input type='radio' name='rating-2' className='mask mask-star-2 bg-[#EA9A3D]' />
-              <input type='radio' name='rating-2' className='mask mask-star-2 bg-[#EA9A3D]' />
-              <input
-                type='radio'
-                name='rating-2'
-                className='mask mask-star-2 bg-[#EA9A3D]'
-                checked
-              />
-              <input type='radio' name='rating-2' className='mask mask-star-2 bg-[#EA9A3D]' />
-              <input type='radio' name='rating-2' className='mask mask-star-2 bg-[#EA9A3D]' />
-            </div>
+            {/* Rating */}
+            {setRating(values)}
+            {rating}
           </div>
           <div className='flex flex-row justify-center text-center mt-4 lg:mt-[30px]'>
             <div className='lg:w-[695px] lg:h-[180px] w-full mx-5 lg:mx-0 rounded-[8px] bg-[#F2EFFF] px-3 py-3 lg:py-5'>

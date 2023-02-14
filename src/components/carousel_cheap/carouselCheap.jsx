@@ -37,25 +37,6 @@ const CarouselCheap = () => {
     kosResponse.refetch();
   }, [place]);
 
-  // const showDrop = (event) => {
-  //   event.preventDefault();
-  //   const tag = event.currentTarget.id + 'Item';
-  //   console.log(event.currentTarget.id);
-  //   const tagged = document.getElementById(tag);
-  //   tagged.classList.contains('hidden')
-  //     ? tagged.classList.remove('hidden')
-  //     : tagged.classList.add('hidden');
-  // };
-  // const changePlace = (event, target) => {
-  //   event.preventDefault();
-  //   const tag = event.currentTarget.id;
-  //   const tagged = document.getElementById(tag);
-  //   const taggedText = tagged.innerText;
-  //   const targeted = document.getElementById(target);
-  //   targeted.innerText = taggedText;
-  //   document.getElementById('dropCheapItem').classList.add('hidden');
-  // };
-
   return (
     <div className='space-y-12 p-4 py-12 font-montserrat bg-[#FAFAFA]'>
       <div className='relative'>
@@ -110,9 +91,9 @@ const CarouselCheap = () => {
             <div
               className='px-20 lg:px-28 py-2 lg:py-3 hover:bg-[#FFDEAA] hover:cursor-pointer'
               onClick={(event) => changePlace(event, 'location')}
-              id='Tanggerang'
+              id='Tangerang'
             >
-              Tanggerang
+              Tangerang
             </div>
             <div
               className='px-20 lg:px-28 py-2 lg:py-3 hover:bg-[#FFDEAA] hover:cursor-pointer'
@@ -152,25 +133,19 @@ const CarouselCheap = () => {
         modules={[Navigation, Pagination]}
         navigation
         pagination={{ clickable: true }}
-        // onSlideChange={() => console.log('slide change')}
-        // onSwiper={(swiper) => console.log(swiper)}
       >
         {kosResponse?.data?.data.data.map((entry) => {
-          // console.log(entry.rooms[0]?.pricePerMonthly);
           return (
             <SwiperSlide key={entry.id}>
               <Link to={`/kos/${entry.id}/${entry.rooms[0]?.id}`}>
                 <Card
-                  name={entry.name}
-                  pictureUrl={
-                    entry.imageKosts[0].url
-                    // 'https://res.cloudinary.com/duvswri22/image/upload/v1674287150/dillon-kydd-XGvwt544g8k-unsplash_1_muclim.jpg'
-                  }
-                  type={entry.kostType.slice(4)}
+                  name={entry?.name}
+                  pictureUrl={entry?.imageKosts[0]?.url}
+                  type={entry?.kostType?.slice(4)}
                   rate={0}
-                  details={`${entry.address}, ${entry.district}, ${entry.subdistrict}, ${entry.city.city}, ${entry.city.province.province} (${entry.postalCode})`}
-                  location={entry.city.city}
-                  price={entry.rooms[0]?.pricePerMonthly ?? 10}
+                  details={`${entry?.address}, ${entry?.subdistrict}, ${entry?.district}, ${entry?.city?.city}, ${entry?.city?.province?.province} (${entry?.postalCode})`}
+                  location={entry?.city?.city}
+                  price={entry?.pricePerMonthly}
                 />
               </Link>
             </SwiperSlide>

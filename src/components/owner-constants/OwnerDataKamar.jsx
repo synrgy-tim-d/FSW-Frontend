@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import kosimg from '../../assets/city-card.svg';
 
 const OwnerDataKamar = () => {
@@ -247,37 +248,44 @@ const OwnerDataKamar = () => {
             </div>
 
             <div className='grid grid-flow-col place-content-between pt-24'>
-              <button
-                className='border-2 border-[#0A008A] text=[#0A008A] bg-white font-[600] p-2 px-3'
-                type='button'
-              >
-                Kembali
-              </button>
+              <Link to='/owner/kostphotos'>
+                <button
+                  className='border-2 border-[#0A008A] text=[#0A008A] bg-white font-[600] p-2 px-3'
+                  type='button'
+                >
+                  Kembali
+                </button>
+              </Link>
               <div className='grid grid-flow-col'>
-                <div class='flex  w-72 space-x-4'>
+                <div className='flex  w-72 space-x-4'>
                   <input
                     id='link-checkbox'
                     type='checkbox'
                     value=''
-                    class='w-7 h-7 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600'
+                    className='w-7 h-7
+                    text-blue-600 bg-gray-100 border-gray-300 rounded dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:bg-gray-700 dark:border-gray-600'
                   />
                   <label
-                    for='link-checkbox'
-                    class='ml-2 text-sm font-medium text-gray-900 dark:text-gray-300'
+                    htmlFor='link-checkbox'
+                    className='ml-2 text-sm font-medium text-gray-900 dark:text-gray-300'
                   >
-                    Saya setuju dengan <span> </span>
-                    <a href='#' class='underline  hover:text-gray-500'>
-                      syarat & ketentuan
-                    </a>
-                    <span> </span>yang berlaku
+                    Saya setuju dengan{' '}
+                    <span>
+                      <a href='#' className='underline  hover:text-gray-500'>
+                        syarat & ketentuan
+                      </a>
+                    </span>{' '}
+                    yang berlaku
                   </label>
                 </div>
-                <button
-                  className='border-2 border-[#0A008A] bg-[#0A008A] text-white font-[600] p-2 px-3'
-                  type='button'
-                >
-                  Simpan & Lanjutkan
-                </button>
+                <a href='/ownerprofile'>
+                  <button
+                    className='border-2 border-[#0A008A] bg-[#0A008A] text-white font-[600] p-2 px-3'
+                    type='button'
+                  >
+                    Simpan & Lanjutkan
+                  </button>
+                </a>
               </div>
             </div>
           </div>

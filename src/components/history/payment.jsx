@@ -1,48 +1,18 @@
-import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import icondownload from '../../assets/icon_download.svg';
-import iconcompleted from '../../assets/icon_completed.svg';
 import iconarrowdown from '../../assets/icon_arrow-down.svg';
 
-const PaymentHistory = () => {
-  const [payments, setPayments] = useState([]);
+import { useQuery } from '@tanstack/react-query';
+import axiosInstance from '../../utils/http-interceptor';
+import PaymentCard from './PaymentCard';
 
-  useEffect(() => {
-    const paymentList = [
-      {
-        id: 1,
-        name: 'Kos Alamanda',
-        bookId: '00000001',
-        date: 'Fri, 24 March 2023 18:07 WIB',
-        price: '1.000.000',
-      },
-      {
-        id: 2,
-        bookId: '00000002',
-        name: 'Kos Beringin',
-        date: 'Sat, 26 March 2023 23:17 WIB',
-        price: '1.500.000',
-      },
-      {
-        id: 3,
-        bookId: '00000003',
-        name: 'Kos Semak-Semak',
-        date: 'Sun, 27 March 2023 13:42 WIB',
-        price: '1.200.000',
-      },
-      {
-        id: 4,
-        bookId: '00000004',
-        name: 'Kos Guntung',
-        date: 'Tue, 29 March 2023 07:13 WIB',
-        price: '1.350.000',
-      },
-    ];
-    setPayments(paymentList);
-  }, []);
+const PaymentHistory = () => {
+  const getBooking = useQuery({
+    queryKey: ['booking'],
+    queryFn: async () => await axiosInstance.get('https://fsw-backend.up.railway.app/api/book'),
+  });
 
   return (
-    <div className='lg:px-[70px] px-[20px] pt-[25px] font-[Montserrat] bg-[#FAFAFA] min-h-[700px]'>
+    <div className='lg:px-[70px] px-[20px] pt-[25px] lg:pt-[70px] font-[Montserrat] bg-[#FAFAFA] min-h-[700px]'>
       {/* --- Breadcrumb --- */}
       <div className='flex flex-row'>
         <nav className='flex' aria-label='Breadcrumb'>
@@ -193,44 +163,27 @@ const PaymentHistory = () => {
 
         {/* --- Content if there is Data --- */}
         <div className='flex flex-col lg:mx-[70px] lg:mt-[60px] mt-[10px] mb-[100px] lg:w-3/4'>
-          {payments.map((payment, index) => {
-            return (
-              <React.Fragment key={index}>
-                <div>
-                  <div className='flex flex-row py-2 lg:py-4 text-black'>
-                    <div className='flex flex-col text-left'>
-                      <h1 className='lg:mb-1 text-[14px] lg:text-[20px] font-[600]'>
-                        {payment.name} [Booking ID: {payment.bookId}]
-                      </h1>
-                      <p className='mb-2 text-[#4A4A4A] text-[12px] font-[400]'>
-                        {payment.date}
-                      </p>
-                      <div className='flex flex-row cursor-pointer'>
-                        <img className='w-[12px] lg:w-auto' alt='' src={icondownload} />
-                        <p className='ml-2 text-[#46464F] opacity-[.38] text-[12px] lg:text-[16px] font-[600]'>
-                          Download detail pembayaran
-                        </p>
-                      </div>
-                    </div>
-                    <div className='flex flex-col flex-1 lg:pt-[20px] text-right'>
-                      <h1 className='lg:mb-2 text-[14px] lg:text-[20px] font-[500]'>Rp {payment.price}</h1>
-                      <div className='flex flex-row justify-end gap-2'>
-                        <img className='w-[14px] lg:w-auto' alt='' src={iconcompleted} />
-                        <p className='text-[12px] font-[600] text-[#008A3F]'>Completed</p>
-                      </div>
-                    </div>
-                  </div>
-                  <hr className='mb-4 lg:mb-8'></hr>
-                </div>
-              </React.Fragment>
-            );
-          })}
+          {getBooking.isLoading && <div className='text-xl text-center mx-20'>Loading ...</div>}
+          {getBooking.isSuccess &&
+            getBooking?.data.data
+              .filter((booking) => booking.BookingDetail.is_confirmed === true)
+              .map((booking) => {
+                return (
+                  <PaymentCard
+                    key={booking.booking_id}
+                    bookingId={booking.booking_id}
+                    kosName={booking.Kost.name}
+                    paymentDate={booking.BookingDetail.updated_at}
+                    price={booking.BookingDetail.rent_price}
+                    paymentImageUrl={booking.BookingDetail.payment_image_url}
+                  />
+                );
+              })}
           <h1 className='text-center text-black text-[16px] lg:text-[20px] font-[600] opacity-[.38]'>
             Lihat lebih banyak lagi
           </h1>
         </div>
       </div>
-      
     </div>
   );
 };

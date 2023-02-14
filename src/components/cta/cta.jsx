@@ -1,5 +1,3 @@
-import React from 'react';
-
 function CTA() {
   return (
     <div className='flex gap-4 py-6 flex-wrap justify-center bg-[#0A008A]'>

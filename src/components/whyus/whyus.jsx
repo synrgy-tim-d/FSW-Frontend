@@ -1,4 +1,3 @@
-import React from 'react';
 import saveMoney from '../../assets/Whyus1_saveMoney.png';
 import notification from '../../assets/Whyus2_notification.png';
 import faq from '../../assets/Whyus3_faq.png';

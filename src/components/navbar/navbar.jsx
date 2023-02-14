@@ -1,12 +1,38 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useRef, useState } from 'react';
 import LogoNaqos from '../../assets/LogoNaqosPolos.png';
 import Drawer from 'react-modern-drawer';
 import 'react-modern-drawer/dist/index.css';
+import { Link, useNavigate } from 'react-router-dom';
+import NotificationBody from '../notification/NotificationBody';
+import { useQuery } from '@tanstack/react-query';
+import axios from 'axios';
+import appConfig from '../../config';
+const useOutsideAlerter = (ref, setIsNotificationHidden) => {
+  useEffect(() => {
+    /**
+     * Alert if clicked on outside of element
+     */
+    function handleClickOutside(event) {
+      if (ref.current && !ref.current.contains(event.target)) {
+        setIsNotificationHidden(true);
+      }
+    }
+    // Bind the event listener
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      // Unbind the event listener on clean up
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [ref]);
+}
+
 
 const Navbar = () => {
+  const navigate = useNavigate();
   const handleLogout = () => {
     localStorage.removeItem('AUTH_TOKEN');
+    localStorage.removeItem('REFRESH_TOKEN');
+    navigate("/")
     window.location.reload(false);
   };
 
@@ -16,10 +42,53 @@ const Navbar = () => {
     setIsOpen((prevState) => !prevState);
   };
 
+
+  const [isNotificationHidden, setIsNotificationHidden] = useState(true)
+  const onClickNotificationHandler = (e) => {
+    e.preventDefault();
+    setIsNotificationHidden(false);
+  }
+
+  const [notifications,setNotifications] = useState([]);
+
+  useQuery({
+    queryKey:['notifications'],
+    queryFn: async () => {
+        const token = localStorage.getItem("AUTH_TOKEN")
+        return await axios.get(
+          `${appConfig.BE_URL}/notifications/get`,
+          {
+            headers: {
+              authorization: `Bearer ${token}`,
+            },
+          }
+        );
+    },
+    onSuccess: (res) => {
+        setNotifications(res?.data?.notificationResponses)
+    },
+    onError: () => {
+        setNotifications([false])
+    }
+  })
+
+  const wrapperRef = useRef(null);
+  useOutsideAlerter(wrapperRef,setIsNotificationHidden)
+  // useEffect(() => {
+  //   const handleClickOutside = (e) => {
+  //     if (ref.current && !ref.current.contains(e.target)) {
+  //       setIsNotificationHidden(true);
+  //     }
+  //   }
+
+  //   document.addEventListener("mousedown", handleClickOutside);
+  // })
+
+
   return (
     <React.Fragment>
-      <div className='fixed shadow-2xl shadow-black/[0.38] z-[100] navbar grid grid-cols-6 bg-[#FAFAFA] font-[Montserrat] font-[400]'>
-        <div className='col-span-1 pl-4'>
+      <div className='fixed drop-shadow-xl px-4  drop-shadow-black/[0.38] z-[100] navbar grid grid-cols-6 bg-[#FAFAFA] font-[Montserrat] font-[400] w-full '>
+        <div className='col-span-1 max-w-[170px] translate-x-[18%] py-3'>
           <Link to='/'>
             <img className='w-full h-auto' src={LogoNaqos} />
           </Link>
@@ -83,7 +152,7 @@ const Navbar = () => {
           </Drawer>
           <ul
             className='menu menu-horizontal hidden lg:grid grid-flow-col gap-6 lg:w-auto 
-            text-[#000000]/[0.38] text-[20px] lg:bg-inherit px-8 py-4 lg:p-0'
+            text-[#000000]/[0.38] text-[20px] lg:bg-inherit px-8 py-4 lg:p-0 '
           >
             <li>
               <Link to='/wishlist' className='font-[600]'>
@@ -95,8 +164,11 @@ const Navbar = () => {
                 Riwayat
               </Link>
             </li>
-            <li>
-              <a className='font-[600]'>Notifikasi</a>
+            <li className=''>
+              <a className='font-[600]' onClick={(e) => {onClickNotificationHandler(e)}} >Notifikasi</a>
+              <div className='w-full' ref={wrapperRef} >
+                <NotificationBody  notifications = {notifications} isNotificationHiddenState={{isNotificationHidden, setIsNotificationHidden}}/>
+              </div>
             </li>
             <li tabIndex={0}>
               <a className='font-[600]'>
@@ -113,7 +185,7 @@ const Navbar = () => {
               </a>
               <ul className='p-2 bg-base-100'>
                 <li>
-                  <Link to='/profil' className='font-[600] hover:bg-[#F2EFFF]'>
+                  <Link to='/profile' className='font-[600] hover:bg-[#F2EFFF]'>
                     Profil
                   </Link>
                 </li>
@@ -127,7 +199,7 @@ const Navbar = () => {
           </ul>
         </div>
       </div>
-      <div className='w-full h-[130px]'></div>
+      <div className='w-full h-[80px] md:h-[105px] lg:h-[130px] bg-[#FAFAFA]'></div>
     </React.Fragment>
   );
 };

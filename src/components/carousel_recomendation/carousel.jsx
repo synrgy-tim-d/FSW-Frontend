@@ -1,4 +1,3 @@
-// import React from 'react';
 import { useState, useEffect } from 'react';
 import Card from './card';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -14,27 +13,6 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 
 const Carousel = () => {
-  // const showDrop = (event) => {
-  //   event.preventDefault();
-  //   const tag = event.currentTarget.id + 'Item';
-  //   console.log(event.currentTarget.id);
-  //   const tagged = document.getElementById(tag);
-  //   tagged.classList.contains('hidden')
-  //     ? tagged.classList.remove('hidden')
-  //     : tagged.classList.add('hidden');
-  // };
-
-  // const changePlace = (event, target) => {
-  //   event.preventDefault();
-  //   // const tag = event.currentTarget.id;
-  //   setPlace(event.target.id);
-  //   const tagged = document.getElementById(place);
-  //   const taggedText = tagged.innerText;
-  //   const targeted = document.getElementById(target);
-  //   targeted.innerText = taggedText;
-  //   document.getElementById('dropItem').classList.add('hidden');
-  // };
-
   const [place, setPlace] = useState('Bekasi');
   const [isClosed, setIsClosed] = useState(true);
 
@@ -114,9 +92,9 @@ const Carousel = () => {
             <div
               className='px-20 lg:px-28 py-2 lg:py-3 hover:bg-[#FFDEAA] hover:cursor-pointer'
               onClick={(event) => changePlace(event, 'location')}
-              id='Tanggerang'
+              id='Tangerang'
             >
-              Tanggerang
+              Tangerang
             </div>
             <div
               className='px-20 lg:px-28 py-2 lg:py-3 hover:bg-[#FFDEAA] hover:cursor-pointer'
@@ -156,21 +134,38 @@ const Carousel = () => {
         modules={[Navigation, Pagination]}
         navigation
         pagination={{ clickable: true }}
-        // onSlideChange={() => console.log('slide change')}
-        // onSwiper={(swiper) => console.log(swiper)}
       >
-        {kosResponse?.data?.data.data.map((entry) => {
+        {kosResponse?.data?.data?.data?.map((entry) => {
+          // const [kostReview, setKostReview] = useState([]);
+          // useEffect(() => {
+          //   fetchDataReview.refetch();
+          // }, []);
+          // const fetchDataReview = () => {
+          //   return axios
+          //     .get(`https://be-naqos.up.railway.app/api/public/kost_review/${entry.id}`)
+          //     .then((response) => {
+          //       const result = response.data?.data;
+          //       setKostReview(result)
+          //     });
+          // };
+          // let totalRating = 0
+
+          // for (let i = 0; i < kostReview.length; i++) {
+          //   totalRating += kostReview[i].rating;
+          // }
+        
+          // const ratingAverage = totalRating/kostReview.length;
           return (
-            <SwiperSlide key={entry.id}>
-              <Link to={`/kos/${entry.id}/${entry.rooms[0]?.id}`}>
+            <SwiperSlide key={entry?.id}>
+              <Link to={`/kos/${entry?.id}/${entry?.rooms[0]?.id}`}>
                 <Card
-                  name={entry.name}
-                  pictureUrl={entry.imageKosts[0].url}
-                  type={entry.kostType.slice(4)}
+                  name={entry?.name}
+                  pictureUrl={entry?.imageKosts[0]?.url}
+                  type={entry?.kostType?.slice(4)}
                   rate={0}
-                  details={`${entry.address}, ${entry.district}, ${entry.subdistrict}, ${entry.city.city}, ${entry.city.province.province} (${entry.postalCode})`}
-                  location={entry.city.city}
-                  price={entry.rooms[0]?.pricePerMonthly ?? 10}
+                  details={`${entry?.address}, ${entry?.subdistrict}, ${entry?.district}, ${entry?.city?.city}, ${entry?.city?.province?.province} (${entry?.postalCode})`}
+                  location={entry?.city?.city}
+                  price={entry?.pricePerMonthly}
                 />
               </Link>
             </SwiperSlide>

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import  { useState, useEffect } from 'react';
 
 export const CollapseCheckboxType = ({ items, buttonText }) => {
   const [isOpen, setIsOpen] = useState(true);
@@ -18,6 +18,11 @@ export const CollapseCheckboxType = ({ items, buttonText }) => {
     if (screenWidth >= 768) {
       setIsOpen(!isOpen);
     }
+  };
+
+  const handleChange = (el) => {
+   const temp = items.find((e) => e.value === el.target.value)
+   temp.checked = !temp.checked
   };
 
   return (
@@ -41,11 +46,8 @@ export const CollapseCheckboxType = ({ items, buttonText }) => {
               <input
                 type='checkbox'
                 name={item.name}
-                value={item.id}
-                onChange={(el) => {
-                  const temp = items.find((e) => e.id === el.target.value);
-                  // temp.checked = true;
-                }}
+                value={item.value}
+                onChange={handleChange}
               />
               <label className='pl-2'>{item.value}</label>
             </li>
@@ -58,6 +60,11 @@ export const CollapseCheckboxType = ({ items, buttonText }) => {
 
 export const CollapseCheckbox = ({ items, buttonText }) => {
   const [isOpen, setIsOpen] = useState(true);
+
+  const handleChange = (el) => {
+    const temp = items.find((e) => e.value === el.target.value)
+    temp.checked = !temp.checked
+   };
 
   return (
     <div className='w-full bg-white px-6 rounded-[8px] py-2'>
@@ -79,11 +86,8 @@ export const CollapseCheckbox = ({ items, buttonText }) => {
               <input
                 type='checkbox'
                 name={item.name}
-                value={item.id}
-                onChange={(el) => {
-                  const temp = items.find((e) => e.id === el.target.value);
-                  // temp.checked = true;
-                }}
+                value={item.value}
+                onChange={handleChange}
               />
               <label className='pl-2'>{item.value}</label>
             </li>
@@ -96,6 +100,11 @@ export const CollapseCheckbox = ({ items, buttonText }) => {
 
 export const CollapseRadio = ({ items, buttonText }) => {
   const [isOpen, setIsOpen] = useState(true);
+
+  const handleChange = (el) => {
+    const temp = items.find((e) => e.value === el.target.value)
+    temp.checked = !temp.checked
+   };
 
   return (
     <div className='w-full h-auto bg-white px-6 rounded-[8px] py-2'>
@@ -117,11 +126,8 @@ export const CollapseRadio = ({ items, buttonText }) => {
               <input
                 type='radio'
                 name={item.name}
-                value={item.id}
-                onChange={(el) => {
-                  const temp = items.find((e) => e.id === el.target.value);
-                  // temp.checked = true;
-                }}
+                value={item.value}
+                onChange={handleChange}
               />
               <label className='pl-2'>{item.value}</label>
             </li>

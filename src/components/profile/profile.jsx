@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import profile from '../../assets/Profile.svg';
+import { Link, useNavigate } from 'react-router-dom';
+import axiosInstance from '../../utils/http-interceptor';
 import logout from '../../assets/Logout-img.svg';
 import appConfig from '../../config';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { useQuery } from '@tanstack/react-query';
+
 const Password = ({ password }) => {
   const mask = '*'.repeat(password.length);
   return <span>{mask}</span>;
@@ -13,39 +14,46 @@ const Password = ({ password }) => {
 const Profile = () => {
   const navigate = useNavigate();
 
-  const [user,setUser] = useState({});
+  const [user, setUser] = useState({});
 
-  useEffect(() => {
-    const fetchCurrentUserProfile = async () => {
-      try {
-        
-        const authToken = localStorage.getItem("AUTH_TOKEN");
+  useQuery({
+    queryKey: ['user'],
+    queryFn: async () => {
+      const token = localStorage.getItem('AUTH_TOKEN');
+      return await axios.get(`${appConfig.BE_URL}/users/get`, {
+        headers: {
+          authorization: `Bearer ${token}`,
+        },
+      });
+    },
+    onSuccess: (res) => {
+      setUser(res?.data?.data);
+    },
+    onError: (err) => {
+      navigate('/');
+    },
+  });
 
-        const currentUserRequest = await axios.get(
-          `${appConfig.BE_URL}/users/get`,
-          {
-            headers: {
-              authorization: `Bearer ${authToken}`,
-            },
-          }
-        );
+  // useEffect(() => {
+  //   const fetchCurrentUserProfile = async () => {
+  //     try {
+  //       const currentUserRequest = await axiosInstance.get(`${appConfig.BE_URL}/users/get`);
 
-        const currentUserResponse = currentUserRequest.data;
-        if (currentUserResponse.code == 200)  {
-          console.log(currentUserResponse)
-          setUser(currentUserResponse.data)
-        } else {
-          navigate("/auth/login")
-        }
-        
-      } catch (err) {
-        console.log(err)
-        // navigate("/")
-      }
-    }
+  //       const currentUserResponse = currentUserRequest.data;
+  //       if (currentUserResponse.code === 200) {
+  //         console.log(currentUserResponse);
+  //         setUser(currentUserResponse.data);
+  //       } else {
+  //         navigate('/auth/login');
+  //       }
+  //     } catch (err) {
+  //       console.log(err);
+  //       navigate("/auth/login")
+  //     }
+  //   };
 
-    fetchCurrentUserProfile();
-  },[])
+  //   fetchCurrentUserProfile();
+  // }, []);
 
   return (
     <React.Fragment>
@@ -63,7 +71,7 @@ const Profile = () => {
       </ul>
       <div className='w-full grid grid-rows-auto lg:grid-cols-6 grid-flow-row lg:grid-flow-col gap-6 font-[Montserrat] bg-[#FAFAFA]'>
         <div className='row-span-1 lg:col-span-2 grid grid-row-2 grid-flow-row justify-items-center content-center gap-16 p-20'>
-          <div className='rounded-full overflow-hidden object-cover'>
+          <div className='rounded-full overflow-hidden object-cover max-w-[200px]'>
             <img className='w-full h-auto' src={user.imgUrl} alt='avatar' />
           </div>
           <div className='text-[24px] sm:text-[30px] font-[600]'>{user.fullname}</div>
@@ -72,10 +80,10 @@ const Profile = () => {
           <form className='grid gap-12 bg-[#C0C1FF]/[0.38] rounded-2xl p-8'>
             <div className='grid grid-cols-2'>
               <div className='text-[17px] sm:text-[25px] font-[600]'>Informasi Akun</div>
-              <Link to='/editprofil' className='w-full flex justify-end'>
+              <Link to='/profile/editprofile' className='w-full flex justify-end'>
                 <button
                   type='button'
-                  className='rounded-[150px] bg-inherit text-[#000000]/[0.38] text-[20px] font-[600]'
+                  className='rounded-[150px] bg-inherit text-[#000000]/[0.38] text-[20px] font-[600] hover:text-[#0A008A]'
                 >
                   Edit profil
                 </button>
@@ -93,7 +101,10 @@ const Profile = () => {
                 <div className='col-span-1 font-[700] text-[16px] sm:text-[16px] sm:font-[500]'>
                   Nomor HP
                 </div>
-                <div className='col-span-1 sm:col-span-2'>{user.phoneNumber}</div>
+                <div className='col-span-1 sm:col-span-2'>
+                  <span>+62{' '}</span>
+                  {user.phoneNumber}
+                </div>
               </div>
               <div className='grid grid-cols-1 sm:grid-cols-3 grid-flow-row sm:grid-flow-col border-b-2 border-[#0A008A] pb-2 gap-y-2'>
                 <div className='col-span-1 font-[700] text-[16px] sm:text-[16px] sm:font-[500]'>
@@ -107,10 +118,10 @@ const Profile = () => {
           <form action='|' className='grid gap-12 bg-[#C0C1FF]/[0.38] rounded-2xl p-8'>
             <div className='grid grid-cols-2'>
               <div className='text-[17px] sm:text-[25px] font-[600]'>Login & Security</div>
-              <Link to='/gantipassword' className='w-full flex justify-end'>
+              <Link to='/profile/changepassword' className='w-full flex justify-end'>
                 <button
                   type='button'
-                  className='rounded-[150px] bg-inherit text-[#000000]/[0.38] text-[16px] sm:text-[20px] font-[600]'
+                  className='rounded-[150px] bg-inherit text-[#000000]/[0.38] text-[16px] sm:text-[20px] font-[600] hover:text-[#0A008A]'
                 >
                   Ganti Password
                 </button>

@@ -1,4 +1,3 @@
-// import React from 'react';
 import Banner from '../components/banner/banner';
 import Carousel from '../components/carousel_recomendation/carousel';
 import CarouselCheap from '../components/carousel_cheap/carouselCheap';

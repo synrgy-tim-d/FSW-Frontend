@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import kosimg from '../../assets/city-card.svg';
 import { SidebarForm } from '../owner/sidebarform';
+import { Link } from 'react-router-dom';
 
 const OwnerFotokos = () => {
   const [showModal, setShowModal] = useState(false);
@@ -50,7 +51,7 @@ const OwnerFotokos = () => {
                 <div className='relative'>
                   <div className='w-max h-auto'>
                     <img
-                      src={ kosimg }
+                      src={kosimg}
                       alt=''
                       onClick={() => setShowModal(true)}
                       className='cursor-pointer w-max h-auto'
@@ -121,7 +122,7 @@ const OwnerFotokos = () => {
                   </div>
                 </div>
                 <div>
-                    <img src={ kosimg } alt="" />
+                  <img src={kosimg} alt='' />
                 </div>
               </div>
               <div className='grid grid-flow-row gap-y-3'>
@@ -134,18 +135,23 @@ const OwnerFotokos = () => {
             </div>
 
             <div className='grid grid-flow-col place-content-between pt-24'>
-              <button
-                className='border-2 border-[#0A008A] text=[#0A008A] bg-white font-[600] p-2 px-3'
-                type='button'
-              >
-                Kembali
-              </button>
-              <button
-                className='border-2 border-[#0A008A] bg-[#0A008A] text-white font-[600] p-2 px-3'
-                type='button'
-              >
-                Simpan & Lanjutkan
-              </button>
+              <Link to='/owner/kostfacility'>
+                <button
+                  className='border-2 border-[#0A008A] text=[#0A008A] bg-white font-[600] p-2 px-3'
+                  type='button'
+                >
+                  Kembali
+                </button>
+              </Link>
+
+              <a href='owner/roomdetails'>
+                <button
+                  className='border-2 border-[#0A008A] bg-[#0A008A] text-white font-[600] p-2 px-3'
+                  type='button'
+                >
+                  Simpan & Lanjutkan
+                </button>
+              </a>
             </div>
           </div>
         </div>

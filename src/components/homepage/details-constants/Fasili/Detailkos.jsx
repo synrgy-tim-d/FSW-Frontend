@@ -1,19 +1,26 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
-const Detailkos = () => {
+const Detailkos = ({ fetchData, fetchReview }) => {
+  let totalRating = 0
+
+  for (let i = 0; i < fetchReview.length; i++) {
+    totalRating += fetchReview[i].rating;
+  }
+ 
+  const ratingAverage = totalRating/fetchReview.length;
   return (
     <React.Fragment>
       <div className='grid gap-4'>
         <p className='flex text-[39px] font-[700]'>
-          Kos Alamanda
+          {fetchData?.name}
           <span className='ml-4 py-3 px-3 border-2 border-[#0A008A] rounded-[70px] text-[20px] font-[600]'>
-            Campuran
+            {fetchData?.kostType?.slice(4)}
           </span>
         </p>
-        <p className='text-[39px] font-[700] self-center'>Tipe Kamar Reguler Yogyakarta</p>
+        <p className='text-[39px] font-[700] self-center'>Tipe Kamar {fetchData?.rooms[0]?.roomType?.replace(/_/g, ' ').toLowerCase().split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')} {fetchData?.city?.city}</p>
         <p className='text-[20px]'>
-          Rincian alamat kos secara lengkap dan kode pos Rincian alamat kos secara lengkap dan kode
-          pos
+          {fetchData?.address}, {fetchData?.subdistrict}, {fetchData?.district}, {fetchData?.city?.city}, {fetchData?.city?.province?.province} ({fetchData?.postalCode})
         </p>
         <div className='grid grid-flow-col gap-4'>
           <div className='grid grid-flow-col auto-cols-max gap-2 content-center'>
@@ -31,8 +38,8 @@ const Detailkos = () => {
                 />
               </svg>
             </span>
-            <span>4.5</span>
-            <span>(7 reviews)</span>
+            <span>{isNaN(ratingAverage) ? 0 : ratingAverage}</span>
+            <span>({fetchReview.length} reviews)</span>
             <span className='self-center'>
               <svg
                 width='12'
@@ -49,7 +56,9 @@ const Detailkos = () => {
                 />
               </svg>
             </span>
-            <span>Yogyakarta</span>
+            <Link to={`https://www.google.com/maps/dir//@${fetchData?.latitude},${fetchData?.longitude}`}>
+              <span>{fetchData?.city?.city}</span>
+            </Link>
           </div>
           <div className='grid grid-flow-col auto-cols-max gap-4 justify-end'>
             <div className='grid grid-flow-col gap-2 border-2 border-[#0A008A] radius-[4px] text-[#0A008A] font-[600] p-2'>

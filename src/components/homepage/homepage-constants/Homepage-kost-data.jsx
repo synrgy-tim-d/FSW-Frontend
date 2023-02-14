@@ -1,45 +1,144 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-// import image from '../../../assets/Homepage-Kos1.svg';
+import { useMutation } from '@tanstack/react-query';
+import { ToastContainer, toast } from 'react-toastify';
+import axiosInstance from '../../../utils/http-interceptor';
+// import axios from 'axios';
 
-// Like Button
-const LikeButton = (props) => {
-  const [isFilled, setIsFilled] = useState(false);
-  const handleClick = () => {
-    setIsFilled(!isFilled);
+const LikeButton = ({ kosId }) => {
+  const [kostWishlist, setKostWishlist] = useState({
+    kostId: '',
+    userId: '',
+    wishlistStatus: true,
+  });
+
+  useEffect(() => {
+    fetchDataWishlist();
+  }, []);
+
+  const fetchDataWishlist = () => {
+    return axiosInstance
+      .get(`https://be-naqos.up.railway.app/api/wishlists/status?kostId=${kosId}`)
+      .then((response) => {
+        const result = response.data?.data;
+        setKostWishlist({
+          kostId: result?.kostId,
+          userId: result.userId,
+          wishlistStatus: result?.wishlistStatus,
+        });
+      });
+  };
+
+  const postWishlist = useMutation({
+    mutationFn: async (data) => {
+      await axiosInstance.post(`https://be-naqos.up.railway.app/api/wishlists/add`, data);
+    },
+  });
+
+  const destroyWishlist = useMutation({
+    mutationFn: async (kosId) => {
+      await axiosInstance.delete(
+        `https://be-naqos.up.railway.app/api/wishlists/destroy?kostId=${kosId}`,
+      );
+    },
+  });
+
+  const handleClick = (data) => {
+    data.preventDefault();
+    setKostWishlist(!kostWishlist.wishlistStatus);
+
+    if (!kostWishlist.wishlistStatus) {
+      postWishlist.mutate(
+        { kostId: `${kosId}` },
+        {
+          onSuccess: () => {
+            fetchDataWishlist();
+            toast.success('Kost berhasil ditambahkan ke wishlist');
+          },
+          onError: () => {
+            toast.error('Kost gagal ditambahkan ke wishlist');
+          },
+        },
+      );
+    } else {
+      destroyWishlist.mutate(kosId, {
+        onSuccess: () => {
+          fetchDataWishlist();
+          toast.success('Kost berhasil dihapus dari wishlist');
+        },
+        onError: () => {
+          toast.error('Kost gagal dihapus dari wishlist');
+        },
+      });
+    }
   };
 
   return (
-    <button onClick={handleClick} className='flex items-center justify-center'>
-      <svg
-        className={`w-3 md:w-6 h-3 md:h-6 ${isFilled ? 'fill-black' : 'fill-none'}`}
-        viewBox='0 0 24 24'
-        xmlns='http://www.w3.org/2000/svg'
-      >
-        <path
-          d='M21 8.25C21 5.76472 18.9013 3.75 16.3125 3.75C14.3769 3.75 12.7153 4.87628 12 6.48342C11.2847 4.87628 9.62312 3.75 7.6875 3.75C5.09867 3.75 3 5.76472 3 8.25C3 15.4706 12 20.25 12 20.25C12 20.25 21 15.4706 21 8.25Z'
-          stroke='#3C3C3C'
-          strokeWidth='1.5'
-          strokeLinecap='round'
-          strokeLinejoin='round'
-        />
-      </svg>
-    </button>
+    <>
+      <button onClick={handleClick} className='flex items-center justify-center'>
+        <svg
+          className={`w-3 md:w-6 h-3 md:h-6 ${
+            kostWishlist.wishlistStatus ? 'fill-black' : 'fill-none'
+          }`}
+          viewBox='0 0 24 24'
+          xmlns='http://www.w3.org/2000/svg'
+        >
+          <path
+            d='M21 8.25C21 5.76472 18.9013 3.75 16.3125 3.75C14.3769 3.75 12.7153 4.87628 12 6.48342C11.2847 4.87628 9.62312 3.75 7.6875 3.75C5.09867 3.75 3 5.76472 3 8.25C3 15.4706 12 20.25 12 20.25C12 20.25 21 15.4706 21 8.25Z'
+            stroke='#3C3C3C'
+            strokeWidth='1.5'
+            strokeLinecap='round'
+            strokeLinejoin='round'
+          />
+        </svg>
+      </button>
+    </>
   );
 };
 
 const Kostdata = ({ fetchData }) => {
   return (
     <div className='text-[10px] sm:text-[14px] md:text-[18px] lg:text-[20px] font-[Montserrat] text-[#000000] col-span-3 grid grid-cols-auto auto-rows-max gap-8 md:px-2 lg:px-4'>
+      <ToastContainer
+        position='top-right'
+        autoClose={1}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme='light'
+      />
       {fetchData?.map((kost) => {
-        const facilities = [].concat(...kost.rooms.map(room => room.facilities.map(facility => facility.name)));
-        const uniqueFacilities = [...new Set(facilities)];
+        // const facilities = [].concat(...kost?.rooms?.map((room) => room?.facilities?.map((facility) => facility?.name)));
+        // const uniqueFacilities = [...new Set(facilities)];
+        // const [kostReview, setKostReview] = useState([]);
+        // useEffect(() => {
+        //   fetchDataReview();
+        // }, []);
+        // const fetchDataReview = () => {
+        //   return axios
+        //     .get(`https://be-naqos.up.railway.app/api/public/kost_review/${kost.id}`)
+        //     .then((response) => {
+        //       const result = response.data?.data;
+        //       setKostReview(result)
+        //     });
+        // };
+        // let totalRating = 0
+
+        // for (let i = 0; i < kostReview.length; i++) {
+        //   totalRating += kostReview[i].rating;
+        // }
+      
+        // const ratingAverage = totalRating/kostReview.length;
         return (
-          <React.Fragment key={kost.id}>
+          <React.Fragment key={kost?.id}>
             <div className='grid grid-cols-3 grid-flow-col bg-white rounded-[16px]'>
-              <Link to='/kos/:kosid/:roomid'>
+              <Link to={`/kos/${kost?.id}/${kost?.rooms[0]?.id}`}>
                 <div className='col-span-1 rounded-[16px]'>
-                  <img className='w-full h-auto' src={kost.imageKosts[0].url} alt='' />
+                  <img className='w-full h-auto' src={kost?.imageKosts[0]?.url} alt='' />
                 </div>
               </Link>
               <div className='col-span-2 grid grid-rows-auto grid-flow-row md:gap-1 sm:auto-rows-auto pl-2 md:p-4'>
@@ -51,31 +150,23 @@ const Kostdata = ({ fetchData }) => {
                     text-[12px] lg:text-[16px] font-[600] leading-none
                     hidden'
                     >
-                    {/* {kost.type} */}
-                      {kost.kostType.slice(4)}
+                      {kost?.kostType?.slice(4)}
                     </div>
                     <span className='text-[#BA1A1A] italic md:pl-2 self-center'>
-                      sisa {kost.rooms.filter(room => room.isAvailable === true).length} kamar
+                      sisa {kost?.rooms?.filter((room) => room?.isAvailable === true).length} kamar
                     </span>
                   </div>
                   <div className='flex justify-end self-center pr-4'>
-                    <LikeButton
-                      key={kost.id}
-                      // onClick={() => handleClick()}
-                      // isFilled={selectedIndex === index}
-                    />
+                    <LikeButton kosId={kost?.id} />
                   </div>
                 </div>
 
                 <div className='grid grid-rows-auto'>
-                  <p className='font-[600]'>{kost.name}</p>
-                  {/* <p className='text-[10px] sm:text-[14px] md:text-[18px] lg:text-[20px] leading-none'>
-                    Rincian alamat kos secara lengkap dan kode pos
-                    <span className='text-[#000000]/[0.38] pl-2 hidden md:inline'> */}
+                  <p className='font-[600]'>{kost?.name}</p>
                   <p>
-                    {kost.address}, {kost.district}, {kost.subdistrict}, {kost.city.city}, {kost.city.province.province} ({kost.postalCode})
+                    {kost?.address}, {kost?.subdistrict}, {kost?.district}, {kost?.city?.city}, {kost?.city?.province?.province} ({kost?.postalCode})
                     <span className='text-[#000000]/[0.38] pl-2'>
-                      <Link to='/kos/:kosid/:roomid'>...selengkapnya</Link>
+                      <Link to={`/kos/${kost?.id}/${kost?.rooms[0]?.id}`}>...selengkapnya</Link>
                     </span>
                   </p>
                 </div>
@@ -96,8 +187,10 @@ const Kostdata = ({ fetchData }) => {
                     </svg>
                   </span>
                   <p className='text-[10px] md:text-[12px] lg:text-[14px] font-[500]'>
-                    {kost.review}
-                    <span className='italic pl-1'>(7 reviews)</span>
+                    {/* {isNaN(ratingAverage) ? 0 : ratingAverage}
+                    <span className='italic pl-1'>({kostReview?.length} reviews)</span> */}
+                    {0}
+                    <span className='italic pl-1'>(0 reviews)</span>
                   </p>
                   <span className='self-center'>
                     <svg
@@ -116,18 +209,17 @@ const Kostdata = ({ fetchData }) => {
                     </svg>
                   </span>
                   <p className='text-[10px] md:text-[12px] lg:text-[14px] font-[500]'>
-                    {/* {kost.location.name} */}
-                    {kost.city.city}
+                    {kost?.city?.city}
                   </p>
                 </div>
 
                 <div className='grid lg:grid-cols-2 grid-flow-col'>
                   <div className='hidden lg:grid col-span-1 grid-flow-col auto-cols-max gap-4 text-[#0A008A] font-[600]'>
-                    {uniqueFacilities.map((facility) => {
+                    {kost?.facilities?.map((facility) => {
                       return (
-                        <React.Fragment key={facility}>
+                        <React.Fragment key={facility.id}>
                           <div className='border-2 rounded-[4px] border-[#0A008A] p-2 self-center'>
-                            {facility}
+                            {facility.name}
                           </div>
                         </React.Fragment>
                       );
@@ -135,8 +227,7 @@ const Kostdata = ({ fetchData }) => {
                   </div>
                   <div className='lg:col-span-1 flex justify-start lg:justify-end'>
                     <p className='font-[700] lg:pl-8'>
-                      {/* Rp {kost.price} */}
-                      Rp {kost.rooms[0].pricePerMonthly}
+                      Rp {kost?.pricePerMonthly}
                       <span className='text-[10px] md:text-[14px] lg:text-[16px] font-[400]'>
                         /bulan
                       </span>
