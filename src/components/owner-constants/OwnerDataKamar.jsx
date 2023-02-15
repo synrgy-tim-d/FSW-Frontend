@@ -2,10 +2,12 @@ import React, { useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import kosimg from '../../assets/city-card.svg';
 import { AddKostActions, useAddKost } from '../../context/kost';
+import axios from 'axios';
 // import { fasilitasKamar } from '../homepage/homepage-constants/Dropdown';
 import { useMutation } from '@tanstack/react-query';
 // import axios from 'axios';
 import axiosInstance from '../../utils/http-interceptor';
+import appConfig from '../../config';
 
 const fasilitasKamar = [
   'Wi-Fi',
@@ -295,10 +297,29 @@ const OwnerDataKamar = () => {
       const formData = new FormData();
       formData.append('imageFiles', addKost.kostFrontPhoto);
       formData.append('imageFiles', addKost.kostBackPhoto);
-      axiosInstance.post(`https://be-naqos.up.railway.app/api/kost/add?name=Kost%20Binar%20Academy&description=Description%20Binar%20Academy&kostType=KOS_CAMPURAN&isAvailable=true&latitude=163&longitude=-12&address=Jl%20Medan%20Merdeka%20No%2069&subdistrict=Pengasinan&district=Rawalumbu&postalCode=18116&cityId=44&fQuestion1=Apakah%20Kost%20ini%20bersih%3F&fAnswer1=Iya&fQuestion2=Apakah%20Kost%20ini%20bersih%3F&fAnswer2=Iya&fQuestion3=Apakah%20Kost%20ini%20bersih%3F&fAnswer3=Iya&pricePerDaily=Iya&pricePerWeekly=Iya&pricePerMonthly=Iya&rules=Iya
-    `);
+      for (const key in kostParam) {
+        if (Object.hasOwnProperty.call(kostParam, key)) {
+          formData.append(key,kostParam[key])
+        }
+      }
+      await axiosInstance.post(
+        `${appConfig.BE_URL}/kost/add`,
+        formData
+      );
+      // await axiosInstance.post(`${appConfig.BE_URL}/api/kost/add`,formData);
+      console.log("masuk")
+    //   axiosInstance.post(`https://be-naqos.up.railway.app/api/kost/add?name=Kost%20Binar%20Academy&description=Description%20Binar%20Academy&kostType=KOS_CAMPURAN&isAvailable=true&latitude=163&longitude=-12&address=Jl%20Medan%20Merdeka%20No%2069&subdistrict=Pengasinan&district=Rawalumbu&postalCode=18116&cityId=44&fQuestion1=Apakah%20Kost%20ini%20bersih%3F&fAnswer1=Iya&fQuestion2=Apakah%20Kost%20ini%20bersih%3F&fAnswer2=Iya&fQuestion3=Apakah%20Kost%20ini%20bersih%3F&fAnswer3=Iya&pricePerDaily=Iya&pricePerWeekly=Iya&pricePerMonthly=Iya&rules=Iya
+    // `);
     },
+    onError: (err) => {
+      console.log(err)
+    }
   });
+
+  const onClickSubmit = async (e) => {
+    e.preventDefault;
+    await postKost.mutateAsync();
+  }
 
   console.log(addKost);
 
@@ -524,14 +545,18 @@ const OwnerDataKamar = () => {
                     yang berlaku
                   </label>
                 </div>
-                <a href='/ownerprofile'>
+                {/* <a href='/ownerprofile'> */}
                   <button
                     className='border-2 border-[#0A008A] bg-[#0A008A] text-white font-[600] p-2 px-3'
                     type='button'
+                    onClick={(e) => {
+                      onClickSubmit(e)
+
+                    }}
                   >
                     Simpan & Lanjutkan
                   </button>
-                </a>
+                {/* </a> */}
               </div>
             </div>
           </div>
