@@ -57,10 +57,17 @@ const OwnerDataKos = () => {
   };
 
   const onChangeCity = (e) => {
+    const cityValue = e.target.value.split(';');
+    const cityName = cityValue[1];
+    const cityId = cityValue[0];
     e.preventDefault();
     addKost.dispatch({
       type: AddKostActions.SET_KOST_LOCATION_DISTRICT,
-      payload: e.target.value,
+      payload: cityName,
+    });
+    addKost.dispatch({
+      type: AddKostActions.SET_KOST_LOCATION_DISTRICT_ID,
+      payload: cityId,
     });
   };
 
@@ -79,7 +86,6 @@ const OwnerDataKos = () => {
       payload: e.target.alt,
     });
   };
-  // console.log(addKost);
 
   return (
     <React.Fragment>
@@ -128,7 +134,7 @@ const OwnerDataKos = () => {
                 >
                   {provincesData?.data?.data.data.map((data) => {
                     return (
-                      <option value={data.province} key={data.id}>
+                      <option value={data.province} key={data.id} id={data.id}>
                         {data.province}
                       </option>
                     );
@@ -146,7 +152,12 @@ const OwnerDataKos = () => {
                     .filter((data) => data.province.province === addKost.kostLocationProvince)
                     .map((data) => {
                       return (
-                        <option value={data.city} key={data.id} placeholder='Provinsi'>
+                        <option
+                          value={`${data.id};${data.city}`}
+                          key={data.id}
+                          id={data.id}
+                          placeholder='Provinsi'
+                        >
                           {data.city}
                         </option>
                       );

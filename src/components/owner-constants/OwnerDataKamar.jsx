@@ -1,23 +1,37 @@
-import React, { useState, useRef, useEffect} from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import kosimg from '../../assets/city-card.svg';
 import { AddKostActions, useAddKost } from '../../context/kost';
 // import { fasilitasKamar } from '../homepage/homepage-constants/Dropdown';
+import { useMutation } from '@tanstack/react-query';
+// import axios from 'axios';
+import axiosInstance from '../../utils/http-interceptor';
 
-const fasilitasKamar = ['Wi-Fi', 'KM (Kamar Mandi) dalam', 'Air Panas', 'Lemari','Kasur','Meja','Kursi','Listrik','TV','Kipas Angin','AC']
-const sewaKamar = ['Per Hari', 'Per Minggu', 'Per Bulan']
+const fasilitasKamar = [
+  'Wi-Fi',
+  'KM (Kamar Mandi) dalam',
+  'Air Panas',
+  'Lemari',
+  'Kasur',
+  'Meja',
+  'Kursi',
+  'Listrik',
+  'TV',
+  'Kipas Angin',
+  'AC',
+];
+const sewaKamar = ['Per Hari', 'Per Minggu', 'Per Bulan'];
 const OwnerDataKamar = () => {
-
   const addKost = useAddKost();
 
-  const roomDescriptionRef = useRef(null)
+  const roomDescriptionRef = useRef(null);
   const onChangeRoomDescription = (e) => {
     e.preventDefault();
     addKost.dispatch({
-      type:AddKostActions.SET_ROOM_DESCRIPTION,
-      payload:e.target.value
-    })
-  }
+      type: AddKostActions.SET_ROOM_DESCRIPTION,
+      payload: e.target.value,
+    });
+  };
 
   const [fasilitasKamarCheckedState, setFasilitasKamarCheckedState] = useState(
     new Array(fasilitasKamar.length).fill(false),
@@ -27,33 +41,33 @@ const OwnerDataKamar = () => {
       index === position ? !item : item,
     );
     addKost.dispatch({
-      type:AddKostActions.SET_ROOM_FACILITIES,
-      payload: updatedCheckedState.map((e,i) => {
+      type: AddKostActions.SET_ROOM_FACILITIES,
+      payload: updatedCheckedState.map((e, i) => {
         if (e) {
-          return fasilitasKamar[i]
+          return fasilitasKamar[i];
         }
-      })
-    })
+      }),
+    });
     setFasilitasKamarCheckedState(updatedCheckedState);
   };
 
-  const roomTotalRef = useRef(null)
+  const roomTotalRef = useRef(null);
   const onChangeRoomTotal = (e) => {
     e.preventDefault();
     addKost.dispatch({
-      type:AddKostActions.SET_ROOM_TOTAL,
-      payload:e.target.value
-    })
-  }
+      type: AddKostActions.SET_ROOM_TOTAL,
+      payload: e.target.value,
+    });
+  };
 
-  const roomRemainsRef = useRef(null)
+  const roomRemainsRef = useRef(null);
   const onChangeRoomRemains = (e) => {
     e.preventDefault();
     addKost.dispatch({
-      type:AddKostActions.SET_ROOM_REMAINS,
-      payload:e.target.value
-    })
-  }
+      type: AddKostActions.SET_ROOM_REMAINS,
+      payload: e.target.value,
+    });
+  };
 
   const [sewaKamarCheckedState, setSewaKamarCheckedState] = useState(
     new Array(sewaKamar.length).fill(false),
@@ -63,129 +77,131 @@ const OwnerDataKamar = () => {
       index === position ? !item : item,
     );
     addKost.dispatch({
-      type:AddKostActions.SET_ROOM_OPTION,
-      payload: updatedCheckedState.map((e,i) => {
+      type: AddKostActions.SET_ROOM_OPTION,
+      payload: updatedCheckedState.map((e, i) => {
         if (e) {
-          return sewaKamar[i]
+          return sewaKamar[i];
         }
-      })
-    })
+      }),
+    });
     setSewaKamarCheckedState(updatedCheckedState);
   };
 
-  const roomCostDayRef = useRef(null)
+  const roomCostDayRef = useRef(null);
   const onChangeRoomCostDay = (e) => {
     e.preventDefault();
     addKost.dispatch({
-      type:AddKostActions.SET_ROOM_COST_DAY,
-      payload:e.target.value
-    })
-  }
-  
-  const roomCostWeekRef = useRef(null)
+      type: AddKostActions.SET_ROOM_COST_DAY,
+      payload: e.target.value,
+    });
+  };
+
+  const roomCostWeekRef = useRef(null);
   const onChangeRoomCostWeek = (e) => {
     e.preventDefault();
     addKost.dispatch({
-      type:AddKostActions.SET_ROOM_COST_WEEK,
-      payload:e.target.value
-    })
-  }
+      type: AddKostActions.SET_ROOM_COST_WEEK,
+      payload: e.target.value,
+    });
+  };
 
-  const roomCostMonthRef = useRef(null)
+  const roomCostMonthRef = useRef(null);
   const onChangeRoomCostMonth = (e) => {
     e.preventDefault();
     addKost.dispatch({
-      type:AddKostActions.SET_ROOM_COST_MONTH,
-      payload:e.target.value
-    })
-  }
+      type: AddKostActions.SET_ROOM_COST_MONTH,
+      payload: e.target.value,
+    });
+  };
 
-  const roomPhoto1Ref = useRef(null)
+  const roomPhoto1Ref = useRef(null);
   const onChangeRoomPhoto1 = (e) => {
     e.preventDefault();
     if (e.target.files && e.target.files[0]) {
       const reader = new FileReader();
       reader.onload = (e) => {
         addKost.dispatch({
-          type:AddKostActions.SET_ROOM_PHOTOS_URL_1,
-          payload:e.target.result
-        })
+          type: AddKostActions.SET_ROOM_PHOTOS_URL_1,
+          payload: e.target.result,
+        });
       };
       reader.readAsDataURL(e.target.files[0]);
       const pictureTemp = e.target.files[0];
       addKost.dispatch({
-        type:AddKostActions.SET_ROOM_PHOTOS_1,
-        payload:pictureTemp
-      })
+        type: AddKostActions.SET_ROOM_PHOTOS_1,
+        payload: pictureTemp,
+      });
     }
-  }
+  };
 
-  const roomPhoto2Ref = useRef(null)
+  const roomPhoto2Ref = useRef(null);
   const onChangeRoomPhoto2 = (e) => {
     e.preventDefault();
     if (e.target.files && e.target.files[0]) {
       const reader = new FileReader();
       reader.onload = (e) => {
         addKost.dispatch({
-          type:AddKostActions.SET_ROOM_PHOTOS_URL_2,
-          payload:e.target.result
-        })
+          type: AddKostActions.SET_ROOM_PHOTOS_URL_2,
+          payload: e.target.result,
+        });
       };
       reader.readAsDataURL(e.target.files[0]);
       const pictureTemp = e.target.files[0];
       addKost.dispatch({
-        type:AddKostActions.SET_ROOM_PHOTOS_URL_2,
-        payload:pictureTemp
-      })
+        type: AddKostActions.SET_ROOM_PHOTOS_URL_2,
+        payload: pictureTemp,
+      });
     }
-  }
+  };
 
-  const roomPhoto3Ref = useRef(null)
+  const roomPhoto3Ref = useRef(null);
   const onChangeRoomPhoto3 = (e) => {
     e.preventDefault();
     if (e.target.files && e.target.files[0]) {
       const reader = new FileReader();
       reader.onload = (e) => {
         addKost.dispatch({
-          type:AddKostActions.SET_ROOM_PHOTOS_URL_3,
-          payload:e.target.result
-        })
+          type: AddKostActions.SET_ROOM_PHOTOS_URL_3,
+          payload: e.target.result,
+        });
       };
       reader.readAsDataURL(e.target.files[0]);
       const pictureTemp = e.target.files[0];
       addKost.dispatch({
-        type:AddKostActions.SET_ROOM_PHOTOS_URL_3,
-        payload:pictureTemp
-      })
+        type: AddKostActions.SET_ROOM_PHOTOS_URL_3,
+        payload: pictureTemp,
+      });
     }
-  }
+  };
 
-  const roomPhoto4Ref = useRef(null)
+  const roomPhoto4Ref = useRef(null);
   const onChangeRoomPhoto4 = (e) => {
     e.preventDefault();
     if (e.target.files && e.target.files[0]) {
       const reader = new FileReader();
       reader.onload = (e) => {
         addKost.dispatch({
-          type:AddKostActions.SET_ROOM_PHOTOS_URL_4,
-          payload:e.target.result
-        })
+          type: AddKostActions.SET_ROOM_PHOTOS_URL_4,
+          payload: e.target.result,
+        });
       };
       reader.readAsDataURL(e.target.files[0]);
       const pictureTemp = e.target.files[0];
       addKost.dispatch({
-        type:AddKostActions.SET_ROOM_PHOTOS_4,
-        payload:pictureTemp
-      })
+        type: AddKostActions.SET_ROOM_PHOTOS_4,
+        payload: pictureTemp,
+      });
     }
-  }
+  };
 
   useEffect(() => {
-    roomDescriptionRef.current.value = addKost.roomDescription
+    roomDescriptionRef.current.value = addKost.roomDescription;
     if (addKost.roomFacilities != null) {
-      setFasilitasKamarCheckedState(addKost.roomFacilities.map((e,i) => {
-        return e != undefined
-      }))
+      setFasilitasKamarCheckedState(
+        addKost.roomFacilities.map((e, i) => {
+          return e != undefined;
+        }),
+      );
     }
 
     roomTotalRef.current.value = addKost.roomTotal;
@@ -193,21 +209,22 @@ const OwnerDataKamar = () => {
     roomRemainsRef.current.value = addKost.roomRemains;
 
     if (addKost.roomOption != null) {
-      setSewaKamarCheckedState(addKost.roomOption.map((e,i) => {
-        return e != undefined
-      }))
+      setSewaKamarCheckedState(
+        addKost.roomOption.map((e, i) => {
+          return e != undefined;
+        }),
+      );
     }
     if (addKost.roomCostDay != null) {
-      roomCostDayRef.current.value = addKost.roomCostDay
+      roomCostDayRef.current.value = addKost.roomCostDay;
     }
     if (addKost.roomCostWeek != null) {
-      roomCostWeekRef.current.value = addKost.roomCostWeek
+      roomCostWeekRef.current.value = addKost.roomCostWeek;
     }
     if (addKost.roomCostMonth != null) {
-      roomCostMonthRef.current.value = addKost.roomCostMonth
+      roomCostMonthRef.current.value = addKost.roomCostMonth;
     }
-    
-  },[])
+  }, []);
 
   const sewaPerHari = () => {
     return (
@@ -251,6 +268,39 @@ const OwnerDataKamar = () => {
       </div>
     );
   };
+
+  const kostParam = {
+    name: addKost.kostName,
+    description: addKost.kostDescription,
+    kostType: addKost.kostType,
+    isAvailable: 'true',
+    latitude: '0',
+    longitude: '0',
+    address: addKost.kostAddress,
+    subdistrict: addKost.kostLocationSubdistrict,
+    district: addKost.kostLocationDistrict,
+    postalCode: '0',
+    cityId: addKost.kostLocationDistrictID,
+    fQuestion1: addKost.kostFaq,
+    fAnswer1: addKost.kostFaqAnswer,
+    pricePerDaily: addKost.roomCostDay,
+    pricePerWeekly: addKost.roomCostWeek,
+    pricePerMonthly: addKost.roomCostMonth,
+    rules: addKost.kostRules,
+  };
+
+  const postKost = useMutation({
+    mutationKey: ['postKost'],
+    mutationFn: async () => {
+      const formData = new FormData();
+      formData.append('imageFiles', addKost.kostFrontPhoto);
+      formData.append('imageFiles', addKost.kostBackPhoto);
+      axiosInstance.post(`https://be-naqos.up.railway.app/api/kost/add?name=Kost%20Binar%20Academy&description=Description%20Binar%20Academy&kostType=KOS_CAMPURAN&isAvailable=true&latitude=163&longitude=-12&address=Jl%20Medan%20Merdeka%20No%2069&subdistrict=Pengasinan&district=Rawalumbu&postalCode=18116&cityId=44&fQuestion1=Apakah%20Kost%20ini%20bersih%3F&fAnswer1=Iya&fQuestion2=Apakah%20Kost%20ini%20bersih%3F&fAnswer2=Iya&fQuestion3=Apakah%20Kost%20ini%20bersih%3F&fAnswer3=Iya&pricePerDaily=Iya&pricePerWeekly=Iya&pricePerMonthly=Iya&rules=Iya
+    `);
+    },
+  });
+
+  console.log(addKost);
 
   return (
     <React.Fragment>
@@ -372,9 +422,9 @@ const OwnerDataKamar = () => {
                 </ul>
               </div>
 
-              {addKost.roomOption != null && (addKost.roomOption[0] && sewaPerHari())}
-              {addKost.roomOption != null && (addKost.roomOption[1] && sewaPerMinggu())}
-              {addKost.roomOption != null && (addKost.roomOption[2] && sewaPerBulan())}
+              {addKost.roomOption != null && addKost.roomOption[0] && sewaPerHari()}
+              {addKost.roomOption != null && addKost.roomOption[1] && sewaPerMinggu()}
+              {addKost.roomOption != null && addKost.roomOption[2] && sewaPerBulan()}
 
               <div className='grid grid-flow-row gap-y-3'>
                 <p className='font-[600]'>Foto Kamar atau Ruangan</p>
@@ -386,7 +436,13 @@ const OwnerDataKamar = () => {
                       src={addKost.roomPhotosUrl1 != null ? addKost.roomPhotosUrl1 : kosimg}
                       className='border-2 border-gray-300 border-dashed rounded-md appearance-none cursor-pointer hover:border-gray-400 focus:outline-none'
                     />
-                    <input type='file' name='file_upload' className='hidden' ref={roomPhoto1Ref} onChange={(e) => onChangeRoomPhoto1(e)}/>
+                    <input
+                      type='file'
+                      name='file_upload'
+                      className='hidden'
+                      ref={roomPhoto1Ref}
+                      onChange={(e) => onChangeRoomPhoto1(e)}
+                    />
                   </label>
                 </div>
                 <div className='max-w-xl'>
@@ -395,7 +451,13 @@ const OwnerDataKamar = () => {
                       src={addKost.roomPhotosUrl2 != null ? addKost.roomPhotosUrl2 : kosimg}
                       className='border-2 border-gray-300 border-dashed rounded-md appearance-none cursor-pointer hover:border-gray-400 focus:outline-none'
                     />
-                    <input type='file' name='file_upload' className='hidden' ref={roomPhoto2Ref} onChange={(e) => onChangeRoomPhoto2(e)}/>
+                    <input
+                      type='file'
+                      name='file_upload'
+                      className='hidden'
+                      ref={roomPhoto2Ref}
+                      onChange={(e) => onChangeRoomPhoto2(e)}
+                    />
                   </label>
                 </div>
                 <div className='max-w-xl'>
@@ -404,7 +466,13 @@ const OwnerDataKamar = () => {
                       src={addKost.roomPhotosUrl3 != null ? addKost.roomPhotosUrl3 : kosimg}
                       className='border-2 border-gray-300 border-dashed rounded-md appearance-none cursor-pointer hover:border-gray-400 focus:outline-none'
                     />
-                    <input type='file' name='file_upload' className='hidden' ref={roomPhoto3Ref} onChange={(e) => onChangeRoomPhoto3(e)}/>
+                    <input
+                      type='file'
+                      name='file_upload'
+                      className='hidden'
+                      ref={roomPhoto3Ref}
+                      onChange={(e) => onChangeRoomPhoto3(e)}
+                    />
                   </label>
                 </div>
                 <div className='max-w-xl'>
@@ -413,7 +481,13 @@ const OwnerDataKamar = () => {
                       src={addKost.roomPhotosUrl4 != null ? addKost.roomPhotosUrl4 : kosimg}
                       className='border-2 border-gray-300 border-dashed rounded-md appearance-none cursor-pointer hover:border-gray-400 focus:outline-none'
                     />
-                    <input type='file' name='file_upload' className='hidden' ref={roomPhoto4Ref} onChange={(e) => onChangeRoomPhoto4(e)}/>
+                    <input
+                      type='file'
+                      name='file_upload'
+                      className='hidden'
+                      ref={roomPhoto4Ref}
+                      onChange={(e) => onChangeRoomPhoto4(e)}
+                    />
                   </label>
                 </div>
               </div>

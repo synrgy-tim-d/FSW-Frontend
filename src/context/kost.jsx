@@ -10,6 +10,7 @@ const InitialAddKostState = {
   kostAddress: null,
   kostLocationProvince: null,
   kostLocationDistrict: null,
+  kostLocationDistrictID: null,
   kostLocationSubdistrict: null,
   kostType: null,
   kostFacilities: null,
@@ -55,6 +56,7 @@ export const AddKostActions = {
   SET_KOST_ADDRESS: 'SET_KOST_ADDRES',
   SET_KOST_LOCATION_PROVINCE: 'SET_KOST_LOCATION_PROVINCE',
   SET_KOST_LOCATION_DISTRICT: 'SET_KOST_LOCATION_DISTRICT',
+  SET_KOST_LOCATION_DISTRICT_ID: 'SET_KOST_LOCATION_DISTRICT_ID',
   SET_KOST_LOCATION_SUBDISTRICT: 'SET_KOST_LOCATION_SUBDISTRICT',
   SET_KOST_TYPE: 'SET_KOST_TYPEE',
   SET_KOST_FACILITIES: 'SET_KOST_FACILITIES',
@@ -111,6 +113,8 @@ const AddKostReducer = (state, action) => {
       return { ...state, kostLocationProvince: action.payload };
     case AddKostActions.SET_KOST_LOCATION_DISTRICT:
       return { ...state, kostLocationDistrict: action.payload };
+    case AddKostActions.SET_KOST_LOCATION_DISTRICT_ID:
+      return { ...state, kostLocationDistrictID: action.payload };
     case AddKostActions.SET_KOST_LOCATION_SUBDISTRICT:
       return { ...state, kostLocationSubdistrict: action.payload };
     case AddKostActions.SET_KOST_TYPE:
