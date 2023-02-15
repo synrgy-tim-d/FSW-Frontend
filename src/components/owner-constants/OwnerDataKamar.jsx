@@ -302,12 +302,18 @@ const OwnerDataKamar = () => {
           formData.append(key,kostParam[key])
         }
       }
-      await axiosInstance.post(
+      const token = localStorage.getItem("AUTH_TOKEN")
+      await axios.post(
         `${appConfig.BE_URL}/kost/add`,
-        formData
+        formData,
+        {
+          headers: {
+            authorization: `Bearer ${token}`,
+          },
+        }
       );
       // await axiosInstance.post(`${appConfig.BE_URL}/api/kost/add`,formData);
-      console.log("masuk")
+      // console.log("masuk")
     //   axiosInstance.post(`https://be-naqos.up.railway.app/api/kost/add?name=Kost%20Binar%20Academy&description=Description%20Binar%20Academy&kostType=KOS_CAMPURAN&isAvailable=true&latitude=163&longitude=-12&address=Jl%20Medan%20Merdeka%20No%2069&subdistrict=Pengasinan&district=Rawalumbu&postalCode=18116&cityId=44&fQuestion1=Apakah%20Kost%20ini%20bersih%3F&fAnswer1=Iya&fQuestion2=Apakah%20Kost%20ini%20bersih%3F&fAnswer2=Iya&fQuestion3=Apakah%20Kost%20ini%20bersih%3F&fAnswer3=Iya&pricePerDaily=Iya&pricePerWeekly=Iya&pricePerMonthly=Iya&rules=Iya
     // `);
     },
