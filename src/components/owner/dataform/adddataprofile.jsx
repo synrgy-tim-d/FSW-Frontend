@@ -1,18 +1,88 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import BCA from '../../../assets/LogoBCA.png';
 import Mandiri from '../../../assets/LogoMandiri.png';
 import BNI from '../../../assets/LogoBNI.png';
 import BRI from '../../../assets/LogoBRI.png';
 import BTN from '../../../assets/LogoBTN.png';
-
+import { useAddKost, AddKostActions } from '../../../context/kost';
 const AddOwnerProfile = () => {
   const [selectedPayment, setSelectedPayment] = useState('BCA');
+  const addKost = useAddKost();
+  
+  const ownerNameRef = useRef(null);
+  const onChangeOwnerName = (e) => {
+    e.preventDefault();
+    addKost.dispatch({
+      type: AddKostActions.SET_OWNER_NAME,
+      payload: e.target.value
+    })
+  }
 
+  const ownerPhoneRef = useRef(null);
+  const onChangeOwnerPhone = (e) => {
+    e.preventDefault();
+    addKost.dispatch({
+      type:AddKostActions.SET_OWNER_PHONE,
+      payload:e.target.value
+    })
+  }
+
+  const ownerBankOtherRef = useRef(null)
   const handleChange = (e) => {
     setSelectedPayment(e.target.value);
+    if (e.target.value == 'other') {
+      addKost.dispatch({
+        type:AddKostActions.SET_OWNER_BANK,
+        payload: ownerBankOtherRef.current.value
+      })
+    } else {
+      addKost.dispatch({
+        type:AddKostActions.SET_OWNER_BANK,
+        payload: e.target.value
+      })
+    }
   };
+  const onChangeOwnerBankOther = (e) => {
+    e.preventDefault();
+    if (selectedPayment == 'other') {
+      addKost.dispatch({
+        type:AddKostActions.SET_OWNER_BANK,
+        payload: e.target.value
+      })
+    }
+  }
 
+  const ownerRekeningRef = useRef(null)
+  const onChangeOwnerRekening = (e) => {
+    e.preventDefault();
+    addKost.dispatch({
+      type:AddKostActions.SET_OWNER_REKENING,
+      payload:e.target.value
+    })
+  }
+
+  const ownerRekeningNameRef = useRef(null)
+  const onChangeOwnerRekeningName = (e) => {
+    e.preventDefault();
+    addKost.dispatch({
+      type:AddKostActions.SET_OWNER_REKENING_NAME,
+      payload:e.target.value
+    })
+  }
+
+  useEffect(() => {
+    ownerNameRef.current.value = addKost.ownerName;
+    ownerPhoneRef.current.value = addKost.ownerPhone;
+    setSelectedPayment('BCA')
+    addKost.dispatch({
+      type:AddKostActions.SET_OWNER_BANK,
+      payload: 'BCA'
+    })
+    ownerRekeningRef.current.value = addKost.ownerRekening;
+    ownerRekeningNameRef.current.value = addKost.ownerRekeningName;
+  },[])
+  
   return (
     <React.Fragment>
       <div className='grid grid-cols-5 bg-[#FAFAFA]'>
@@ -39,6 +109,8 @@ const AddOwnerProfile = () => {
                 placeholder='Ketikkan nama lengkapmu disini'
                 type='text'
                 name='search'
+                onChange={(e) => onChangeOwnerName(e)}
+                ref={ownerNameRef}
               />
             </label>
 
@@ -52,6 +124,8 @@ const AddOwnerProfile = () => {
                 placeholder='Isi nomor handphone Whatsapp aktif'
                 type='text'
                 name='search'
+                onChange={(e) => onChangeOwnerPhone(e)}
+                ref={ownerPhoneRef}
               />
             </label>
 
@@ -169,7 +243,8 @@ const AddOwnerProfile = () => {
                 Rekening Bank Lain/Pengelola
               </span>
               <span className='block text-[20px] text-[#B9B9BC] pb-3'>
-                Rekening bank lain yang tidak tertera diatas
+                
+              Rekening bank lain yang tidak tertera diatas
               </span>
 
               <input
@@ -177,6 +252,8 @@ const AddOwnerProfile = () => {
                 placeholder='Ketikkan nama bank disini'
                 type='text'
                 name='search'
+                ref={ownerBankOtherRef}
+                onChange={(e) => onChangeOwnerBankOther(e)}
               />
             </label>
 
@@ -190,6 +267,8 @@ const AddOwnerProfile = () => {
                 placeholder='Isi nomor rekening bank'
                 type='text'
                 name='search'
+                ref={ownerRekeningRef}
+                onChange={(e) => onChangeOwnerRekening(e)}
               />
             </label>
 
@@ -203,6 +282,8 @@ const AddOwnerProfile = () => {
                 placeholder='Isi nama kepemilikan rekening bank'
                 type='text'
                 name='search'
+                ref={ownerRekeningNameRef}
+                onChange={(e) => {onChangeOwnerRekeningName(e)}}
               />
             </label>
           </form>
