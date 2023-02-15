@@ -244,7 +244,7 @@ const AddOwnerProfile = () => {
               </span>
               <span className='block text-[20px] text-[#B9B9BC] pb-3'>
                 
-              {addKost.ownerRekeningName}
+              Rekening bank lain yang tidak tertera diatas
               </span>
 
               <input
