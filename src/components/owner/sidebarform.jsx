@@ -134,7 +134,7 @@ export const SidebarForm = () => {
 
         {/* Foto Kos */}
         <NavLink
-            to='/fotokos'
+            to='/owner/kostphotos'
             className={({ isActive }) => (isActive ? activeLink : normalLink)}
         >
             <button className='' type='button'>

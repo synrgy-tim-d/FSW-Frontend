@@ -9,6 +9,7 @@ import campuran from '../../assets/radio_Campuran.svg';
 import { useAddKost, AddKostActions } from '../../context/kost';
 import { useQuery } from '@tanstack/react-query';
 import appConfig from '../../config';
+import { SidebarForm } from '../owner/sidebarform';
 
 const OwnerDataKos = () => {
   const provincesData = useQuery({
@@ -90,7 +91,10 @@ const OwnerDataKos = () => {
   return (
     <React.Fragment>
       <div className='grid grid-cols-5 text-[16px] font-[400] font-montserrat'>
-        <div className='col-span-1 bg-[#0A008A] h-full'></div>
+        <div className='col-span-1 bg-[#0A008A] text-white min-h-screen h-full text-center py-6 lg:px-8 lg:py-16'>
+
+        <SidebarForm />
+        </div>
 
         <div className='col-span-4 flex justify-center'>
           <div className='w-11/12 grid grid-flow-row py-10 gap-y-6'>
