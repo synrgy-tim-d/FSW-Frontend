@@ -52,24 +52,26 @@ const EditProfile = () => {
   const onClickSaveHandler = async (e) => {
     e.preventDefault();
     try {
-      const profilePayload = new FormData();
-      profilePayload.append('fullname', fullname);
-      profilePayload.append('phoneNumber', phoneNumber);
-
+      const token = localStorage.getItem("AUTH_TOKEN")
       setProgressLoading(50);
-      await axiosInstance.put(
+      await axios.put(
         `${appConfig.BE_URL}/users/update_data`,
-        profilePayload,
+        {
+          fullname,phoneNumber
+        },
+        {
+          headers: {
+            authorization: `Bearer ${token}`,
+          },
+        }
       );
-
-      const avatarPayload = new FormData();
-
-      avatarPayload.append('imageFile', picture);
       // for (const value of avatarPayload.values()) {
       //   console.log(value);
       // }
       if (picture) {
-        const token = localStorage.getItem("AUTH_TOKEN")
+        const avatarPayload = new FormData();
+  
+        avatarPayload.append('imageFile', picture);
         await axios.put(
           `${appConfig.BE_URL}/users/avatar`,
           avatarPayload,
@@ -95,7 +97,7 @@ const EditProfile = () => {
     } catch (err) {
 
       alert(String(err?.response?.data?.data));
-      // console.log(err);
+      console.log(err);
       navigate('/profile/editprofile');
     }
   };
