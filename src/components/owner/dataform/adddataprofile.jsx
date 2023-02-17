@@ -291,13 +291,14 @@ const AddOwnerProfile = () => {
             </label>
           </form>
           <div className='grid grid-flow-col place-content-between pt-24'>
+            <Link to='/owner/property'>
             <button
               className='rounded border-2 border-[#0A008A] text=[#0A008A] bg-white font-[600] p-2 px-3'
               type='button'
             >
               Kembali
             </button>
-            
+            </Link>
             <Link to='/owner/kostdata'>
               <button
                 className='rounded border-2 border-[#0A008A] bg-[#0A008A] text-white font-[600] p-2 px-3'
