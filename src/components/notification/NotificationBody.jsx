@@ -1,14 +1,15 @@
-import React from 'react'
+// import React from 'react'
 import IconClose from "../../assets/icon_close.svg"
-import { useState } from 'react'
-import axios from 'axios';
-import { useQuery } from '@tanstack/react-query';
-import appConfig from '../../config';
+// import { useState } from 'react'
+// import axios from 'axios';
+// import { useQuery } from '@tanstack/react-query';
+// import appConfig from '../../config';
+
 function NotificationBody({notifications,isNotificationHiddenState}) {
     // const [isNotificationHidden, setIsNotificationHidden] = useState(true)
     const onClickCloseNotificationHandler = (e) =>{
         e.preventDefault();
-        console.log(isNotificationHiddenState)
+        // console.log(isNotificationHiddenState)
         isNotificationHiddenState.setIsNotificationHidden(true);
     }
   return (
