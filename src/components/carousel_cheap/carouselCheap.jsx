@@ -29,7 +29,7 @@ const CarouselCheap = () => {
     queryKey: ['kos_murah'],
     queryFn: async () =>
       await axios.get(
-        `https://be-naqos.up.railway.app/api/public/kost?start=0&limit=10&page=1&search=%5B%22${place}%22%5D&fields=%5B%22city.city%22%5D&filters=%5B%7B%22field%22%3A%22isAvailable%22%2C%22value%22%3A%22%22%2C%22op%22%3A%22in%22%2C%22valueIn%22%3A%5B%22true%22%5D%7D%5D`
+        `https://be-naqos.up.railway.app/api/public/kost?start=0&limit=10&page=1&search=%5B%22${place}%22%5D&fields=%5B%22city.city%22%5D&filters=%5B%7B%22field%22%3A%22isAvailable%22%2C%22value%22%3A%22%22%2C%22op%22%3A%22in%22%2C%22valueIn%22%3A%5B%22true%22%5D%7D%5D&sort=%5B%7B%22field%22%3A%22pricePerMonthly%22%2C%22dir%22%3A%22asc%22%7D%5D`
       ),
   });
 

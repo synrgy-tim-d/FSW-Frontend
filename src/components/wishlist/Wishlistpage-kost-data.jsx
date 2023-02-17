@@ -67,7 +67,7 @@ const Kostdata = ({ fetchData }) => {
   return (
     <div className='text-[10px] sm:text-[14px] md:text-[18px] lg:text-[20px] font-[Montserrat] text-[#000000] col-span-3 grid grid-cols-auto auto-rows-max gap-8 md:px-2 lg:px-4'>
       {fetchData?.map((kost) => {
-        console.log(kost)
+        // console.log(kost)
         // const [dataKost, setDataKost] = useState([]);
         // const [kostReview, setKostReview] = useState([]);
 
