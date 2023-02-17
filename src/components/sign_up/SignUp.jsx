@@ -41,16 +41,16 @@ const SignUp = () => {
 
   const [phoneNumber, setPhoneNumber] = useState('');
 
-  // const handleInputChange = (event) => {
-  //   const input = event.target.value;
-  //   const filteredInput = input.replace(/\D/g, "");
-  //   const lastDigit = filteredInput[filteredInput.length - 1];
-  //   if (lastDigit === "0") {
-  //     setPhoneNumber(filteredInput.slice(0, -1));
-  //   } else {
-  //     setPhoneNumber(filteredInput);
-  //   }
-  // };
+  const handleInputChange = (event) => {
+    const input = event.target.value;
+    const filteredInput = input.replace(/\D/g, "");
+    const lastDigit = filteredInput[filteredInput.length - 1];
+    if (lastDigit === "") {
+      setPhoneNumber(filteredInput.slice(0, -1));
+    } else {
+      setPhoneNumber(filteredInput);
+    }
+  };
 
   return (
     <div className='px-[15px] font-[Montserrat]'>
@@ -99,7 +99,7 @@ const SignUp = () => {
               })}
               aria-invalid={errors.phoneNumber ? 'true' : 'false'}
               value={phoneNumber}
-              onChange={handleInputChange}
+              // onChange={handleInputChange}
             />
           </div>
           {errors.phoneNumber && errors.phoneNumber.type === 'validate' && (
