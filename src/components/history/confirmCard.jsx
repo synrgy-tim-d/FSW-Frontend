@@ -13,6 +13,7 @@ function ConfirmCard({
   willPay,
   isConfirmed,
   isCancelled,
+  phoneNumber,
 }) {
   const monthNames = [
     'January',
@@ -64,12 +65,14 @@ function ConfirmCard({
             </div>
           </div>
           <div className='lg:flex flex-col flex-1 items-end hidden'>
-            <label
-              htmlFor='my-modal'
-              className='cursor-pointer inline-flex items-center justify-center px-5 h-[43px] mb-[65px] p-0 bg-white border-2 border-[#0A008A] rounded-[4px] outline-none text-[16px] font-[600] text-[#0A008A] hover:bg-[#f3f4ff] hover:border-[#0A008A] hover:text-[#0A008A] active:bg-[#0A008A] active:text-white'
-            >
-              Chat Pemilik Kos
-            </label>
+            <a href={`https://wa.me/62${phoneNumber}`} rel='noreferrer' target='_blank'>
+              <label
+                htmlFor='my-modal'
+                className='cursor-pointer inline-flex items-center justify-center px-5 h-[43px] mb-[65px] p-0 bg-white border-2 border-[#0A008A] rounded-[4px] outline-none text-[16px] font-[600] text-[#0A008A] hover:bg-[#f3f4ff] hover:border-[#0A008A] hover:text-[#0A008A] active:bg-[#0A008A] active:text-white'
+              >
+                Chat Pemilik Kos
+              </label>
+            </a>
             <div className='flex flex-row'>
               <img className='' alt='' src={iconpending} />
               <p className='text-[12px] font-[500] text-[#EA9A3D] ml-2 mb-[4px] mt-1'>

@@ -186,6 +186,7 @@ const ConfirmationHistory = () => {
           {getBooking.isLoading && <div className='text-xl text-center mx-20'>Loading ...</div>}
           {getBooking.isSuccess &&
             getBooking?.data.data.map((booking) => {
+              console.log(booking);
               return (
                 <ConfirmCard
                   key={booking.booking_id}
@@ -199,6 +200,7 @@ const ConfirmationHistory = () => {
                   isCancelled={booking.BookingDetail.is_cancelled}
                   bookingStartDate={booking.booking_date_start}
                   bookingEndDate={booking.booking_date_end}
+                  phoneNumber={booking.Kost.Owner.phone_number}
                 />
               );
             })}
