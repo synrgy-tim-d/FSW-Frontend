@@ -9,7 +9,8 @@ import { useMutation } from '@tanstack/react-query';
 import axiosInstance from '../../utils/http-interceptor';
 import appConfig from '../../config';
 import { SidebarForm } from '../owner/sidebarform';
-
+import LoadingBar from 'react-top-loading-bar';
+import { useNavigate } from 'react-router-dom';
 const fasilitasKamar = [
   'Wi-Fi',
   'KM (Kamar Mandi) dalam',
@@ -292,9 +293,12 @@ const OwnerDataKamar = () => {
     rules: addKost.kostRules,
   };
 
+  const [progressLoading, setProgressLoading] = useState(0);
+  const navigate = useNavigate();
   const postKost = useMutation({
     mutationKey: ['postKost'],
     mutationFn: async () => {
+      setProgressLoading(50);
       const formData = new FormData();
       formData.append('imageFiles', addKost.kostFrontPhoto);
       formData.append('imageFiles', addKost.kostBackPhoto);
@@ -313,6 +317,8 @@ const OwnerDataKamar = () => {
           },
         }
       );
+      navigate("/owner/property")
+    
       // await axiosInstance.post(`${appConfig.BE_URL}/api/kost/add`,formData);
       // console.log("masuk")
     //   axiosInstance.post(`https://be-naqos.up.railway.app/api/kost/add?name=Kost%20Binar%20Academy&description=Description%20Binar%20Academy&kostType=KOS_CAMPURAN&isAvailable=true&latitude=163&longitude=-12&address=Jl%20Medan%20Merdeka%20No%2069&subdistrict=Pengasinan&district=Rawalumbu&postalCode=18116&cityId=44&fQuestion1=Apakah%20Kost%20ini%20bersih%3F&fAnswer1=Iya&fQuestion2=Apakah%20Kost%20ini%20bersih%3F&fAnswer2=Iya&fQuestion3=Apakah%20Kost%20ini%20bersih%3F&fAnswer3=Iya&pricePerDaily=Iya&pricePerWeekly=Iya&pricePerMonthly=Iya&rules=Iya
@@ -320,6 +326,9 @@ const OwnerDataKamar = () => {
     },
     onError: (err) => {
       console.log(err)
+    },
+    onSettled:() => {
+      setProgressLoading(100);
     }
   });
 
@@ -328,10 +337,11 @@ const OwnerDataKamar = () => {
     await postKost.mutateAsync();
   }
 
-  console.log(addKost);
+  console.log(kostParam);
 
   return (
     <React.Fragment>
+    <LoadingBar waitingTime={50} color='#0A008A' progress={progressLoading} height='5px' />
       <div className='grid grid-cols-5 text-[16px] font-[400] font-montserrat'>
         <div className='col-span-1 bg-[#0A008A] text-white min-h-screen h-full text-center py-6 lg:px-8 lg:py-16'>
           <SidebarForm />

@@ -3,7 +3,6 @@ import kosimg from '../../assets/city-card.svg';
 import { SidebarForm } from '../owner/sidebarform';
 import { Link } from 'react-router-dom';
 import { AddKostActions, useAddKost } from '../../context/kost';
-import { SidebarForm } from '../owner/sidebarform';
 
 const OwnerFotokos = () => {
   const [showModal, setShowModal] = useState(false);

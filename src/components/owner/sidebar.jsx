@@ -54,7 +54,7 @@ export const SidebarOwner = () => {
               </NavLink>
             </li>
             <li className='mb-5 border-2 rounded-[8px] pl-3 py-1 border-[#0A008A] hover:border-white'>
-              <NavLink to='/profilpemilik' className='font-[600]'>
+              <NavLink to='/ownerprofile' className='font-[600]'>
                 Akun Profil
               </NavLink>
             </li>
@@ -79,7 +79,7 @@ export const SidebarOwner = () => {
           </button>
         </NavLink>
         <NavLink
-          to='/profilpemilik'
+          to='/ownerprofile'
           className={({ isActive }) => (isActive ? activeLink : normalLink)}
         >
           <button className='' type='button'>
