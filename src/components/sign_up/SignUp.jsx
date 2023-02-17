@@ -88,7 +88,7 @@ const SignUp = () => {
             <span className='font-[600] text-[#B9B9BC]'>+62</span>
             <input
               className='w-full text-black font-[600] placeholder-[#b9b9bc] focus:outline-none'
-              type='tel'
+              type='number'
               name='phoneNumber'
               placeholder='Isi nomor handphone Whatsapp aktif'
               s
@@ -99,7 +99,7 @@ const SignUp = () => {
               })}
               aria-invalid={errors.phoneNumber ? 'true' : 'false'}
               value={phoneNumber}
-              // onChange={handleInputChange}
+              onChange={handleInputChange}
             />
           </div>
           {errors.phoneNumber && errors.phoneNumber.type === 'validate' && (
